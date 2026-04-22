@@ -133,60 +133,61 @@ export const ourPicks: Product[] = [
 
 export const allProducts = [...bestsellers, ...ourPicks];
 
+import madiun from "../assets/images/store/madiun.jpeg";
+import ponorogo from "../assets/images/store/ponorogo.jpeg";
+import jombang from "../assets/images/store/jombang.jpeg";
+import kediri from "../assets/images/store/kediri.jpeg";
+import nganjuk from "../assets/images/store/nganjuk.jpeg";
+import blitar from "../assets/images/store/blitar.jpeg";
+import tulungagung from "../assets/images/store/tulungagung.jpeg";
+import sidoarjo from "../assets/images/store/sidoarjo.jpeg";
+
 export const stores = [
 {
   city: 'Madiun',
   address: 'Jl. Cokroaminoto No.35',
-  image:
-  'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80',
+  image: madiun,
   mapUrl: 'https://share.google/icXN4Kfm29ZtQmfe6'
 },
 {
   city: 'Ponorogo',
   address: 'Jl. HOS Cokroaminoto No.70',
-  image:
-  'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=600&q=80',
+  image: ponorogo,
   mapUrl: 'https://maps.app.goo.gl/cesmipxdXQbeGe448'
 },
 {
   city: 'Jombang',
   address: 'Jl. Gus Dur No.114',
-  image:
-  'https://images.unsplash.com/photo-1581515302716-698602b33480?w=600&q=80',
+  image: jombang,
   mapUrl: 'https://maps.app.goo.gl/koiHEDZ9woaLkwkB8'
 },
 {
   city: 'Kediri',
   address: 'Jl. Suprapto No.17',
-  image:
-  'https://images.unsplash.com/photo-1555529771-835f59fc5efe?w=600&q=80',
+  image: kediri,
   mapUrl: 'https://maps.app.goo.gl/L4HYbmqDQy3TpDNP7'
 },
 {
   city: 'Nganjuk',
   address: 'Jl. Yos Sudarso No.25',
-  image:
-  'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&q=80',
+  image: nganjuk,
   mapUrl: 'https://maps.app.goo.gl/aFenaRQ9SWj9DpiA8'
 },
 {
   city: 'Blitar',
   address: 'Jl. Veteran No.119',
-  image:
-  'https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?w=600&q=80',
+  image: blitar,
   mapUrl: 'https://maps.app.goo.gl/mZ1jqhJDTRjxUPtS7'
 },
 {
   city: 'Tulungagung',
   address: 'Jl. Pangeran Diponegoro',
-  image:
-  'https://images.unsplash.com/photo-1553531384-cc64ac80f931?w=600&q=80',
+  image: tulungagung,
   mapUrl: 'https://maps.app.goo.gl/VRngzXrB97GWi8Zy6'
 },
 {
   city: 'Sidoarjo',
   address: 'Jl. Gatot Subroto',
-  image:
-  'https://images.unsplash.com/photo-1555529902-5261145633bf?w=600&q=80',
+  image: sidoarjo
   mapUrl: 'https://maps.app.goo.gl/tDFkYco1R1EPB79r8'
 }];
