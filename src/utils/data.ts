@@ -188,6 +188,6 @@ export const stores = [
 {
   city: 'Sidoarjo',
   address: 'Jl. Gatot Subroto',
-  image: sidoarjo
+  image: sidoarjo,
   mapUrl: 'https://maps.app.goo.gl/tDFkYco1R1EPB79r8'
 }];
