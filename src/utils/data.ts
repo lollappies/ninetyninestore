@@ -1,3 +1,31 @@
+import best1 from "../assets/images/landing-page/best 1.jpeg";
+import best2 from "../assets/images/landing-page/best 2.jpeg";
+import best3 from "../assets/images/landing-page/best 3.jpeg";
+import best4 from "../assets/images/landing-page/best 4.jpeg";
+import best5 from "../assets/images/landing-page/best 5.jpeg";
+import best6 from "../assets/images/landing-page/best 6.jpeg";
+import best7 from "../assets/images/landing-page/best 7.jpeg";
+import best8 from "../assets/images/landing-page/best 8.jpeg";
+
+import pick1 from "../assets/images/landing-page/pick 1.jpeg";
+import pick2 from "../assets/images/landing-page/pick 2.jpeg";
+import pick3 from "../assets/images/landing-page/pick 3.jpeg";
+import pick4 from "../assets/images/landing-page/pick 4.jpeg";
+import pick5 from "../assets/images/landing-page/pick 5.jpeg";
+import pick6 from "../assets/images/landing-page/pick 6.jpeg";
+import pick7 from "../assets/images/landing-page/pick 7.jpeg";
+import pick8 from "../assets/images/landing-page/pick 8.jpeg";
+import pick9 from "../assets/images/landing-page/pick 9.jpeg";
+import pick10 from "../assets/images/landing-page/pick 10.jpeg";
+import pick11 from "../assets/images/landing-page/pick 11.jpeg";
+import pick12 from "../assets/images/landing-page/pick 12.jpeg";
+import pick13 from "../assets/images/landing-page/pick 13.jpeg";
+import pick14 from "../assets/images/landing-page/pick 14.jpeg";
+import pick15 from "../assets/images/landing-page/pick 15.jpeg";
+import pick16 from "../assets/images/landing-page/pick 16.jpeg";
+import pick17 from "../assets/images/landing-page/pick 17.jpeg";
+import pick18 from "../assets/images/landing-page/pick 18.jpeg";
+
 export interface Product {
   id: string;
   name: string;
@@ -13,37 +41,29 @@ export const bestsellers: Product[] = [
   id: 'prod_0',
   name: 'Siderope Flowbordir',
   series: 'Code SESTRA 5050 Oneseat',
-  imageMain:
-  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80',
-  imageHover:
-  'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&q=80'
+  imageMain: best 1,
+  imageHover: best 2,
 },
 {
   id: 'prod_1',
   name: 'Cream Bordir Dress',
   series: 'Code DRLFY 6080',
-  imageMain:
-  'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=80',
-  imageHover:
-  'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80'
+  imageMain: best 3,
+  imageHover: best 4,
 },
 {
   id: 'prod_2',
   name: 'Seemivest Bordir Flow Dress',
   series: 'Code DRYN 6357',
-  imageMain:
-  'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=600&q=80',
-  imageHover:
-  'https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=600&q=80'
+  imageMain: best 5,
+  imageHover: best 6,
 },
 {
   id: 'prod_3',
   name: '3 Pocky Top',
   series: 'Code TNVX 8307',
-  imageMain:
-  'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=600&q=80',
-  imageHover:
-  'https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?w=600&q=80'
+  imageMain: best 7,
+  imageHover: best 8,
 }];
 
 
@@ -53,50 +73,40 @@ export const ourPicks: Product[] = [
   name: 'Flowcolour Cream Blouse',
   series: 'Code TPSHRL 9157',
   price: 'IDR 128.000',
-  imageMain:
-  'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80',
-  imageHover:
-  'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80'
+  imageMain: pick 1,
+  imageHover: pick 2,
 },
 {
   id: 'prod_5',
   name: 'Flow Pearlbelt Dress',
   series: 'Code DRJSW 00018',
   price: 'IDR 240.000',
-  imageMain:
-  'https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?w=600&q=80',
-  imageHover:
-  'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80'
+  imageMain: pick 3,
+  imageHover: pick 4,
 },
 {
   id: 'prod_6',
   name: 'Twocolors Bordir Tunic',
   series: 'Code DRYRI 9300',
   price: 'IDR 195.000',
-  imageMain:
-  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80',
-  imageHover:
-  'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=80'
+  imageMain: pick 5,
+  imageHover: pick 6,
 },
 {
   id: 'prod_7',
   name: 'Flow Pattern Dress',
   series: 'Code DRGNT 00137',
   price: 'IDR 185.000',
-  imageMain:
-  'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&q=80',
-  imageHover:
-  'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=600&q=80'
+  imageMain: pick 7,
+  imageHover: pick 8,
 },
 {
   id: 'prod_8',
   name: 'Nudes Vinesbordir Tunic',
   series: 'Code TPBAP 3178',
   price: 'IDR 146.000',
-  imageMain:
-  'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80',
-  imageHover:
-  'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=600&q=80',
+  imageMain: pick 9,
+  imageHover: pick 10,
   isSoldOut: true
 },
 {
@@ -104,9 +114,9 @@ export const ourPicks: Product[] = [
   name: 'Flowlace Shirt',
   series: 'Code TPMGR 00020',
   price: 'IDR 149.000',
-  imageMain:
-  'https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=600&q=80',
-  imageHover:
+  imageMain: pick 11,
+  imageHover: pick 12
+},
   'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80'
 },
 {
@@ -114,20 +124,16 @@ export const ourPicks: Product[] = [
   name: 'Brukat Skirt',
   series: 'Code TVAVM 5069',
   price: 'IDR 139.000',
-  imageMain:
-  'https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?w=600&q=80',
-  imageHover:
-  'https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?w=600&q=80'
+  imageMain: pick 13,
+  imageHover: pick 14,
 },
 {
   id: 'prod_11',
   name: 'Semiouter Flowdress',
   series: 'Code DRYR 2979',
   price: 'IDR 215.000',
-  imageMain:
-  'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80',
-  imageHover:
-  'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80'
+  imageMain: pick 15,
+  imageHover: pick 16,
 }];
 
 
