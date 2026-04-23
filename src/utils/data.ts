@@ -51,7 +51,7 @@ export const ourPicks: Product[] = [
   series: 'Code TPSHRL 9157',
   price: 'IDR 128.000',
   imageMain: "/images/landing-page/pick1.jpeg",
-  imageHover: "/images/landing-page/best8.jpeg",
+  imageHover: "/images/landing-page/pick2.jpeg",
   category: 'outer'
 },
 {
@@ -60,7 +60,7 @@ export const ourPicks: Product[] = [
   series: 'Code DRJSW 00018',
   price: 'IDR 240.000',
   imageMain: "/images/landing-page/pick3.jpeg",
-  imageHover: "/images/landing-page/pick2.jpeg",
+  imageHover: "/images/landing-page/pick4.jpeg",
   category: 'blouse'
 },
 {
