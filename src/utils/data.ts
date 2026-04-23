@@ -45,40 +45,40 @@ export const ourPicks: Product[] = [
   name: 'Flowcolour Cream Blouse',
   series: 'Code TPSHRL 9157',
   price: 'IDR 128.000',
-  imageMain: "/images/landing-page/picks1.jpeg",
-  imageHover: "/images/landing-page/picks2.jpeg"
+  imageMain: "/images/landing-page/pick1.jpeg",
+  imageHover: "/images/landing-page/pick2.jpeg"
 },
 {
   id: 'prod_5',
   name: 'Flow Pearlbelt Dress',
   series: 'Code DRJSW 00018',
   price: 'IDR 240.000',
-  imageMain: "/images/landing-page/picks3.jpeg",
-  imageHover: "/images/landing-page/picks4.jpeg"
+  imageMain: "/images/landing-page/pick3.jpeg",
+  imageHover: "/images/landing-page/pick4.jpeg"
 },
 {
   id: 'prod_6',
   name: 'Twocolors Bordir Tunic',
   series: 'Code DRYRI 9300',
   price: 'IDR 195.000',
-  imageMain: "/images/landing-page/picks5.jpeg",
-  imageHover: "/images/landing-page/picks6.jpeg"
+  imageMain: "/images/landing-page/pick5.jpeg",
+  imageHover: "/images/landing-page/pick6.jpeg"
 },
 {
   id: 'prod_7',
   name: 'Flow Pattern Dress',
   series: 'Code DRGNT 00137',
   price: 'IDR 185.000',
-  imageMain: "/images/landing-page/picks7.jpeg",
-  imageHover: "/images/landing-page/picks8.jpeg"
+  imageMain: "/images/landing-page/pick7.jpeg",
+  imageHover: "/images/landing-page/pick8.jpeg"
 },
 {
   id: 'prod_8',
   name: 'Nudes Vinesbordir Tunic',
   series: 'Code TPBAP 3178',
   price: 'IDR 146.000',
-  imageMain: "/images/landing-page/picks9.jpeg",
-  imageHover: "/images/landing-page/picks10.jpeg",
+  imageMain: "/images/landing-page/pick9.jpeg",
+  imageHover: "/images/landing-page/pick10.jpeg",
   isSoldOut: true
 },
 {
@@ -86,24 +86,24 @@ export const ourPicks: Product[] = [
   name: 'Flowlace Shirt',
   series: 'Code TPMGR 00020',
   price: 'IDR 149.000',
-  imageMain: "/images/landing-page/picks11.jpeg",
-  imageHover: "/images/landing-page/picks12.jpeg"
+  imageMain: "/images/landing-page/pick11.jpeg",
+  imageHover: "/images/landing-page/pick12.jpeg"
 },
 {
   id: 'prod_10',
   name: 'Brukat Skirt',
   series: 'Code TVAVM 5069',
   price: 'IDR 139.000',
-  imageMain: "/images/landing-page/picks13.jpeg",
-  imageHover: "/images/landing-page/picks14.jpeg"
+  imageMain: "/images/landing-page/pick13.jpeg",
+  imageHover: "/images/landing-page/pick14.jpeg"
 },
 {
   id: 'prod_11',
   name: 'Semiouter Flowdress',
   series: 'Code DRYR 2979',
   price: 'IDR 215.000',
-  imageMain: "/images/landing-page/picks15.jpeg",
-  imageHover: "/images/landing-page/picks16.jpeg"
+  imageMain: "/images/landing-page/pick15.jpeg",
+  imageHover: "/images/landing-page/pick16.jpeg"
 }];
 
 
