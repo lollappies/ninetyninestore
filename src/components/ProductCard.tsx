@@ -8,12 +8,14 @@ interface ProductCardProps {
   isWishlisted: boolean;
   onToggleWishlist: (product: Product) => void;
   onAddToCart: (product: Product) => void;
+  hideWishlistToast?: boolean;
 }
 export function ProductCard({
   product,
   isWishlisted,
   onToggleWishlist,
-  onAddToCart
+  onAddToCart,
+  hideWishlistToast = false
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
@@ -52,10 +54,12 @@ export function ProductCard({
             onClick={(e) => {
               e.stopPropagation();
               onToggleWishlist(product);
-              if (isWishlisted) {
-                showToast('Dihapus dari Wishlist');
-              } else {
-                showToast('Ditambahkan ke Wishlist');
+              if (!hideWishlistToast) {
+                if (isWishlisted) {
+                  showToast('Dihapus dari Wishlist');
+                } else {
+                  showToast('Ditambahkan ke Wishlist');
+                }
               }
             }}
             className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-sm ${isWishlisted ? 'bg-brand-accent/10 text-brand-accent' : 'bg-white text-brand-dark hover:bg-brand-dark hover:text-white'}`}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, ShoppingBag, Trash2, ArrowRight } from 'lucide-react';
+import { X, ShoppingBag, Trash2, ArrowRight, Package } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { CartItem } from '../App';
 interface CartPageProps {
@@ -137,61 +137,106 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
           </div>
 
           <div className="flex flex-col gap-6 mb-40">
-            {cartItems.map((item, index) =>
-          <div key={index} className="flex gap-4 items-start">
-                <input
-              type="checkbox"
-              checked={selectedItems.includes(index)}
-              onChange={() => toggleSelectItem(index)}
-              className="w-5 h-5 rounded border-gray-300 accent-[#D32F2F] cursor-pointer mt-2" />
-            
-                <img
-              src={item.product.imageMain}
-              alt={item.product.name}
-              className="w-20 h-24 object-cover rounded-lg bg-gray-100" />
-            
-                <div className="flex-1 flex flex-col">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-sm font-bold text-brand-dark">
-                        {item.product.name}
-                      </h3>
-                      <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">
-                        Code {item.product.series}
-                      </p>
-                      <p className="text-sm text-[#D32F2F] mt-2">
-                        {item.product.price || '-'}
-                      </p>
+            {(() => {
+            // Group items: bundle items together, non-bundle items standalone
+            const bundleGroups: Record<string, number[]> = {};
+            const standaloneIndices: number[] = [];
+            cartItems.forEach((item, index) => {
+              if (item.bundleName) {
+                if (!bundleGroups[item.bundleName]) {
+                  bundleGroups[item.bundleName] = [];
+                }
+                bundleGroups[item.bundleName].push(index);
+              } else {
+                standaloneIndices.push(index);
+              }
+            });
+            const renderItem = (item: CartItem, index: number) =>
+            <div key={index} className="flex gap-4 items-start">
+                  <input
+                type="checkbox"
+                checked={selectedItems.includes(index)}
+                onChange={() => toggleSelectItem(index)}
+                className="w-5 h-5 rounded border-gray-300 accent-[#D32F2F] cursor-pointer mt-2" />
+              
+                  <img
+                src={item.product.imageMain}
+                alt={item.product.name}
+                className="w-20 h-24 object-cover rounded-lg bg-gray-100" />
+              
+                  <div className="flex-1 flex flex-col">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="text-sm font-bold text-brand-dark">
+                          {item.product.name}
+                        </h3>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">
+                          Code {item.product.series}
+                        </p>
+                        <p className="text-sm text-[#D32F2F] mt-2">
+                          {item.product.price || '-'}
+                        </p>
+                      </div>
+                      <button
+                    onClick={() => removeItem(index)}
+                    className="text-gray-300 hover:text-red-500 transition-colors">
+                    
+                        <Trash2 size={18} />
+                      </button>
                     </div>
-                    <button
-                  onClick={() => removeItem(index)}
-                  className="text-gray-300 hover:text-red-500 transition-colors">
+                    <div className="mt-4 flex items-center">
+                      <div className="flex items-center border border-gray-200 rounded-md">
+                        <button
+                      onClick={() =>
+                      updateQuantity(index, item.quantity - 1)
+                      }
+                      className="px-3 py-1 text-gray-500 hover:bg-gray-50 transition-colors">
+                      
+                          -
+                        </button>
+                        <span className="w-10 text-center text-sm font-medium">
+                          {item.quantity}
+                        </span>
+                        <button
+                      onClick={() =>
+                      updateQuantity(index, item.quantity + 1)
+                      }
+                      className="px-3 py-1 text-gray-500 hover:bg-gray-50 transition-colors">
+                      
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>;
+
+            return (
+              <>
+                  {Object.entries(bundleGroups).map(([bundleName, indices]) =>
+                <div
+                  key={bundleName}
+                  className="border border-brand-accent/30 rounded-xl overflow-hidden">
                   
-                      <Trash2 size={18} />
-                    </button>
-                  </div>
-                  <div className="mt-4 flex items-center">
-                    <div className="flex items-center border border-gray-200 rounded-md">
-                      <button
-                    onClick={() => updateQuantity(index, item.quantity - 1)}
-                    className="px-3 py-1 text-gray-500 hover:bg-gray-50 transition-colors">
-                    
-                        -
-                      </button>
-                      <span className="w-10 text-center text-sm font-medium">
-                        {item.quantity}
-                      </span>
-                      <button
-                    onClick={() => updateQuantity(index, item.quantity + 1)}
-                    className="px-3 py-1 text-gray-500 hover:bg-gray-50 transition-colors">
-                    
-                        +
-                      </button>
+                      <div className="bg-brand-accent/5 px-4 py-3 flex items-center gap-2 border-b border-brand-accent/20">
+                        <Package size={16} className="text-brand-accent" />
+                        <span className="text-xs font-bold tracking-widest uppercase text-brand-accent">
+                          {bundleName}
+                        </span>
+                        <span className="text-[10px] text-gray-500 ml-auto">
+                          {indices.length} item
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-6 p-4">
+                        {indices.map((idx) => renderItem(cartItems[idx], idx))}
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-          )}
+                )}
+                  {standaloneIndices.map((idx) =>
+                renderItem(cartItems[idx], idx)
+                )}
+                </>);
+
+          })()}
           </div>
 
           {/* Bottom Sticky Bar */}

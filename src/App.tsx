@@ -32,6 +32,7 @@ export interface CartItem {
   quantity: number;
   color: string;
   size: string;
+  bundleName?: string;
 }
 export function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -54,14 +55,16 @@ export function App() {
   product: Product,
   quantity: number = 1,
   color: string = 'Default',
-  size: string = 'All Size') =>
+  size: string = 'All Size',
+  bundleName?: string) =>
   {
     setCartItems((prev) => {
       const existingItemIndex = prev.findIndex(
         (item) =>
         item.product.id === product.id &&
         item.color === color &&
-        item.size === size
+        item.size === size &&
+        item.bundleName === bundleName
       );
       if (existingItemIndex > -1) {
         const newItems = [...prev];
@@ -74,7 +77,8 @@ export function App() {
         product,
         quantity,
         color,
-        size
+        size,
+        bundleName
       }];
 
     });

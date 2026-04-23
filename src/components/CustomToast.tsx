@@ -42,7 +42,7 @@ export function CustomToastProvider({
       
       {children}
       <div
-        className="fixed bottom-8 left-1/2 z-50 flex flex-col gap-3 items-center pointer-events-none"
+        className="fixed bottom-8 left-1/2 z-[99999] flex flex-col gap-3 items-center pointer-events-none"
         style={{
           transform: 'translateX(-50%)'
         }}>

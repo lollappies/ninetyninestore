@@ -10,7 +10,8 @@ interface SaleDetailPageProps {
   product: Product,
   quantity?: number,
   color?: string,
-  size?: string)
+  size?: string,
+  bundleName?: string)
   => void;
 }
 export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
@@ -78,15 +79,19 @@ export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
   `IDR ${new Intl.NumberFormat('id-ID').format(val)}`;
   const handleAddBundleToCart = () => {
     setIsAdding(true);
-    // Add all items in the bundle to cart
     look.items.forEach((item) => {
-      onAddToCart(item, 1, 'Default', 'All Size');
+      onAddToCart(item, 1, 'Default', 'All Size', `Bundle: ${look.title}`);
     });
     showToast('Bundle ditambahkan ke Keranjang');
     setTimeout(() => {
       setIsAdding(false);
-      navigate('/cart');
     }, 800);
+  };
+  const handleBuyNow = () => {
+    look.items.forEach((item) => {
+      onAddToCart(item, 1, 'Default', 'All Size', `Bundle: ${look.title}`);
+    });
+    navigate('/checkout');
   };
   return (
     <motion.div
@@ -209,7 +214,7 @@ export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
               <button
                 onClick={handleAddBundleToCart}
                 disabled={isAdding}
-                className="w-full py-4 bg-brand-dark text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-accent transition-colors flex items-center justify-center gap-2 disabled:opacity-70">
+                className="w-full py-4 border border-brand-dark text-brand-dark rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-dark hover:text-white transition-colors flex items-center justify-center gap-2 disabled:opacity-70">
                 
                 {isAdding ?
                 'Adding to Cart...' :
@@ -219,6 +224,12 @@ export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
                     Add Bundle to Cart
                   </>
                 }
+              </button>
+              <button
+                onClick={handleBuyNow}
+                className="w-full py-4 bg-brand-dark text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-accent transition-colors">
+                
+                Buy Now
               </button>
             </div>
           </div>
