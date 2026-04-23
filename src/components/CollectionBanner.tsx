@@ -8,7 +8,7 @@ export function CollectionBanner({
   onExploreLooks
 }: CollectionBannerProps) {
   return <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
-      <img src="/images/landing-page/banner.jpeg" alt="Collection" className="absolute inset-0 w-full h-full object-cover object-[55%_65%]" />
+      <img src="/images/landing-page/banner.jpeg" alt="Collection" className="absolute inset-0 w-full h-full object-cover object-[55%_45%]" />
       <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative z-10 h-full max-w-[1440px] mx-auto px-4 md:px-12 flex items-center">
