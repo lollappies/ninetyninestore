@@ -588,7 +588,7 @@ export const category: Product[] = [
     imageMain: "/images/outer/outer1.jpeg",
     imageHover: "/images/outer/outer2.jpeg",
     category: 'outer'
-  }
+  },
     {
     id: 'outer_2',
     name: 'Flow Outer',
@@ -596,7 +596,7 @@ export const category: Product[] = [
     imageMain: "/images/outer/outer3.jpeg",
     imageHover: "/images/outer/outer4.jpeg",
     category: 'outer'
-  }
+  },
     {
     id: 'outer_3',
     name: 'Flow Outer',
@@ -604,7 +604,7 @@ export const category: Product[] = [
     imageMain: "/images/outer/outer5.jpeg",
     imageHover: "/images/outer/outer6.jpeg",
     category: 'outer'
-  }
+  },
     {
     id: 'outer_4',
     name: 'Flow Outer',
@@ -612,7 +612,7 @@ export const category: Product[] = [
     imageMain: "/images/outer/outer7.jpeg",
     imageHover: "/images/outer/outer8.jpeg",
     category: 'outer'
-  }
+  },
     {
     id: 'outer_5',
     name: 'Flow Outer',
@@ -620,7 +620,7 @@ export const category: Product[] = [
     imageMain: "/images/outer/outer9.jpeg",
     imageHover: "/images/outer/outer10.jpeg",
     category: 'outer'
-  }
+  },
     {
     id: 'outer_6',
     name: 'Flow Outer',
@@ -628,7 +628,7 @@ export const category: Product[] = [
     imageMain: "/images/outer/outer11.jpeg",
     imageHover: "/images/outer/outer12.jpeg",
     category: 'outer'
-  }
+  },
     {
     id: 'outer_7',
     name: 'Flow Outer',
@@ -636,7 +636,7 @@ export const category: Product[] = [
     imageMain: "/images/outer/outer13.jpeg",
     imageHover: "/images/outer/outer14.jpeg",
     category: 'outer'
-  }
+  },
     {
     id: 'outer_8',
     name: 'Flow Outer',
@@ -644,7 +644,7 @@ export const category: Product[] = [
     imageMain: "/images/outer/outer15.jpeg",
     imageHover: "/images/outer/outer16.jpeg",
     category: 'outer'
-  }
+  },
     {
     id: 'outer_9',
     name: 'Flow Outer',
@@ -652,7 +652,7 @@ export const category: Product[] = [
     imageMain: "/images/outer/outer17.jpeg",
     imageHover: "/images/outer/outer18.jpeg",
     category: 'outer'
-  }
+  },
     {
     id: 'outer_10',
     name: 'Flow Outer',
@@ -660,7 +660,7 @@ export const category: Product[] = [
     imageMain: "/images/outer/outer19.jpeg",
     imageHover: "/images/outer/outer20.jpeg",
     category: 'outer'
-  }
+  },
 
   // ===== SWEATER =====
  {
