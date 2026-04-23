@@ -1,3 +1,14 @@
+// ===== CATEGORY TYPE =====
+export type Category =
+  | 'dress'
+  | 'blouse'
+  | 'tunic'
+  | 'outer'
+  | 'sweater'
+  | 'pants'
+  | 'skirt';
+
+  // ===== PRODUCT TYPE =====
 export interface Product {
   id: string;
   name: string;
@@ -5,10 +16,11 @@ export interface Product {
   price?: string;
   imageMain: string;
   imageHover: string;
-  category: string;
+  category: Category;
   isSoldOut?: boolean;
 }
 
+// ===== BESTSELLERS =====
 export const bestsellers: Product[] = [
 {
   id: 'prod_0',
@@ -43,7 +55,7 @@ export const bestsellers: Product[] = [
   category: 'outer'
 }];
 
-
+// ===== OUR PICKS =====
 export const ourPicks: Product[] = [
 {
   id: 'prod_4',
@@ -52,7 +64,7 @@ export const ourPicks: Product[] = [
   price: 'IDR 128.000',
   imageMain: "/images/landing-page/pick1.jpeg",
   imageHover: "/images/landing-page/pick2.jpeg",
-  category: 'outer'
+  category: 'blouse'
 },
 {
   id: 'prod_5',
@@ -61,7 +73,7 @@ export const ourPicks: Product[] = [
   price: 'IDR 240.000',
   imageMain: "/images/landing-page/pick3.jpeg",
   imageHover: "/images/landing-page/pick4.jpeg",
-  category: 'blouse'
+  category: 'dress'
 },
 {
   id: 'prod_6',
@@ -178,6 +190,7 @@ export const stores = [
   mapUrl: 'https://maps.app.goo.gl/tDFkYco1R1EPB79r8'
 }];
 
+// ===== IMPORT IMAGES =====
 // DRESS
 import dress1 from "../assets/images/dress/dress1.jpeg";
 import dress2 from "../assets/images/dress/dress2.jpeg";
@@ -332,87 +345,87 @@ import skirt18 from "../assets/images/skirt/skirt18.jpeg";
 import skirt19 from "../assets/images/skirt/skirt19.jpeg";
 import skirt20 from "../assets/images/skirt/skirt20.jpeg";
 
+// ===== ALL PRODUCTS =====
 export const category: Product[] = [
-
   // ===== DRESS =====
   {
     id: 'dress_1',
     name: 'Flow Dress',
     series: 'Code DR001',
-    imageMain: "/images/dress/dress1.jpeg",
-    imageHover: "/images/dress/dress2.jpeg",
+    imageMain: dress1,
+    imageHover: dress2,
     category: 'dress'
   },
   {
     id: 'dress_2',
     name: 'Elegant Dress',
     series: 'Code DR002',
-    imageMain: "/images/dress/dress3.jpeg",
-    imageHover: "/images/dress/dress4.jpeg",
+    imageMain: dress3,
+    imageHover: dress4,
     category: 'dress'
   },
   {
     id: 'dress_3',
     name: 'Soft Lace Dress',
     series: 'Code DR003',
-    imageMain: "/images/dress/dress5.jpeg",
-    imageHover: "/images/dress/dress6.jpeg",
+    imageMain: dress5,
+    imageHover: dress6,
     category: 'dress'
   },
   {
     id: 'dress_4',
     name: 'Daily Dress',
     series: 'Code DR004',
-    imageMain: "/images/dress/dress7.jpeg",
-    imageHover: "/images/dress/dress8.jpeg",
+    imageMain: dress7,
+    imageHover: dress8,
     category: 'dress'
   },
     {
     id: 'dress_5',
     name: 'Flow Dress',
-    series: 'Code DR001',
-    imageMain: "/images/dress/dress9.jpeg",
-    imageHover: "/images/dress/dress10.jpeg",
+    series: 'Code DR005',
+    imageMain: dress9,
+    imageHover: dress10,
     category: 'dress'
   },
   {
     id: 'dress_6',
     name: 'Elegant Dress',
-    series: 'Code DR002',
-    imageMain: "/images/dress/dress11.jpeg",
-    imageHover: "/images/dress/dress12.jpeg",
+    series: 'Code DR006',
+    imageMain: dress11,
+    imageHover: dress12,
     category: 'dress'
   },
   {
     id: 'dress_7',
     name: 'Soft Lace Dress',
-    series: 'Code DR003',
-    imageMain: "/images/dress/dress13.jpeg",
-    imageHover: "/images/dress/dress14.jpeg",
+    series: 'Code DR007',
+    imageMain: dress13,
+    imageHover: dress14,
     category: 'dress'
   },
   {
     id: 'dress_8',
     name: 'Daily Dress',
-    series: 'Code DR004',
-    imageMain: "/images/dress/dress15.jpeg",
-    imageHover: "/images/dress/dress16.jpeg",
+    series: 'Code DR008',
+    imageMain: dress15,
+    imageHover: dress16,
     category: 'dress'
  },
   {
     id: 'dress_9',
     name: 'Soft Lace Dress',
-    series: 'Code DR003',
-    imageMain: "/images/dress/dress17.jpeg",
-    imageHover: "/images/dress/dress18.jpeg",
+    series: 'Code DR009',
+    imageMain: dress17,
+    imageHover: dress18,
     category: 'dress'
   },
   {
     id: 'dress_10',
     name: 'Daily Dress',
-    series: 'Code DR004',
-    imageMain: "/images/dress/dress19.jpeg",
-    imageHover: "/images/dress/dress20.jpeg",
+    series: 'Code DR010',
+    imageMain: dress19,
+    imageHover: dress20,
     category: 'dress'
   },
 
@@ -421,80 +434,80 @@ export const category: Product[] = [
     id: 'blouse_1',
     name: 'Soft Blouse',
     series: 'Code BL001',
-    imageMain: "/images/blouse/blouse1.jpeg",
-    imageHover: "/images/blouse/blouse2.jpeg",
+    imageMain: blouse1,
+    imageHover: blouse2,
     category: 'blouse'
   },
   {
     id: 'blouse_2',
     name: 'Elegant Blouse',
     series: 'Code BL002',
-    imageMain: "/images/blouse/blouse3.jpeg",
-    imageHover: "/images/blouse/blouse4.jpeg",
+    imageMain: blouse3,
+    imageHover: blouse4,
     category: 'blouse'
   },
   {
     id: 'blouse_3',
     name: 'Flow Blouse',
     series: 'Code BL003',
-    imageMain: "/images/blouse/blouse5.jpeg",
-    imageHover: "/images/blouse/blouse6.jpeg",
+    imageMain: blouse5,
+    imageHover: blouse6,
     category: 'blouse'
   },
   {
     id: 'blouse_4',
     name: 'Daily Blouse',
     series: 'Code BL004',
-    imageMain: "/images/blouse/blouse7.jpeg",
-    imageHover: "/images/blouse/blouse8.jpeg",
+    imageMain: blouse7,
+    imageHover: blouse8,
     category: 'blouse'
   },
    {
     id: 'blouse_5',
     name: 'Soft Blouse',
-    series: 'Code BL001',
-    imageMain: "/images/blouse/blouse9.jpeg",
-    imageHover: "/images/blouse/blouse10.jpeg",
+    series: 'Code BL005',
+    imageMain: blouse9,
+    imageHover: blouse10,
     category: 'blouse'
   },
   {
     id: 'blouse_6',
     name: 'Elegant Blouse',
-    series: 'Code BL002',
-    imageMain: "/images/blouse/blouse11.jpeg",
-    imageHover: "/images/blouse/blouse12.jpeg",
+    series: 'Code BL006',
+    imageMain: blouse11,
+    imageHover: blouse12,
     category: 'blouse'
   },
   {
     id: 'blouse_7',
     name: 'Flow Blouse',
-    series: 'Code BL003',
-    imageMain: "/images/blouse/blouse13.jpeg",
-    imageHover: "/images/blouse/blouse14.jpeg",
+    series: 'Code BL007',
+    imageMain: blouse13,
+    imageHover: blouse14,
     category: 'blouse'
   },
   {
     id: 'blouse_8',
     name: 'Daily Blouse',
-    series: 'Code BL004',
-    imageMain: "/images/blouse/blouse15.jpeg",
-    imageHover: "/images/blouse/blouse16.jpeg",
+    series: 'Code BL008',
+    imageMain: blouse15,
+    imageHover: blouse16,
     category: 'blouse'
   },
   {
     id: 'blouse_9',
     name: 'Flow Blouse',
-    series: 'Code BL003',
-    imageMain: "/images/blouse/blouse17.jpeg",
-    imageHover: "/images/blouse/blouse18.jpeg",
+    series: 'Code BL009',
+    imageMain: blouse17,
+    imageHover: blouse18,
     category: 'blouse'
   },
   {
     id: 'blouse_10',
     name: 'Daily Blouse',
-    series: 'Code BL004',
-    imageMain: "/images/blouse/blouse19.jpeg",
-    imageHover: "/images/blouse/blouse20.jpeg",
+    series: 'Code BL010',
+    imageMain: blouse19,
+    imageHover: blouse20,
     category: 'blouse'
   },
 
@@ -503,80 +516,80 @@ export const category: Product[] = [
     id: 'tunic_1',
     name: 'Flow Tunic',
     series: 'Code TN001',
-    imageMain: "/images/tunic/tunic1.jpeg",
-    imageHover: "/images/tunic/tunic2.jpeg",
+    imageMain: tunic1,
+    imageHover: tunic2,
     category: 'tunic'
   },
   {
     id: 'tunic_2',
     name: 'Elegant Tunic',
     series: 'Code TN002',
-    imageMain: "/images/tunic/tunic3.jpeg",
-    imageHover: "/images/tunic/tunic4.jpeg",
+    imageMain: tunic3,
+    imageHover: tunic4,
     category: 'tunic'
   },
    {
     id: 'tunic_3',
     name: 'Flow Tunic',
-    series: 'Code TN001',
-    imageMain: "/images/tunic/tunic5.jpeg",
-    imageHover: "/images/tunic/tunic6.jpeg",
+    series: 'Code TN003',
+    imageMain: tunic5,
+    imageHover: tunic6,
     category: 'tunic'
   },
   {
     id: 'tunic_4',
     name: 'Elegant Tunic',
-    series: 'Code TN002',
-    imageMain: "/images/tunic/tunic7.jpeg",
-    imageHover: "/images/tunic/tunic8.jpeg",
+    series: 'Code TN004',
+    imageMain: tunic7,
+    imageHover: tunic8,
     category: 'tunic'
   },
    {
     id: 'tunic_5',
     name: 'Flow Tunic',
-    series: 'Code TN001',
-    imageMain: "/images/tunic/tunic9.jpeg",
-    imageHover: "/images/tunic/tunic10.jpeg",
+    series: 'Code TN005',
+    imageMain: tunic9,
+    imageHover: tunic10,
     category: 'tunic'
   },
   {
     id: 'tunic_6',
     name: 'Elegant Tunic',
-    series: 'Code TN002',
-    imageMain: "/images/tunic/tunic11.jpeg",
-    imageHover: "/images/tunic/tunic12.jpeg",
+    series: 'Code TN006',
+    imageMain: tunic11,
+    imageHover: tunic12,
     category: 'tunic'
   },
    {
     id: 'tunic_7',
     name: 'Flow Tunic',
-    series: 'Code TN001',
-    imageMain: "/images/tunic/tunic13.jpeg",
-    imageHover: "/images/tunic/tunic14.jpeg",
+    series: 'Code TN007',
+    imageMain: tunic13,
+    imageHover: tunic14,
     category: 'tunic'
   },
   {
     id: 'tunic_8',
     name: 'Elegant Tunic',
-    series: 'Code TN002',
-    imageMain: "/images/tunic/tunic15.jpeg",
-    imageHover: "/images/tunic/tunic16.jpeg",
+    series: 'Code TN008',
+    imageMain: tunic15,
+    imageHover: tunic16,
     category: 'tunic'
   },
    {
     id: 'tunic_9',
     name: 'Flow Tunic',
-    series: 'Code TN001',
-    imageMain: "/images/tunic/tunic17.jpeg",
-    imageHover: "/images/tunic/tunic18.jpeg",
+    series: 'Code TN009',
+    imageMain: tunic17,
+    imageHover: tunic18,
     category: 'tunic'
   },
   {
     id: 'tunic_10',
     name: 'Elegant Tunic',
-    series: 'Code TN002',
-    imageMain: "/images/tunic/tunic19.jpeg",
-    imageHover: "/images/tunic/tunic20.jpeg",
+    series: 'Code TN010',
+    imageMain: tunic19,
+    imageHover: tunic20,
     category: 'tunic'
   },
 
@@ -585,80 +598,80 @@ export const category: Product[] = [
     id: 'outer_1',
     name: 'Flow Outer',
     series: 'Code OT001',
-    imageMain: "/images/outer/outer1.jpeg",
-    imageHover: "/images/outer/outer2.jpeg",
+    imageMain: outer1,
+    imageHover: outer2,
     category: 'outer'
   },
     {
     id: 'outer_2',
     name: 'Flow Outer',
-    series: 'Code OT001',
-    imageMain: "/images/outer/outer3.jpeg",
-    imageHover: "/images/outer/outer4.jpeg",
+    series: 'Code OT002',
+    imageMain: outer3,
+    imageHover: outer4,
     category: 'outer'
   },
     {
     id: 'outer_3',
     name: 'Flow Outer',
-    series: 'Code OT001',
-    imageMain: "/images/outer/outer5.jpeg",
-    imageHover: "/images/outer/outer6.jpeg",
+    series: 'Code OT003',
+    imageMain: outer5,
+    imageHover: outer6,
     category: 'outer'
   },
     {
     id: 'outer_4',
     name: 'Flow Outer',
-    series: 'Code OT001',
-    imageMain: "/images/outer/outer7.jpeg",
-    imageHover: "/images/outer/outer8.jpeg",
+    series: 'Code OT004',
+    imageMain: outer7,
+    imageHover: outer8,
     category: 'outer'
   },
     {
     id: 'outer_5',
     name: 'Flow Outer',
-    series: 'Code OT001',
-    imageMain: "/images/outer/outer9.jpeg",
-    imageHover: "/images/outer/outer10.jpeg",
+    series: 'Code OT005',
+    imageMain: outer9,
+    imageHover: outer10,
     category: 'outer'
   },
     {
     id: 'outer_6',
     name: 'Flow Outer',
-    series: 'Code OT001',
-    imageMain: "/images/outer/outer11.jpeg",
-    imageHover: "/images/outer/outer12.jpeg",
+    series: 'Code OT006',
+    imageMain: outer11,
+    imageHover: outer12,
     category: 'outer'
   },
     {
     id: 'outer_7',
     name: 'Flow Outer',
-    series: 'Code OT001',
-    imageMain: "/images/outer/outer13.jpeg",
-    imageHover: "/images/outer/outer14.jpeg",
+    series: 'Code OT007',
+    imageMain: outer13,
+    imageHover: outer14,
     category: 'outer'
   },
     {
     id: 'outer_8',
     name: 'Flow Outer',
-    series: 'Code OT001',
-    imageMain: "/images/outer/outer15.jpeg",
-    imageHover: "/images/outer/outer16.jpeg",
+    series: 'Code OT008',
+    imageMain: outer15,
+    imageHover: outer16,
     category: 'outer'
   },
     {
     id: 'outer_9',
     name: 'Flow Outer',
-    series: 'Code OT001',
-    imageMain: "/images/outer/outer17.jpeg",
-    imageHover: "/images/outer/outer18.jpeg",
+    series: 'Code OT009',
+    imageMain: outer17,
+    imageHover: outer18,
     category: 'outer'
   },
     {
     id: 'outer_10',
     name: 'Flow Outer',
-    series: 'Code OT001',
-    imageMain: "/images/outer/outer19.jpeg",
-    imageHover: "/images/outer/outer20.jpeg",
+    series: 'Code OT010',
+    imageMain: outer19,
+    imageHover: outer20,
     category: 'outer'
   },
 
@@ -667,80 +680,80 @@ export const category: Product[] = [
     id: 'sweater_1',
     name: 'Brukat Sweater',
     series: 'Code SW001',
-    imageMain: "/images/sweater/sweater1.jpeg",
-    imageHover: "/images/sweater/sweater2.jpeg",
+    imageMain: sweater1,
+    imageHover: sweater2,
     category: 'sweater'
   },
    {
     id: 'sweater_2',
     name: 'Brukat Sweater',
-    series: 'Code SW001',
-    imageMain: "/images/sweater/sweater3.jpeg",
-    imageHover: "/images/sweater/sweater4.jpeg",
+    series: 'Code SW002',
+    imageMain: sweater3,
+    imageHover: sweater4,
     category: 'sweater'
   },
    {
     id: 'sweater_3',
     name: 'Brukat Sweater',
-    series: 'Code SW001',
-    imageMain: "/images/sweater/sweater5.jpeg",
-    imageHover: "/images/sweater/sweater6.jpeg",
+    series: 'Code SW003',
+    imageMain: sweater5,
+    imageHover: sweater6,
     category: 'sweater'
   },
    {
     id: 'sweater_4',
     name: 'Brukat Sweater',
-    series: 'Code SW001',
-    imageMain: "/images/sweater/sweater7.jpeg",
-    imageHover: "/images/sweater/sweater8.jpeg",
+    series: 'Code SW004',
+    imageMain: sweater7,
+    imageHover: sweater8,
     category: 'sweater'
   },
    {
     id: 'sweater_5',
     name: 'Brukat Sweater',
-    series: 'Code SW001',
-    imageMain: "/images/sweater/sweater9.jpeg",
-    imageHover: "/images/sweater/sweater10.jpeg",
+    series: 'Code SW005',
+    imageMain: sweater9,
+    imageHover: sweater10,
     category: 'sweater'
   },
    {
     id: 'sweater_6',
     name: 'Brukat Sweater',
-    series: 'Code SW001',
-    imageMain: "/images/sweater/sweater11.jpeg",
-    imageHover: "/images/sweater/sweater12.jpeg",
+    series: 'Code SW006',
+    imageMain: sweater11,
+    imageHover: sweater12,
     category: 'sweater'
   },
    {
     id: 'sweater_7',
     name: 'Brukat Sweater',
-    series: 'Code SW001',
-    imageMain: "/images/sweater/sweater13.jpeg",
-    imageHover: "/images/sweater/sweater14.jpeg",
+    series: 'Code SW007',
+    imageMain: sweater13,
+    imageHover: sweater14,
     category: 'sweater'
   },
    {
     id: 'sweater_8',
     name: 'Brukat Sweater',
-    series: 'Code SW001',
-    imageMain: "/images/sweater/sweater15.jpeg",
-    imageHover: "/images/sweater/sweater16.jpeg",
+    series: 'Code SW008',
+    imageMain: sweater15,
+    imageHover: sweater16,
     category: 'sweater'
   },
    {
     id: 'sweater_9',
     name: 'Brukat Sweater',
-    series: 'Code SW001',
-    imageMain: "/images/sweater/sweater17.jpeg",
-    imageHover: "/images/sweater/sweater18.jpeg",
+    series: 'Code SW009',
+    imageMain: sweater17,
+    imageHover: sweater18,
     category: 'sweater'
   },
    {
     id: 'sweater_10',
     name: 'Brukat Sweater',
-    series: 'Code SW001',
-    imageMain: "/images/sweater/sweater19.jpeg",
-    imageHover: "/images/sweater/sweater20.jpeg",
+    series: 'Code SW010',
+    imageMain: sweater19,
+    imageHover: sweater20,
     category: 'sweater'
   },
 
@@ -749,80 +762,80 @@ export const category: Product[] = [
     id: 'pants_1',
     name: 'Brukat Pants',
     series: 'Code PT001',
-    imageMain: "/images/pants/pants1.jpeg",
-    imageHover: "/images/pants/pants2.jpeg",
+    imageMain: pants1,
+    imageHover: pants2,
     category: 'pants'
   },
    {
     id: 'pants_2',
     name: 'Brukat Pants',
-    series: 'Code PT001',
-    imageMain: "/images/pants/pants3.jpeg",
-    imageHover: "/images/pants/pants4.jpeg",
+    series: 'Code PT002',
+    imageMain: pants3,
+    imageHover: pants4,
     category: 'pants'
   },
    {
     id: 'pants_3',
     name: 'Brukat Pants',
-    series: 'Code PT001',
-    imageMain: "/images/pants/pants5.jpeg",
-    imageHover: "/images/pants/pants6.jpeg",
+    series: 'Code PT003',
+    imageMain: pants5,
+    imageHover: pants6,
     category: 'pants'
   },
    {
     id: 'pants_4',
     name: 'Brukat Pants',
-    series: 'Code PT001',
-    imageMain: "/images/pants/pants7.jpeg",
-    imageHover: "/images/pants/pants8.jpeg",
+    series: 'Code PT004',
+    imageMain: pants7,
+    imageHover: pants8,
     category: 'pants'
   },
    {
     id: 'pants_5',
     name: 'Brukat Pants',
-    series: 'Code PT001',
-    imageMain: "/images/pants/pants9.jpeg",
-    imageHover: "/images/pants/pants10.jpeg",
+    series: 'Code PT005',
+    imageMain: pants9,
+    imageHover: pants10,
     category: 'pants'
   },
    {
     id: 'pants_6',
     name: 'Brukat Pants',
-    series: 'Code PT001',
-    imageMain: "/images/pants/pants11.jpeg",
-    imageHover: "/images/pants/pants12.jpeg",
+    series: 'Code PT006',
+    imageMain: pants11,
+    imageHover: pants12,
     category: 'pants'
   },
    {
     id: 'pants_7',
     name: 'Brukat Pants',
-    series: 'Code PT001',
-    imageMain: "/images/pants/pants13.jpeg",
-    imageHover: "/images/pants/pants14.jpeg",
+    series: 'Code PT007',
+    imageMain: pants13,
+    imageHover: pants14,
     category: 'pants'
   },
    {
     id: 'pants_8',
     name: 'Brukat Pants',
-    series: 'Code PT001',
-    imageMain: "/images/pants/pants15.jpeg",
-    imageHover: "/images/pants/pants16.jpeg",
+    series: 'Code PT008',
+    imageMain: pants15,
+    imageHover: pants16,
     category: 'pants'
   },
    {
     id: 'pants_9',
     name: 'Brukat Pants',
-    series: 'Code PT001',
-    imageMain: "/images/pants/pants17.jpeg",
-    imageHover: "/images/pants/pants18.jpeg",
+    series: 'Code PT009',
+    imageMain: pants17,
+    imageHover: pants18,
     category: 'pants'
   },
    {
     id: 'pants_10',
     name: 'Brukat Pants',
-    series: 'Code PT001',
-    imageMain: "/images/pants/pants19.jpeg",
-    imageHover: "/images/pants/pants20.jpeg",
+    series: 'Code PT010',
+    imageMain: pants19,
+    imageHover: pants20,
     category: 'pants'
   },
 
@@ -831,82 +844,82 @@ export const category: Product[] = [
     id: 'skirt_1',
     name: 'Brukat Skirt',
     series: 'Code SK001',
-    imageMain: "/images/skirt/skirt1.jpeg",
-    imageHover: "/images/skirt/skirt2.jpeg",
+    imageMain: skirt1,
+    imageHover: skirt2,
     category: 'skirt'
   },
    {
     id: 'skirt_2',
     name: 'Brukat Skirt',
-    series: 'Code SK001',
-    imageMain: "/images/skirt/skirt3.jpeg",
-    imageHover: "/images/skirt/skirt4.jpeg",
+    series: 'Code SK002',
+    imageMain: skirt3,
+    imageHover: skirt4,
     category: 'skirt'
   },
    {
     id: 'skirt_3',
     name: 'Brukat Skirt',
-    series: 'Code SK001',
-    imageMain: "/images/skirt/skirt5.jpeg",
-    imageHover: "/images/skirt/skirt6.jpeg",
+    series: 'Code SK003',
+    imageMain: skirt5,
+    imageHover: skirt6,
     category: 'skirt'
   },
    {
     id: 'skirt_4',
     name: 'Brukat Skirt',
-    series: 'Code SK001',
-    imageMain: "/images/skirt/skirt7.jpeg",
-    imageHover: "/images/skirt/skirt8.jpeg",
+    series: 'Code SK004',
+    imageMain: skirt7,
+    imageHover: skirt8,
     category: 'skirt'
   },
    {
     id: 'skirt_5',
     name: 'Brukat Skirt',
-    series: 'Code SK001',
-    imageMain: "/images/skirt/skirt9.jpeg",
-    imageHover: "/images/skirt/skirt10.jpeg",
+    series: 'Code SK005',
+    imageMain: skirt9,
+    imageHover: skirt10,
     category: 'skirt'
   },
    {
     id: 'skirt_6',
     name: 'Brukat Skirt',
-    series: 'Code SK001',
-    imageMain: "/images/skirt/skirt11.jpeg",
-    imageHover: "/images/skirt/skirt12.jpeg",
+    series: 'Code SK006',
+    imageMain: skirt11,
+    imageHover: skirt12,
     category: 'skirt'
   },
    {
     id: 'skirt_7',
     name: 'Brukat Skirt',
-    series: 'Code SK001',
-    imageMain: "/images/skirt/skirt13.jpeg",
-    imageHover: "/images/skirt/skirt14.jpeg",
+    series: 'Code SK007',
+    imageMain: skirt13,
+    imageHover: skirt14,
     category: 'skirt'
   },
    {
     id: 'skirt_8',
     name: 'Brukat Skirt',
-    series: 'Code SK001',
-    imageMain: "/images/skirt/skirt15.jpeg",
-    imageHover: "/images/skirt/skirt16.jpeg",
+    series: 'Code SK008',
+    imageMain: skirt15,
+    imageHover: skirt16,
     category: 'skirt'
   },
    {
     id: 'skirt_9',
     name: 'Brukat Skirt',
-    series: 'Code SK001',
-    imageMain: "/images/skirt/skirt17.jpeg",
-    imageHover: "/images/skirt/skirt18.jpeg",
+    series: 'Code SK009',
+    imageMain: skirt17,
+    imageHover: skirt18,
     category: 'skirt'
   },
    {
     id: 'skirt_10',
     name: 'Brukat Skirt',
-    series: 'Code SK001',
-    imageMain: "/images/skirt/skirt19.jpeg",
-    imageHover: "/images/skirt/skirt20.jpeg",
+    series: 'Code SK010',
+    imageMain: skirt19,
+    imageHover: skirt20,
     category: 'skirt'
   },
 
-
 ];
+export const allProducts = category;
