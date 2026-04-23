@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, ShoppingBag, Trash2, ArrowRight } from 'lucide-react';
+import { useCustomToast } from '../components/CustomToast';
 import { CartItem } from '../App';
 interface CartPageProps {
   cartItems: CartItem[];
   setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
 }
-export function CartPage({
-  cartItems,
-  setCartItems
-}: CartPageProps) {
+export function CartPage({ cartItems, setCartItems }: CartPageProps) {
   const navigate = useNavigate();
+  const { showToast } = useCustomToast();
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   // Initialize all items as selected when cart changes
   useEffect(() => {
@@ -37,23 +36,37 @@ export function CartPage({
     setCartItems(newItems);
   };
   const removeItem = (index: number) => {
+    const removedName = cartItems[index].product.name;
     const newItems = [...cartItems];
     newItems.splice(index, 1);
     setCartItems(newItems);
-    setSelectedItems(selectedItems.filter((i) => i !== index).map((i) => i > index ? i - 1 : i));
+    setSelectedItems(
+      selectedItems.
+      filter((i) => i !== index).
+      map((i) => i > index ? i - 1 : i)
+    );
+    showToast('Produk dihapus dari keranjang');
   };
   const removeSelected = () => {
-    const newItems = cartItems.filter((_, index) => !selectedItems.includes(index));
+    const count = selectedItems.length;
+    const newItems = cartItems.filter(
+      (_, index) => !selectedItems.includes(index)
+    );
     setCartItems(newItems);
     setSelectedItems([]);
+    showToast(`${count} produk dihapus dari keranjang`);
   };
-  const selectedCartItems = cartItems.filter((_, index) => selectedItems.includes(index));
+  const selectedCartItems = cartItems.filter((_, index) =>
+  selectedItems.includes(index)
+  );
   const subtotal = selectedCartItems.reduce((acc, item) => {
     const priceStr = item.product.price?.replace(/[^0-9]/g, '') || '0';
     return acc + parseInt(priceStr) * item.quantity;
   }, 0);
-  const formatCurrency = (val: number) => new Intl.NumberFormat('id-ID').format(val);
-  return <div className="min-h-screen bg-white flex flex-col">
+  const formatCurrency = (val: number) =>
+  new Intl.NumberFormat('id-ID').format(val);
+  return (
+    <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
       <header className="sticky top-0 z-30 bg-white border-b border-gray-100 py-4 px-4 md:px-8 flex justify-between items-center">
         <div className="flex items-baseline gap-2">
@@ -64,12 +77,16 @@ export function CartPage({
             / Shopping Cart
           </span>
         </div>
-        <button onClick={() => navigate(-1)} className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors">
+        <button
+          onClick={() => navigate(-1)}
+          className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors">
+          
           <X size={16} />
         </button>
       </header>
 
-      {cartItems.length === 0 /* Empty State */ ? <div className="flex-1 flex flex-col items-center justify-center p-4">
+      {cartItems.length === 0 /* Empty State */ ?
+      <div className="flex-1 flex flex-col items-center justify-center p-4">
           <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
             <ShoppingBag size={32} className="text-gray-400" />
           </div>
@@ -79,16 +96,32 @@ export function CartPage({
           <p className="text-sm text-gray-500 mb-8">
             Yuk, tambahkan produk favorit kamu!
           </p>
-          <button onClick={() => navigate('/')} className="px-8 py-3 bg-[#111] text-white text-sm font-medium rounded-lg hover:bg-black transition-colors">
+          <button
+          onClick={() => navigate('/')}
+          className="px-8 py-3 bg-[#111] text-white text-sm font-medium rounded-lg hover:bg-black transition-colors">
+          
             Belanja Sekarang
           </button>
-        </div> /* Filled State */ : <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 py-6">
+        </div> /* Filled State */ :
+
+      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 py-6">
           <div className="flex justify-between items-center mb-6">
             <label className="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" checked={selectedItems.length === cartItems.length && cartItems.length > 0} onChange={toggleSelectAll} className="w-5 h-5 rounded border-gray-300 accent-[#D32F2F] cursor-pointer" />
+              <input
+              type="checkbox"
+              checked={
+              selectedItems.length === cartItems.length &&
+              cartItems.length > 0
+              }
+              onChange={toggleSelectAll}
+              className="w-5 h-5 rounded border-gray-300 accent-[#D32F2F] cursor-pointer" />
+            
               <span className="text-sm text-brand-dark">Pilih Semua</span>
             </label>
-            <button onClick={removeSelected} className="text-sm text-[#D32F2F] hover:opacity-80 transition-opacity">
+            <button
+            onClick={removeSelected}
+            className="text-sm text-[#D32F2F] hover:opacity-80 transition-opacity">
+            
               Hapus Dipilih
             </button>
           </div>
@@ -104,9 +137,19 @@ export function CartPage({
           </div>
 
           <div className="flex flex-col gap-6 mb-40">
-            {cartItems.map((item, index) => <div key={index} className="flex gap-4 items-start">
-                <input type="checkbox" checked={selectedItems.includes(index)} onChange={() => toggleSelectItem(index)} className="w-5 h-5 rounded border-gray-300 accent-[#D32F2F] cursor-pointer mt-2" />
-                <img src={item.product.imageMain} alt={item.product.name} className="w-20 h-24 object-cover rounded-lg bg-gray-100" />
+            {cartItems.map((item, index) =>
+          <div key={index} className="flex gap-4 items-start">
+                <input
+              type="checkbox"
+              checked={selectedItems.includes(index)}
+              onChange={() => toggleSelectItem(index)}
+              className="w-5 h-5 rounded border-gray-300 accent-[#D32F2F] cursor-pointer mt-2" />
+            
+                <img
+              src={item.product.imageMain}
+              alt={item.product.name}
+              className="w-20 h-24 object-cover rounded-lg bg-gray-100" />
+            
                 <div className="flex-1 flex flex-col">
                   <div className="flex justify-between items-start">
                     <div>
@@ -120,25 +163,35 @@ export function CartPage({
                         {item.product.price || '-'}
                       </p>
                     </div>
-                    <button onClick={() => removeItem(index)} className="text-gray-300 hover:text-red-500 transition-colors">
+                    <button
+                  onClick={() => removeItem(index)}
+                  className="text-gray-300 hover:text-red-500 transition-colors">
+                  
                       <Trash2 size={18} />
                     </button>
                   </div>
                   <div className="mt-4 flex items-center">
                     <div className="flex items-center border border-gray-200 rounded-md">
-                      <button onClick={() => updateQuantity(index, item.quantity - 1)} className="px-3 py-1 text-gray-500 hover:bg-gray-50 transition-colors">
+                      <button
+                    onClick={() => updateQuantity(index, item.quantity - 1)}
+                    className="px-3 py-1 text-gray-500 hover:bg-gray-50 transition-colors">
+                    
                         -
                       </button>
                       <span className="w-10 text-center text-sm font-medium">
                         {item.quantity}
                       </span>
-                      <button onClick={() => updateQuantity(index, item.quantity + 1)} className="px-3 py-1 text-gray-500 hover:bg-gray-50 transition-colors">
+                      <button
+                    onClick={() => updateQuantity(index, item.quantity + 1)}
+                    className="px-3 py-1 text-gray-500 hover:bg-gray-50 transition-colors">
+                    
                         +
                       </button>
                     </div>
                   </div>
                 </div>
-              </div>)}
+              </div>
+          )}
           </div>
 
           {/* Bottom Sticky Bar */}
@@ -158,12 +211,18 @@ export function CartPage({
                   Rp{formatCurrency(subtotal)}
                 </span>
               </div>
-              <button onClick={() => navigate('/checkout')} disabled={selectedItems.length === 0} className={`w-full py-4 rounded-lg text-sm font-bold text-white flex items-center justify-center gap-2 transition-colors ${selectedItems.length > 0 ? 'bg-[#D32F2F] hover:bg-red-700' : 'bg-gray-300 cursor-not-allowed'}`}>
+              <button
+              onClick={() => navigate('/checkout')}
+              disabled={selectedItems.length === 0}
+              className={`w-full py-4 rounded-lg text-sm font-bold text-white flex items-center justify-center gap-2 transition-colors ${selectedItems.length > 0 ? 'bg-[#D32F2F] hover:bg-red-700' : 'bg-gray-300 cursor-not-allowed'}`}>
+              
                 <ArrowRight size={18} />
                 Checkout Sekarang
               </button>
             </div>
           </div>
-        </div>}
-    </div>;
+        </div>
+      }
+    </div>);
+
 }

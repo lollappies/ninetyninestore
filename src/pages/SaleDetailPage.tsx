@@ -2,54 +2,71 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ShoppingBag, Info } from 'lucide-react';
+import { useCustomToast } from '../components/CustomToast';
 import { Footer } from '../components/Footer';
 import { allProducts, Product } from '../utils/data';
 interface SaleDetailPageProps {
-  onAddToCart: (product: Product, quantity?: number, color?: string, size?: string) => void;
+  onAddToCart: (
+  product: Product,
+  quantity?: number,
+  color?: string,
+  size?: string)
+  => void;
 }
-export function SaleDetailPage({
-  onAddToCart
-}: SaleDetailPageProps) {
-  const {
-    lookId
-  } = useParams<{
+export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
+  const { lookId } = useParams<{
     lookId: string;
   }>();
   const navigate = useNavigate();
+  const { showToast } = useCustomToast();
   const [isAdding, setIsAdding] = useState(false);
   // Extract look number from "look-1", "look-2", etc.
   const lookNumber = lookId ? parseInt(lookId.replace('look-', '')) : 1;
-  const looksData = [{
+  const looksData = [
+  {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
+    image:
+    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
     title: 'Casual Elegance',
-    description: 'Perfect for a weekend brunch or a casual day out. This look combines comfort with effortless style.',
+    description:
+    'Perfect for a weekend brunch or a casual day out. This look combines comfort with effortless style.',
     items: [allProducts[0], allProducts[4]] // Siderope Flowbordir + Flowcolour Cream Blouse
-  }, {
+  },
+  {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
+    image:
+    'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
     title: 'Summer Breeze',
-    description: 'Light, airy, and perfect for warm weather. Stay cool while looking absolutely stunning.',
+    description:
+    'Light, airy, and perfect for warm weather. Stay cool while looking absolutely stunning.',
     items: [allProducts[1], allProducts[6]] // Cream Bordir Dress + Twocolors Bordir Tunic
-  }, {
+  },
+  {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
+    image:
+    'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
     title: 'Office Chic',
-    description: 'Professional yet stylish for the modern workplace. Make a statement in the boardroom.',
+    description:
+    'Professional yet stylish for the modern workplace. Make a statement in the boardroom.',
     items: [allProducts[2], allProducts[8]] // Seemivest Bordir Flow Dress + Flowlace Shirt
-  }, {
+  },
+  {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
+    image:
+    'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
     title: 'Evening Glamour',
-    description: 'Turn heads at your next evening event with this carefully curated elegant ensemble.',
+    description:
+    'Turn heads at your next evening event with this carefully curated elegant ensemble.',
     items: [allProducts[5], allProducts[9]] // Flow Pearlbelt Dress + Brukat Skirt
   }];
+
   const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
   // Calculate prices
   const calculateTotal = () => {
     return look.items.reduce((total, item) => {
       // Ensure price exists, if not use a default
-      const priceStr = item.price || `IDR ${Math.floor(Math.random() * 200 + 100)}.000`;
+      const priceStr =
+      item.price || `IDR ${Math.floor(Math.random() * 200 + 100)}.000`;
       const numericPrice = parseInt(priceStr.replace(/[^0-9]/g, ''));
       return total + numericPrice;
     }, 0);
@@ -57,28 +74,39 @@ export function SaleDetailPage({
   const originalTotal = calculateTotal();
   const discountPercentage = 20;
   const bundleTotal = Math.floor(originalTotal * (1 - discountPercentage / 100));
-  const formatCurrency = (val: number) => `IDR ${new Intl.NumberFormat('id-ID').format(val)}`;
+  const formatCurrency = (val: number) =>
+  `IDR ${new Intl.NumberFormat('id-ID').format(val)}`;
   const handleAddBundleToCart = () => {
     setIsAdding(true);
     // Add all items in the bundle to cart
     look.items.forEach((item) => {
       onAddToCart(item, 1, 'Default', 'All Size');
     });
+    showToast('Bundle ditambahkan ke Keranjang');
     setTimeout(() => {
       setIsAdding(false);
       navigate('/cart');
     }, 800);
   };
-  return <motion.div initial={{
-    opacity: 0
-  }} animate={{
-    opacity: 1
-  }} exit={{
-    opacity: 0
-  }} className="min-h-screen bg-white">
+  return (
+    <motion.div
+      initial={{
+        opacity: 0
+      }}
+      animate={{
+        opacity: 1
+      }}
+      exit={{
+        opacity: 0
+      }}
+      className="min-h-screen bg-white">
+      
       <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-[1440px] mx-auto flex items-center">
-          <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
+          <button
+            onClick={() => navigate(-1)}
+            className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
+            
             <ArrowLeft size={24} />
           </button>
           <span className="font-serif text-xl font-medium ml-2">
@@ -93,7 +121,11 @@ export function SaleDetailPage({
           <div className="w-full lg:w-1/2">
             <div className="sticky top-24">
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100">
-                <img src={look.image} alt={look.title} className="absolute inset-0 w-full h-full object-cover" />
+                <img
+                  src={look.image}
+                  alt={look.title}
+                  className="absolute inset-0 w-full h-full object-cover" />
+                
                 <div className="absolute top-4 left-4 bg-brand-accent text-white px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg">
                   Bundle Sale -{discountPercentage}%
                 </div>
@@ -132,9 +164,19 @@ export function SaleDetailPage({
 
             <div className="flex flex-col gap-6 mb-12">
               {look.items.map((item, idx) => {
-              const itemPrice = item.price || `IDR ${Math.floor(Math.random() * 200 + 100)}.000`;
-              return <div key={idx} className="flex gap-4 p-4 rounded-xl border border-gray-100 hover:border-gray-200 transition-colors bg-gray-50/50">
-                    <img src={item.imageMain} alt={item.name} className="w-20 h-28 object-cover rounded-lg bg-gray-200" />
+                const itemPrice =
+                item.price ||
+                `IDR ${Math.floor(Math.random() * 200 + 100)}.000`;
+                return (
+                  <div
+                    key={idx}
+                    className="flex gap-4 p-4 rounded-xl border border-gray-100 hover:border-gray-200 transition-colors bg-gray-50/50">
+                    
+                    <img
+                      src={item.imageMain}
+                      alt={item.name}
+                      className="w-20 h-28 object-cover rounded-lg bg-gray-200" />
+                    
                     <div className="flex flex-col justify-center flex-1">
                       <span className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">
                         {item.series}
@@ -144,8 +186,9 @@ export function SaleDetailPage({
                       </h4>
                       <span className="text-sm text-gray-600">{itemPrice}</span>
                     </div>
-                  </div>;
-            })}
+                  </div>);
+
+              })}
             </div>
 
             {/* Pricing Summary & Action */}
@@ -163,11 +206,19 @@ export function SaleDetailPage({
                 </span>
               </div>
 
-              <button onClick={handleAddBundleToCart} disabled={isAdding} className="w-full py-4 bg-brand-dark text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-accent transition-colors flex items-center justify-center gap-2 disabled:opacity-70">
-                {isAdding ? 'Adding to Cart...' : <>
+              <button
+                onClick={handleAddBundleToCart}
+                disabled={isAdding}
+                className="w-full py-4 bg-brand-dark text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-accent transition-colors flex items-center justify-center gap-2 disabled:opacity-70">
+                
+                {isAdding ?
+                'Adding to Cart...' :
+
+                <>
                     <ShoppingBag size={18} />
                     Add Bundle to Cart
-                  </>}
+                  </>
+                }
               </button>
             </div>
           </div>
@@ -175,5 +226,6 @@ export function SaleDetailPage({
       </div>
 
       <Footer />
-    </motion.div>;
+    </motion.div>);
+
 }

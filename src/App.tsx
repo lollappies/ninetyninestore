@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { CustomToastProvider } from './components/CustomToast';
 import { Navbar } from './components/Navbar';
 import { MobileMenu } from './components/MobileMenu';
 import { HeroSection } from './components/HeroSection';
@@ -49,61 +50,145 @@ export function App() {
       return [...prev, product];
     });
   };
-  const handleAddToCart = (product: Product, quantity: number = 1, color: string = 'Default', size: string = 'All Size') => {
+  const handleAddToCart = (
+  product: Product,
+  quantity: number = 1,
+  color: string = 'Default',
+  size: string = 'All Size') =>
+  {
     setCartItems((prev) => {
-      const existingItemIndex = prev.findIndex((item) => item.product.id === product.id && item.color === color && item.size === size);
+      const existingItemIndex = prev.findIndex(
+        (item) =>
+        item.product.id === product.id &&
+        item.color === color &&
+        item.size === size
+      );
       if (existingItemIndex > -1) {
         const newItems = [...prev];
         newItems[existingItemIndex].quantity += quantity;
         return newItems;
       }
-      return [...prev, {
+      return [
+      ...prev,
+      {
         product,
         quantity,
         color,
         size
       }];
+
     });
   };
   const isLandingPage = location.pathname === '/';
-  return <div className="min-h-screen bg-white">
-      {isLandingPage && <Navbar wishlistCount={wishlist.length} cartCount={cartItems.reduce((acc, item) => acc + item.quantity, 0)} onOpenMobileMenu={() => setIsMobileMenuOpen(true)} onOpenWishlist={() => setIsWishlistOpen(true)} />}
+  return (
+    <CustomToastProvider>
+      <div className="min-h-screen bg-white">
+        {isLandingPage &&
+        <Navbar
+          wishlistCount={wishlist.length}
+          cartCount={cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+          onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
+          onOpenWishlist={() => setIsWishlistOpen(true)} />
 
-      <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+        }
 
-      <main>
-        <Routes>
-          <Route path="/" element={<>
-                <HeroSection onExploreLooks={() => setIsLooksOpen(true)} />
-                <Marquee />
-                <BestsellerSection wishlist={wishlist} onToggleWishlist={handleToggleWishlist} onAddToCart={(p) => handleAddToCart(p)} />
-                <CollectionBanner onExploreLooks={() => setIsLooksOpen(true)} />
-                <OurPicksSection wishlist={wishlist} onToggleWishlist={handleToggleWishlist} onAddToCart={(p) => handleAddToCart(p)} onBrowseAll={() => setIsAllProductsOpen(true)} />
-                <StoresSection />
-              </>} />
-          <Route path="/product/:id" element={<ProductDetailPage onAddToCart={handleAddToCart} />} />
-          <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
-          <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} />} />
-          <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/order-complete" element={<OrderCompletePage setCartItems={setCartItems} />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/address" element={<AddressPage />} />
-          <Route path="/orders" element={<OrdersPage />} />
-          <Route path="/purchase-history" element={<PurchaseHistoryPage />} />
-          <Route path="/category/:categoryName" element={<CategoryPage wishlist={wishlist} onToggleWishlist={handleToggleWishlist} onAddToCart={(p) => handleAddToCart(p)} />} />
-          <Route path="/sale" element={<SalePage />} />
-          <Route path="/sale/:lookId" element={<SaleDetailPage onAddToCart={handleAddToCart} />} />
-        </Routes>
-      </main>
+        <MobileMenu
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)} />
+        
 
-      {isLandingPage && <Footer />}
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+              <>
+                  <HeroSection onExploreLooks={() => setIsLooksOpen(true)} />
+                  <Marquee />
+                  <BestsellerSection
+                  wishlist={wishlist}
+                  onToggleWishlist={handleToggleWishlist}
+                  onAddToCart={(p) => handleAddToCart(p)} />
+                
+                  <CollectionBanner
+                  onExploreLooks={() => setIsLooksOpen(true)} />
+                
+                  <OurPicksSection
+                  wishlist={wishlist}
+                  onToggleWishlist={handleToggleWishlist}
+                  onAddToCart={(p) => handleAddToCart(p)}
+                  onBrowseAll={() => setIsAllProductsOpen(true)} />
+                
+                  <StoresSection />
+                </>
+              } />
+            
+            <Route
+              path="/product/:id"
+              element={<ProductDetailPage onAddToCart={handleAddToCart} />} />
+            
+            <Route
+              path="/cart"
+              element={
+              <CartPage cartItems={cartItems} setCartItems={setCartItems} />
+              } />
+            
+            <Route
+              path="/checkout"
+              element={<CheckoutPage cartItems={cartItems} />} />
+            
+            <Route path="/payment" element={<PaymentPage />} />
+            <Route
+              path="/order-complete"
+              element={<OrderCompletePage setCartItems={setCartItems} />} />
+            
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/address" element={<AddressPage />} />
+            <Route path="/orders" element={<OrdersPage />} />
+            <Route path="/purchase-history" element={<PurchaseHistoryPage />} />
+            <Route
+              path="/category/:categoryName"
+              element={
+              <CategoryPage
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onAddToCart={(p) => handleAddToCart(p)} />
 
-      {/* Modals */}
-      <WishlistModal isOpen={isWishlistOpen} onClose={() => setIsWishlistOpen(false)} wishlist={wishlist} onToggleWishlist={handleToggleWishlist} onAddToCart={(p) => handleAddToCart(p)} />
+              } />
+            
+            <Route path="/sale" element={<SalePage />} />
+            <Route
+              path="/sale/:lookId"
+              element={<SaleDetailPage onAddToCart={handleAddToCart} />} />
+            
+          </Routes>
+        </main>
 
-      <LooksModal isOpen={isLooksOpen} onClose={() => setIsLooksOpen(false)} />
+        {isLandingPage && <Footer />}
 
-      <AllProductsModal isOpen={isAllProductsOpen} onClose={() => setIsAllProductsOpen(false)} wishlist={wishlist} onToggleWishlist={handleToggleWishlist} onAddToCart={(p) => handleAddToCart(p)} />
-    </div>;
+        {/* Modals */}
+        <WishlistModal
+          isOpen={isWishlistOpen}
+          onClose={() => setIsWishlistOpen(false)}
+          wishlist={wishlist}
+          onToggleWishlist={handleToggleWishlist}
+          onAddToCart={(p) => handleAddToCart(p)} />
+        
+
+        <LooksModal
+          isOpen={isLooksOpen}
+          onClose={() => setIsLooksOpen(false)} />
+        
+
+        <AllProductsModal
+          isOpen={isAllProductsOpen}
+          onClose={() => setIsAllProductsOpen(false)}
+          wishlist={wishlist}
+          onToggleWishlist={handleToggleWishlist}
+          onAddToCart={(p) => handleAddToCart(p)} />
+        
+      </div>
+    </CustomToastProvider>);
+
 }

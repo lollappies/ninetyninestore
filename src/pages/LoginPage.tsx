@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, X } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import { useCustomToast } from '../components/CustomToast';
 export function LoginPage() {
   const navigate = useNavigate();
+  const { showToast } = useCustomToast();
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
   const [loginData, setLoginData] = useState({
     email: '',
@@ -30,15 +32,6 @@ export function LoginPage() {
         aria-label="Back to profile">
         
         <ArrowLeft size={24} />
-      </button>
-
-      {/* Close Button */}
-      <button
-        onClick={() => navigate('/')}
-        className="absolute top-6 right-6 w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors z-10"
-        aria-label="Close to home">
-        
-        <X size={16} />
       </button>
 
       <div className="bg-white rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-gray-100 w-full max-w-[440px] overflow-hidden">
@@ -111,6 +104,11 @@ export function LoginPage() {
               <button
               type="submit"
               disabled={!isLoginValid}
+              onClick={() => {
+                if (isLoginValid) {
+                  showToast('Login berhasil');
+                }
+              }}
               className={`w-full py-4 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors mt-4 ${isLoginValid ? 'bg-[#111] text-white hover:bg-black' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}>
               
                 Login
@@ -197,6 +195,11 @@ export function LoginPage() {
               <button
               type="submit"
               disabled={!isSignupValid}
+              onClick={() => {
+                if (isSignupValid) {
+                  showToast('Akun berhasil dibuat');
+                }
+              }}
               className={`w-full py-4 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors mt-4 ${isSignupValid ? 'bg-[#111] text-white hover:bg-black' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}>
               
                 Sign Up

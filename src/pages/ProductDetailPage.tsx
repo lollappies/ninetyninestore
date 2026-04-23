@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ShoppingBag, Minus, Plus, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowLeft, ShoppingBag, Minus, Plus } from 'lucide-react';
+import { useCustomToast } from '../components/CustomToast';
 import { allProducts, Product } from '../utils/data';
 interface ProductDetailPageProps {
   onAddToCart: (
@@ -16,11 +17,11 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
     id: string;
   }>();
   const navigate = useNavigate();
+  const { showToast } = useCustomToast();
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedColor, setSelectedColor] = useState('Brown');
   const [quantity, setQuantity] = useState(1);
   const [email, setEmail] = useState('');
-  const [showToast, setShowToast] = useState(false);
   useEffect(() => {
     const foundProduct = allProducts.find((p) => p.id === id);
     if (foundProduct) {
@@ -37,10 +38,7 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
   const price = product.price || 'IDR 195.000';
   const handleAddToCart = () => {
     onAddToCart(product, quantity, selectedColor, 'All Size');
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
+    showToast('Produk berhasil ditambahkan ke keranjang');
   };
   const handleBuyNow = () => {
     onAddToCart(product, quantity, selectedColor, 'All Size');
@@ -59,35 +57,6 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
       }}
       className="min-h-screen bg-white pb-24 relative">
       
-      {/* Toast Notification */}
-      <AnimatePresence>
-        {showToast &&
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 50,
-            x: '-50%'
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            x: '-50%'
-          }}
-          exit={{
-            opacity: 0,
-            y: 50,
-            x: '-50%'
-          }}
-          className="fixed bottom-8 left-1/2 z-50 flex items-center gap-3 bg-brand-dark text-white px-6 py-4 rounded-xl shadow-2xl">
-          
-            <CheckCircle size={20} className="text-green-400" />
-            <span className="text-sm font-medium">
-              Produk berhasil ditambahkan ke keranjang
-            </span>
-          </motion.div>
-        }
-      </AnimatePresence>
-
       {/* Header */}
       <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-[1440px] mx-auto flex items-center">

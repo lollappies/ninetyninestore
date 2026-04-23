@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ArrowLeft, Package, Home, X } from 'lucide-react';
+import { ArrowLeft, Package, Home } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { getOrdersByStatus, SavedOrder } from '../utils/orderStorage';
 type TabType = 'selesai' | 'dikirim' | 'dibatalkan' | 'dikembalikan';
@@ -64,24 +64,16 @@ export function OrdersPage() {
       className="min-h-screen bg-gray-50 pb-24">
       
       <header className="sticky top-0 z-30 bg-white border-b border-gray-100">
-        <div className="py-4 px-4 md:px-8 max-w-3xl mx-auto flex items-center justify-between">
-          <div className="flex items-center">
-            <button
-              onClick={() => navigate('/profile')}
-              className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
-              
-              <ArrowLeft size={24} />
-            </button>
-            <span className="font-serif text-xl font-medium ml-2">
-              Pesanan Saya
-            </span>
-          </div>
+        <div className="py-4 px-4 md:px-8 max-w-3xl mx-auto flex items-center">
           <button
-            onClick={() => navigate('/')}
-            className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors">
+            onClick={() => navigate('/profile')}
+            className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
             
-            <X size={16} />
+            <ArrowLeft size={24} />
           </button>
+          <span className="font-serif text-xl font-medium ml-2">
+            Pesanan Saya
+          </span>
         </div>
 
         {/* Tabs */}

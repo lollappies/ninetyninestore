@@ -59,7 +59,7 @@ export function StoresSection() {
             rel="noopener noreferrer"
             className="flex flex-col gap-3 cursor-pointer no-underline">
             
-              <div className="relative aspect-square overflow-hidden bg-brand-neutral2 rounded-xl">
+              <div className="relative aspect-[4/3] overflow-hidden bg-brand-neutral2 rounded-xl">
                 <img
                 src={store.image}
                 alt={store.city}

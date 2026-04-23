@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Clock, Check } from 'lucide-react';
+import { useCustomToast } from '../components/CustomToast';
 import { CartItem } from '../App';
 import { saveOrder } from '../utils/orderStorage';
 export function PaymentPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { showToast } = useCustomToast();
   const {
     shippingMethod = 'jne',
     paymentMethod = 'bca',
@@ -40,10 +42,12 @@ export function PaymentPage() {
     return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
   const handleCopy = () => {
-    const vaNumber = paymentMethod === 'mandiri' ? '89508 00816 95014' : '00816 95014 60982';
+    const vaNumber =
+    paymentMethod === 'mandiri' ? '89508 00816 95014' : '00816 95014 60982';
     navigator.clipboard.writeText(vaNumber);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    showToast('Nomor VA berhasil disalin');
   };
   const handleConfirmPayment = () => {
     const orderData = {
@@ -56,27 +60,41 @@ export function PaymentPage() {
       adminFee,
       handlingFee,
       total: displayTotal,
-      orderNumber: 'NN' + Math.floor(Math.random() * 100000000).toString().padStart(8, '0'),
+      orderNumber:
+      'NN' +
+      Math.floor(Math.random() * 100000000).
+      toString().
+      padStart(8, '0'),
       orderDate: new Date().toISOString(),
       status: 'selesai' as const
     };
     saveOrder(orderData);
+    showToast('Pembayaran berhasil dikonfirmasi');
     navigate('/order-complete', {
       state: orderData
     });
   };
-  return <motion.div initial={{
-    opacity: 0
-  }} animate={{
-    opacity: 1
-  }} exit={{
-    opacity: 0
-  }} className="min-h-screen bg-gray-50 pb-24">
+  return (
+    <motion.div
+      initial={{
+        opacity: 0
+      }}
+      animate={{
+        opacity: 1
+      }}
+      exit={{
+        opacity: 0
+      }}
+      className="min-h-screen bg-gray-50 pb-24">
+      
       {/* Header */}
       <header className="sticky top-0 z-30 bg-white border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <div className="flex items-center">
-            <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
+            <button
+              onClick={() => navigate(-1)}
+              className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
+              
               <ArrowLeft size={24} />
             </button>
             <span className="font-serif text-xl font-medium ml-2">
@@ -121,7 +139,8 @@ export function PaymentPage() {
 
         {/* Payment Details */}
         <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-          {paymentMethod === 'bca' && <>
+          {paymentMethod === 'bca' &&
+          <>
               <div className="flex items-center gap-3 mb-6">
                 <div className="px-3 py-1.5 bg-[#0066AE] text-white text-xs font-bold rounded">
                   BCA
@@ -142,7 +161,10 @@ export function PaymentPage() {
                   <span className="font-mono text-xl md:text-2xl font-bold tracking-wider text-brand-dark">
                     00816 95014 60982
                   </span>
-                  <button onClick={handleCopy} className="px-4 py-2 bg-brand-dark text-white text-xs font-medium rounded-lg hover:bg-brand-accent transition-colors">
+                  <button
+                  onClick={handleCopy}
+                  className="px-4 py-2 bg-brand-dark text-white text-xs font-medium rounded-lg hover:bg-brand-accent transition-colors">
+                  
                     {copied ? 'Tersalin!' : 'Salin'}
                   </button>
                 </div>
@@ -159,9 +181,11 @@ export function PaymentPage() {
                   <li>4. Konfirmasi jumlah & bayar</li>
                 </ol>
               </div>
-            </>}
+            </>
+          }
 
-          {paymentMethod === 'mandiri' && <>
+          {paymentMethod === 'mandiri' &&
+          <>
               <div className="flex items-center gap-3 mb-6">
                 <div className="px-3 py-1.5 bg-[#003D79] text-white text-xs font-bold rounded">
                   MDR
@@ -182,7 +206,10 @@ export function PaymentPage() {
                   <span className="font-mono text-xl md:text-2xl font-bold tracking-wider text-brand-dark">
                     89508 00816 95014
                   </span>
-                  <button onClick={handleCopy} className="px-4 py-2 bg-brand-dark text-white text-xs font-medium rounded-lg hover:bg-brand-accent transition-colors">
+                  <button
+                  onClick={handleCopy}
+                  className="px-4 py-2 bg-brand-dark text-white text-xs font-medium rounded-lg hover:bg-brand-accent transition-colors">
+                  
                     {copied ? 'Tersalin!' : 'Salin'}
                   </button>
                 </div>
@@ -199,9 +226,11 @@ export function PaymentPage() {
                   <li>4. Konfirmasi jumlah & bayar</li>
                 </ol>
               </div>
-            </>}
+            </>
+          }
 
-          {paymentMethod === 'qris' && <>
+          {paymentMethod === 'qris' &&
+          <>
               <div className="flex items-center gap-3 mb-6">
                 <div className="px-3 py-1.5 bg-[#ED1C24] text-white text-xs font-bold rounded">
                   QRIS
@@ -216,7 +245,11 @@ export function PaymentPage() {
 
               <div className="mb-6 flex justify-center">
                 <div className="bg-white p-4 border-2 border-gray-200 rounded-xl inline-block">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QRIS Code" className="w-48 h-48 opacity-80" />
+                  <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+                  alt="QRIS Code"
+                  className="w-48 h-48 opacity-80" />
+                
                 </div>
               </div>
 
@@ -233,15 +266,20 @@ export function PaymentPage() {
                   <li>4. Konfirmasi jumlah & bayar</li>
                 </ol>
               </div>
-            </>}
+            </>
+          }
         </div>
 
         {/* Action */}
         <div className="mt-4">
-          <button onClick={handleConfirmPayment} className="w-full py-4 bg-brand-dark rounded-lg text-xs font-bold tracking-[0.15em] uppercase text-white hover:bg-brand-accent transition-colors">
+          <button
+            onClick={handleConfirmPayment}
+            className="w-full py-4 bg-brand-dark rounded-lg text-xs font-bold tracking-[0.15em] uppercase text-white hover:bg-brand-accent transition-colors">
+            
             Konfirmasi Pembayaran
           </button>
         </div>
       </div>
-    </motion.div>;
+    </motion.div>);
+
 }
