@@ -1,31 +1,3 @@
-import best1 from "../assets/images/landing-page/best 1.jpeg";
-import best2 from "../assets/images/landing-page/best 2.jpeg";
-import best3 from "../assets/images/landing-page/best 3.jpeg";
-import best4 from "../assets/images/landing-page/best 4.jpeg";
-import best5 from "../assets/images/landing-page/best 5.jpeg";
-import best6 from "../assets/images/landing-page/best 6.jpeg";
-import best7 from "../assets/images/landing-page/best 7.jpeg";
-import best8 from "../assets/images/landing-page/best 8.jpeg";
-
-import pick1 from "../assets/images/landing-page/pick 1.jpeg";
-import pick2 from "../assets/images/landing-page/pick 2.jpeg";
-import pick3 from "../assets/images/landing-page/pick 3.jpeg";
-import pick4 from "../assets/images/landing-page/pick 4.jpeg";
-import pick5 from "../assets/images/landing-page/pick 5.jpeg";
-import pick6 from "../assets/images/landing-page/pick 6.jpeg";
-import pick7 from "../assets/images/landing-page/pick 7.jpeg";
-import pick8 from "../assets/images/landing-page/pick 8.jpeg";
-import pick9 from "../assets/images/landing-page/pick 9.jpeg";
-import pick10 from "../assets/images/landing-page/pick 10.jpeg";
-import pick11 from "../assets/images/landing-page/pick 11.jpeg";
-import pick12 from "../assets/images/landing-page/pick 12.jpeg";
-import pick13 from "../assets/images/landing-page/pick 13.jpeg";
-import pick14 from "../assets/images/landing-page/pick 14.jpeg";
-import pick15 from "../assets/images/landing-page/pick 15.jpeg";
-import pick16 from "../assets/images/landing-page/pick 16.jpeg";
-import pick17 from "../assets/images/landing-page/pick 17.jpeg";
-import pick18 from "../assets/images/landing-page/pick 18.jpeg";
-
 export interface Product {
   id: string;
   name: string;
@@ -41,29 +13,29 @@ export const bestsellers: Product[] = [
   id: 'prod_0',
   name: 'Siderope Flowbordir',
   series: 'Code SESTRA 5050 Oneseat',
-  imageMain: best 1,
-  imageHover: best 2,
+  imageMain: "/images/landing-page/best1.jpeg",
+  imageHover: "/images/landing-page/best2.jpeg",
 },
 {
   id: 'prod_1',
   name: 'Cream Bordir Dress',
   series: 'Code DRLFY 6080',
-  imageMain: best 3,
-  imageHover: best 4,
+  imageMain: "/images/landing-page/best3.jpeg",
+  imageHover: "/images/landing-page/best4.jpeg",
 },
 {
   id: 'prod_2',
   name: 'Seemivest Bordir Flow Dress',
   series: 'Code DRYN 6357',
-  imageMain: best 5,
-  imageHover: best 6,
+  imageMain: "/images/landing-page/best5.jpeg",
+  imageHover: "/images/landing-page/best6.jpeg",
 },
 {
   id: 'prod_3',
   name: '3 Pocky Top',
   series: 'Code TNVX 8307',
-  imageMain: best 7,
-  imageHover: best 8,
+  imageMain: "/images/landing-page/best7.jpeg",
+  imageHover: "/images/landing-page/best8.jpeg",
 }];
 
 
@@ -73,40 +45,40 @@ export const ourPicks: Product[] = [
   name: 'Flowcolour Cream Blouse',
   series: 'Code TPSHRL 9157',
   price: 'IDR 128.000',
-  imageMain: pick 1,
-  imageHover: pick 2,
+  imageMain: "/images/landing-page/pick1.jpeg",
+  imageHover: "/images/landing-page/pick2.jpeg",
 },
 {
   id: 'prod_5',
   name: 'Flow Pearlbelt Dress',
   series: 'Code DRJSW 00018',
   price: 'IDR 240.000',
-  imageMain: pick 3,
-  imageHover: pick 4,
+  imageMain: "/images/landing-page/pick3.jpeg",
+  imageHover: "/images/landing-page/pick4.jpeg",
 },
 {
   id: 'prod_6',
   name: 'Twocolors Bordir Tunic',
   series: 'Code DRYRI 9300',
   price: 'IDR 195.000',
-  imageMain: pick 5,
-  imageHover: pick 6,
+  imageMain: "/images/landing-page/pick5.jpeg",
+  imageHover: "/images/landing-page/pick6.jpeg",
 },
 {
   id: 'prod_7',
   name: 'Flow Pattern Dress',
   series: 'Code DRGNT 00137',
   price: 'IDR 185.000',
-  imageMain: pick 7,
-  imageHover: pick 8,
+  imageMain: "/images/landing-page/pick7.jpeg",
+  imageHover: "/images/landing-page/pick8.jpeg",
 },
 {
   id: 'prod_8',
   name: 'Nudes Vinesbordir Tunic',
   series: 'Code TPBAP 3178',
   price: 'IDR 146.000',
-  imageMain: pick 9,
-  imageHover: pick 10,
+  imageMain: "/images/landing-page/pick9.jpeg",
+  imageHover: "/images/landing-page/pick10.jpeg",
   isSoldOut: true
 },
 {
@@ -114,24 +86,24 @@ export const ourPicks: Product[] = [
   name: 'Flowlace Shirt',
   series: 'Code TPMGR 00020',
   price: 'IDR 149.000',
-  imageMain: pick 11,
-  imageHover: pick 12
+  imageMain: "/images/landing-page/pick11.jpeg",
+  imageHover: "/images/landing-page/pick12.jpeg"
 },
 {
   id: 'prod_10',
   name: 'Brukat Skirt',
   series: 'Code TVAVM 5069',
   price: 'IDR 139.000',
-  imageMain: pick 13,
-  imageHover: pick 14,
+  imageMain: "/images/landing-page/pick13.jpeg",
+  imageHover: "/images/landing-page/pick14.jpeg",
 },
 {
   id: 'prod_11',
   name: 'Semiouter Flowdress',
   series: 'Code DRYR 2979',
   price: 'IDR 215.000',
-  imageMain: pick 15,
-  imageHover: pick 16,
+  imageMain: "/images/landing-page/pick15.jpeg",
+  imageHover: "/images/landing-page/pick16.jpeg",
 }];
 
 
@@ -151,7 +123,7 @@ export const stores = [
   city: 'Madiun',
   address: 'Jl. Cokroaminoto No.35',
   image: madiun,
-  mapUrl: 'https://share.google/icXN4Kfm29ZtQmfe6'
+  mapUrl: 'https://maps.app.goo.gl/BjMoj9GgRZs5mE3h9'
 },
 {
   city: 'Ponorogo',
