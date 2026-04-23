@@ -117,8 +117,6 @@ export const ourPicks: Product[] = [
   imageMain: pick 11,
   imageHover: pick 12
 },
-  'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80'
-},
 {
   id: 'prod_10',
   name: 'Brukat Skirt',
