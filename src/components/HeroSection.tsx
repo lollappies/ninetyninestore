@@ -13,7 +13,7 @@ export function HeroSection({
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-contain object-top"
+        className="absolute inset-0 w-full h-full object-cover object-top"
       />
       <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
 
