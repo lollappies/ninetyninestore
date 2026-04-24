@@ -13,27 +13,24 @@ interface ProductDetailPageProps {
   => void;
 }
 export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
-  const { id } = useParams<{
-    id: string;
-  }>();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
-  const [product, setProduct] = useState<Product | null>(null);
+
   const [selectedColor, setSelectedColor] = useState('Brown');
   const [quantity, setQuantity] = useState(1);
   const [email, setEmail] = useState('');
-  useEffect(() => {
-    const foundProduct = allProducts.find((p) => p.id === id);
-    if (foundProduct) {
-      setProduct(foundProduct);
-    }
-  }, [id]);
+
+  const product = allProducts.find(
+    item => item.id === id
+  );
+
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        Loading...
-      </div>);
-
+        <p className="text-lg font-medium">Product not found.</p>
+      </div>
+    );
   }
   const price = product.price || 'IDR 195.000';
   const handleAddToCart = () => {

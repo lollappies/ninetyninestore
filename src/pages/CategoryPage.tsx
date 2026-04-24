@@ -25,13 +25,20 @@ export function CategoryPage({
   useEffect(() => {
     // Generate 10 products for the category
     // In a real app, this would be an API call
-    const baseProducts = allProducts.filter((p) => p.name.toLowerCase().includes(categoryName?.toLowerCase() || '') || p.series.toLowerCase().includes(categoryName?.toLowerCase() || ''));
-    // If we don't have enough products matching the category, pad with random products
+    const baseProducts = allProducts.filter((p) => p.category === categoryName
+    );
+
+    if (baseProducts.length === 0) {
+      setProducts([]);
+      return;
+    }
+
     let displayProducts = [...baseProducts];
+    
     let i = 0;
     while (displayProducts.length < 10) {
       displayProducts.push({
-        ...allProducts[i % allProducts.length],
+        ...baseProducts[i % baseProducts.length],
         id: `cat_${categoryName}_${i}`
       });
       i++;
