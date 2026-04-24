@@ -67,14 +67,16 @@ export function Navbar({
 
   const categories = ['Dress', 'Blouse', 'Tunic', 'Outer', 'Sweater', 'Pants', 'Skirt'];
 
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 will-change-[background,padding] transition-all duration-500 ease-in-out ${
-        isScrolled
-          ? 'bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 shadow-sm'
-          : 'bg-transparent py-6'
-      }`}>
+  const headerClass = `fixed top-0 left-0 right-0 z-40 will-change-[background,padding] transition-all duration-500 ease-in-out ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 shadow-sm' : 'bg-transparent py-6'}`;
+  const logoClass = `font-serif text-2xl md:text-3xl font-medium tracking-wide transition-colors duration-500 ease-in-out ${isScrolled ? 'text-brand-dark' : 'text-brand-dark md:text-white'}`;
+  const categoryBtnClass = `flex items-center gap-1 text-xs font-medium tracking-[0.15em] uppercase transition-colors duration-500 ease-in-out ${isScrolled ? 'text-brand-dark' : 'text-white'}`;
+  const offlineStoreClass = `text-xs font-medium tracking-[0.15em] uppercase transition-colors duration-500 ease-in-out ${isScrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-brand-neutral2'}`;
+  const iconsClass = `flex items-center gap-4 md:gap-6 transition-colors duration-500 ease-in-out ${isScrolled || isSearchOpen ? 'text-brand-dark' : 'text-brand-dark md:text-white'}`;
+  const chevronClass = `transition-transform duration-300 ease-out ${isDropdownOpen ? 'rotate-180' : ''}`;
+  const dropdownClass = `absolute top-full left-1/2 -translate-x-1/2 pt-4 transition-all duration-300 ease-out ${isDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`;
 
+  return (
+    <header className={headerClass}>
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 flex items-center justify-between">
 
         {/* Kiri: Hamburger + Logo */}
@@ -85,12 +87,7 @@ export function Navbar({
             aria-label="Open menu">
             <Menu size={24} />
           </button>
-
-          
-            href="#"
-            className={`font-serif text-2xl md:text-3xl font-medium tracking-wide transition-colors duration-500 ease-in-out ${
-              isScrolled ? 'text-brand-dark' : 'text-brand-dark md:text-white'
-            }`}>
+          <a href="#" className={logoClass}>
             Ninetynine
           </a>
         </div>
@@ -107,31 +104,14 @@ export function Navbar({
             className="relative group"
             onMouseEnter={() => setIsDropdownOpen(true)}
             onMouseLeave={() => setIsDropdownOpen(false)}>
-
-            <button
-              className={`flex items-center gap-1 text-xs font-medium tracking-[0.15em] uppercase transition-colors duration-500 ease-in-out ${
-                isScrolled ? 'text-brand-dark' : 'text-white'
-              }`}>
+            <button className={categoryBtnClass}>
               Category
-              <ChevronDown
-                size={14}
-                className={`transition-transform duration-300 ease-out ${
-                  isDropdownOpen ? 'rotate-180' : ''
-                }`}
-              />
+              <ChevronDown size={14} className={chevronClass} />
             </button>
-
-            <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 pt-4 transition-all duration-300 ease-out ${
-                isDropdownOpen
-                  ? 'opacity-100 visible translate-y-0'
-                  : 'opacity-0 invisible -translate-y-2'
-              }`}>
+            <div className={dropdownClass}>
               <ul className="bg-brand-dark rounded-lg py-2 min-w-[180px] shadow-xl">
                 {categories.map((cat, idx) => (
-                  <li
-                    key={cat}
-                    className={idx !== categories.length - 1 ? 'border-b border-white/5' : ''}>
+                  <li key={cat} className={idx !== categories.length - 1 ? 'border-b border-white/5' : ''}>
                     <button
                       onClick={() => {
                         setIsDropdownOpen(false);
@@ -146,23 +126,13 @@ export function Navbar({
             </div>
           </div>
 
-          
-            href="#stores"
-            className={`text-xs font-medium tracking-[0.15em] uppercase transition-colors duration-500 ease-in-out ${
-              isScrolled
-                ? 'text-brand-dark hover:text-brand-accent'
-                : 'text-white hover:text-brand-neutral2'
-            }`}>
+          <a href="#stores" className={offlineStoreClass}>
             Offline Store
           </a>
         </nav>
 
         {/* Icons */}
-        <div
-          className={`flex items-center gap-4 md:gap-6 transition-colors duration-500 ease-in-out ${
-            isScrolled || isSearchOpen ? 'text-brand-dark' : 'text-brand-dark md:text-white'
-          }`}>
-
+        <div className={iconsClass}>
           <div className="relative" ref={searchRef}>
             <button
               aria-label="Search"
@@ -172,9 +142,7 @@ export function Navbar({
                 if (!isSearchOpen)
                   setTimeout(() => document.getElementById('searchInput')?.focus(), 100);
               }}>
-              {isSearchOpen
-                ? <X size={20} strokeWidth={1.5} />
-                : <Search size={20} strokeWidth={1.5} />}
+              {isSearchOpen ? <X size={20} strokeWidth={1.5} /> : <Search size={20} strokeWidth={1.5} />}
             </button>
 
             {isSearchOpen && (
@@ -192,7 +160,6 @@ export function Navbar({
                     />
                   </div>
                 </div>
-
                 {searchQuery && (
                   <div className="max-h-[60vh] overflow-y-auto p-2">
                     {searchResults.length > 0 ? (
