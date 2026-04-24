@@ -922,4 +922,4 @@ export const category: Product[] = [
   },
 
 ];
-export const allProducts = category;
+export const allProducts = [...bestsellers, ...ourPicks, ...category];
