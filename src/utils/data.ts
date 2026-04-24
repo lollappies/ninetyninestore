@@ -959,16 +959,16 @@ export const saleProducts: Product[] = [
     id: 'sale8',
     name: 'Stripevest Browntop',
     series: 'Code TPBAP 4380',
-    imageMain: '/images/sale/sale8.jpeg',
-    imageHover: '/images/sale/sale8.jpeg',
+    imageMain: '/images/sale/sale8.jpg',
+    imageHover: '/images/sale/sale8.jpg',
     category: 'outer'
   },
   {
     id: 'sale9',
     name: 'Colour Flow Bordir Skirt',
     series: 'Code TPASG 00536',
-    imageMain: '/images/sale/sale9.jpeg',
-    imageHover: '/images/sale/sale9.jpeg',
+    imageMain: '/images/sale/sale9.jpg',
+    imageHover: '/images/sale/sale9.jpg',
     category: 'skirt'
   },
   {

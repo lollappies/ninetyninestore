@@ -5,32 +5,32 @@ import { ArrowLeft } from 'lucide-react';
 import { Footer } from '../components/Footer';
 export function SalePage() {
   const navigate = useNavigate();
-  const looks = [{
+const looks = [{
     id: 1,
     bg: 'bg-brand-neutral1',
-    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
-    title: 'Casual Elegance',
-    description: 'Perfect for a weekend brunch or a casual day out.'
+    image: '/images/sale/sale1.jpg',
+    title: 'Casual Look',
+    description: 'Keep it easy, keep it stylish! Simple outfits that are comfortable for everyday wear.'
   }, {
     id: 2,
     bg: 'bg-brand-neutral2',
-    image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
-    title: 'Summer Breeze',
-    description: 'Light, airy, and perfect for warm weather.'
+    image: '/images/sale/sale4.jpg',
+    title: 'Feminim Look',
+    description: 'Graceful, soft, and utterly charming. Embrace your feminine side.'
   }, {
     id: 3,
     bg: 'bg-brand-neutral3',
-    image: 'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
-    title: 'Office Chic',
-    description: 'Professional yet stylish for the modern workplace.'
+    image: '/images/sale/sale7.jpeg',
+    title: 'Smart Casual Look',
+    description: 'The perfect balance between polished and relaxed.'
   }, {
     id: 4,
     bg: 'bg-brand-neutral4',
-    image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
-    title: 'Evening Glamour',
-    description: 'Turn heads at your next evening event.'
+    image: '/images/sale/sale10.jpeg',
+    title: 'Comfy Look',
+    description: 'Because comfort is everything! Cozy yet chic outfits.'
   }];
-  return <motion.div initial={{
+    return <motion.div initial={{
     opacity: 0
   }} animate={{
     opacity: 1

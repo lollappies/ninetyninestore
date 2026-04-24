@@ -276,6 +276,37 @@ export function CheckoutPage({
           </div>
         </div>
 
+{/* Produk yang Dipesan */}
+        <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+          <h2 className="text-xs font-bold tracking-[0.15em] uppercase text-gray-500 mb-6">
+            Produk yang Dipesan
+          </h2>
+          <div className="flex flex-col gap-4">
+            {cartItems.map((item, idx) => (
+              <div key={idx} className="flex gap-4 items-center">
+                <img
+                  src={item.product.imageMain}
+                  alt={item.product.name}
+                  className="w-16 h-20 object-cover rounded-lg bg-gray-100" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-brand-dark">{item.product.name}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{item.product.series}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">Warna: {item.color} · Ukuran: {item.size}</p>
+                  {item.bundleName && (
+                    <p className="text-xs text-brand-accent mt-0.5">{item.bundleName}</p>
+                  )}
+                </div>
+                <div className="text-right">
+                  <p className="text-xs text-gray-500">x{item.quantity}</p>
+                  <p className="text-sm font-medium text-brand-dark mt-0.5">
+                    {item.product.price || '-'}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
         {/* Ringkasan Belanja */}
         <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
           <h2 className="text-xs font-bold tracking-[0.15em] uppercase text-gray-500 mb-6">
