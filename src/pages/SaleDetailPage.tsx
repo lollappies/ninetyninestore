@@ -21,8 +21,8 @@ export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
   const [isAdding, setIsAdding] = useState(false);
-  // Extract look number from "look-1", "look-2", etc.
-const getById = (id: string) => allProducts.find(p => p.id === id)!;
+  const lookNumber = lookId ? parseInt(lookId.replace('look-', '')) : 1;
+  const getById = (id: string) => allProducts.find(p => p.id === id)!;
 
 const looksData = [
   {
