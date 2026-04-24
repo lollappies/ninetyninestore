@@ -5,6 +5,8 @@ import { ArrowLeft } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { Footer } from '../components/Footer';
 import { category as categoryProducts, Product } from '../utils/data';
+
+interface CategoryPageProps {
   wishlist: Product[];
   onToggleWishlist: (product: Product) => void;
   onAddToCart: (product: Product) => void;
