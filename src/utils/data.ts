@@ -924,13 +924,68 @@ export const category: Product[] = [
 
 export const saleProducts: Product[] = [
   {
-    id: 'sale1',
-    name: 'Sale Product 1',
-    series: 'Code SL001',
-    imageMain: '/images/sale/sale1.jpg',
-    imageHover: '/images/sale/sale1.jpg',
-    category: 'dress'
+    id: 'sale2',
+    name: 'Shouldbutton Knittop',
+    series: 'Code TPHBE 00793',
+    imageMain: '/images/sale/sale2.jpg',
+    imageHover: '/images/sale/sale2.jpg',
+    category: 'sweater'
+  },
+  {
+    id: 'sale3',
+    name: 'Twopocket Cullote',
+    series: 'Code TPJOI 00720',
+    imageMain: '/images/sale/sale3.jpg',
+    imageHover: '/images/sale/sale3.jpg',
+    category: 'pants'
+  },
+  {
+    id: 'sale5',
+    name: 'Twocolors Bordir',
+    series: 'Code SETGJY 00772',
+    imageMain: '/images/sale/sale5.jpg',
+    imageHover: '/images/sale/sale5.jpg',
+    category: 'tunic'
+  },
+  {
+    id: 'sale6',
+    name: 'Twocolors Bordir Skirt',
+    series: 'Code SETGJY 00775',
+    imageMain: '/images/sale/sale6.jpg',
+    imageHover: '/images/sale/sale6.jpg',
+    category: 'skirt'
+  },
+  {
+    id: 'sale8',
+    name: 'Stripevest Browntop',
+    series: 'Code TPBAP 4380',
+    imageMain: '/images/sale/sale8.jpeg',
+    imageHover: '/images/sale/sale8.jpeg',
+    category: 'outer'
+  },
+  {
+    id: 'sale9',
+    name: 'Colour Flow Bordir Skirt',
+    series: 'Code TPASG 00536',
+    imageMain: '/images/sale/sale9.jpeg',
+    imageHover: '/images/sale/sale9.jpeg',
+    category: 'skirt'
+  },
+  {
+    id: 'sale11',
+    name: 'Stripe Knit Top',
+    series: 'Code TPMCHL 00692',
+    imageMain: '/images/sale/sale11.jpg',
+    imageHover: '/images/sale/sale11.jpg',
+    category: 'sweater'
+  },
+  {
+    id: 'sale12',
+    name: 'Scuba Cutbray',
+    series: 'Code PTMSTL 7445',
+    imageMain: '/images/sale/sale12.jpg',
+    imageHover: '/images/sale/sale12.jpg',
+    category: 'pants'
   },
 ];
-
 export const allProducts = [...bestsellers, ...ourPicks, ...category, ...saleProducts];

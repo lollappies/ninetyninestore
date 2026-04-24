@@ -48,7 +48,7 @@ export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
     },
     {
       id: 3,
-      image: '/images/sale/sale7.jpg',
+      image: '/images/sale/sale7.jpeg',
       title: 'Smart Casual Look',
       description: 'The perfect balance between polished and relaxed. Ideal for semi-formal meetings, stylish hangouts, or any occasion that calls for a put-together vibe.',
       items: [
@@ -58,7 +58,7 @@ export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
     },
     {
       id: 4,
-      image: '/images/sale/sale10.jpg',
+      image: '/images/sale/sale10.jpeg',
       title: 'Comfy Look',
       description: 'Because comfort is everything! Cozy yet chic outfits that keep you looking good and feeling great from morning to night, no fuss needed.',
       items: [
