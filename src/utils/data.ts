@@ -920,6 +920,7 @@ export const category: Product[] = [
     imageHover: skirt20,
     category: 'skirt'
   },
+];
 
 export const saleProducts: Product[] = [
   {
