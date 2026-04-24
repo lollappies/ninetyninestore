@@ -921,5 +921,15 @@ export const category: Product[] = [
     category: 'skirt'
   },
 
+export const saleProducts: Product[] = [
+  {
+    id: 'sale1',
+    name: 'Sale Product 1',
+    series: 'Code SL001',
+    imageMain: '/images/sale/sale1.jpg',
+    imageHover: '/images/sale/sale1.jpg',
+    category: 'dress'
+  },
 ];
-export const allProducts = [...bestsellers, ...ourPicks, ...category];
+
+export const allProducts = [...bestsellers, ...ourPicks, ...category, ...saleProducts];
