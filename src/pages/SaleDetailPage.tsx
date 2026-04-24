@@ -22,45 +22,38 @@ export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
   const { showToast } = useCustomToast();
   const [isAdding, setIsAdding] = useState(false);
   // Extract look number from "look-1", "look-2", etc.
-  const lookNumber = lookId ? parseInt(lookId.replace('look-', '')) : 1;
-  const looksData = [
+const getById = (id: string) => allProducts.find(p => p.id === id)!;
+
+const looksData = [
   {
     id: 1,
-    image:
-    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
     title: 'Casual Elegance',
-    description:
-    'Perfect for a weekend brunch or a casual day out. This look combines comfort with effortless style.',
-    items: [allProducts[0], allProducts[4]] // Siderope Flowbordir + Flowcolour Cream Blouse
+    description: 'Perfect for a weekend brunch or a casual day out. This look combines comfort with effortless style.',
+    items: [getById('dress_1'), getById('blouse_1')]
   },
   {
     id: 2,
-    image:
-    'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
     title: 'Summer Breeze',
-    description:
-    'Light, airy, and perfect for warm weather. Stay cool while looking absolutely stunning.',
-    items: [allProducts[1], allProducts[6]] // Cream Bordir Dress + Twocolors Bordir Tunic
+    description: 'Light, airy, and perfect for warm weather. Stay cool while looking absolutely stunning.',
+    items: [getById('dress_3'), getById('tunic_1')]
   },
   {
     id: 3,
-    image:
-    'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
     title: 'Office Chic',
-    description:
-    'Professional yet stylish for the modern workplace. Make a statement in the boardroom.',
-    items: [allProducts[2], allProducts[8]] // Seemivest Bordir Flow Dress + Flowlace Shirt
+    description: 'Professional yet stylish for the modern workplace. Make a statement in the boardroom.',
+    items: [getById('blouse_3'), getById('pants_1')]
   },
   {
     id: 4,
-    image:
-    'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
     title: 'Evening Glamour',
-    description:
-    'Turn heads at your next evening event with this carefully curated elegant ensemble.',
-    items: [allProducts[5], allProducts[9]] // Flow Pearlbelt Dress + Brukat Skirt
+    description: 'Turn heads at your next evening event with this carefully curated elegant ensemble.',
+    items: [getById('dress_2'), getById('skirt_1')]
   }];
-
+  
   const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
   // Calculate prices
   const calculateTotal = () => {
