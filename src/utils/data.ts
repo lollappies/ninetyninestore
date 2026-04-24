@@ -26,6 +26,7 @@ export const bestsellers: Product[] = [
   id: 'prod_0',
   name: 'Siderope Flowbordir',
   series: 'Code SESTRA 5050 Oneseat',
+  price: 'IDR 110.000',
   imageMain: "/images/landing-page/best1.jpeg",
   imageHover: "/images/landing-page/best2.jpeg",
   category: 'outer'
@@ -34,6 +35,7 @@ export const bestsellers: Product[] = [
   id: 'prod_1',
   name: 'Cream Bordir Dress',
   series: 'Code DRLFY 6080',
+  price: 'IDR 320.000',
   imageMain: "/images/landing-page/best3.jpeg",
   imageHover: "/images/landing-page/best4.jpeg",
   category: 'dress'
@@ -42,6 +44,7 @@ export const bestsellers: Product[] = [
   id: 'prod_2',
   name: 'Seemivest Bordir Flow Dress',
   series: 'Code DRYN 6357',
+  price: 'IDR 205.000',
   imageMain: "/images/landing-page/best5.jpeg",
   imageHover: "/images/landing-page/best6.jpeg",
   category: 'dress'
@@ -50,6 +53,7 @@ export const bestsellers: Product[] = [
   id: 'prod_3',
   name: '3 Pocky Top',
   series: 'Code TNVX 8307',
+  price: 'IDR 124.000',
   imageMain: "/images/landing-page/best7.jpeg",
   imageHover: "/images/landing-page/best8.jpeg",
   category: 'outer'
