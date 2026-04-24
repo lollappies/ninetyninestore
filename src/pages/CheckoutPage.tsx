@@ -20,7 +20,7 @@ export function CheckoutPage({
   });
   const isFormComplete = formData.name.trim() !== '' && formData.email.trim() !== '' && formData.phone.trim() !== '' && formData.address.trim() !== '';
   const canProceed = isFormComplete && !!shippingMethod && !!paymentMethod;
-  const subtotal = cartItems.reduce((acc: number, item: CartItem) => {
+  const subtotal = checkoutItems.reduce((acc: number, item: CartItem) => {
     const priceStr = item.product.price?.replace(/[^0-9]/g, '') || '0';
     return acc + parseInt(priceStr) * item.quantity;
   }, 0);
@@ -35,7 +35,7 @@ export function CheckoutPage({
       state: {
         shippingMethod,
         paymentMethod,
-        cartItems,
+        cartItems: checkoutItems,
         customerInfo: formData,
         subtotal,
         shippingCost,
@@ -282,7 +282,7 @@ export function CheckoutPage({
             Produk yang Dipesan
           </h2>
           <div className="flex flex-col gap-4">
-            {cartItems.map((item, idx) => (
+            {checkoutItems.map((item, idx) => (
               <div key={idx} className="flex gap-4 items-center">
                 <img
                   src={item.product.imageMain}
@@ -315,7 +315,7 @@ export function CheckoutPage({
           <div className="flex flex-col gap-3 text-sm">
             <div className="flex justify-between">
               <span className="text-gray-500">
-                Subtotal ({cartItems.length} produk)
+                Subtotal ({checkoutItems.length} produk)
               </span>
               <span className="font-medium text-brand-dark">
                 Rp{formatCurrency(subtotal)}

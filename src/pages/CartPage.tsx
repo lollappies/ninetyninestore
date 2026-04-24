@@ -257,7 +257,7 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
                 </span>
               </div>
               <button
-              onClick={() => navigate('/checkout')}
+              onClick={() => navigate('/checkout', { state: { checkoutItems: selectedCartItems } })}
               disabled={selectedItems.length === 0}
               className={`w-full py-4 rounded-lg text-sm font-bold text-white flex items-center justify-center gap-2 transition-colors ${selectedItems.length > 0 ? 'bg-[#D32F2F] hover:bg-red-700' : 'bg-gray-300 cursor-not-allowed'}`}>
               
