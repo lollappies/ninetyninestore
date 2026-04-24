@@ -4,8 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { Footer } from '../components/Footer';
-import { allProducts, Product } from '../utils/data';
-interface CategoryPageProps {
+import { category as categoryProducts, Product } from '../utils/data';
   wishlist: Product[];
   onToggleWishlist: (product: Product) => void;
   onAddToCart: (product: Product) => void;
@@ -25,8 +24,7 @@ export function CategoryPage({
   useEffect(() => {
     // Generate 10 products for the category
     // In a real app, this would be an API call
-    const baseProducts = allProducts.filter((p) => p.category === categoryName
-    );
+  const baseProducts = categoryProducts.filter((p) => p.category === categoryName);
 
     if (baseProducts.length === 0) {
       setProducts([]);

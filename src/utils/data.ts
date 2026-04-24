@@ -350,80 +350,90 @@ export const category: Product[] = [
   // ===== DRESS =====
   {
     id: 'dress_1',
-    name: 'Flow Dress',
-    series: 'Code DR001',
+    name: 'Semivest Brukat Dress',
+    series: 'Code DRYN 9213',
+    price: 'IDR 225.000',
     imageMain: dress1,
     imageHover: dress2,
     category: 'dress'
   },
   {
     id: 'dress_2',
-    name: 'Elegant Dress',
-    series: 'Code DR002',
+    name: 'Flowbrukat Raya Dress',
+    series: 'Code DRIWK 00047',
+    price: 'IDR 189.000',
     imageMain: dress3,
     imageHover: dress4,
     category: 'dress'
   },
   {
     id: 'dress_3',
-    name: 'Soft Lace Dress',
-    series: 'Code DR003',
+    name: 'Semivest Rope Dress',
+    series: 'Code DRARK 00231',
+    price: 'IDR 169.000',
     imageMain: dress5,
     imageHover: dress6,
     category: 'dress'
   },
   {
     id: 'dress_4',
-    name: 'Daily Dress',
-    series: 'Code DR004',
+    name: 'Flowbrukat Outer Dress',
+    series: 'Code DRSBI 00040',
+    price: 'IDR 325.000',
     imageMain: dress7,
     imageHover: dress8,
     category: 'dress'
   },
     {
     id: 'dress_5',
-    name: 'Flow Dress',
-    series: 'Code DR005',
+    name: 'Wrinkle Rope Dress',
+    series: 'Code DRKMC 00142',
+    price: 'IDR 119.000',
     imageMain: dress9,
     imageHover: dress10,
     category: 'dress'
   },
   {
     id: 'dress_6',
-    name: 'Elegant Dress',
-    series: 'Code DR006',
+    name: 'White Bordir Brukat Dress',
+    series: 'Code DRKNZF 00111',
+    price: 'IDR 250.000',
     imageMain: dress11,
     imageHover: dress12,
     category: 'dress'
   },
   {
     id: 'dress_7',
-    name: 'Soft Lace Dress',
-    series: 'Code DR007',
+    name: 'Pearlbelt Dress',
+    series: 'Code DRMSTL 6436',
+    price: 'IDR 215.000',
     imageMain: dress13,
     imageHover: dress14,
     category: 'dress'
   },
   {
     id: 'dress_8',
-    name: 'Daily Dress',
-    series: 'Code DR008',
+    name: 'Flowbordir Dress',
+    series: 'Code DRCRSD 00015',
+    price: 'IDR 215.000',
     imageMain: dress15,
     imageHover: dress16,
     category: 'dress'
  },
   {
     id: 'dress_9',
-    name: 'Soft Lace Dress',
-    series: 'Code DR009',
+    name: 'Brukat Outer Plain Dress',
+    series: 'Code DRNDN 00045',
+    price: 'IDR 220.000',
     imageMain: dress17,
     imageHover: dress18,
     category: 'dress'
   },
   {
     id: 'dress_10',
-    name: 'Daily Dress',
-    series: 'Code DR010',
+    name: 'Blastvest Dress',
+    series: 'Code DRMKU 1603',
+    price: 'IDR 178.000',
     imageMain: dress19,
     imageHover: dress20,
     category: 'dress'
@@ -432,80 +442,90 @@ export const category: Product[] = [
   // ===== BLOUSE =====
   {
     id: 'blouse_1',
-    name: 'Soft Blouse',
-    series: 'Code BL001',
+    name: 'Whitelace Collar Embos Blouse',
+    series: 'Code TPFVR 00839',
+    price: 'IDR 136.000',
     imageMain: blouse1,
     imageHover: blouse2,
     category: 'blouse'
   },
   {
     id: 'blouse_2',
-    name: 'Elegant Blouse',
-    series: 'Code BL002',
+    name: 'Twocolour Katbol Blouse',
+    series: 'Code DRJSMR 3959',
+    price: 'IDR 156.000',
     imageMain: blouse3,
     imageHover: blouse4,
     category: 'blouse'
   },
   {
     id: 'blouse_3',
-    name: 'Flow Blouse',
-    series: 'Code BL003',
+    name: 'Sidepleated Blouse',
+    series: 'Code TPSVN 00803',
+    price: 'IDR 146.000',
     imageMain: blouse5,
     imageHover: blouse6,
     category: 'blouse'
   },
   {
     id: 'blouse_4',
-    name: 'Daily Blouse',
-    series: 'Code BL004',
+    name: 'Flow Motive Blouse',
+    series: 'Code TPLYY 00778',
+    price: 'IDR 156.000',
     imageMain: blouse7,
     imageHover: blouse8,
     category: 'blouse'
   },
    {
     id: 'blouse_5',
-    name: 'Soft Blouse',
-    series: 'Code BL005',
+    name: 'Colourvest 2in1 Blouse',
+    series: 'Code TPDVA 00615',
+    price: 'IDR 129.000',
     imageMain: blouse9,
     imageHover: blouse10,
     category: 'blouse'
   },
   {
     id: 'blouse_6',
-    name: 'Elegant Blouse',
-    series: 'Code BL006',
+    name: 'Sideramp Plain Blouse',
+    series: 'Code PTMNT 00509',
+    price: 'IDR 115.000',
     imageMain: blouse11,
     imageHover: blouse12,
     category: 'blouse'
   },
   {
     id: 'blouse_7',
-    name: 'Flow Blouse',
-    series: 'Code BL007',
+    name: 'Flowbordir Lace Blouse',
+    series: 'Code TPMGR 00020',
+    price: 'IDR 149.000',
     imageMain: blouse13,
     imageHover: blouse14,
     category: 'blouse'
   },
   {
     id: 'blouse_8',
-    name: 'Daily Blouse',
-    series: 'Code BL008',
+    name: 'Siderope Bordir Blouse',
+    series: 'Code TMLVM 5505',
+    price: 'IDR 106.000',
     imageMain: blouse15,
     imageHover: blouse16,
     category: 'blouse'
   },
   {
     id: 'blouse_9',
-    name: 'Flow Blouse',
-    series: 'Code BL009',
+    name: 'Threebt White Blouse',
+    series: 'Code TNCD 9241',
+    price: 'IDR 139.000',
     imageMain: blouse17,
     imageHover: blouse18,
     category: 'blouse'
   },
   {
     id: 'blouse_10',
-    name: 'Daily Blouse',
-    series: 'Code BL010',
+    name: 'Lovepattern Sleeve Blouse',
+    series: 'Code TPMKA 1912',
+    price: 'IDR 111.000',
     imageMain: blouse19,
     imageHover: blouse20,
     category: 'blouse'
@@ -514,162 +534,183 @@ export const category: Product[] = [
   // ===== TUNIC =====
   {
     id: 'tunic_1',
-    name: 'Flow Tunic',
-    series: 'Code TN001',
+    name: 'Leafbordir Tunic',
+    series: 'Code TPINS 0070',
+    price: 'IDR 139.000',
     imageMain: tunic1,
     imageHover: tunic2,
     category: 'tunic'
   },
   {
     id: 'tunic_2',
-    name: 'Elegant Tunic',
-    series: 'Code TN002',
+    name: 'Embroydery Tunic',
+    series: 'Code DRGJY 00771',
+    price: 'IDR 198.000',
     imageMain: tunic3,
     imageHover: tunic4,
     category: 'tunic'
   },
    {
     id: 'tunic_3',
-    name: 'Flow Tunic',
-    series: 'Code TN003',
+    name: 'Flowbordir Crepe Bordir Tunic',
+    series: 'Code DRFVR 00477',
+    price: 'IDR 186.000',
     imageMain: tunic5,
     imageHover: tunic6,
     category: 'tunic'
   },
   {
     id: 'tunic_4',
-    name: 'Elegant Tunic',
-    series: 'Code TN004',
+    name: 'Bordir Colour Tunic',
+    series: 'Code TPSCL 00117',
+    price: 'IDR 159.000',
     imageMain: tunic7,
     imageHover: tunic8,
     category: 'tunic'
   },
    {
     id: 'tunic_5',
-    name: 'Flow Tunic',
-    series: 'Code TN005',
+    name: 'Cream Flow Tunic',
+    series: 'Code TPINS 00702',
+    price: 'IDR 159.000',
     imageMain: tunic9,
     imageHover: tunic10,
     category: 'tunic'
   },
   {
     id: 'tunic_6',
-    name: 'Elegant Tunic',
-    series: 'Code TN006',
+    name: 'Whiteflow Bordir Tunic',
+    series: 'Code TPALN 3650',
+    price: 'IDR 165.000',
     imageMain: tunic11,
     imageHover: tunic12,
     category: 'tunic'
   },
    {
     id: 'tunic_7',
-    name: 'Flow Tunic',
-    series: 'Code TN007',
+    name: 'Pleatedkrah Tunic',
+    series: 'Code TNJMCL 00244',
+    price: 'IDR 169.000',
     imageMain: tunic13,
     imageHover: tunic14,
     category: 'tunic'
   },
   {
     id: 'tunic_8',
-    name: 'Elegant Tunic',
-    series: 'Code TN008',
+    name: 'Creamflower Bordir Tunic',
+    series: 'Code DRYRI 00256',
+    price: 'IDR 205.000',
     imageMain: tunic15,
     imageHover: tunic16,
     category: 'tunic'
   },
    {
     id: 'tunic_9',
-    name: 'Flow Tunic',
-    series: 'Code TN009',
+    name: 'Siderampflow Bordir Tunic',
+    series: 'Code TNSHRL 4766',
+    price: 'IDR 149.000',
     imageMain: tunic17,
     imageHover: tunic18,
     category: 'tunic'
   },
   {
     id: 'tunic_10',
-    name: 'Elegant Tunic',
-    series: 'Code TN010',
+    name: 'Nudes Vi Nesbordir Tunic',
+    series: 'Code TPBAP 3178',
+    price: 'IDR 146.000',
     imageMain: tunic19,
     imageHover: tunic20,
-    category: 'tunic'
+    category: 'tunic',
+    isSoldOut: true
   },
 
     // ===== OUTER =====
   {
     id: 'outer_1',
-    name: 'Flow Outer',
-    series: 'Code OT001',
+    name: 'Ribbonbt Vest Outer',
+    series: 'Code TPCLS 9494',
+    price: 'IDR 110.000',
     imageMain: outer1,
     imageHover: outer2,
     category: 'outer'
   },
     {
     id: 'outer_2',
-    name: 'Flow Outer',
-    series: 'Code OT002',
+    name: 'Plaincolour Outer',
+    series: 'TPCNDS 00762',
+    price: 'IDR 139.000',
     imageMain: outer3,
     imageHover: outer4,
     category: 'outer'
   },
     {
     id: 'outer_3',
-    name: 'Flow Outer',
-    series: 'Code OT003',
+    name: 'Sidebt Vest Outer',
+    series: 'Code TPLCL 00683',
+    price: 'IDR 69.000',
     imageMain: outer5,
     imageHover: outer6,
     category: 'outer'
   },
     {
     id: 'outer_4',
-    name: 'Flow Outer',
-    series: 'Code OT004',
+    name: '2in1 Plain Shirt & Outer',
+    series: 'Code TPCNG 6695',
+    price: 'IDR 146.000',
     imageMain: outer7,
     imageHover: outer8,
     category: 'outer'
   },
     {
     id: 'outer_5',
-    name: 'Flow Outer',
-    series: 'Code OT005',
+    name: 'Pearlbt Korean Outer',
+    series: 'Code DRMRF 12',
+    price: 'IDR 136.000',
     imageMain: outer9,
     imageHover: outer10,
     category: 'outer'
   },
     {
     id: 'outer_6',
-    name: 'Flow Outer',
-    series: 'Code OT006',
+    name: 'Sleeveless Stripe Outer',
+    series: 'Code TPCLS 4819',
+    price: 'IDR 95.000',
     imageMain: outer11,
     imageHover: outer12,
     category: 'outer'
   },
     {
     id: 'outer_7',
-    name: 'Flow Outer',
-    series: 'Code OT007',
+    name: 'Bluestripe Outer',
+    series: 'Code TNJSMR 7453',
+    price: 'IDR 136.000',
     imageMain: outer13,
     imageHover: outer14,
     category: 'outer'
   },
     {
     id: 'outer_8',
-    name: 'Flow Outer',
-    series: 'Code OT008',
+    name: 'Stripe Sleeve Outer',
+    series: 'Code TPJML 9191',
+    price: 'IDR 133.000',
     imageMain: outer15,
     imageHover: outer16,
     category: 'outer'
   },
     {
     id: 'outer_9',
-    name: 'Flow Outer',
-    series: 'Code OT009',
+    name: 'Ruffle Sleeveless Tunic',
+    series: 'DRNTN 6045',
+    price: 'IDR 175.000',
     imageMain: outer17,
     imageHover: outer18,
     category: 'outer'
   },
     {
     id: 'outer_10',
-    name: 'Flow Outer',
-    series: 'Code OT010',
+    name: 'Katbol Semivest Outer',
+    series: 'TPLA 4089',
+    price: 'IDR 118.000',
     imageMain: outer19,
     imageHover: outer20,
     category: 'outer'
@@ -678,80 +719,90 @@ export const category: Product[] = [
   // ===== SWEATER =====
  {
     id: 'sweater_1',
-    name: 'Brukat Sweater',
-    series: 'Code SW001',
+    name: 'Stripe Zipper Sweater',
+    series: 'Code TPMISC 7601',
+    price: 'IDR 139.000',
     imageMain: sweater1,
     imageHover: sweater2,
     category: 'sweater'
   },
    {
     id: 'sweater_2',
-    name: 'Brukat Sweater',
-    series: 'Code SW002',
+    name: 'Braidpattern Cardi Sweater',
+    series: 'Code TNFLML 4205',
+    price: 'IDR 139.000',
     imageMain: sweater3,
     imageHover: sweater4,
     category: 'sweater'
   },
    {
     id: 'sweater_3',
-    name: 'Brukat Sweater',
-    series: 'Code SW003',
+    name: 'Printmotif Sweater',
+    series: 'Code TPKNB 00442',
+    price: 'IDR 136.000',
     imageMain: sweater5,
     imageHover: sweater6,
     category: 'sweater'
   },
    {
     id: 'sweater_4',
-    name: 'Brukat Sweater',
-    series: 'Code SW004',
+    name: 'Shouldbutton Knit Sweater',
+    series: 'Code TPHBE 00793',
+    price: 'IDR 136.000',
     imageMain: sweater7,
     imageHover: sweater8,
     category: 'sweater'
   },
    {
     id: 'sweater_5',
-    name: 'Brukat Sweater',
-    series: 'Code SW005',
+    name: 'Sideribbon Cardi Sweater',
+    series: 'Code TPLYN 00826',
+    price: 'IDR 128.000',
     imageMain: sweater9,
     imageHover: sweater10,
     category: 'sweater'
   },
    {
     id: 'sweater_6',
-    name: 'Brukat Sweater',
-    series: 'Code SW006',
+    name: 'Stripe Motif Knit Sweater',
+    series: 'Code TPMCHL 00692',
+    price: 'IDR 144.000',
     imageMain: sweater11,
     imageHover: sweater12,
     category: 'sweater'
   },
    {
     id: 'sweater_7',
-    name: 'Brukat Sweater',
-    series: 'Code SW007',
+    name: 'Stripe Motive Knit Sweater',
+    series: 'Code TPKM 8217',
+    price: 'IDR 136.000',
     imageMain: sweater13,
     imageHover: sweater14,
     category: 'sweater'
   },
    {
     id: 'sweater_8',
-    name: 'Brukat Sweater',
-    series: 'Code SW008',
+    name: 'Silverlove BT Sweater',
+    series: 'Code TPKM 6020',
+    price: 'IDR 139.000',
     imageMain: sweater15,
     imageHover: sweater16,
     category: 'sweater'
   },
    {
     id: 'sweater_9',
-    name: 'Brukat Sweater',
-    series: 'Code SW009',
+    name: 'Stripe Krah Sweater',
+    series: 'Code TPKM 7394',
+    price: 'IDR 156.000',
     imageMain: sweater17,
     imageHover: sweater18,
     category: 'sweater'
   },
    {
     id: 'sweater_10',
-    name: 'Brukat Sweater',
-    series: 'Code SW010',
+    name: 'Goldbt Batwing Sweater',
+    series: 'Code SKSHR 3076',
+    price: 'IDR 149.000',
     imageMain: sweater19,
     imageHover: sweater20,
     category: 'sweater'
@@ -760,80 +811,90 @@ export const category: Product[] = [
   // ===== PANTS =====
  {
     id: 'pants_1',
-    name: 'Brukat Pants',
-    series: 'Code PT001',
+    name: 'Plaincolour Cargo Pants',
+    series: 'Code SKJML 8620',
+    price: 'IDR 129.000',
     imageMain: pants1,
     imageHover: pants2,
     category: 'pants'
   },
    {
     id: 'pants_2',
-    name: 'Brukat Pants',
-    series: 'Code PT002',
+    name: '3BT Scuba Pants',
+    series: 'Code PTMSTL 7445',
+    price: 'IDR 99.000',
     imageMain: pants3,
     imageHover: pants4,
     category: 'pants'
   },
    {
     id: 'pants_3',
-    name: 'Brukat Pants',
-    series: 'Code PT003',
+    name: 'PLaincolour Scuba Cutbray Pants',
+    series: 'Code PTMSTL 7445',
+    price: 'IDR 99.000',
     imageMain: pants5,
     imageHover: pants6,
     category: 'pants'
   },
    {
     id: 'pants_4',
-    name: 'Brukat Pants',
-    series: 'Code PT004',
+    name: '3Plain Scuba Pants',
+    series: 'Code TPMCFN 00788',
+    price: 'IDR 99.000',
     imageMain: pants7,
     imageHover: pants8,
     category: 'pants'
   },
    {
     id: 'pants_5',
-    name: 'Brukat Pants',
-    series: 'Code PT005',
+    name: 'Scuba Cutbray Pants',
+    series: 'Code PTMSTL 7445',
+    price: 'IDR 99.000',
     imageMain: pants9,
     imageHover: pants10,
     category: 'pants'
   },
    {
     id: 'pants_6',
-    name: 'Brukat Pants',
-    series: 'Code PT006',
+    name: 'Plain Jeans Pants',
+    series: 'Code PTNWJ 00073',
+    price: 'IDR 186.000',
     imageMain: pants11,
     imageHover: pants12,
     category: 'pants'
   },
    {
     id: 'pants_7',
-    name: 'Brukat Pants',
-    series: 'Code PT007',
+    name: 'Plaincolour Pants',
+    series: 'Code TPSDP 2463',
+    price: 'IDR 108.000',
     imageMain: pants13,
     imageHover: pants14,
     category: 'pants'
   },
    {
     id: 'pants_8',
-    name: 'Brukat Pants',
-    series: 'Code PT008',
+    name: 'Rubberwaist SoftJeans Pants',
+    series: 'Code TPJML 1671',
+    price: 'IDR 113.000',
     imageMain: pants15,
     imageHover: pants16,
     category: 'pants'
   },
    {
     id: 'pants_9',
-    name: 'Brukat Pants',
-    series: 'Code PT009',
+    name: 'Twopocket Cullote Pants',
+    series: 'Code TPJOI 00720',
+    price: 'IDR 156.000',
     imageMain: pants17,
     imageHover: pants18,
     category: 'pants'
   },
    {
     id: 'pants_10',
-    name: 'Brukat Pants',
+    name: 'Blackbelt Scuba Pants',
     series: 'Code PT010',
+    price: 'IDR 146.000',
     imageMain: pants19,
     imageHover: pants20,
     category: 'pants'
@@ -843,47 +904,53 @@ export const category: Product[] = [
   {
     id: 'skirt_1',
     name: 'Brukat Skirt',
-    series: 'Code SK001',
+    series: 'Code TNAVM 5069',
+    price: 'IDR 139.000',
     imageMain: skirt1,
     imageHover: skirt2,
     category: 'skirt'
   },
    {
     id: 'skirt_2',
-    name: 'Brukat Skirt',
-    series: 'Code SK002',
+    name: 'Colourflow Bordir Skirt',
+    series: 'Code TPASG 00536',
+    price: 'IDR 139.000',
     imageMain: skirt3,
     imageHover: skirt4,
     category: 'skirt'
   },
    {
     id: 'skirt_3',
-    name: 'Brukat Skirt',
-    series: 'Code SK003',
+    name: 'Rubber Waist Tutu Skirt',
+    series: 'Code TPCC 5545',
+    price: 'IDR 99.000',
     imageMain: skirt5,
     imageHover: skirt6,
     category: 'skirt'
   },
    {
     id: 'skirt_4',
-    name: 'Brukat Skirt',
-    series: 'Code SK004',
+    name: 'Flow Bordir Skirt',
+    series: 'Code TPMXG 0079',
+    price: 'IDR 166.000',
     imageMain: skirt7,
     imageHover: skirt8,
     category: 'skirt'
   },
    {
     id: 'skirt_5',
-    name: 'Brukat Skirt',
-    series: 'Code SK005',
+    name: 'Tinnyflow Bordir Skirt',
+    series: 'Code TPPMGR 00020',
+    price: 'IDR 149.000',
     imageMain: skirt9,
     imageHover: skirt10,
     category: 'skirt'
   },
    {
     id: 'skirt_6',
-    name: 'Brukat Skirt',
-    series: 'Code SK006',
+    name: 'Ribbon Accent Skirt',
+    series: 'Code PTHBE 7145',
+    price: 'IDR 139.000',
     imageMain: skirt11,
     imageHover: skirt12,
     category: 'skirt'
@@ -891,31 +958,35 @@ export const category: Product[] = [
    {
     id: 'skirt_7',
     name: 'Brukat Skirt',
-    series: 'Code SK007',
+    series: 'Code TNAVM 5069',
+    price: 'IDR 139.000',
     imageMain: skirt13,
     imageHover: skirt14,
     category: 'skirt'
   },
    {
     id: 'skirt_8',
-    name: 'Brukat Skirt',
-    series: 'Code SK008',
+    name: 'Korean Bordir Skirt',
+    series: 'Code TNASG 00032',
+    price: 'IDR 166.000',
     imageMain: skirt15,
     imageHover: skirt16,
     category: 'skirt'
   },
    {
     id: 'skirt_9',
-    name: 'Brukat Skirt',
-    series: 'Code SK009',
+    name: 'Flow Bordir Skirt',
+    series: 'Code DRAVM 3526 ',
+    price: 'IDR 156.000',
     imageMain: skirt17,
     imageHover: skirt18,
     category: 'skirt'
   },
    {
     id: 'skirt_10',
-    name: 'Brukat Skirt',
-    series: 'Code SK010',
+    name: 'Flow Bordir Skirt',
+    series: 'Code TNGLR 1773',
+    price: 'IDR 178.000',
     imageMain: skirt19,
     imageHover: skirt20,
     category: 'skirt'
