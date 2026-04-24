@@ -3,13 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { CartItem } from '../App';
+import { useLocation } from 'react-router-dom';
 interface CheckoutPageProps {
   cartItems: CartItem[];
 }
-export function CheckoutPage({
-  cartItems
-}: CheckoutPageProps) {
+export function CheckoutPage({ cartItems }: CheckoutPageProps) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const checkoutItems = location.state?.checkoutItems || cartItems;
+
   const [shippingMethod, setShippingMethod] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
   const [formData, setFormData] = useState({
