@@ -1,110 +1,118 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ShoppingBag, Info } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { Footer } from '../components/Footer';
 import { allProducts, Product } from '../utils/data';
+
 interface SaleDetailPageProps {
   onAddToCart: (
-  product: Product,
-  quantity?: number,
-  color?: string,
-  size?: string,
-  bundleName?: string)
-  => void;
+    product: Product,
+    quantity?: number,
+    color?: string,
+    size?: string,
+    bundleName?: string
+  ) => void;
 }
+
 export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
-  const { lookId } = useParams<{
-    lookId: string;
-  }>();
+  const { lookId } = useParams<{ lookId: string }>();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
   const [isAdding, setIsAdding] = useState(false);
+
   const lookNumber = lookId ? parseInt(lookId.replace('look-', '')) : 1;
   const getById = (id: string) => allProducts.find(p => p.id === id)!;
 
-const looksData = [
-  {
-    id: 1,
-    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
-    title: 'Casual Elegance',
-    description: 'Perfect for a weekend brunch or a casual day out. This look combines comfort with effortless style.',
-    items: [getById('dress_1'), getById('blouse_1')]
-  },
-  {
-    id: 2,
-    image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
-    title: 'Summer Breeze',
-    description: 'Light, airy, and perfect for warm weather. Stay cool while looking absolutely stunning.',
-    items: [getById('dress_3'), getById('tunic_1')]
-  },
-  {
-    id: 3,
-    image: 'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
-    title: 'Office Chic',
-    description: 'Professional yet stylish for the modern workplace. Make a statement in the boardroom.',
-    items: [getById('blouse_3'), getById('pants_1')]
-  },
-  {
-    id: 4,
-    image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
-    title: 'Evening Glamour',
-    description: 'Turn heads at your next evening event with this carefully curated elegant ensemble.',
-    items: [getById('dress_2'), getById('skirt_1')]
-  }];
-  
+  const looksData = [
+    {
+      id: 1,
+      image: '/images/sale/sale1.jpg',
+      title: 'Casual Look',
+      description: 'Keep it easy, keep it stylish! Simple outfits that are comfortable for everyday wear, from hanging out with friends to a relaxed afternoon stroll.',
+      items: [
+        { ...getById('sale2'), price: 'IDR 133.000' },
+        { ...getById('sale3'), price: 'IDR 156.000' },
+      ]
+    },
+    {
+      id: 2,
+      image: '/images/sale/sale4.jpg',
+      title: 'Feminim Look',
+      description: 'Graceful, soft, and utterly charming. Embrace your feminine side with elegant touches that are perfect for every special moment.',
+      items: [
+        { ...getById('sale5'), price: 'IDR 145.000' },
+        { ...getById('sale6'), price: 'IDR 130.000' },
+      ]
+    },
+    {
+      id: 3,
+      image: '/images/sale/sale7.jpg',
+      title: 'Smart Casual Look',
+      description: 'The perfect balance between polished and relaxed. Ideal for semi-formal meetings, stylish hangouts, or any occasion that calls for a put-together vibe.',
+      items: [
+        { ...getById('sale8'), price: 'IDR 108.000' },
+        { ...getById('sale9'), price: 'IDR 139.000' },
+      ]
+    },
+    {
+      id: 4,
+      image: '/images/sale/sale10.jpg',
+      title: 'Comfy Look',
+      description: 'Because comfort is everything! Cozy yet chic outfits that keep you looking good and feeling great from morning to night, no fuss needed.',
+      items: [
+        { ...getById('sale11'), price: 'IDR 144.000' },
+        { ...getById('sale12'), price: 'IDR 99.000' },
+      ]
+    }
+  ];
+
   const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
-  // Calculate prices
+
   const calculateTotal = () => {
     return look.items.reduce((total, item) => {
-      // Ensure price exists, if not use a default
-      const priceStr =
-      item.price || `IDR ${Math.floor(Math.random() * 200 + 100)}.000`;
+      const priceStr = item.price || 'IDR 0';
       const numericPrice = parseInt(priceStr.replace(/[^0-9]/g, ''));
       return total + numericPrice;
     }, 0);
   };
+
   const originalTotal = calculateTotal();
   const discountPercentage = 20;
   const bundleTotal = Math.floor(originalTotal * (1 - discountPercentage / 100));
+
   const formatCurrency = (val: number) =>
-  `IDR ${new Intl.NumberFormat('id-ID').format(val)}`;
+    `IDR ${new Intl.NumberFormat('id-ID').format(val)}`;
+
   const handleAddBundleToCart = () => {
     setIsAdding(true);
     look.items.forEach((item) => {
       onAddToCart(item, 1, 'Default', 'All Size', `Bundle: ${look.title}`);
     });
     showToast('Bundle ditambahkan ke Keranjang');
-    setTimeout(() => {
-      setIsAdding(false);
-    }, 800);
+    setTimeout(() => setIsAdding(false), 800);
   };
+
   const handleBuyNow = () => {
     look.items.forEach((item) => {
       onAddToCart(item, 1, 'Default', 'All Size', `Bundle: ${look.title}`);
     });
     navigate('/checkout');
   };
+
   return (
     <motion.div
-      initial={{
-        opacity: 0
-      }}
-      animate={{
-        opacity: 1
-      }}
-      exit={{
-        opacity: 0
-      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="min-h-screen bg-white">
-      
+
       <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-[1440px] mx-auto flex items-center">
           <button
             onClick={() => navigate(-1)}
             className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
-            
             <ArrowLeft size={24} />
           </button>
           <span className="font-serif text-xl font-medium ml-2">
@@ -115,6 +123,7 @@ const looksData = [
 
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 py-8 md:py-12">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+
           {/* Left: Main Image */}
           <div className="w-full lg:w-1/2">
             <div className="sticky top-24">
@@ -123,7 +132,6 @@ const looksData = [
                   src={look.image}
                   alt={look.title}
                   className="absolute inset-0 w-full h-full object-cover" />
-                
                 <div className="absolute top-4 left-4 bg-brand-accent text-white px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg">
                   Bundle Sale -{discountPercentage}%
                 </div>
@@ -140,7 +148,6 @@ const looksData = [
               <p className="text-gray-500 leading-relaxed mb-6">
                 {look.description}
               </p>
-
               <div className="bg-brand-accent/5 border border-brand-accent/20 rounded-xl p-4 flex items-start gap-3">
                 <Info size={20} className="text-brand-accent shrink-0 mt-0.5" />
                 <div>
@@ -149,8 +156,7 @@ const looksData = [
                   </h4>
                   <p className="text-xs text-gray-600">
                     Dapatkan harga lebih murah dengan membeli 1 set outfit
-                    lengkap ini. Hemat {discountPercentage}% dibandingkan
-                    membeli satuan.
+                    lengkap ini. Hemat {discountPercentage}% dibandingkan membeli satuan.
                   </p>
                 </div>
               </div>
@@ -162,19 +168,15 @@ const looksData = [
 
             <div className="flex flex-col gap-6 mb-12">
               {look.items.map((item, idx) => {
-                const itemPrice =
-                item.price ||
-                `IDR ${Math.floor(Math.random() * 200 + 100)}.000`;
+                const itemPrice = item.price || 'IDR 0';
                 return (
                   <div
                     key={idx}
                     className="flex gap-4 p-4 rounded-xl border border-gray-100 hover:border-gray-200 transition-colors bg-gray-50/50">
-                    
                     <img
                       src={item.imageMain}
                       alt={item.name}
                       className="w-20 h-28 object-cover rounded-lg bg-gray-200" />
-                    
                     <div className="flex flex-col justify-center flex-1">
                       <span className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">
                         {item.series}
@@ -184,8 +186,8 @@ const looksData = [
                       </h4>
                       <span className="text-sm text-gray-600">{itemPrice}</span>
                     </div>
-                  </div>);
-
+                  </div>
+                );
               })}
             </div>
 
@@ -197,7 +199,13 @@ const looksData = [
                   {formatCurrency(originalTotal)}
                 </span>
               </div>
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-between items-center mb-3">
+                <span className="text-sm text-green-600">Diskon 20%</span>
+                <span className="text-sm text-green-600">
+                  -{formatCurrency(originalTotal - bundleTotal)}
+                </span>
+              </div>
+              <div className="border-t border-gray-100 pt-3 flex justify-between items-center mb-6">
                 <span className="font-bold text-brand-dark">Bundle Price</span>
                 <span className="text-2xl font-bold text-brand-accent">
                   {formatCurrency(bundleTotal)}
@@ -208,20 +216,11 @@ const looksData = [
                 onClick={handleAddBundleToCart}
                 disabled={isAdding}
                 className="w-full py-4 border border-brand-dark text-brand-dark rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-dark hover:text-white transition-colors flex items-center justify-center gap-2 disabled:opacity-70">
-                
-                {isAdding ?
-                'Adding to Cart...' :
-
-                <>
-                    <ShoppingBag size={18} />
-                    Add Bundle to Cart
-                  </>
-                }
+                {isAdding ? 'Adding to Cart...' : <><ShoppingBag size={18} /> Add Bundle to Cart</>}
               </button>
               <button
                 onClick={handleBuyNow}
-                className="w-full py-4 bg-brand-dark text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-accent transition-colors">
-                
+                className="w-full py-4 bg-brand-dark text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-accent transition-colors mt-3">
                 Buy Now
               </button>
             </div>
@@ -230,6 +229,6 @@ const looksData = [
       </div>
 
       <Footer />
-    </motion.div>);
-
+    </motion.div>
+  );
 }
