@@ -16,61 +16,73 @@ export function LooksModal({
     bg: 'bg-brand-neutral1',
     image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
     title: 'Retro Look Ideas'
+    category: 'Look 1'
   }, {
     id: 2,
     bg: 'bg-brand-neutral2',
     image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
     title: 'Casual Look Ideas'
+    category: 'Look 2'
   }, {
     id: 3,
     bg: 'bg-brand-neutral3',
     image: 'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
     title: 'Latest Look Ideas'
+    category: 'Look 3'
   }, {
     id: 4,
     bg: 'bg-brand-neutral4',
     image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
     title: 'Feminine Look Ideas'
+    category: 'Look 4'
   }, {
     id: 5,
     bg: 'bg-brand-neutral1',
     image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
-    title: 'Retro Look Ideas'
+    title: 'Weekend Look Ideas'
+    category: 'Look 5'
   }, {
     id: 6,
     bg: 'bg-brand-neutral2',
     image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
-    title: 'Weekend Look Ideas'
+    title: 'Daily Look Ideas'
+    category: 'Look 6'
   }, {
     id: 7,
     bg: 'bg-brand-eutral3',
     image: 'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
-    title: 'Latest Look Ideas'
+    title: 'Pinky Look Ideas'
+    category: 'Look 7'
   }, {
     id: 8,
     bg: 'bg-brand-neutral4',
     image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
-    title: 'Timeless Look Ideas'
+    title: 'Clean Look Ideas'
+    category: 'Look 8'
   }, {
     id: 9,
     bg: 'bg-brand-neutral1',
     image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
-    title: 'Retro Look Ideas'
+    title: 'Cute Look Ideas'
+    category: 'Look 9'
   }, {
     id: 10,
     bg: 'bg-brand-neutral2',
     image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
-    title: 'Casual Look Ideas'
+    title: 'Earthy Look Ideas'
+    category: 'Look 10'
   }, {
     id: 11,
     bg: 'bg-brand-neutral3',
     image: 'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
-    title: 'Latest Look Ideas'
+    title: 'Elegant Look Ideas'
+    category: 'Look 11'
   }, {
     id: 12,
     bg: 'bg-brand-neutral4',
     image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
-    title: 'Timeless Look Ideas'
+    title: 'Midnight Look Ideas'
+    category: 'Look 12'
   }];
   return <AnimatePresence>
       {isOpen && <motion.div initial={{
@@ -133,7 +145,7 @@ export function LooksModal({
                         Style Guide
                       </p>
                       <p className="font-serif text-lg text-brand-dark">
-                        {look.title}
+                        {look.category}
                       </p>
                     </div>
                   </div>
