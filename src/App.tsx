@@ -28,6 +28,7 @@ import { CategoryPage } from './pages/CategoryPage';
 import { SalePage } from './pages/SalePage';
 import { SaleDetailPage } from './pages/SaleDetailPage';
 import { LooksDetailPage } from './pages/LooksDetailPage';
+import { ScrollToTop } from './components/ScrollToTop';
 
 export interface CartItem {
   product: Product;
@@ -98,6 +99,7 @@ export function App() {
 
   return (
     <CustomToastProvider>
+      <ScrollToTop />
       <div className="min-h-screen bg-white">
         {isLandingPage && (
           <Navbar
