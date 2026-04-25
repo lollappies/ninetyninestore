@@ -101,5 +101,6 @@ import { CartItem } from '../App';
           </div>}
 
       </div>
-    </motion.div>;
+    </motion.div>
+  );
 }
