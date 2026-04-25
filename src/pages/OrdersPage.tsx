@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ArrowLeft, Package, Home } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { getOrdersByStatus, SavedOrder } from '../utils/orderStorage';
+import { ArrowLeft, Package } from 'lucide-react';
 type TabType = 'selesai' | 'dikirim' | 'dibatalkan' | 'dikembalikan';
 export function OrdersPage() {
   const navigate = useNavigate();
@@ -190,16 +189,6 @@ export function OrdersPage() {
           })}
           </div>
         }
-
-        <div className="mt-4">
-          <button
-            onClick={() => navigate('/')}
-            className="w-full py-4 bg-brand-dark rounded-lg text-xs font-bold tracking-[0.15em] uppercase text-white hover:bg-brand-accent transition-colors flex items-center justify-center gap-2">
-            
-            <Home size={16} />
-            Beranda
-          </button>
-        </div>
       </div>
     </motion.div>);
 

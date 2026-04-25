@@ -1,9 +1,8 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Package, Home } from 'lucide-react';
+import { ArrowLeft, Package } from 'lucide-react';
 import { CartItem } from '../App';
-export function PurchaseHistoryPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const {
@@ -101,12 +100,6 @@ export function PurchaseHistoryPage() {
         })}
           </div>}
 
-        <div className="mt-4">
-          <button onClick={() => navigate('/')} className="w-full py-4 bg-brand-dark rounded-lg text-xs font-bold tracking-[0.15em] uppercase text-white hover:bg-brand-accent transition-colors flex items-center justify-center gap-2">
-            <Home size={16} />
-            Beranda
-          </button>
-        </div>
       </div>
     </motion.div>;
 }
