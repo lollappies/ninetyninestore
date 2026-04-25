@@ -158,7 +158,18 @@ export function App() {
             />
             <Route path="/sale" element={<SalePage />} />
             <Route path="/sale/:lookId" element={<SaleDetailPage onAddToCart={handleAddToCart} />} />
-            <Route path="/looks/:lookId" element={<LooksDetailPage onAddToCart={handleAddToCart} />} />
+            <Route
+              path="/looks/:lookId"
+              element={
+               <LooksDetailPage
+                  onAddToCart={handleAddToCart}
+                  onBack={() => {
+                    navigate('/');
+                    setTimeout(() => setIsLooksOpen(true), 100);
+                  }}
+                />
+              }
+            />
           </Routes>
         </main>
 

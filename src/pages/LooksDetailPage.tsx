@@ -14,9 +14,10 @@ interface LooksDetailPageProps {
     size?: string,
     bundleName?: string
   ) => void;
+  onBack: () => void;
 }
 
-export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
+export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
   const { lookId } = useParams<{ lookId: string }>();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
@@ -169,7 +170,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
         <div className="max-w-[1440px] mx-auto flex items-center">
           <button
             type="button"
-            onClick={() => navigate(-1)}
+            onClick={onBack}
             className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity cursor-pointer">
             <ArrowLeft size={24} />
           </button>
