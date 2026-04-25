@@ -163,7 +163,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-white pb-24 relative">
+      className="min-h-screen bg-white">
 
       {/* Header */}
       <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
