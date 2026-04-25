@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, Minus, Plus } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { Footer } from '../components/Footer';
 import { allProducts, Product } from '../utils/data';
@@ -20,7 +20,10 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
   const { lookId } = useParams<{ lookId: string }>();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
+  const [quantity, setQuantity] = useState(1);
+  const [selectedColor, setSelectedColor] = useState('Default');
   const [isAdding, setIsAdding] = useState(false);
+  const [email, setEmail] = useState('');
 
   const lookNumber = lookId ? parseInt(lookId.replace('look-', '')) : 1;
   const getById = (id: string) => allProducts.find(p => p.id === id)!;
@@ -32,10 +35,8 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Retro Look Ideas',
       category: 'Look 1',
       description: 'Inspired by the timeless retro era. Bold, expressive, and full of personality.',
-      items: [
-        { ...getById('outer_1'), price: 'IDR 110.000' },
-        { ...getById('skirt_1'), price: 'IDR 139.000' },
-      ]
+      price: 'IDR 249.000',
+      items: [getById('outer_1'), getById('skirt_1')],
     },
     {
       id: 2,
@@ -43,10 +44,8 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Casual Look Ideas',
       category: 'Look 2',
       description: 'Effortlessly cool and comfortable. Perfect for everyday adventures.',
-      items: [
-        { ...getById('blouse_1'), price: 'IDR 136.000' },
-        { ...getById('pants_1'), price: 'IDR 129.000' },
-      ]
+      price: 'IDR 265.000',
+      items: [getById('blouse_1'), getById('pants_1')],
     },
     {
       id: 3,
@@ -54,10 +53,8 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Latest Look Ideas',
       category: 'Look 3',
       description: 'Stay ahead of the trends with our latest curated styles.',
-      items: [
-        { ...getById('dress_1'), price: 'IDR 225.000' },
-        { ...getById('outer_2'), price: 'IDR 139.000' },
-      ]
+      price: 'IDR 364.000',
+      items: [getById('dress_1'), getById('outer_2')],
     },
     {
       id: 4,
@@ -65,10 +62,8 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Feminine Look Ideas',
       category: 'Look 4',
       description: 'Soft, graceful, and utterly charming. Celebrate your femininity.',
-      items: [
-        { ...getById('dress_2'), price: 'IDR 189.000' },
-        { ...getById('skirt_2'), price: 'IDR 139.000' },
-      ]
+      price: 'IDR 328.000',
+      items: [getById('dress_2'), getById('skirt_2')],
     },
     {
       id: 5,
@@ -76,10 +71,8 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Weekend Look Ideas',
       category: 'Look 5',
       description: 'Relaxed yet stylish looks for your days off.',
-      items: [
-        { ...getById('tunic_1'), price: 'IDR 139.000' },
-        { ...getById('pants_2'), price: 'IDR 99.000' },
-      ]
+      price: 'IDR 238.000',
+      items: [getById('tunic_1'), getById('pants_2')],
     },
     {
       id: 6,
@@ -87,10 +80,8 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Daily Look Ideas',
       category: 'Look 6',
       description: 'Simple and chic outfits for your everyday routine.',
-      items: [
-        { ...getById('blouse_3'), price: 'IDR 146.000' },
-        { ...getById('skirt_3'), price: 'IDR 99.000' },
-      ]
+      price: 'IDR 245.000',
+      items: [getById('blouse_3'), getById('skirt_3')],
     },
     {
       id: 7,
@@ -98,10 +89,8 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Pinky Look Ideas',
       category: 'Look 7',
       description: 'Sweet and playful with a touch of pink energy.',
-      items: [
-        { ...getById('sweater_1'), price: 'IDR 139.000' },
-        { ...getById('skirt_4'), price: 'IDR 166.000' },
-      ]
+      price: 'IDR 305.000',
+      items: [getById('sweater_1'), getById('skirt_4')],
     },
     {
       id: 8,
@@ -109,10 +98,8 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Clean Look Ideas',
       category: 'Look 8',
       description: 'Minimalist and fresh. Less is more.',
-      items: [
-        { ...getById('blouse_6'), price: 'IDR 115.000' },
-        { ...getById('pants_3'), price: 'IDR 99.000' },
-      ]
+      price: 'IDR 214.000',
+      items: [getById('blouse_6'), getById('pants_3')],
     },
     {
       id: 9,
@@ -120,10 +107,8 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Cute Look Ideas',
       category: 'Look 9',
       description: 'Adorable and fun outfits that bring joy to your wardrobe.',
-      items: [
-        { ...getById('tunic_4'), price: 'IDR 159.000' },
-        { ...getById('skirt_5'), price: 'IDR 149.000' },
-      ]
+      price: 'IDR 308.000',
+      items: [getById('tunic_4'), getById('skirt_5')],
     },
     {
       id: 10,
@@ -131,10 +116,8 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Earthy Look Ideas',
       category: 'Look 10',
       description: 'Warm tones and natural vibes for a grounded aesthetic.',
-      items: [
-        { ...getById('outer_4'), price: 'IDR 146.000' },
-        { ...getById('pants_6'), price: 'IDR 186.000' },
-      ]
+      price: 'IDR 332.000',
+      items: [getById('outer_4'), getById('pants_6')],
     },
     {
       id: 11,
@@ -142,10 +125,8 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Elegant Look Ideas',
       category: 'Look 11',
       description: 'Dark, mysterious, and undeniably chic for night occasions.',
-      items: [
-        { ...getById('dress_7'), price: 'IDR 215.000' },
-        { ...getById('outer_5'), price: 'IDR 136.000' },
-      ]
+      price: 'IDR 351.000',
+      items: [getById('dress_7'), getById('outer_5')],
     },
     {
       id: 12,
@@ -153,37 +134,25 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       title: 'Midnight Look Ideas',
       category: 'Look 12',
       description: 'Refined and sophisticated. Dress to impress.',
-      items: [
-        { ...getById('dress_9'), price: 'IDR 220.000' },
-        { ...getById('skirt_6'), price: 'IDR 139.000' },
-      ]
+      price: 'IDR 359.000',
+      items: [getById('dress_9'), getById('skirt_6')],
     },
   ];
 
   const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
 
-  const calculateTotal = () => {
-    return look.items.reduce((total, item) => {
-      const numericPrice = parseInt((item.price || 'IDR 0').replace(/[^0-9]/g, ''));
-      return total + numericPrice;
-    }, 0);
-  };
-
-  const formatCurrency = (val: number) =>
-    `IDR ${new Intl.NumberFormat('id-ID').format(val)}`;
-
   const handleAddToCart = () => {
     setIsAdding(true);
     look.items.forEach((item) => {
-      onAddToCart(item, 1, 'Default', 'All Size', `Look: ${look.title}`);
+      if (item) onAddToCart(item, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
     });
-    showToast('Produk ditambahkan ke keranjang');
+    showToast('Produk berhasil ditambahkan ke keranjang');
     setTimeout(() => setIsAdding(false), 800);
   };
 
   const handleBuyNow = () => {
     look.items.forEach((item) => {
-      onAddToCart(item, 1, 'Default', 'All Size', `Look: ${look.title}`);
+      if (item) onAddToCart(item, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
     });
     navigate('/checkout');
   };
@@ -193,13 +162,15 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-white">
+      className="min-h-screen bg-white pb-24 relative">
 
+      {/* Header */}
       <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-[1440px] mx-auto flex items-center">
           <button
-            onClick={() => navigate(-2)}
-            className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
+            type="button"
+            onClick={() => navigate(-1)}
+            className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity cursor-pointer">
             <ArrowLeft size={24} />
           </button>
           <span className="font-serif text-xl font-medium ml-2">
@@ -208,79 +179,135 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
         </div>
       </header>
 
-      <div className="max-w-[1440px] mx-auto px-4 md:px-8 py-8 md:py-12">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-8 py-8">
+        <div className="flex flex-col md:flex-row gap-8 lg:gap-16">
 
-          {/* Left: Main Image */}
-          <div className="w-full lg:w-1/2">
-            <div className="sticky top-24">
-              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100">
-                <img
-                  src={look.image}
-                  alt={look.title}
-                  className="absolute inset-0 w-full h-full object-cover" />
-              </div>
+          {/* Left: Image */}
+          <div className="w-full md:w-1/2 flex flex-col gap-4">
+            <div className="aspect-[3/4] rounded-xl overflow-hidden bg-brand-neutral1">
+              <img
+                src={look.image}
+                alt={look.title}
+                className="w-full h-full object-cover" />
             </div>
           </div>
 
-          {/* Right: Details & Items */}
-          <div className="w-full lg:w-1/2 flex flex-col">
-            <div className="mb-10">
-              <span className="text-[10px] uppercase tracking-widest text-gray-500 mb-2 block">
-                {look.category}
+          {/* Right: Details */}
+          <div className="w-full md:w-1/2 flex flex-col">
+            <span className="text-[10px] uppercase tracking-widest text-gray-500 mb-2">
+              {look.category}
+            </span>
+            <h1 className="font-serif text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+              {look.title}
+            </h1>
+            <span className="text-xl font-medium text-brand-dark mb-8">
+              {look.price}
+            </span>
+
+            <hr className="border-gray-100 mb-8" />
+
+            {/* Color */}
+            <div className="mb-8">
+              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-4">
+                Color
               </span>
-              <h1 className="font-serif text-4xl md:text-5xl text-brand-dark mb-4">
-                {look.title}
-              </h1>
-              <p className="text-gray-500 leading-relaxed">
-                {look.description}
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setSelectedColor('Brown')}
+                  className={`w-8 h-8 rounded-full border-2 ${selectedColor === 'Brown' ? 'border-brand-dark' : 'border-transparent'} flex items-center justify-center p-0.5`}>
+                  <div className="w-full h-full rounded-full bg-[#8B6914] border border-black/10" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedColor('Cream')}
+                  className={`w-8 h-8 rounded-full border-2 ${selectedColor === 'Cream' ? 'border-brand-dark' : 'border-transparent'} flex items-center justify-center p-0.5`}>
+                  <div className="w-full h-full rounded-full bg-[#D4C5A9] border border-black/10" />
+                </button>
+              </div>
+            </div>
+
+            {/* Size */}
+            <div className="mb-8">
+              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-4">
+                Ukuran
+              </span>
+              <button type="button" className="px-6 py-2 border border-brand-dark rounded-md text-sm font-medium text-brand-dark">
+                All Size
+              </button>
+            </div>
+
+            {/* Quantity */}
+            <div className="mb-8">
+              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-4">
+                Quantity
+              </span>
+              <div className="inline-flex items-center border border-gray-200 rounded-md">
+                <button
+                  type="button"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="p-3 text-gray-500 hover:text-brand-dark transition-colors">
+                  <Minus size={16} />
+                </button>
+                <span className="w-12 text-center text-sm font-medium text-brand-dark">
+                  {quantity}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="p-3 text-gray-500 hover:text-brand-dark transition-colors">
+                  <Plus size={16} />
+                </button>
+              </div>
+            </div>
+
+            {/* Shipping */}
+            <div className="mb-8">
+              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-2">
+                Pengiriman
+              </span>
+              <p className="text-sm text-gray-600">
+                Tersedia via JNE, J&T Express, dan pengambilan di toko. Pilih saat checkout.
               </p>
             </div>
 
-            <h3 className="text-xs font-bold tracking-[0.15em] uppercase text-gray-400 mb-6 border-b border-gray-100 pb-4">
-              Items in this look ({look.items.length})
-            </h3>
-
-            <div className="flex flex-col gap-4 mb-12">
-              {look.items.map((item, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => navigate(`/product/${item.id}`)}
-                  className="flex gap-4 p-4 rounded-xl border border-gray-100 hover:border-gray-200 transition-colors bg-gray-50/50 cursor-pointer">
-                  <img
-                    src={item.imageMain}
-                    alt={item.name}
-                    className="w-20 h-28 object-cover rounded-lg bg-gray-200" />
-                  <div className="flex flex-col justify-center flex-1">
-                    <span className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">
-                      {item.series}
-                    </span>
-                    <h4 className="text-sm font-bold text-brand-dark mb-2">
-                      {item.name}
-                    </h4>
-                  </div>
-                </div>
-              ))}
+            {/* Email */}
+            <div className="mb-8">
+              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-2">
+                Email (Untuk Konfirmasi Pesanan)
+              </span>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-dark focus:ring-1 focus:ring-brand-dark transition-shadow" />
             </div>
 
-            {/* Pricing Summary & Actions */}
-            <div className="mt-auto bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
-              <div className="border-b border-gray-100 pb-4 mb-4 flex justify-between items-center">
-                <span className="text-gray-500 text-sm">Total Harga</span>
-                <span className="text-xl font-bold text-brand-dark">
-                  {formatCurrency(calculateTotal())}
-                </span>
-              </div>
+            {/* Description */}
+            <div className="bg-gray-50 p-6 rounded-lg mb-8">
+              <p className="text-sm text-gray-700 leading-relaxed mb-4">
+                {look.description}
+              </p>
+              <p className="text-xs text-gray-500 italic">
+                {look.items.map(i => i?.name).filter(Boolean).join(' + ')}
+              </p>
+            </div>
 
+            {/* Actions */}
+            <div className="flex flex-col gap-3">
               <button
+                type="button"
                 onClick={handleAddToCart}
                 disabled={isAdding}
-                className="w-full py-4 border border-brand-dark text-brand-dark rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-dark hover:text-white transition-colors flex items-center justify-center gap-2 disabled:opacity-70 mb-3">
-                {isAdding ? 'Adding...' : <><ShoppingBag size={18} /> Add to Cart</>}
+                className="w-full py-4 border border-brand-dark rounded-lg text-xs font-bold tracking-[0.15em] uppercase text-brand-dark hover:bg-brand-dark hover:text-white transition-colors flex items-center justify-center gap-2 disabled:opacity-70">
+                <ShoppingBag size={18} />
+                {isAdding ? 'Adding...' : 'Add To Cart'}
               </button>
               <button
+                type="button"
                 onClick={handleBuyNow}
-                className="w-full py-4 bg-brand-dark text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-accent transition-colors">
+                className="w-full py-4 bg-brand-dark rounded-lg text-xs font-bold tracking-[0.15em] uppercase text-white hover:bg-brand-accent transition-colors">
                 Buy Now
               </button>
             </div>
