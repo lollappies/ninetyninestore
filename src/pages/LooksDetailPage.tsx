@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { Footer } from '../components/Footer';
-import { looksProducts } from '../utils/data';
 
 export function LooksDetailPage() {
   const { lookId } = useParams<{ lookId: string }>();
@@ -11,22 +10,22 @@ export function LooksDetailPage() {
 
   const lookNumber = lookId ? parseInt(lookId.replace('look-', '')) : 1;
 
-const looksData = [
-  { id: 1, image: '/images/look/1.jpg', title: 'Retro Look Ideas', category: 'Look 1', description: 'Inspired by the timeless retro era. Bold, expressive, and full of personality.' },
-  { id: 2, image: '/images/look/2.jpg', title: 'Casual Look Ideas', category: 'Look 2', description: 'Effortlessly cool and comfortable. Perfect for everyday adventures.' },
-  { id: 3, image: '/images/look/3.jpg', title: 'Latest Look Ideas', category: 'Look 3', description: 'Stay ahead of the trends with our latest curated styles.' },
-  { id: 4, image: '/images/look/4.jpg', title: 'Feminine Look Ideas', category: 'Look 4', description: 'Soft, graceful, and utterly charming. Celebrate your femininity.' },
-  { id: 5, image: '/images/look/5.jpg', title: 'Weekend Look Ideas', category: 'Look 5', description: 'Relaxed yet stylish looks for your days off.' },
-  { id: 6, image: '/images/look/6.jpg', title: 'Daily Look Ideas', category: 'Look 6', description: 'Simple and chic outfits for your everyday routine.' },
-  { id: 7, image: '/images/look/7.jpg', title: 'Pinky Look Ideas', category: 'Look 7', description: 'Sweet and playful with a touch of pink energy.' },
-  { id: 8, image: '/images/look/8.jpg', title: 'Clean Look Ideas', category: 'Look 8', description: 'Minimalist and fresh. Less is more.' },
-  { id: 9, image: '/images/look/9.jpg', title: 'Cute Look Ideas', category: 'Look 9', description: 'Adorable and fun outfits that bring joy to your wardrobe.' },
-  { id: 10, image: '/images/look/10.jpg', title: 'Earthy Look Ideas', category: 'Look 10', description: 'Warm tones and natural vibes for a grounded aesthetic.' },
-  { id: 11, image: '/images/look/11.jpg', title: 'Elegant Look Ideas', category: 'Look 11', description: 'Dark, mysterious, and undeniably chic for night occasions.' },
-  { id: 12, image: '/images/look/12.jpg', title: 'Midnight Look Ideas', category: 'Look 12', description: 'Refined and sophisticated. Dress to impress.' },
-];
+  const looksData = [
+    { id: 1, image: '/images/look/1.jpg', title: 'Retro Look Ideas', category: 'Look 1', description: 'Inspired by the timeless retro era. Bold, expressive, and full of personality.' },
+    { id: 2, image: '/images/look/2.jpg', title: 'Casual Look Ideas', category: 'Look 2', description: 'Effortlessly cool and comfortable. Perfect for everyday adventures.' },
+    { id: 3, image: '/images/look/3.jpg', title: 'Latest Look Ideas', category: 'Look 3', description: 'Stay ahead of the trends with our latest curated styles.' },
+    { id: 4, image: '/images/look/4.jpg', title: 'Feminine Look Ideas', category: 'Look 4', description: 'Soft, graceful, and utterly charming. Celebrate your femininity.' },
+    { id: 5, image: '/images/look/5.jpg', title: 'Weekend Look Ideas', category: 'Look 5', description: 'Relaxed yet stylish looks for your days off.' },
+    { id: 6, image: '/images/look/6.jpg', title: 'Daily Look Ideas', category: 'Look 6', description: 'Simple and chic outfits for your everyday routine.' },
+    { id: 7, image: '/images/look/7.jpg', title: 'Pinky Look Ideas', category: 'Look 7', description: 'Sweet and playful with a touch of pink energy.' },
+    { id: 8, image: '/images/look/8.jpg', title: 'Clean Look Ideas', category: 'Look 8', description: 'Minimalist and fresh. Less is more.' },
+    { id: 9, image: '/images/look/9.jpg', title: 'Cute Look Ideas', category: 'Look 9', description: 'Adorable and fun outfits that bring joy to your wardrobe.' },
+    { id: 10, image: '/images/look/10.jpg', title: 'Earthy Look Ideas', category: 'Look 10', description: 'Warm tones and natural vibes for a grounded aesthetic.' },
+    { id: 11, image: '/images/look/11.jpg', title: 'Elegant Look Ideas', category: 'Look 11', description: 'Dark, mysterious, and undeniably chic for night occasions.' },
+    { id: 12, image: '/images/look/12.jpg', title: 'Midnight Look Ideas', category: 'Look 12', description: 'Refined and sophisticated. Dress to impress.' },
+  ];
 
-const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
+  const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
 
   return (
     <motion.div
@@ -56,7 +55,7 @@ const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
             <div className="sticky top-24">
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100">
                 <img
-                  src={product.imageMain}
+                  src={look.image}
                   alt={look.title}
                   className="absolute inset-0 w-full h-full object-cover" />
               </div>
@@ -66,7 +65,7 @@ const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
           {/* Right: Details */}
           <div className="w-full lg:w-1/2 flex flex-col">
             <span className="text-[10px] uppercase tracking-widest text-gray-500 mb-2">
-              Look Collection
+              {look.category}
             </span>
             <h1 className="font-serif text-4xl md:text-5xl text-brand-dark mb-4">
               {look.title}
@@ -78,7 +77,7 @@ const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
             <hr className="border-gray-100 mb-8" />
 
             <button
-              onClick={() => navigate('/product/' + product.id)}
+              onClick={() => navigate('/')}
               className="w-full py-4 bg-brand-dark text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-accent transition-colors">
               Shop This Look
             </button>
