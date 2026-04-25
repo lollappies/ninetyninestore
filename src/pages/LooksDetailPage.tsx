@@ -36,7 +36,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Retro Look Ideas',
       category: 'Look 1',
       description: 'Inspired by the timeless retro era. Bold, expressive, and full of personality.',
-      price: 'IDR 249.000',
+      price: 'IDR 268.000',
       items: [getById('outer_1'), getById('skirt_1')],
     },
     {
@@ -45,7 +45,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Casual Look Ideas',
       category: 'Look 2',
       description: 'Effortlessly cool and comfortable. Perfect for everyday adventures.',
-      price: 'IDR 265.000',
+      price: 'IDR 268.000',
       items: [getById('blouse_1'), getById('pants_1')],
     },
     {
@@ -54,7 +54,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Latest Look Ideas',
       category: 'Look 3',
       description: 'Stay ahead of the trends with our latest curated styles.',
-      price: 'IDR 364.000',
+      price: 'IDR 262.000',
       items: [getById('dress_1'), getById('outer_2')],
     },
     {
@@ -63,7 +63,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Feminine Look Ideas',
       category: 'Look 4',
       description: 'Soft, graceful, and utterly charming. Celebrate your femininity.',
-      price: 'IDR 328.000',
+      price: 'IDR 322.000',
       items: [getById('dress_2'), getById('skirt_2')],
     },
     {
@@ -72,7 +72,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Weekend Look Ideas',
       category: 'Look 5',
       description: 'Relaxed yet stylish looks for your days off.',
-      price: 'IDR 238.000',
+      price: 'IDR 305.000',
       items: [getById('tunic_1'), getById('pants_2')],
     },
     {
@@ -81,7 +81,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Daily Look Ideas',
       category: 'Look 6',
       description: 'Simple and chic outfits for your everyday routine.',
-      price: 'IDR 245.000',
+      price: 'IDR 288.000',
       items: [getById('blouse_3'), getById('skirt_3')],
     },
     {
@@ -90,7 +90,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Pinky Look Ideas',
       category: 'Look 7',
       description: 'Sweet and playful with a touch of pink energy.',
-      price: 'IDR 305.000',
+      price: 'IDR 278.000',
       items: [getById('sweater_1'), getById('skirt_4')],
     },
     {
@@ -99,7 +99,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Clean Look Ideas',
       category: 'Look 8',
       description: 'Minimalist and fresh. Less is more.',
-      price: 'IDR 214.000',
+      price: 'IDR 310.000',
       items: [getById('blouse_6'), getById('pants_3')],
     },
     {
@@ -108,7 +108,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Cute Look Ideas',
       category: 'Look 9',
       description: 'Adorable and fun outfits that bring joy to your wardrobe.',
-      price: 'IDR 308.000',
+      price: 'IDR 274.000',
       items: [getById('tunic_4'), getById('skirt_5')],
     },
     {
@@ -117,7 +117,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Earthy Look Ideas',
       category: 'Look 10',
       description: 'Warm tones and natural vibes for a grounded aesthetic.',
-      price: 'IDR 332.000',
+      price: 'IDR 227.000',
       items: [getById('outer_4'), getById('pants_6')],
     },
     {
@@ -126,7 +126,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Elegant Look Ideas',
       category: 'Look 11',
       description: 'Dark, mysterious, and undeniably chic for night occasions.',
-      price: 'IDR 351.000',
+      price: 'IDR 213.000',
       items: [getById('dress_7'), getById('outer_5')],
     },
     {
@@ -135,7 +135,7 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
       title: 'Midnight Look Ideas',
       category: 'Look 12',
       description: 'Refined and sophisticated. Dress to impress.',
-      price: 'IDR 359.000',
+      price: 'IDR 238.000',
       items: [getById('dress_9'), getById('skirt_6')],
     },
   ];
