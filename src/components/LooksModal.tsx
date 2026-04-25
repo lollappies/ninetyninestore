@@ -153,7 +153,7 @@ export function LooksModal({
                 </motion.div>)}
             </div>
           </div>
-          <Footer />
+          <Footer/>
         </motion.div>}
     </AnimatePresence>;
 }
