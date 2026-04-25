@@ -20,6 +20,13 @@ interface LooksDetailPageProps {
 export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
   const { lookId } = useParams<{ lookId: string }>();
   const navigate = useNavigate();
+  useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') navigate(-1);
+  };
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, []);
   const { showToast } = useCustomToast();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState('Default');

@@ -4,6 +4,13 @@ import { ArrowLeft } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 export function LoginPage() {
   const navigate = useNavigate();
+  useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') navigate(-1);
+  };
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, []);
   const { showToast } = useCustomToast();
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
   const [loginData, setLoginData] = useState({

@@ -10,6 +10,13 @@ export function OrderCompletePage({
   setCartItems
 }: OrderCompletePageProps) {
   const navigate = useNavigate();
+  useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') navigate(-1);
+  };
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, []);
   const location = useLocation();
   // Store order data in state so it persists after cart is cleared
   const [orderData, setOrderData] = useState<any>(null);

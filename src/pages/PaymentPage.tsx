@@ -7,6 +7,13 @@ import { CartItem } from '../App';
 import { saveOrder } from '../utils/orderStorage';
 export function PaymentPage() {
   const navigate = useNavigate();
+  useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') navigate(-1);
+  };
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, []);
   const location = useLocation();
   const { showToast } = useCustomToast();
   const {

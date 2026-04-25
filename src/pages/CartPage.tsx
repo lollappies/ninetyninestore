@@ -9,6 +9,13 @@ interface CartPageProps {
 }
 export function CartPage({ cartItems, setCartItems }: CartPageProps) {
   const navigate = useNavigate();
+  useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') navigate(-1);
+  };
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, []);
   const { showToast } = useCustomToast();
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   // Initialize all items as selected when cart changes
