@@ -198,7 +198,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
       <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-[1440px] mx-auto flex items-center">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate(-2)}
             className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
             <ArrowLeft size={24} />
           </button>
@@ -258,9 +258,6 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
                     <h4 className="text-sm font-bold text-brand-dark mb-2">
                       {item.name}
                     </h4>
-                    <span className="text-sm font-medium text-brand-dark">
-                      {item.price}
-                    </span>
                   </div>
                 </div>
               ))}
