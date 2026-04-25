@@ -2,6 +2,7 @@ import React from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { Footer } from './Footer';
 interface LooksModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -152,6 +153,7 @@ export function LooksModal({
                 </motion.div>)}
             </div>
           </div>
+          <Footer />
         </motion.div>}
     </AnimatePresence>;
 }
