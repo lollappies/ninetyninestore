@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Product, allProducts } from '../utils/data';
@@ -17,13 +17,6 @@ export function AllProductsModal({
   onToggleWishlist,
   onAddToCart
 }: AllProductsModalProps) {
-    useEffect(() => {
-      const handleKeyDown = (e: KeyboardEvent) => {
-       if (e.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
   return <AnimatePresence>
       {isOpen && <motion.div initial={{
       opacity: 0,

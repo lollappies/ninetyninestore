@@ -9,13 +9,6 @@ interface CheckoutPageProps {
 }
 export function CheckoutPage({ cartItems }: CheckoutPageProps) {
   const navigate = useNavigate();
-  useEffect(() => {
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') navigate(-1);
-  };
-  window.addEventListener('keydown', handleKeyDown);
-  return () => window.removeEventListener('keydown', handleKeyDown);
-}, []);
   const location = useLocation();
   const checkoutItems = location.state?.checkoutItems || cartItems;
 

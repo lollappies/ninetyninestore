@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Package } from 'lucide-react';
@@ -6,13 +6,6 @@ import { CartItem } from '../App';
 
 export function PurchaseHistoryPage() {
   const navigate = useNavigate();
-  useEffect(() => {
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') navigate(-1);
-  };
-  window.addEventListener('keydown', handleKeyDown);
-  return () => window.removeEventListener('keydown', handleKeyDown);
-}, []);
   const location = useLocation();
   const { orderData } = location.state || {};
   const orders = orderData ? [orderData] : [];

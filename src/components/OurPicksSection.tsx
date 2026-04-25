@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ProductCard } from './ProductCard';
 import { ourPicks, Product } from '../utils/data';

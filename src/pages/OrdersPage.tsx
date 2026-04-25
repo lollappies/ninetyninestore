@@ -6,13 +6,6 @@ import { getOrdersByStatus, SavedOrder } from '../utils/orderStorage';
 type TabType = 'selesai' | 'dikirim' | 'dibatalkan' | 'dikembalikan';
 export function OrdersPage() {
   const navigate = useNavigate();
-  useEffect(() => {
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') navigate(-1);
-  };
-  window.addEventListener('keydown', handleKeyDown);
-  return () => window.removeEventListener('keydown', handleKeyDown);
-}, []);
   const location = useLocation();
   // Parse query params for initial tab
   const searchParams = new URLSearchParams(location.search);

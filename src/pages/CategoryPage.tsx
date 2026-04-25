@@ -22,13 +22,6 @@ export function CategoryPage({
     categoryName: string;
   }>();
   const navigate = useNavigate();
-  useEffect(() => {
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') navigate(-1);
-  };
-  window.addEventListener('keydown', handleKeyDown);
-  return () => window.removeEventListener('keydown', handleKeyDown);
-}, []);
   const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
     // Generate 10 products for the category
