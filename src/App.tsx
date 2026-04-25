@@ -93,6 +93,7 @@ export function App() {
     '/login',
     '/sale',
     '/looks',
+    '/category',
   ];
 
   const showFooter = !noFooterPages.some(path => location.pathname.startsWith(path));
