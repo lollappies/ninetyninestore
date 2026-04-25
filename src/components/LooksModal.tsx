@@ -142,10 +142,10 @@ export function LooksModal({
 
                     <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-xl p-4 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                       <p className="text-[9px] tracking-[0.2em] uppercase text-gray-500 mb-1">
-                        Style Guide
+                        {look.category}
                       </p>
                       <p className="font-serif text-lg text-brand-dark">
-                        {look.category}
+                        {look.title}
                       </p>
                     </div>
                   </div>
