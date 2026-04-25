@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CustomToastProvider } from './components/CustomToast';
 import { Navbar } from './components/Navbar';
 import { MobileMenu } from './components/MobileMenu';
@@ -45,6 +45,7 @@ export function App() {
   const [wishlist, setWishlist] = useState<Product[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleToggleWishlist = (product: Product) => {
     setWishlist((prev) => {
