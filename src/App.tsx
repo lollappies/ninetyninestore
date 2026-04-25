@@ -94,7 +94,6 @@ export function App() {
   '/orders',
   '/purchase-history',
   '/login',
-  '/category',
   '/sale'
 ];
 
