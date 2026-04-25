@@ -94,6 +94,8 @@ export function App() {
   '/orders',
   '/purchase-history',
   '/login',
+  '/category',
+  '/sale'
 ];
 
   const showFooter = !noFooterPages.some(path => location.pathname.startsWith(path));

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Product } from '../utils/data';
 import { ProductCard } from './ProductCard';
 import { useCustomToast } from './CustomToast';
+import { Footer } from './Footer';
 interface WishlistModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -102,6 +103,7 @@ export function WishlistModal({
               </div>
           }
           </div>
+          <Footer />
         </motion.div>
       }
     </AnimatePresence>);
