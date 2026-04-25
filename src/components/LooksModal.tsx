@@ -12,7 +12,6 @@ export function LooksModal({
   onClose
 }: LooksModalProps) {
   const navigate = useNavigate();
-  import { useEffect } from 'react';
 
   useEffect(() => {
   const handleKeyDown = (e: KeyboardEvent) => {
