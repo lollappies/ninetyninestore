@@ -3,13 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { X, MapPin, Package, Clock, LogIn } from 'lucide-react';
 export function ProfilePage() {
   const navigate = useNavigate();
-  useEffect(() => {
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') navigate(-1);
-  };
-  window.addEventListener('keydown', handleKeyDown);
-  return () => window.removeEventListener('keydown', handleKeyDown);
-}, []);
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
