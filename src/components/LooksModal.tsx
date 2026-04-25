@@ -15,22 +15,62 @@ export function LooksModal({
     id: 1,
     bg: 'bg-brand-neutral1',
     image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
-    title: 'Casual Elegance'
+    title: 'Retro Look Ideas'
   }, {
     id: 2,
     bg: 'bg-brand-neutral2',
     image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
-    title: 'Summer Breeze'
+    title: 'Casual Look Ideas'
   }, {
     id: 3,
     bg: 'bg-brand-neutral3',
     image: 'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
-    title: 'Office Chic'
+    title: 'Latest Look Ideas'
   }, {
     id: 4,
     bg: 'bg-brand-neutral4',
     image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
-    title: 'Evening Glamour'
+    title: 'Feminine Look Ideas'
+  }, {
+    id: 5,
+    bg: 'bg-brand-neutral1',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
+    title: 'Retro Look Ideas'
+  }, {
+    id: 6,
+    bg: 'bg-brand-neutral2',
+    image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
+    title: 'Weekend Look Ideas'
+  }, {
+    id: 7,
+    bg: 'bg-brand-eutral3',
+    image: 'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
+    title: 'Latest Look Ideas'
+  }, {
+    id: 8,
+    bg: 'bg-brand-neutral4',
+    image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
+    title: 'Timeless Look Ideas'
+  }, {
+    id: 9,
+    bg: 'bg-brand-neutral1',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
+    title: 'Retro Look Ideas'
+  }, {
+    id: 10,
+    bg: 'bg-brand-neutral2',
+    image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
+    title: 'Casual Look Ideas'
+  }, {
+    id: 11,
+    bg: 'bg-brand-neutral3',
+    image: 'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=800&q=80',
+    title: 'Latest Look Ideas'
+  }, {
+    id: 12,
+    bg: 'bg-brand-neutral4',
+    image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80',
+    title: 'Timeless Look Ideas'
   }];
   return <AnimatePresence>
       {isOpen && <motion.div initial={{

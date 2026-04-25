@@ -84,6 +84,19 @@ export function App() {
     });
   };
   const isLandingPage = location.pathname === '/';
+
+  const noFooterPages = [
+  '/checkout',
+  '/payment',
+  '/order-complete',
+  '/profile',
+  '/address',
+  '/orders',
+  '/purchase-history',
+  '/login',
+];
+
+  const showFooter = !noFooterPages.some(path => location.pathname.startsWith(path));
   return (
     <CustomToastProvider>
       <div className="min-h-screen bg-white">
@@ -169,7 +182,7 @@ export function App() {
           </Routes>
         </main>
 
-        {isLandingPage && <Footer />}
+        {showFooter && <Footer />}
 
         {/* Modals */}
         <WishlistModal
