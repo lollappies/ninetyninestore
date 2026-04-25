@@ -135,7 +135,7 @@ export function LooksModal({
             delay: idx * 0.1
           }} className="cursor-pointer group" onClick={() => {
             onClose();
-            navigate(`/sale/look-${look.id}`);
+            navigate(`/looks/look-${look.id}`);
           }}>
                   <div className={`${look.bg} rounded-2xl aspect-[3/4] flex items-center justify-center relative overflow-hidden`}>
                     <img src={look.image} alt={look.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />

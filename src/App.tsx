@@ -27,6 +27,7 @@ import { OrdersPage } from './pages/OrdersPage';
 import { CategoryPage } from './pages/CategoryPage';
 import { SalePage } from './pages/SalePage';
 import { SaleDetailPage } from './pages/SaleDetailPage';
+import { LooksDetailPage } from './pages/LooksDetailPage';
 export interface CartItem {
   product: Product;
   quantity: number;
@@ -160,6 +161,10 @@ export function App() {
               path="/order-complete"
               element={<OrderCompletePage setCartItems={setCartItems} />} />
             
+            <Route
+               path="/looks/:lookId"
+               element={<LooksDetailPage />}
+/>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/address" element={<AddressPage />} />
@@ -181,6 +186,9 @@ export function App() {
               element={<SaleDetailPage onAddToCart={handleAddToCart} />} />
             
           </Routes>
+              path="/looks/:lookId"
+              element={<LooksDetailPage />}
+            />
         </main>
 
         {showFooter && <Footer />}

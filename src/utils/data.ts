@@ -1063,4 +1063,91 @@ export const saleProducts: Product[] = [
     category: 'pants'
   },
 ];
-export const allProducts = [...bestsellers, ...ourPicks, ...category, ...saleProducts];
+
+export const looksProducts: Product[] = [
+  { 
+    id: 1,
+    bg: 'bg-brand-neutral1',
+    image: '/images/look/1.jpg',
+    title: 'Retro Look Ideas',
+    category: 'Look 1'
+  }, 
+  {
+    id: 2,
+    bg: 'bg-brand-neutral2',
+    image: '/images/look/2.jpg',
+    title: 'Casual Look Ideas',
+    category: 'Look 2'
+  }, 
+  {
+    id: 3,
+    bg: 'bg-brand-neutral3',
+    image: '/images/look/3.jpg',
+    title: 'Latest Look Ideas',
+    category: 'Look 3'
+  }, 
+  {
+    id: 4,
+    bg: 'bg-brand-neutral4',
+    image: '/images/look/4.jpg',
+    title: 'Feminine Look Ideas',
+    category: 'Look 4'
+  }, 
+  {
+    id: 5,
+    bg: 'bg-brand-neutral1',
+    image: '/images/look/5.jpg',
+    title: 'Weekend Look Ideas',
+    category: 'Look 5'
+  }, 
+  {
+    id: 6,
+    bg: 'bg-brand-neutral2',
+    image: '/images/look/6.jpg',
+    title: 'Daily Look Ideas',
+    category: 'Look 6'
+  }, 
+  {
+    id: 7,
+    bg: 'bg-brand-eutral3',
+    image: '/images/look/7.jpg',
+    title: 'Pinky Look Ideas',
+    category: 'Look 7'
+  }, 
+  {
+    id: 8,
+    bg: 'bg-brand-neutral4',
+    image: '/images/look/8.jpg',
+    title: 'Clean Look Ideas',
+    category: 'Look 8'
+  }, 
+  {
+    id: 9,
+    bg: 'bg-brand-neutral1',
+    image: '/images/look/9.jpg',
+    title: 'Cute Look Ideas',
+    category: 'Look 9'
+  }, 
+  {
+    id: 10,
+    bg: 'bg-brand-neutral2',
+    image: '/images/look/10.jpg',
+    title: 'Earthy Look Ideas',
+    category: 'Look 10'
+  }, 
+  {
+    id: 11,
+    bg: 'bg-brand-neutral3',
+    image: '/images/look/11.jpg',
+    title: 'Elegant Look Ideas',
+    category: 'Look 11'
+  }, 
+  {
+    id: 12,
+    bg: 'bg-brand-neutral4',
+    image: '/images/look/12.jpg',
+    title: 'Midnight Look Ideas',
+    category: 'Look 12'
+  }];
+
+export const allProducts = [...bestsellers, ...ourPicks, ...category, ...saleProducts, ...looksProducts];
