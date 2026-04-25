@@ -57,7 +57,7 @@ export function CategoryPage({
     opacity: 1
   }} exit={{
     opacity: 0
-  }} className="min-h-screen bg-white pb-24">
+  }} className="min-h-screen bg-white">
       <header className="sticky top-0 z-30 bg-white border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-[1440px] mx-auto flex items-center">
           <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
