@@ -15,6 +15,7 @@ export function PurchaseHistoryPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ duration: 0.15 }}
       className="min-h-screen bg-gray-50 pb-24">
 
       <header className="sticky top-0 z-30 bg-white border-b border-gray-100 py-4 px-4 md:px-8">
