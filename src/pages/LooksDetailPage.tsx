@@ -28,7 +28,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
   const looksData = [
     {
       id: 1,
-      image: '/images/look/1.jpg',
+      image: '/images/looks/1.jpg',
       title: 'Retro Look Ideas',
       category: 'Look 1',
       description: 'Inspired by the timeless retro era. Bold, expressive, and full of personality.',
@@ -39,7 +39,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
     },
     {
       id: 2,
-      image: '/images/look/2.jpg',
+      image: '/images/looks/2.jpg',
       title: 'Casual Look Ideas',
       category: 'Look 2',
       description: 'Effortlessly cool and comfortable. Perfect for everyday adventures.',
@@ -50,7 +50,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
     },
     {
       id: 3,
-      image: '/images/look/3.jpg',
+      image: '/images/looks/3.jpg',
       title: 'Latest Look Ideas',
       category: 'Look 3',
       description: 'Stay ahead of the trends with our latest curated styles.',
@@ -61,7 +61,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
     },
     {
       id: 4,
-      image: '/images/look/4.jpg',
+      image: '/images/looks/4.jpg',
       title: 'Feminine Look Ideas',
       category: 'Look 4',
       description: 'Soft, graceful, and utterly charming. Celebrate your femininity.',
@@ -72,7 +72,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
     },
     {
       id: 5,
-      image: '/images/look/5.jpg',
+      image: '/images/looks/5.jpg',
       title: 'Weekend Look Ideas',
       category: 'Look 5',
       description: 'Relaxed yet stylish looks for your days off.',
@@ -83,7 +83,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
     },
     {
       id: 6,
-      image: '/images/look/6.jpg',
+      image: '/images/looks/6.jpg',
       title: 'Daily Look Ideas',
       category: 'Look 6',
       description: 'Simple and chic outfits for your everyday routine.',
@@ -94,7 +94,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
     },
     {
       id: 7,
-      image: '/images/look/7.jpg',
+      image: '/images/looks/7.jpg',
       title: 'Pinky Look Ideas',
       category: 'Look 7',
       description: 'Sweet and playful with a touch of pink energy.',
@@ -105,7 +105,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
     },
     {
       id: 8,
-      image: '/images/look/8.jpg',
+      image: '/images/looks/8.jpg',
       title: 'Clean Look Ideas',
       category: 'Look 8',
       description: 'Minimalist and fresh. Less is more.',
@@ -116,7 +116,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
     },
     {
       id: 9,
-      image: '/images/look/9.jpg',
+      image: '/images/looks/9.jpg',
       title: 'Cute Look Ideas',
       category: 'Look 9',
       description: 'Adorable and fun outfits that bring joy to your wardrobe.',
@@ -127,7 +127,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
     },
     {
       id: 10,
-      image: '/images/look/10.jpg',
+      image: '/images/looks/10.jpg',
       title: 'Earthy Look Ideas',
       category: 'Look 10',
       description: 'Warm tones and natural vibes for a grounded aesthetic.',
@@ -138,7 +138,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
     },
     {
       id: 11,
-      image: '/images/look/11.jpg',
+      image: '/images/looks/11.jpg',
       title: 'Elegant Look Ideas',
       category: 'Look 11',
       description: 'Dark, mysterious, and undeniably chic for night occasions.',
@@ -149,7 +149,7 @@ export function LooksDetailPage({ onAddToCart }: LooksDetailPageProps) {
     },
     {
       id: 12,
-      image: '/images/look/12.jpg',
+      image: '/images/looks/12.jpg',
       title: 'Midnight Look Ideas',
       category: 'Look 12',
       description: 'Refined and sophisticated. Dress to impress.',
