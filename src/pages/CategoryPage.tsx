@@ -5,7 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { Footer } from '../components/Footer';
 import { category as categoryProducts, Product } from '../utils/data';
-
+import { useEscapeBack } from '../hooks/useEscapeBack';
 interface CategoryPageProps {
   wishlist: Product[];
   onToggleWishlist: (product: Product) => void;
@@ -16,6 +16,7 @@ export function CategoryPage({
   onToggleWishlist,
   onAddToCart
 }: CategoryPageProps) {
+  useEscapeBack();
   const {
     categoryName
   } = useParams<{

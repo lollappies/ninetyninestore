@@ -3,9 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { Footer } from '../components/Footer';
+import { useEscapeBack } from '../hooks/useEscapeBack';
 export function SalePage() {
   const navigate = useNavigate();
-const looks = [{
+  useEscapeBack();
+
+  const looks = [{
     id: 1,
     bg: 'bg-brand-neutral1',
     image: '/images/sale/sale1.jpg',

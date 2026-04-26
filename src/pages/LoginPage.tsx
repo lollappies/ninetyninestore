@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
+import { useEscapeBack } from '../hooks/useEscapeBack';
 export function LoginPage() {
+  useEscapeBack();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');

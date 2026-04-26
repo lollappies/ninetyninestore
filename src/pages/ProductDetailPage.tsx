@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ShoppingBag, Minus, Plus } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { allProducts, Product } from '../utils/data';
+import { useEscapeBack } from '../hooks/useEscapeBack';
 interface ProductDetailPageProps {
   onAddToCart: (
   product: Product,
@@ -13,6 +14,7 @@ interface ProductDetailPageProps {
   => void;
 }
 export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
+  useEscapeBack();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();

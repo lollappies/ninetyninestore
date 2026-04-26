@@ -5,7 +5,7 @@ import { ArrowLeft, ShoppingBag, Minus, Plus } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { Footer } from '../components/Footer';
 import { allProducts, Product } from '../utils/data';
-
+import { useEscapeBack } from '../hooks/useEscapeBack';
 interface LooksDetailPageProps {
   onAddToCart: (
     product: Product,
@@ -18,6 +18,7 @@ interface LooksDetailPageProps {
 }
 
 export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
+  useEscapeBack();
   const { lookId } = useParams<{ lookId: string }>();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();

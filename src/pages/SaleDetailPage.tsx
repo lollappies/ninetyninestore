@@ -5,6 +5,7 @@ import { ArrowLeft, ShoppingBag, Info } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { Footer } from '../components/Footer';
 import { allProducts, Product } from '../utils/data';
+import { useEscapeBack } from '../hooks/useEscapeBack';
 
 interface SaleDetailPageProps {
   onAddToCart: (

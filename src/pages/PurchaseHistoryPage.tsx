@@ -3,8 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Package } from 'lucide-react';
 import { CartItem } from '../App';
-
+import { useEscapeBack } from '../hooks/useEscapeBack';
 export function PurchaseHistoryPage() {
+  useEscapeBack();
   const navigate = useNavigate();
   const location = useLocation();
   const { orderData } = location.state || {};

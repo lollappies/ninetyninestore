@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Plus, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useCustomToast } from '../components/CustomToast';
+import { useEscapeBack } from '../hooks/useEscapeBack';
 interface Address {
   id: string;
   name: string;
@@ -15,6 +16,7 @@ interface Address {
   details: string;
 }
 export function AddressPage() {
+  useEscapeBack();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
   const [addresses, setAddresses] = useState<Address[]>([]);

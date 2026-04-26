@@ -2,6 +2,7 @@ import React from 'react';
 import { X, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Product } from '../utils/data';
+import { useEffect } from 'react';
 import { ProductCard } from './ProductCard';
 import { useCustomToast } from './CustomToast';
 import { Footer } from './Footer';
@@ -20,6 +21,13 @@ export function WishlistModal({
   onAddToCart
 }: WishlistModalProps) {
   const { showToast } = useCustomToast();
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
   const handleWishlistRemove = (product: Product) => {
     onToggleWishlist(product);
     showToast('Produk berhasil dihapus dari wishlist');

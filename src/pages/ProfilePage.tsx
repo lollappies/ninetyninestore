@@ -1,8 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, MapPin, Package, Clock, LogIn } from 'lucide-react';
+import { useEscapeBack } from '../hooks/useEscapeBack';
 export function ProfilePage() {
   const navigate = useNavigate();
+  useEscapeBack();
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}

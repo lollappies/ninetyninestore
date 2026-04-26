@@ -3,6 +3,7 @@ import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Footer } from './Footer';
+import { useEffect } from 'react';
 interface LooksModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -12,6 +13,15 @@ export function LooksModal({
   onClose
 }: LooksModalProps) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   const looks = [{
     id: 1,
     bg: 'bg-brand-neutral1',

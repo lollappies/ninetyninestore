@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { X, ShoppingBag, Trash2, ArrowRight, Package } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { CartItem } from '../App';
+import { useEscapeBack } from '../hooks/useEscapeBack';
 interface CartPageProps {
   cartItems: CartItem[];
   setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
 }
 export function CartPage({ cartItems, setCartItems }: CartPageProps) {
+  useEscapeBack();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
