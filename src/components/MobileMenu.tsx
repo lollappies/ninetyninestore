@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ChevronDown, Home } from 'lucide-react';
+import { X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 interface MobileMenuProps {
   isOpen: boolean;
@@ -32,19 +32,15 @@ export function MobileMenu({
         stiffness: 200
       }} className="fixed top-0 left-0 bottom-0 w-[85vw] max-w-sm bg-white z-50 md:hidden flex flex-col">
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
-              <span className="font-serif text-2xl text-brand-dark">
+              <a href="/" onClick={onClose} className="font-serif text-2xl text-brand-dark">
                 Ninetynine
-              </span>
+              </a>
               <button onClick={onClose} className="p-2 -mr-2 text-gray-500 hover:text-brand-dark">
                 <X size={24} />
               </button>
             </div>
 
             <div className="flex-1 overflow-y-auto py-4">
-              <a href="#" onClick={onClose} className="flex items-center gap-3 px-6 py-4 text-[13px] tracking-[0.15em] uppercase text-brand-dark border-b border-gray-50">
-                <Home size={16} strokeWidth={1.5} />
-                Beranda
-              </a>
               <a href="/sale" onClick={onClose} className="block px-6 py-4 text-[13px] tracking-[0.15em] uppercase text-brand-accent font-medium border-b border-gray-50">
                 Sale
               </a>
