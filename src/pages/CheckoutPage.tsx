@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { CartItem } from '../App';
+import { useEscapeBack } from '../hooks/useEscapeBack';
 import { useLocation } from 'react-router-dom';
 interface CheckoutPageProps {
   cartItems: CartItem[];
 }
 export function CheckoutPage({ cartItems }: CheckoutPageProps) {
+  useEscapeBack(); 
   const navigate = useNavigate();
   const location = useLocation();
   const checkoutItems = location.state?.checkoutItems || cartItems;
