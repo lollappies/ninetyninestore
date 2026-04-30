@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ShoppingBag, Minus, Plus } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, Minus, Plus, Heart } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
-import { ShoppingBag, Heart } from 'lucide-react';
 import { allProducts, Product } from '../utils/data';
 import { useEscapeBack } from '../hooks/useEscapeBack';
+
 interface ProductDetailPageProps {
   onAddToCart: (
-  product: Product,
-  quantity: number,
-  color: string,
-  size: string)
-  => void;
+    product: Product,
+    quantity: number,
+    color: string,
+    size: string
+  ) => void;
+  wishlist: Product[];
+  onToggleWishlist: (product: Product) => void;
 }
-export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
+
+export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist }: ProductDetailPageProps) {
   useEscapeBack();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -24,9 +27,7 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
   const [quantity, setQuantity] = useState(1);
   const [email, setEmail] = useState('');
 
-  const product = allProducts.find(
-    item => item.id === id
-  );
+  const product = allProducts.find(item => item.id === id);
 
   if (!product) {
     return (
@@ -35,28 +36,27 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
       </div>
     );
   }
+
   const price = product.price || 'IDR 195.000';
+  const isWishlisted = wishlist.some((item) => item.id === product.id);
+
   const handleAddToCart = () => {
     onAddToCart(product, quantity, selectedColor, 'All Size');
     showToast('Produk berhasil ditambahkan ke keranjang');
   };
+
   const handleBuyNow = () => {
     onAddToCart(product, quantity, selectedColor, 'All Size');
     navigate('/checkout');
   };
+
   return (
     <motion.div
-      initial={{
-        opacity: 0
-      }}
-      animate={{
-        opacity: 1
-      }}
-      exit={{
-        opacity: 0
-      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="min-h-screen bg-white pb-24 relative">
-      
+
       {/* Header */}
       <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-[1440px] mx-auto flex items-center justify-between">
@@ -71,6 +71,17 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
             </span>
           </div>
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                onToggleWishlist(product);
+                showToast(isWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
+              }}
+              className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <Heart
+                size={22}
+                className={isWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''}
+              />
+            </button>
             <button
               onClick={() => navigate('/cart')}
               className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
@@ -89,7 +100,6 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
                 src={product.imageMain}
                 alt={product.name}
                 className="w-full h-full object-cover" />
-              
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="aspect-[3/4] rounded-xl overflow-hidden bg-brand-neutral1">
@@ -97,14 +107,12 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
                   src={product.imageMain}
                   alt={`${product.name} view 1`}
                   className="w-full h-full object-cover" />
-                
               </div>
               <div className="aspect-[3/4] rounded-xl overflow-hidden bg-brand-neutral1">
                 <img
                   src={product.imageHover}
                   alt={`${product.name} view 2`}
                   className="w-full h-full object-cover" />
-                
               </div>
             </div>
           </div>
@@ -132,13 +140,11 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
                 <button
                   onClick={() => setSelectedColor('Brown')}
                   className={`w-8 h-8 rounded-full border-2 ${selectedColor === 'Brown' ? 'border-brand-dark' : 'border-transparent'} flex items-center justify-center p-0.5`}>
-                  
                   <div className="w-full h-full rounded-full bg-[#8B6914] border border-black/10" />
                 </button>
                 <button
                   onClick={() => setSelectedColor('Cream')}
                   className={`w-8 h-8 rounded-full border-2 ${selectedColor === 'Cream' ? 'border-brand-dark' : 'border-transparent'} flex items-center justify-center p-0.5`}>
-                  
                   <div className="w-full h-full rounded-full bg-[#D4C5A9] border border-black/10" />
                 </button>
               </div>
@@ -163,7 +169,6 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   className="p-3 text-gray-500 hover:text-brand-dark transition-colors">
-                  
                   <Minus size={16} />
                 </button>
                 <span className="w-12 text-center text-sm font-medium text-brand-dark">
@@ -172,7 +177,6 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
                 <button
                   onClick={() => setQuantity(quantity + 1)}
                   className="p-3 text-gray-500 hover:text-brand-dark transition-colors">
-                  
                   <Plus size={16} />
                 </button>
               </div>
@@ -184,8 +188,7 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
                 Pengiriman
               </span>
               <p className="text-sm text-gray-600">
-                Tersedia via JNE, J&T Express, dan pengambilan di toko. Pilih
-                saat checkout.
+                Tersedia via JNE, J&T Express, dan pengambilan di toko. Pilih saat checkout.
               </p>
             </div>
 
@@ -200,14 +203,12 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-dark focus:ring-1 focus:ring-brand-dark transition-shadow" />
-              
             </div>
 
             {/* Description Box */}
             <div className="bg-gray-50 p-6 rounded-lg mb-8">
               <p className="text-sm text-gray-700 leading-relaxed mb-4">
-                {product.name} dengan detail bordir cantik, flow dress yang
-                anggun dan fleksibel.
+                {product.name} dengan detail bordir cantik, flow dress yang anggun dan fleksibel.
               </p>
               <p className="text-xs text-gray-500 italic">
                 Material: Crepe Bordir
@@ -219,20 +220,18 @@ export function ProductDetailPage({ onAddToCart }: ProductDetailPageProps) {
               <button
                 onClick={handleAddToCart}
                 className="w-full py-4 border border-brand-dark rounded-lg text-xs font-bold tracking-[0.15em] uppercase text-brand-dark hover:bg-brand-dark hover:text-white transition-colors flex items-center justify-center gap-2">
-                
                 <ShoppingBag size={18} />
                 Add To Cart
               </button>
               <button
                 onClick={handleBuyNow}
                 className="w-full py-4 bg-brand-dark rounded-lg text-xs font-bold tracking-[0.15em] uppercase text-white hover:bg-brand-accent transition-colors">
-                
                 Buy Now
               </button>
             </div>
           </div>
         </div>
       </div>
-    </motion.div>);
-
+    </motion.div>
+  );
 }

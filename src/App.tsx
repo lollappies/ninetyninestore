@@ -141,7 +141,7 @@ export function App() {
               }
             />
 
-            <Route path="/product/:id" element={<ProductDetailPage onAddToCart={handleAddToCart} />} />
+            <Route path="/product/:id" element={<ProductDetailPage onAddToCart={handleAddToCart} wishlist={wishlist}onToggleWishlist={handleToggleWishlist}/>} />
             <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
             <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} />} />
             <Route path="/payment" element={<PaymentPage />} />
