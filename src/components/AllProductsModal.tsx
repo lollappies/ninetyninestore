@@ -73,7 +73,7 @@ export function AllProductsModal({
             y: 0
           }} transition={{
             delay: idx % 10 * 0.05
-          }}>
+          }} onClick={onClose}>
                   <ProductCard product={product} isWishlisted={wishlist.some((item) => item.id === product.id)} onToggleWishlist={onToggleWishlist} onAddToCart={onAddToCart} />
                 </motion.div>)}
             </div>
