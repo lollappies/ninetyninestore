@@ -14,7 +14,7 @@ export function OurPicksSection({
   onAddToCart,
   onBrowseAll
 }: OurPicksSectionProps) {
-  return <section className="py-24 px-4 md:px-8 max-w-[1440px] mx-auto">
+  return <section id="our-picks" className="py-24 px-4 md:px-8 max-w-[1440px] mx-auto">
       <motion.div initial={{
       opacity: 0,
       y: 20

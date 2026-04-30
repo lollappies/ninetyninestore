@@ -100,7 +100,6 @@ export function App() {
 
   return (
     <CustomToastProvider>
-      <ScrollToTop />
       <div className="min-h-screen bg-white">
         {isLandingPage && (
           <Navbar
