@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Package } from 'lucide-react';
+import { ArrowLeft, Package, ShoppingBag } from 'lucide-react';
 import { getOrdersByStatus, SavedOrder } from '../utils/orderStorage';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 type TabType = 'selesai' | 'dikirim' | 'dibatalkan' | 'dikembalikan';
@@ -65,18 +65,24 @@ export function OrdersPage() {
       }}
       className="min-h-screen bg-gray-50 pb-24">
       
+      -header-
       <header className="sticky top-0 z-30 bg-white border-b border-gray-100">
-        <div className="py-4 px-4 md:px-8 max-w-3xl mx-auto flex items-center">
+      <div className="py-4 px-4 md:px-8 max-w-3xl mx-auto flex items-center justify-between">        <div className="flex items-center">
           <button
             onClick={() => navigate('/profile')}
             className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
-            
             <ArrowLeft size={24} />
           </button>
           <span className="font-serif text-xl font-medium ml-2">
             Pesanan Saya
           </span>
         </div>
+        <button
+          onClick={() => navigate('/cart')}
+          className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+          <ShoppingBag size={22} />
+        </button>
+      </div>
 
         {/* Tabs */}
         <div className="max-w-3xl mx-auto px-4 md:px-8 flex overflow-x-auto no-scrollbar border-t border-gray-50">

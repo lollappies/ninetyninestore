@@ -111,15 +111,22 @@ export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
       className="min-h-screen bg-white">
 
       <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
-        <div className="max-w-[1440px] mx-auto flex items-center">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between">
+          <div className="flex items-center">
+            <button
+              onClick={() => navigate(-1)}
+              className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <ArrowLeft size={24} />
+            </button>
+            <span className="font-serif text-xl font-medium ml-2">
+              Bundle Details
+            </span>
+          </div>
           <button
-            onClick={() => navigate(-1)}
-            className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
-            <ArrowLeft size={24} />
+            onClick={() => navigate('/cart')}
+            className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+            <ShoppingBag size={22} />
           </button>
-          <span className="font-serif text-xl font-medium ml-2">
-            Bundle Details
-          </span>
         </div>
       </header>
 

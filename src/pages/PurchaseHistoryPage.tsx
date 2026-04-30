@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Package } from 'lucide-react';
+import { ArrowLeft, Package, ShoppingBag } from 'lucide-react';
 import { CartItem } from '../App';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 export function PurchaseHistoryPage() {
@@ -20,17 +20,22 @@ export function PurchaseHistoryPage() {
       className="min-h-screen bg-gray-50 pb-24">
 
       <header className="sticky top-0 z-30 bg-white border-b border-gray-100 py-4 px-4 md:px-8">
-        <div className="max-w-3xl mx-auto flex items-center justify-between">
-          <div className="flex items-center">
-            <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
-              <ArrowLeft size={24} />
-            </button>
-            <span className="font-serif text-xl font-medium ml-2">
-              Riwayat Pembelian
-            </span>
+      <div className="max-w-3xl mx-auto flex items-center justify-between">
+        <div className="flex items-center">
+          <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
+            <ArrowLeft size={24} />
+          </button>
+          <span className="font-serif text-xl font-medium ml-2">
+            Riwayat Pembelian
+          </span>
           </div>
-        </div>
-      </header>
+          <button
+            onClick={() => navigate('/cart')}
+            className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+            <ShoppingBag size={22} />
+          </button>
+        </div>      
+        </header>
 
       <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col gap-6">
         {orders.length === 0 ? (

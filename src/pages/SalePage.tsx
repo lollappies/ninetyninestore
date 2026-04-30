@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ShoppingBag } from 'lucide-react';
 import { Footer } from '../components/Footer';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 export function SalePage() {
@@ -41,13 +41,22 @@ export function SalePage() {
     opacity: 0
   }} className="min-h-screen bg-white pb-0">
       <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
-        <div className="max-w-[1440px] mx-auto flex items-center">
-          <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
-            <ArrowLeft size={24} />
-          </button>
-          <span className="font-serif text-xl font-medium ml-2">
-            Special Bundles
-          </span>
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between">
+          <div className="flex items-center">
+            <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <ArrowLeft size={24} />
+            </button>
+            <span className="font-serif text-xl font-medium ml-2">
+              Special Bundles
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate('/cart')}
+              className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <ShoppingBag size={22} />
+            </button>
+          </div>
         </div>
       </header>
 

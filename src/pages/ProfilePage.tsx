@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, MapPin, Package, Clock, LogIn } from 'lucide-react';
+import { X, MapPin, Package, Clock, LogIn, ShoppingBag } from 'lucide-react';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 export function ProfilePage() {
   const navigate = useNavigate();
@@ -10,15 +10,21 @@ export function ProfilePage() {
       {/* Header */}
       <header className="bg-white border-b border-gray-100 py-4 px-4 md:px-8 flex justify-between items-center sticky top-0 z-30">
         <h1 className="font-serif text-xl font-medium text-brand-dark">
-          Pengaturan Akun
+           Pengaturan Akun
         </h1>
+        <div className="flex items-center gap-2">
+         <button
+            onClick={() => navigate('/cart')}
+            className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+            <ShoppingBag size={22} />
+        </button>
         <button
           onClick={() => navigate('/')}
           className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors">
-          
           <X size={16} />
         </button>
-      </header>
+       </div>
+     </header>
 
       <div className="max-w-3xl mx-auto w-full px-4 py-8">
         <div className="flex flex-col gap-4">
