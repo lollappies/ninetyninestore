@@ -64,7 +64,7 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, cartCount = 0 }: L
                   <Heart size={22} />
                 </button>
                 <button
-                  onClick={() => { onClose(); navigate('/cart'); }}
+                  onClick={() => { onClose(); setTimeout(() => navigate('/cart', { state: { from: 'looksModal' } }), 150); }}
                   className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
                   <ShoppingBag size={22} />
                 </button>
