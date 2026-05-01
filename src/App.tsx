@@ -194,6 +194,7 @@ export function App() {
               path="/looks/:lookId"
               element={
                 <LooksDetailPage
+                  onAddToCart={handleAddToCart}
                   onOpenWishlist={() => setIsWishlistOpen(true)}
                   wishlist={wishlist}
                   onToggleWishlist={handleToggleWishlist}
