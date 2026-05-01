@@ -51,7 +51,7 @@ export function WishlistModal({
         transition={{
           duration: 0.3
         }}
-        className="fixed inset-0 z-[9999] bg-white overflow-y-auto">
+        className="fixed inset-0 z-[99999] bg-white overflow-y-auto">
         
           <header className="sticky top-0 bg-white/90 backdrop-blur-md z-10 border-b border-gray-100 px-4 md:px-12">
             <div className="max-w-[1440px] mx-auto flex items-center justify-between h-[72px]">

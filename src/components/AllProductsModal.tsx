@@ -97,7 +97,6 @@ export function AllProductsModal({
                     isWishlisted={wishlist.some((item) => item.id === product.id)}
                       onToggleWishlist={(p) => {
                       onToggleWishlist(p);
-                      onClose();
                       onOpenWishlist();
                     }}
                     onAddToCart={onAddToCart}
