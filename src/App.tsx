@@ -48,12 +48,16 @@ export function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (location.state?.openAllProducts) {
-      setIsAllProductsOpen(true);
-      window.history.replaceState({}, '');
-    }
-  }, [location.state]);
+useEffect(() => {
+  if (location.state?.openAllProducts) {
+    setIsAllProductsOpen(true);
+    window.history.replaceState({}, '');
+  }
+  if (location.state?.openLooks) {
+    setIsLooksOpen(true);
+    window.history.replaceState({}, '');
+  }
+}, [location.state]);
 
   const handleToggleWishlist = (product: Product) => {
     setWishlist((prev) => {
