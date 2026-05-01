@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-motion';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ShoppingBag, Minus, Plus, Heart } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { Footer } from '../components/Footer';
 import { allProducts, Product } from '../utils/data';
+import { useEscapeBack } from '../hooks/useEscapeBack';
 
 interface LooksDetailPageProps {
   onAddToCart: (
@@ -20,6 +21,7 @@ interface LooksDetailPageProps {
 }
 
 export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggleWishlist }: LooksDetailPageProps) {
+  useEscapeBack();
   const { lookId } = useParams<{ lookId: string }>();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
@@ -27,14 +29,6 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   const [selectedColor, setSelectedColor] = useState('Default');
   const [isAdding, setIsAdding] = useState(false);
   const [email, setEmail] = useState('');
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') navigate(-1);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [navigate]);
 
   const lookNumber = lookId ? parseInt(lookId.replace('look-', '')) : 1;
   const getById = (id: string) => allProducts.find(p => p.id === id)!;
@@ -74,7 +68,8 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   };
 
   const handleCartClick = () => {
-    navigate('/cart', { state: { from: 'looks', lookId: lookId } });
+    navigate(-1);
+    setTimeout(() => navigate('/cart', { state: { from: 'looks', lookId: lookId } }), 150);
   };
 
   const handleWishlist = () => {
