@@ -69,7 +69,7 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
 
   const handleCartClick = () => {
     navigate(-1);
-    setTimeout(() => navigate('/cart', { state: { from: 'looks', lookId: lookId } }), 150);
+    navigate('/cart', { state: { from: 'looks', lookId: lookId } });
   };
 
   const handleWishlist = () => {

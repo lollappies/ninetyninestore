@@ -85,7 +85,7 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
     if (state?.fromModal === 'allProducts') {
       navigate('/', { state: { openAllProducts: true } });
     } else if (state?.from === 'looks' && state?.lookId) {
-      navigate(`/looks/${state.lookId}`);
+      navigate(`/looks/${state.lookId}`, { replace: true });
     } else {
       navigate(-1);
     }
