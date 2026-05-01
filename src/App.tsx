@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CustomToastProvider } from './components/CustomToast';
 import { Navbar } from './components/Navbar';
@@ -47,6 +47,13 @@ export function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state?.openAllProducts) {
+      setIsAllProductsOpen(true);
+      window.history.replaceState({}, '');
+    }
+  }, [location.state]);
 
   const handleToggleWishlist = (product: Product) => {
     setWishlist((prev) => {
@@ -140,7 +147,6 @@ export function App() {
                 </>
               }
             />
-
             <Route
               path="/product/:id"
               element={
@@ -157,22 +163,10 @@ export function App() {
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/order-complete" element={<OrderCompletePage setCartItems={setCartItems} />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route
-              path="/profile"
-              element={<ProfilePage onOpenWishlist={() => setIsWishlistOpen(true)} />}
-            />
-            <Route
-              path="/address"
-              element={<AddressPage onOpenWishlist={() => setIsWishlistOpen(true)} />}
-            />
-            <Route
-              path="/orders"
-              element={<OrdersPage onOpenWishlist={() => setIsWishlistOpen(true)} />}
-            />
-            <Route
-              path="/purchase-history"
-              element={<PurchaseHistoryPage onOpenWishlist={() => setIsWishlistOpen(true)} />}
-            />
+            <Route path="/profile" element={<ProfilePage onOpenWishlist={() => setIsWishlistOpen(true)} />} />
+            <Route path="/address" element={<AddressPage onOpenWishlist={() => setIsWishlistOpen(true)} />} />
+            <Route path="/orders" element={<OrdersPage onOpenWishlist={() => setIsWishlistOpen(true)} />} />
+            <Route path="/purchase-history" element={<PurchaseHistoryPage onOpenWishlist={() => setIsWishlistOpen(true)} />} />
             <Route
               path="/category/:categoryName"
               element={
@@ -184,10 +178,7 @@ export function App() {
                 />
               }
             />
-            <Route
-              path="/sale"
-              element={<SalePage onOpenWishlist={() => setIsWishlistOpen(true)} />}
-            />
+            <Route path="/sale" element={<SalePage onOpenWishlist={() => setIsWishlistOpen(true)} />} />
             <Route
               path="/sale/:lookId"
               element={
@@ -201,11 +192,7 @@ export function App() {
             />
             <Route
               path="/looks/:lookId"
-              element={
-                <LooksDetailPage
-                  onOpenWishlist={() => setIsWishlistOpen(true)}
-                />
-              }
+              element={<LooksDetailPage onOpenWishlist={() => setIsWishlistOpen(true)} />}
             />
           </Routes>
         </main>
@@ -219,11 +206,11 @@ export function App() {
           onToggleWishlist={handleToggleWishlist}
           onAddToCart={(p) => handleAddToCart(p)}
         />
-        <LooksModal 
-          isOpen={isLooksOpen} 
-          onClose={() => setIsLooksOpen(false)} 
-          onOpenWishlist={() => setIsWishlistOpen(true)} 
-          />        
+        <LooksModal
+          isOpen={isLooksOpen}
+          onClose={() => setIsLooksOpen(false)}
+          onOpenWishlist={() => setIsWishlistOpen(true)}
+        />
         <AllProductsModal
           isOpen={isAllProductsOpen}
           onClose={() => setIsAllProductsOpen(false)}
@@ -231,7 +218,8 @@ export function App() {
           onToggleWishlist={handleToggleWishlist}
           onAddToCart={(p) => handleAddToCart(p)}
           onOpenWishlist={() => setIsWishlistOpen(true)}
-/>      </div>
+        />
+      </div>
     </CustomToastProvider>
   );
 }
