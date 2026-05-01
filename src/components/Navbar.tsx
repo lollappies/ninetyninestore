@@ -58,9 +58,9 @@ export function Navbar({
     const query = searchQuery.toLowerCase();
     const results = allProducts.filter(
       (product) =>
-        product.name.toLowerCase().includes(query) ||
-        product.series.toLowerCase().includes(query) ||
-        (product.price && product.price.toLowerCase().includes(query))
+        product.name?.toLowerCase().includes(query) ||
+        product.series?.toLowerCase().includes(query) ||
+        (product.price?.toLowerCase().includes(query))
     );
     setSearchResults(results);
   }, [searchQuery]);
