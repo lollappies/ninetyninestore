@@ -166,7 +166,7 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist }: LooksDetailPage
       transition={{ duration: 0.15 }}
       className="min-h-screen bg-white">
 
-      <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
+<header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-[1440px] mx-auto flex items-center justify-between">
           <div className="flex items-center">
             <button
@@ -189,9 +189,10 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist }: LooksDetailPage
               className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
               <ShoppingBag size={22} />
             </button>
-          </div>        
-        </header>
-
+          </div>
+        </div>
+      </header>
+      
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 py-8">
         <div className="flex flex-col md:flex-row gap-8 lg:gap-16">
 
