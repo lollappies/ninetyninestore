@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Package, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, Package, ShoppingBag, Heart } from 'lucide-react';
 import { getOrdersByStatus, SavedOrder } from '../utils/orderStorage';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 type TabType = 'selesai' | 'dikirim' | 'dibatalkan' | 'dikembalikan';
@@ -77,6 +77,11 @@ export function OrdersPage() {
             Pesanan Saya
           </span>
         </div>
+        <button
+          onClick={() => navigate('/')}
+          className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+          <Heart size={22} />
+        </button>
         <button
           onClick={() => navigate('/cart')}
           className="p-2 text-brand-dark hover:opacity-70 transition-opacity">

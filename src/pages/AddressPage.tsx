@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Plus, MapPin, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, Plus, MapPin, ShoppingBag, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useCustomToast } from '../components/CustomToast';
 import { useEscapeBack } from '../hooks/useEscapeBack';
@@ -87,13 +87,19 @@ export function AddressPage() {
              Alamat Saya
           </span>
         </div>
-        <button
-          onClick={() => navigate('/cart')}
-          className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
-          <ShoppingBag size={22} />
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => navigate('/')}
+            className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+            <Heart size={22} />
+          </button>
+          <button
+            onClick={() => navigate('/cart')}
+            className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+            <ShoppingBag size={22} />
+          </button>
+        </div>
       </div>
-
       <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col gap-6">
         {!isAdding ?
         <>

@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ShoppingBag, Info } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, Info, Heart 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { Footer } from '../components/Footer';
 import { allProducts, Product } from '../utils/data';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 
 interface SaleDetailPageProps {
-  onAddToCart: (
+  onAddToCart: () => void;
+    wishlist: Product[];
+    onToggleWishlist: (product: Product) => void;
     product: Product,
     quantity?: number,
     color?: string,
     size?: string,
     bundleName?: string
-  ) => void;
+  )
 }
 
 export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
   const { lookId } = useParams<{ lookId: string }>();
+  const isLookWishlisted = look.items.some(item => wishlist.some(w => w.id === item.id));
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
   const [isAdding, setIsAdding] = useState(false);
@@ -121,13 +124,24 @@ export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
             <span className="font-serif text-xl font-medium ml-2">
               Bundle Details
             </span>
-          </div>
+         <div className="flex items-center gap-3">
           <button
-            onClick={() => navigate('/cart')}
+            onClick={() => {
+            look.items.forEach(item => onToggleWishlist(item));
+            showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
+          }}
             className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
-            <ShoppingBag size={22} />
-          </button>
-        </div>
+              <Heart
+              size={22}
+            className={isLookWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''}
+          />
+        </button>
+        <button
+          onClick={() => navigate('/cart')}
+          className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+          <ShoppingBag size={22} />
+        </button>
+      </div>
       </header>
 
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 py-8 md:py-12">

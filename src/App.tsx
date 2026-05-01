@@ -141,16 +141,38 @@ export function App() {
               }
             />
 
-            <Route path="/product/:id" element={<ProductDetailPage onAddToCart={handleAddToCart} wishlist={wishlist}onToggleWishlist={handleToggleWishlist}/>} />
+            <Route
+              path="/product/:id"
+              element={
+                <ProductDetailPage
+                  onAddToCart={handleAddToCart}
+                  wishlist={wishlist}
+                  onToggleWishlist={handleToggleWishlist}
+                  onOpenWishlist={() => setIsWishlistOpen(true)}
+                />
+              }
+            />
             <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
             <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/order-complete" element={<OrderCompletePage setCartItems={setCartItems} />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/address" element={<AddressPage />} />
-            <Route path="/orders" element={<OrdersPage />} />
-            <Route path="/purchase-history" element={<PurchaseHistoryPage />} />
+            <Route
+              path="/profile"
+              element={<ProfilePage onOpenWishlist={() => setIsWishlistOpen(true)} />}
+            />
+            <Route
+              path="/address"
+              element={<AddressPage onOpenWishlist={() => setIsWishlistOpen(true)} />}
+            />
+            <Route
+              path="/orders"
+              element={<OrdersPage onOpenWishlist={() => setIsWishlistOpen(true)} />}
+            />
+            <Route
+              path="/purchase-history"
+              element={<PurchaseHistoryPage onOpenWishlist={() => setIsWishlistOpen(true)} />}
+            />
             <Route
               path="/category/:categoryName"
               element={
@@ -158,20 +180,30 @@ export function App() {
                   wishlist={wishlist}
                   onToggleWishlist={handleToggleWishlist}
                   onAddToCart={(p) => handleAddToCart(p)}
+                  onOpenWishlist={() => setIsWishlistOpen(true)}
                 />
               }
             />
-            <Route path="/sale" element={<SalePage />} />
-            <Route path="/sale/:lookId" element={<SaleDetailPage onAddToCart={handleAddToCart} />} />
+            <Route
+              path="/sale"
+              element={<SalePage onOpenWishlist={() => setIsWishlistOpen(true)} />}
+            />
+            <Route
+              path="/sale/:lookId"
+              element={
+                <SaleDetailPage
+                  onAddToCart={handleAddToCart}
+                  wishlist={wishlist}
+                  onToggleWishlist={handleToggleWishlist}
+                  onOpenWishlist={() => setIsWishlistOpen(true)}
+                />
+              }
+            />
             <Route
               path="/looks/:lookId"
               element={
-               <LooksDetailPage
-                  onAddToCart={handleAddToCart}
-                  onBack={() => {
-                    navigate('/');
-                    setTimeout(() => setIsLooksOpen(true), 100);
-                  }}
+                <LooksDetailPage
+                  onOpenWishlist={() => setIsWishlistOpen(true)}
                 />
               }
             />

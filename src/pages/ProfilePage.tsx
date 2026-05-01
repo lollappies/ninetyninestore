@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, MapPin, Package, Clock, LogIn, ShoppingBag } from 'lucide-react';
+import { X, MapPin, Package, Clock, LogIn, ShoppingBag, Heart } from 'lucide-react';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 export function ProfilePage() {
   const navigate = useNavigate();
@@ -14,6 +14,11 @@ export function ProfilePage() {
         </h1>
         <div className="flex items-center gap-2">
          <button
+            onClick={() => navigate('/')}
+            className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+            <Heart size={22} />
+        </button>
+        <button
             onClick={() => navigate('/cart')}
             className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
             <ShoppingBag size={22} />
