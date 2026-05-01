@@ -81,16 +81,14 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
   const formatCurrency = (val: number) => new Intl.NumberFormat('id-ID').format(val);
 
   const handleClose = () => {
-    alert(JSON.stringify(location.state));
-    const state = location.state as { from?: string; lookId?: string; fromModal?: string } | null;
-    if (state?.fromModal === 'allProducts') {
-      navigate('/', { state: { openAllProducts: true } });
-    } else if (state?.from === 'looks' && state?.lookId) {
-      navigate(`/looks/${state.lookId}`, { replace: true });
-    } else {
-      navigate(-1);
-    }
-  };
+  if (window.history.state?.usr?.from === 'looks') {
+    navigate(`/looks/${window.history.state.usr.lookId}`);
+  } else if (window.history.state?.usr?.fromModal === 'allProducts') {
+    navigate('/', { state: { openAllProducts: true } });
+  } else {
+    navigate(-1);
+  }
+};
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
