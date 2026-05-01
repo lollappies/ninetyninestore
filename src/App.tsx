@@ -219,15 +219,19 @@ export function App() {
           onToggleWishlist={handleToggleWishlist}
           onAddToCart={(p) => handleAddToCart(p)}
         />
-        <LooksModal isOpen={isLooksOpen} onClose={() => setIsLooksOpen(false)} />
+        <LooksModal 
+          isOpen={isLooksOpen} 
+          onClose={() => setIsLooksOpen(false)} 
+          onOpenWishlist={() => setIsWishlistOpen(true)} 
+          />        
         <AllProductsModal
           isOpen={isAllProductsOpen}
           onClose={() => setIsAllProductsOpen(false)}
           wishlist={wishlist}
           onToggleWishlist={handleToggleWishlist}
           onAddToCart={(p) => handleAddToCart(p)}
-        />
-      </div>
+          onOpenWishlist={() => setIsWishlistOpen(true)}
+/>      </div>
     </CustomToastProvider>
   );
 }

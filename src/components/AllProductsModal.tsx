@@ -1,23 +1,29 @@
-import React from 'react';
-import { X } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { X, Heart, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Product, allProducts } from '../utils/data';
-import { useEffect } from 'react';
 import { ProductCard } from './ProductCard';
+
 interface AllProductsModalProps {
   isOpen: boolean;
   onClose: () => void;
   wishlist: Product[];
   onToggleWishlist: (product: Product) => void;
   onAddToCart: (product: Product) => void;
+  onOpenWishlist: () => void;
 }
+
 export function AllProductsModal({
   isOpen,
   onClose,
   wishlist,
   onToggleWishlist,
-  onAddToCart
+  onAddToCart,
+  onOpenWishlist,
 }: AllProductsModalProps) {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -25,29 +31,41 @@ export function AllProductsModal({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
-  return <AnimatePresence>
-      {isOpen && <motion.div initial={{
-      opacity: 0,
-      y: 20
-    }} animate={{
-      opacity: 1,
-      y: 0
-    }} exit={{
-      opacity: 0,
-      y: 20
-    }} transition={{
-      duration: 0.3
-    }} className="fixed inset-0 z-[9999] bg-white overflow-y-auto">
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-[9999] bg-white overflow-y-auto">
+
           <header className="sticky top-0 bg-white/90 backdrop-blur-md z-10 border-b border-gray-100 px-4 md:px-12">
             <div className="max-w-[1440px] mx-auto flex items-center justify-between h-[72px]">
-              <span className="font-serif text-xl font-medium tracking-wide text-brand-dark">
-                Ninetynine
-              </span>
-              <div className="flex items-center gap-4">
-                <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400 hidden sm:block">
-                  All Products
+              <div className="flex items-center gap-3">
+                <span className="font-serif text-xl font-medium tracking-wide text-brand-dark">
+                  Ninetynine
                 </span>
-                <button onClick={onClose} className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-dark hover:bg-gray-50 transition-colors">
+                <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400 hidden sm:block">
+                  / All Products
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={onOpenWishlist}
+                  className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+                  <Heart size={22} />
+                </button>
+                <button
+                  onClick={() => { onClose(); navigate('/cart'); }}
+                  className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+                  <ShoppingBag size={22} />
+                </button>
+                <button
+                  onClick={onClose}
+                  className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-dark hover:bg-gray-50 transition-colors">
                   <X size={18} />
                 </button>
               </div>
@@ -65,19 +83,25 @@ export function AllProductsModal({
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-10">
-              {allProducts.map((product, idx) => <motion.div key={`all_${product.id}_${idx}`} initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            delay: idx % 10 * 0.05
-          }} onClick={onClose}>
-                  <ProductCard product={product} isWishlisted={wishlist.some((item) => item.id === product.id)} onToggleWishlist={onToggleWishlist} onAddToCart={onAddToCart} />
-                </motion.div>)}
+              {allProducts.map((product, idx) => (
+                <motion.div
+                  key={`all_${product.id}_${idx}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx % 10 * 0.05 }}
+                  onClick={onClose}>
+                  <ProductCard
+                    product={product}
+                    isWishlisted={wishlist.some((item) => item.id === product.id)}
+                    onToggleWishlist={onToggleWishlist}
+                    onAddToCart={onAddToCart}
+                  />
+                </motion.div>
+              ))}
             </div>
           </div>
-        </motion.div>}
-    </AnimatePresence>;
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 }
