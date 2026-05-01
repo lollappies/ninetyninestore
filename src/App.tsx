@@ -192,7 +192,13 @@ export function App() {
             />
             <Route
               path="/looks/:lookId"
-              element={<LooksDetailPage onOpenWishlist={() => setIsWishlistOpen(true)} />}
+              element={
+                <LooksDetailPage
+                  onOpenWishlist={() => setIsWishlistOpen(true)}
+                  wishlist={wishlist}
+                  onToggleWishlist={handleToggleWishlist}
+                />
+              }
             />
           </Routes>
         </main>

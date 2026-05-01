@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ShoppingBag, Minus, Plus, Heart } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { Footer } from '../components/Footer';
 import { allProducts, Product } from '../utils/data';
-import { useEscapeBack } from '../hooks/useEscapeBack';
+
 interface LooksDetailPageProps {
   onAddToCart: (
     product: Product,
@@ -15,9 +15,11 @@ interface LooksDetailPageProps {
     bundleName?: string
   ) => void;
   onOpenWishlist: () => void;
+  wishlist: Product[];
+  onToggleWishlist: (product: Product) => void;
 }
-export function LooksDetailPage({ onAddToCart, onOpenWishlist }: LooksDetailPageProps) {  
-  useEscapeBack();
+
+export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggleWishlist }: LooksDetailPageProps) {
   const { lookId } = useParams<{ lookId: string }>();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
@@ -26,121 +28,34 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist }: LooksDetailPage
   const [isAdding, setIsAdding] = useState(false);
   const [email, setEmail] = useState('');
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') navigate(-1);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [navigate]);
+
   const lookNumber = lookId ? parseInt(lookId.replace('look-', '')) : 1;
   const getById = (id: string) => allProducts.find(p => p.id === id)!;
 
   const looksData = [
-    { 
-      id: 1, 
-      image: '/images/looks/1.jpg', 
-      title: 'Retro Look Ideas', 
-      category: 'Look 1', 
-      description: 'Inspired by the timeless retro era. Bold, expressive, and full of personality.', 
-      price: 'IDR 268.000', 
-      items: [getById('outer_1'), getById('skirt_1')] 
-    },
-    { 
-      id: 2, 
-      image: '/images/looks/2.jpg', 
-      title: 'Casual Look Ideas', 
-      category: 'Look 2', 
-      description: 'Effortlessly cool and comfortable. Perfect for everyday adventures.', 
-      price: 'IDR 268.000', 
-      items: [getById('blouse_1'), getById('pants_1')] 
-    },
-    { 
-      id: 3, 
-      image: '/images/looks/3.jpg', 
-      title: 'Latest Look Ideas', 
-      category: 'Look 3', 
-      description: 'Stay ahead of the trends with our latest curated styles.', 
-      price: 'IDR 262.000', 
-      items: [getById('dress_1'), getById('outer_2')] 
-    },
-    { 
-      id: 4, 
-      image: '/images/looks/4.jpg', 
-      title: 'Feminine Look Ideas', 
-      category: 'Look 4', 
-      description: 'Soft, graceful, and utterly charming. Celebrate your femininity.', 
-      price: 'IDR 322.000', 
-      items: [getById('dress_2'), getById('skirt_2')] 
-    },
-    { 
-      id: 5, 
-      image: '/images/looks/5.jpg', 
-      title: 'Weekend Look Ideas', 
-      category: 'Look 5', 
-      description: 'Relaxed yet stylish looks for your days off.', 
-      price: 'IDR 305.000', 
-      items: [getById('tunic_1'), getById('pants_2')] 
-    },
-    { 
-      id: 6, 
-      image: '/images/looks/6.jpg', 
-      title: 'Daily Look Ideas', 
-      category: 'Look 6', 
-      description: 'Simple and chic outfits for your everyday routine.', 
-      price: 'IDR 288.000', 
-      items: [getById('blouse_3'), getById('skirt_3')] 
-    },
-    { 
-      id: 7, 
-      image: '/images/looks/7.jpg', 
-      title: 'Pinky Look Ideas', 
-      category: 'Look 7', 
-      description: 'Sweet and playful with a touch of pink energy.', 
-      price: 'IDR 278.000', 
-      items: [getById('sweater_1'), getById('skirt_4')] 
-    },
-    { 
-      id: 8, 
-      image: '/images/looks/8.jpg', 
-      title: 'Clean Look Ideas', 
-      category: 'Look 8', 
-      description: 'Minimalist and fresh. Less is more.', 
-      price: 'IDR 310.000', 
-      items: [getById('blouse_6'), getById('pants_3')] 
-    },
-    { 
-      id: 9, 
-      image: '/images/looks/9.jpg', 
-      title: 'Cute Look Ideas', 
-      category: 'Look 9', 
-      description: 'Adorable and fun outfits that bring joy to your wardrobe.', 
-      price: 'IDR 274.000', 
-      items: [getById('tunic_4'), getById('skirt_5')] 
-    },
-    { 
-      id: 10, 
-      image: '/images/looks/10.jpg', 
-      title: 'Earthy Look Ideas', 
-      category: 'Look 10', 
-      description: 'Warm tones and natural vibes for a grounded aesthetic.', 
-      price: 'IDR 227.000', 
-      items: [getById('outer_4'), getById('pants_6')] 
-    },
-    { 
-      id: 11, 
-      image: '/images/looks/11.jpg', 
-      title: 'Elegant Look Ideas', 
-      category: 'Look 11', 
-      description: 'Dark, mysterious, and undeniably chic for night occasions.', 
-      price: 'IDR 213.000', 
-      items: [getById('dress_7'), getById('outer_5')] 
-    },
-    { 
-      id: 12, 
-      image: '/images/looks/12.jpg', 
-      title: 'Midnight Look Ideas', 
-      category: 'Look 12', 
-      description: 'Refined and sophisticated. Dress to impress.', 
-      price: 'IDR 238.000', 
-      items: [getById('dress_9'), getById('skirt_6')] 
-    },
+    { id: 1, image: '/images/looks/1.jpg', title: 'Retro Look Ideas', category: 'Look 1', description: 'Inspired by the timeless retro era. Bold, expressive, and full of personality.', price: 'IDR 268.000', items: [getById('outer_1'), getById('skirt_1')] },
+    { id: 2, image: '/images/looks/2.jpg', title: 'Casual Look Ideas', category: 'Look 2', description: 'Effortlessly cool and comfortable. Perfect for everyday adventures.', price: 'IDR 268.000', items: [getById('blouse_1'), getById('pants_1')] },
+    { id: 3, image: '/images/looks/3.jpg', title: 'Latest Look Ideas', category: 'Look 3', description: 'Stay ahead of the trends with our latest curated styles.', price: 'IDR 262.000', items: [getById('dress_1'), getById('outer_2')] },
+    { id: 4, image: '/images/looks/4.jpg', title: 'Feminine Look Ideas', category: 'Look 4', description: 'Soft, graceful, and utterly charming. Celebrate your femininity.', price: 'IDR 322.000', items: [getById('dress_2'), getById('skirt_2')] },
+    { id: 5, image: '/images/looks/5.jpg', title: 'Weekend Look Ideas', category: 'Look 5', description: 'Relaxed yet stylish looks for your days off.', price: 'IDR 305.000', items: [getById('tunic_1'), getById('pants_2')] },
+    { id: 6, image: '/images/looks/6.jpg', title: 'Daily Look Ideas', category: 'Look 6', description: 'Simple and chic outfits for your everyday routine.', price: 'IDR 288.000', items: [getById('blouse_3'), getById('skirt_3')] },
+    { id: 7, image: '/images/looks/7.jpg', title: 'Pinky Look Ideas', category: 'Look 7', description: 'Sweet and playful with a touch of pink energy.', price: 'IDR 278.000', items: [getById('sweater_1'), getById('skirt_4')] },
+    { id: 8, image: '/images/looks/8.jpg', title: 'Clean Look Ideas', category: 'Look 8', description: 'Minimalist and fresh. Less is more.', price: 'IDR 310.000', items: [getById('blouse_6'), getById('pants_3')] },
+    { id: 9, image: '/images/looks/9.jpg', title: 'Cute Look Ideas', category: 'Look 9', description: 'Adorable and fun outfits that bring joy to your wardrobe.', price: 'IDR 274.000', items: [getById('tunic_4'), getById('skirt_5')] },
+    { id: 10, image: '/images/looks/10.jpg', title: 'Earthy Look Ideas', category: 'Look 10', description: 'Warm tones and natural vibes for a grounded aesthetic.', price: 'IDR 227.000', items: [getById('outer_4'), getById('pants_6')] },
+    { id: 11, image: '/images/looks/11.jpg', title: 'Elegant Look Ideas', category: 'Look 11', description: 'Dark, mysterious, and undeniably chic for night occasions.', price: 'IDR 213.000', items: [getById('dress_7'), getById('outer_5')] },
+    { id: 12, image: '/images/looks/12.jpg', title: 'Midnight Look Ideas', category: 'Look 12', description: 'Refined and sophisticated. Dress to impress.', price: 'IDR 238.000', items: [getById('dress_9'), getById('skirt_6')] },
   ];
 
   const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
+  const isLookWishlisted = look.items.some(item => item && wishlist.some(w => w.id === item.id));
 
   const handleAddToCart = () => {
     setIsAdding(true);
@@ -158,6 +73,16 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist }: LooksDetailPage
     navigate('/checkout');
   };
 
+  const handleCartClick = () => {
+    navigate('/cart', { state: { from: 'looks', lookId: lookId } });
+  };
+
+  const handleWishlist = () => {
+    look.items.forEach(item => { if (item) onToggleWishlist(item); });
+    showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
+    onOpenWishlist();
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -166,7 +91,7 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist }: LooksDetailPage
       transition={{ duration: 0.15 }}
       className="min-h-screen bg-white">
 
-<header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
+      <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-[1440px] mx-auto flex items-center justify-between">
           <div className="flex items-center">
             <button
@@ -180,22 +105,22 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist }: LooksDetailPage
           </div>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => {
-                look.items.forEach(item => onToggleWishlist(item));
-                showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
-              }}  
+              onClick={handleWishlist}
               className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
-              <Heart size={22} />
+              <Heart
+                size={22}
+                className={isLookWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''}
+              />
             </button>
             <button
-              onClick={() => navigate('/cart', { state: { from: 'looks', lookId } })}
+              onClick={handleCartClick}
               className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
               <ShoppingBag size={22} />
             </button>
           </div>
         </div>
       </header>
-      
+
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 py-8">
         <div className="flex flex-col md:flex-row gap-8 lg:gap-16">
 
