@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ShoppingBag, Info, Heart 'lucide-react';
+import { ArrowLeft, ShoppingBag, Info, Heart } 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { Footer } from '../components/Footer';
 import { allProducts, Product } from '../utils/data';
