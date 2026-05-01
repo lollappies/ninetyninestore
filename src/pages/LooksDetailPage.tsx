@@ -68,6 +68,7 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   };
 
   const handleCartClick = () => {
+    alert('lookId: ' + lookId);
     navigate('/cart', { state: { from: 'looks', lookId } });
   };
 
