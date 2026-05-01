@@ -81,6 +81,7 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
   const formatCurrency = (val: number) => new Intl.NumberFormat('id-ID').format(val);
 
   const handleClose = () => {
+    alert(JSON.stringify(location.state));
     const state = location.state as { from?: string; lookId?: string; fromModal?: string } | null;
     if (state?.fromModal === 'allProducts') {
       navigate('/', { state: { openAllProducts: true } });
