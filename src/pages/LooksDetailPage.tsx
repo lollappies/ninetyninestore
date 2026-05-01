@@ -188,7 +188,7 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist }: LooksDetailPage
               <Heart size={22} />
             </button>
             <button
-              onClick={() => navigate('/cart')}
+              onClick={() => navigate('/cart', { state: { from: 'looks', lookId } })}
               className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
               <ShoppingBag size={22} />
             </button>
