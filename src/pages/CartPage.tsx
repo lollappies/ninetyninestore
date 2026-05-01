@@ -76,7 +76,7 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
   const handleClose = () => {
     if (location.state?.fromModal === 'allProducts') {
       navigate('/', { state: { openAllProducts: true } });
-    } else (location.state?.from === 'looks') {
+    } else if (location.state?.from === 'looks') {
       navigate(`/looks/${location.state.lookId}`);
     } else {
       navigate(-1);
