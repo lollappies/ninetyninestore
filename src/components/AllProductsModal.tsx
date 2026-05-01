@@ -13,15 +13,14 @@ interface AllProductsModalProps {
   onAddToCart: (product: Product) => void;
   onOpenWishlist: () => void;
 }
-
 export function AllProductsModal({
   isOpen,
   onClose,
   wishlist,
   onToggleWishlist,
   onAddToCart,
-  onOpenWishlist,
-}: AllProductsModalProps) {
+  onOpenWishlist
+}: AllProductsModalProps) {  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -96,7 +95,11 @@ export function AllProductsModal({
                   <ProductCard
                     product={product}
                     isWishlisted={wishlist.some((item) => item.id === product.id)}
-                    onToggleWishlist={onToggleWishlist}
+                      onToggleWishlist={(p) => {
+                      onToggleWishlist(p);
+                      onClose();
+                      onOpenWishlist();
+                    }}
                     onAddToCart={onAddToCart}
                   />
                 </motion.div>
