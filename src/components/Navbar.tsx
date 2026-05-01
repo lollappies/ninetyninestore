@@ -170,6 +170,7 @@ export function Navbar({
                             onClick={() => {
                               setIsSearchOpen(false);
                               setSearchQuery('');
+                              navigate(`/product/${product.id}`);
                             }}
                             className="flex items-center gap-4 p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200 text-left w-full">
                             <img
