@@ -8,23 +8,24 @@ import { allProducts, Product } from '../utils/data';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 
 interface SaleDetailPageProps {
-  onAddToCart: () => void;
-    wishlist: Product[];
-    onToggleWishlist: (product: Product) => void;
+  onAddToCart: (
     product: Product,
     quantity?: number,
     color?: string,
     size?: string,
     bundleName?: string
-  )
+  ) => void;
+  wishlist: Product[];
+  onToggleWishlist: (product: Product) => void;
+  onOpenWishlist: () => void;
 }
 
-export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
+export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpenWishlist }: SaleDetailPageProps) {
   const { lookId } = useParams<{ lookId: string }>();
-  const isLookWishlisted = look.items.some(item => wishlist.some(w => w.id === item.id));
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
   const [isAdding, setIsAdding] = useState(false);
+  useEscapeBack();
 
   const lookNumber = lookId ? parseInt(lookId.replace('look-', '')) : 1;
   const getById = (id: string) => allProducts.find(p => p.id === id)!;
@@ -73,6 +74,7 @@ export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
   ];
 
   const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
+  const isLookWishlisted = look.items.some(item => wishlist.some(w => w.id === item.id));
 
   const calculateTotal = () => {
     return look.items.reduce((total, item) => {
@@ -124,24 +126,23 @@ export function SaleDetailPage({ onAddToCart }: SaleDetailPageProps) {
             <span className="font-serif text-xl font-medium ml-2">
               Bundle Details
             </span>
-         <div className="flex items-center gap-3">
-          <button
-            onClick={() => {
-            look.items.forEach(item => onToggleWishlist(item));
-            showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
-          }}
-            className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onOpenWishlist}
+              className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
               <Heart
-              size={22}
-            className={isLookWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''}
-          />
-        </button>
-        <button
-          onClick={() => navigate('/cart')}
-          className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
-          <ShoppingBag size={22} />
-        </button>
-      </div>
+                size={22}
+                className={isLookWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''}
+              />
+            </button>
+            <button
+              onClick={() => navigate('/cart')}
+              className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <ShoppingBag size={22} />
+            </button>
+          </div>
+        </div>
       </header>
 
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 py-8 md:py-12">
