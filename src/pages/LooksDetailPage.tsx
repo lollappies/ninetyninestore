@@ -180,7 +180,10 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist }: LooksDetailPage
           </div>
           <div className="flex items-center gap-2">
             <button
-              onClick={onOpenWishlist}
+              onClick={() => {
+                look.items.forEach(item => onToggleWishlist(item));
+                showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
+              }}  
               className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
               <Heart size={22} />
             </button>
