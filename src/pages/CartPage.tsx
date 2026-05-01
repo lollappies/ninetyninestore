@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { X, ShoppingBag, Trash2, ArrowRight, Package } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { CartItem } from '../App';
-import { useEscapeBack } from '../hooks/useEscapeBack';
 
 interface CartPageProps {
   cartItems: CartItem[];
@@ -11,7 +10,6 @@ interface CartPageProps {
 }
 
 export function CartPage({ cartItems, setCartItems }: CartPageProps) {
-  useEscapeBack();
   const navigate = useNavigate();
   const location = useLocation();
   const { showToast } = useCustomToast();
@@ -20,6 +18,15 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
   useEffect(() => {
     setSelectedItems(cartItems.map((_, index) => index));
   }, [cartItems.length]);
+
+  // Handle escape key — balik ke looks kalau dari looks, selainnya navigate(-1)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [location.state]);
 
   const toggleSelectAll = () => {
     if (selectedItems.length === cartItems.length) {
@@ -51,7 +58,7 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
     setSelectedItems(
       selectedItems
         .filter((i) => i !== index)
-        .map((i) => i > index ? i - 1 : i)
+        .map((i) => (i > index ? i - 1 : i))
     );
     showToast('Produk dihapus dari keranjang');
   };
@@ -74,10 +81,11 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
   const formatCurrency = (val: number) => new Intl.NumberFormat('id-ID').format(val);
 
   const handleClose = () => {
-    if (location.state?.fromModal === 'allProducts') {
+    const state = location.state as { from?: string; lookId?: string; fromModal?: string } | null;
+    if (state?.fromModal === 'allProducts') {
       navigate('/', { state: { openAllProducts: true } });
-    } else if (location.state?.from === 'looks') {
-      navigate(`/looks/${location.state.lookId}`);
+    } else if (state?.from === 'looks' && state?.lookId) {
+      navigate(`/looks/${state.lookId}`);
     } else {
       navigate(-1);
     }
@@ -260,7 +268,9 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
               <button
                 onClick={() => navigate('/checkout', { state: { checkoutItems: selectedCartItems } })}
                 disabled={selectedItems.length === 0}
-                className={`w-full py-4 rounded-lg text-sm font-bold text-white flex items-center justify-center gap-2 transition-colors ${selectedItems.length > 0 ? 'bg-[#D32F2F] hover:bg-red-700' : 'bg-gray-300 cursor-not-allowed'}`}>
+                className={`w-full py-4 rounded-lg text-sm font-bold text-white flex items-center justify-center gap-2 transition-colors ${
+                  selectedItems.length > 0 ? 'bg-[#D32F2F] hover:bg-red-700' : 'bg-gray-300 cursor-not-allowed'
+                }`}>
                 <ArrowRight size={18} />
                 Checkout Sekarang
               </button>
