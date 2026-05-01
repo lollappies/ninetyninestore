@@ -5,9 +5,12 @@ import { ArrowLeft, Package, ShoppingBag, Heart } from 'lucide-react';
 import { getOrdersByStatus, SavedOrder } from '../utils/orderStorage';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 type TabType = 'selesai' | 'dikirim' | 'dibatalkan' | 'dikembalikan';
-export function OrdersPage() {
+interface OrdersPageProps {
+  onOpenWishlist: () => void;
+}
+export function OrdersPage({ onOpenWishlist }: OrdersPageProps) {
   useEscapeBack();
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
   const location = useLocation();
   // Parse query params for initial tab
   const searchParams = new URLSearchParams(location.search);
@@ -78,7 +81,7 @@ export function OrdersPage() {
           </span>
         </div>
         <button
-          onClick={() => navigate('/')}
+          onClick={() => onOpenWishlist('/')}
           className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
           <Heart size={22} />
         </button>

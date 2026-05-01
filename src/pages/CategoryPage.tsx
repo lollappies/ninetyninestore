@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, Heart } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { Footer } from '../components/Footer';
 import { category as categoryProducts, Product } from '../utils/data';
@@ -10,12 +10,14 @@ interface CategoryPageProps {
   wishlist: Product[];
   onToggleWishlist: (product: Product) => void;
   onAddToCart: (product: Product) => void;
+  onOpenWishlist: () => void;
 }
 export function CategoryPage({
   wishlist,
   onToggleWishlist,
-  onAddToCart
-}: CategoryPageProps) {
+  onAddToCart,
+  onOpenWishlist
+}: CategoryPageProps) {  
   useEscapeBack();
   const {
     categoryName
@@ -70,6 +72,11 @@ export function CategoryPage({
             </span>
           </div>
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => onOpenWishlist('/')}
+              className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <Heart size={22} />
+            </button>
             <button
               onClick={() => navigate('/cart')}
               className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">

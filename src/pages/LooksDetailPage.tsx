@@ -14,10 +14,9 @@ interface LooksDetailPageProps {
     size?: string,
     bundleName?: string
   ) => void;
-  onBack: () => void;
+  onOpenWishlist: () => void;
 }
-
-export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
+export function LooksDetailPage({ onAddToCart, onOpenWishlist }: LooksDetailPageProps) {  
   useEscapeBack();
   const { lookId } = useParams<{ lookId: string }>();
   const navigate = useNavigate();
@@ -179,12 +178,18 @@ export function LooksDetailPage({ onAddToCart, onBack }: LooksDetailPageProps) {
               Look Details
             </span>
           </div>
-          <button
-            onClick={() => navigate('/cart')}
-            className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
-            <ShoppingBag size={22} />
-          </button>
-        </div>      
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onOpenWishlist}
+              className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <Heart size={22} />
+            </button>
+            <button
+              onClick={() => navigate('/cart')}
+              className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <ShoppingBag size={22} />
+            </button>
+          </div>        
         </header>
 
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 py-8">

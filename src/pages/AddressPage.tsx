@@ -15,9 +15,12 @@ interface Address {
   fullAddress: string;
   details: string;
 }
-export function AddressPage() {
+interface AddressPageProps {
+  onOpenWishlist: () => void;
+}
+export function AddressPage({ onOpenWishlist }: AddressPageProps) {
   useEscapeBack();
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
   const { showToast } = useCustomToast();
   const [addresses, setAddresses] = useState<Address[]>([]);
   const [isAdding, setIsAdding] = useState(false);
@@ -89,7 +92,7 @@ export function AddressPage() {
         </div>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => navigate('/')}
+            onClick={() => onOpenWishlist('/')}
             className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
             <Heart size={22} />
           </button>

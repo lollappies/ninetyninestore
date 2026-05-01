@@ -2,9 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, MapPin, Package, Clock, LogIn, ShoppingBag, Heart } from 'lucide-react';
 import { useEscapeBack } from '../hooks/useEscapeBack';
-export function ProfilePage() {
+interface ProfilePageProps {
+  onOpenWishlist: () => void;
+}
+export function ProfilePage({ onOpenWishlist }: ProfilePageProps) {
   const navigate = useNavigate();
-  useEscapeBack();
+  useEscapeBack();  
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
@@ -14,7 +17,7 @@ export function ProfilePage() {
         </h1>
         <div className="flex items-center gap-2">
          <button
-            onClick={() => navigate('/')}
+            onClick={() => onOpenWishlist('/')}
             className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
             <Heart size={22} />
         </button>
@@ -22,11 +25,6 @@ export function ProfilePage() {
             onClick={() => navigate('/cart')}
             className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
             <ShoppingBag size={22} />
-        </button>
-        <button
-          onClick={() => navigate('/')}
-          className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors">
-          <X size={16} />
         </button>
        </div>
      </header>

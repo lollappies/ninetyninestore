@@ -15,9 +15,9 @@ interface ProductDetailPageProps {
   ) => void;
   wishlist: Product[];
   onToggleWishlist: (product: Product) => void;
+  onOpenWishlist: () => void;
 }
-
-export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist }: ProductDetailPageProps) {
+export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpenWishlist }: ProductDetailPageProps) {  
   useEscapeBack();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();

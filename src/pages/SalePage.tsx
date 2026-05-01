@@ -1,10 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, Heart } from 'lucide-react';
 import { Footer } from '../components/Footer';
 import { useEscapeBack } from '../hooks/useEscapeBack';
-export function SalePage() {
+interface SalePageProps {
+  onOpenWishlist: () => void;
+}
+export function SalePage({ onOpenWishlist }: SalePageProps) {
   const navigate = useNavigate();
   useEscapeBack();
 
@@ -52,11 +55,16 @@ export function SalePage() {
           </div>
           <div className="flex items-center gap-3">
             <button
+              onClick={onOpenWishlist}
+              className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <Heart size={22} />
+            </button>
+            <button
               onClick={() => navigate('/cart')}
               className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
               <ShoppingBag size={22} />
             </button>
-          </div>
+          </div>        
         </div>
       </header>
 

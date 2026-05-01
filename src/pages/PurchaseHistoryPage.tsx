@@ -4,9 +4,12 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Package, ShoppingBag, Heart } from 'lucide-react';
 import { CartItem } from '../App';
 import { useEscapeBack } from '../hooks/useEscapeBack';
-export function PurchaseHistoryPage() {
+interface PurchaseHistoryPageProps {
+  onOpenWishlist: () => void;
+}
+export function PurchaseHistoryPage({ onOpenWishlist }: PurchaseHistoryPageProps) {
   useEscapeBack();
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
   const location = useLocation();
   const { orderData } = location.state || {};
   const orders = orderData ? [orderData] : [];
@@ -31,7 +34,7 @@ export function PurchaseHistoryPage() {
           </div>
           <div className="flex items-center gap-2"></div>
           <button
-            onClick={() => navigate('/')}
+            onClick={() => onOpenWishlist('/')}
             className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
             <Heart size={22} />
           </button>
