@@ -42,7 +42,6 @@ export function CategoryPage({
     while (displayProducts.length < 10) {
       displayProducts.push({
         ...baseProducts[i % baseProducts.length],
-        id: `cat_${categoryName}_${i}`
       });
       i++;
     }
