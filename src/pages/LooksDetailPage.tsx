@@ -161,8 +161,9 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   };
 
   const handleWishlist = () => {
-    onOpenWishlist();
-  };
+  look.items.forEach(item => { if (item) onToggleWishlist(item); });
+  showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
+};
 
   const handleBack = () => {
     if (location.state?.fromModal === 'looks') {
@@ -187,7 +188,9 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
             <button
               onClick={handleWishlist}
               className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
-              <Heart size={22} />
+              <Heart
+                size={22}
+                className={isLookWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''} />
             </button>
           </div>
         </div>
