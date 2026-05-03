@@ -64,7 +64,10 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, cartCount = 0 }: L
                   <Heart size={22} />
                 </button>
                 <button
-                  onClick={() => { onClose(); setTimeout(() => navigate('/cart', { state: { fromLooks: true } }), 150); }}
+                  onClick={() => {
+                    onClose();
+                    setTimeout(() => navigate('/cart', { state: { fromModal: 'looks' } }), 150);
+                  }}
                   className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
                   <ShoppingBag size={22} />
                 </button>
@@ -95,9 +98,15 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, cartCount = 0 }: L
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.1 }}
                   className="cursor-pointer group"
-                  onClick={() => { navigate(`/looks/look-${look.id}`); onClose(); }}>
+                  onClick={() => {
+                    onClose();
+                    setTimeout(() => navigate(`/looks/look-${look.id}`, { state: { fromModal: 'looks' } }), 150);
+                  }}>
                   <div className={`${look.bg} rounded-2xl aspect-[3/4] flex items-center justify-center relative overflow-hidden`}>
-                    <img src={look.image} alt={look.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <img
+                      src={look.image}
+                      alt={look.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
                     <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-xl p-4 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                       <p className="text-[9px] tracking-[0.2em] uppercase text-gray-500 mb-1">{look.category}</p>

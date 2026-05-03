@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ShoppingBag, Minus, Plus, Heart } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
@@ -24,6 +24,7 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   useEscapeBack();
   const { lookId } = useParams<{ lookId: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const { showToast } = useCustomToast();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState('Default');
@@ -67,14 +68,18 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
     navigate('/checkout');
   };
 
-  const handleCartClick = () => {
-    navigate('/cart');
-  };
-
   const handleWishlist = () => {
     look.items.forEach(item => { if (item) onToggleWishlist(item); });
     showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
     onOpenWishlist();
+  };
+
+  const handleBack = () => {
+    if (location.state?.fromModal === 'looks') {
+      navigate('/', { state: { openLooks: true } });
+    } else {
+      navigate(-1);
+    }
   };
 
   return (
@@ -89,7 +94,7 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
         <div className="max-w-[1440px] mx-auto flex items-center justify-between">
           <div className="flex items-center">
             <button
-              onClick={() => navigate(-1)}
+              onClick={handleBack}
               className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
               <ArrowLeft size={24} />
             </button>

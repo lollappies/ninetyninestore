@@ -80,12 +80,11 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
 
   const formatCurrency = (val: number) => new Intl.NumberFormat('id-ID').format(val);
 
-const handleClose = () => {
-  const state = location.state as { fromLooks?: boolean; fromModal?: string } | null;
-  if (state?.fromLooks) {
-    navigate('/', { state: { openLooks: true } });
-  } else if (state?.fromModal === 'allProducts') {
+  const handleClose = () => {
+  if (location.state?.fromModal === 'allProducts') {
     navigate('/', { state: { openAllProducts: true } });
+  } else if (location.state?.fromModal === 'looks') {
+    navigate('/', { state: { openLooks: true } });
   } else {
     navigate(-1);
   }
