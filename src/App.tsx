@@ -38,6 +38,11 @@ export interface CartItem {
   bundleName?: string;
 }
 
+// ✅ TAMBAHAN: helper cek produk sama berdasarkan nama + series
+const isSameProduct = (a: Product, b: Product) =>
+  a.name.trim().toLowerCase() === b.name.trim().toLowerCase() &&
+  a.series.trim().toLowerCase() === b.series.trim().toLowerCase();
+
 export function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
@@ -48,24 +53,25 @@ export function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-useEffect(() => {
-  if (location.state?.openAllProducts) {
-    setIsAllProductsOpen(true);
-    window.history.replaceState({}, '');
-  }
-  if (location.state?.openLooks) {
-    setIsLooksOpen(true);
-    window.history.replaceState({}, '');
-  }
-}, [location.state]);
+  useEffect(() => {
+    if (location.state?.openAllProducts) {
+      setIsAllProductsOpen(true);
+      window.history.replaceState({}, '');
+    }
+    if (location.state?.openLooks) {
+      setIsLooksOpen(true);
+      window.history.replaceState({}, '');
+    }
+  }, [location.state]);
 
   const handleToggleWishlist = (product: Product) => {
     setWishlist((prev) => {
-      const exists = prev.find((item) => item.id === product.id);
-      if (exists) return prev.filter((item) => item.id !== product.id);
+      const exists = prev.find((item) => isSameProduct(item, product));
+      if (exists) return prev.filter((item) => !isSameProduct(item, product));
       return [...prev, product];
     });
   };
+
 
   const handleAddToCart = (
     product: Product,
@@ -77,7 +83,7 @@ useEffect(() => {
     setCartItems((prev) => {
       const existingItemIndex = prev.findIndex(
         (item) =>
-          item.product.id === product.id &&
+          isSameProduct(item.product, product) &&
           item.color === color &&
           item.size === size &&
           item.bundleName === bundleName
