@@ -84,8 +84,6 @@ export function App() {
       const existingItemIndex = prev.findIndex(
         (item) =>
           isSameProduct(item.product, product) &&
-          item.color === color &&
-          item.size === size &&
           item.bundleName === bundleName
       );
       if (existingItemIndex > -1) {
