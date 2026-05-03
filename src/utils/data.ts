@@ -8,7 +8,7 @@ export type Category =
   | 'pants'
   | 'skirt';
 
-  // ===== PRODUCT TYPE =====
+// ===== PRODUCT TYPE =====
 export interface Product {
   id: string;
   name: string;
@@ -24,7 +24,7 @@ export interface Product {
 export const bestsellers: Product[] = [
 {
   id: 'prod_0',
-  name: 'Siderope Flowbordir',
+  name: 'Ribbonbt Vest Outer',
   series: 'Code SESTRA 5050 Oneseat',
   price: 'IDR 110.000',
   imageMain: "/images/landing-page/best1.jpeg",
@@ -51,7 +51,7 @@ export const bestsellers: Product[] = [
 },
 {
   id: 'prod_3',
-  name: '3 Pocky Top',
+  name: 'Pearlbt Korean Outer',
   series: 'Code TNVX 8307',
   price: 'IDR 124.000',
   imageMain: "/images/landing-page/best7.jpeg",
@@ -109,7 +109,7 @@ export const ourPicks: Product[] = [
 },
 {
   id: 'prod_9',
-  name: 'Flowlace Shirt',
+  name: 'Flowlace Blouse',
   series: 'Code TPMGR 00020',
   price: 'IDR 149.000',
   imageMain: "/images/landing-page/pick11.jpeg",
@@ -239,7 +239,7 @@ import blouse18 from "../assets/images/blouse/blouse18.jpg";
 import blouse19 from "../assets/images/blouse/blouse19.jpg";
 import blouse20 from "../assets/images/blouse/blouse20.jpg";
 
-// Tunic
+// TUNIC
 import tunic1 from "../assets/images/tunic/tunic1.jpg";
 import tunic2 from "../assets/images/tunic/tunic2.jpg";
 import tunic3 from "../assets/images/tunic/tunic3.jpg";
@@ -261,7 +261,7 @@ import tunic18 from "../assets/images/tunic/tunic18.jpg";
 import tunic19 from "../assets/images/tunic/tunic19.jpg";
 import tunic20 from "../assets/images/tunic/tunic20.jpg";
 
-// Outer
+// OUTER
 import outer1 from "../assets/images/outer/outer1.jpg";
 import outer2 from "../assets/images/outer/outer2.jpg";
 import outer3 from "../assets/images/outer/outer3.jpg";
@@ -283,7 +283,7 @@ import outer18 from "../assets/images/outer/outer18.jpg";
 import outer19 from "../assets/images/outer/outer19.jpg";
 import outer20 from "../assets/images/outer/outer20.jpg";
 
-// Sweater
+// SWEATER
 import sweater1 from "../assets/images/sweater/sweater1.jpg";
 import sweater2 from "../assets/images/sweater/sweater2.jpg";
 import sweater3 from "../assets/images/sweater/sweater3.jpg";
@@ -305,7 +305,7 @@ import sweater18 from "../assets/images/sweater/sweater18.jpg";
 import sweater19 from "../assets/images/sweater/sweater19.jpg";
 import sweater20 from "../assets/images/sweater/sweater20.jpg";
 
-// Pants
+// PANTS
 import pants1 from "../assets/images/pants/pants1.jpg";
 import pants2 from "../assets/images/pants/pants2.jpg";
 import pants3 from "../assets/images/pants/pants3.jpg";
@@ -327,7 +327,7 @@ import pants18 from "../assets/images/pants/pants18.jpg";
 import pants19 from "../assets/images/pants/pants19.jpg";
 import pants20 from "../assets/images/pants/pants20.jpg";
 
-// Skirt
+// SKIRT
 import skirt1 from "../assets/images/skirt/skirt1.jpg";
 import skirt2 from "../assets/images/skirt/skirt2.jpg";
 import skirt3 from "../assets/images/skirt/skirt3.jpg";
@@ -352,802 +352,715 @@ import skirt20 from "../assets/images/skirt/skirt20.jpg";
 // ===== ALL PRODUCTS =====
 export const category: Product[] = [
   // ===== DRESS =====
-  {
-    id: 'dress_1',
-    name: 'Semivest Brukat Dress',
-    series: 'Code DRYN 9213',
-    price: 'IDR 225.000',
-    imageMain: dress1,
-    imageHover: dress2,
-    category: 'dress'
+  { 
+    id: 'dress_1', 
+    name: 'Semivest Brukat Dress', 
+    series: 'Code DRYN 9213', 
+    price: 'IDR 225.000', 
+    imageMain: dress1, 
+    imageHover: dress2, 
+    category: 'dress' 
   },
-  {
-    id: 'dress_2',
-    name: 'Flowbrukat Raya Dress',
+  { 
+    id: 'dress_2', 
+    name: 'Flowbrukat Raya Dress', 
     series: 'Code DRIWK 00047',
-    price: 'IDR 189.000',
-    imageMain: dress3,
-    imageHover: dress4,
-    category: 'dress'
+    price: 'IDR 189.000', 
+    imageMain: dress3, 
+    imageHover: dress4, 
+    category: 'dress' 
   },
-  {
-    id: 'dress_3',
-    name: 'Semivest Rope Dress',
-    series: 'Code DRARK 00231',
-    price: 'IDR 169.000',
-    imageMain: dress5,
-    imageHover: dress6,
-    category: 'dress'
+  { 
+    id: 'dress_3', 
+    name: 'Semivest Rope Dress', 
+    series: 'Code DRARK 00231', 
+    price: 'IDR 169.000', 
+    imageMain: dress5, 
+    imageHover: dress6, 
+    category: 'dress' 
   },
-  {
-    id: 'dress_4',
-    name: 'Flowbrukat Outer Dress',
-    series: 'Code DRSBI 00040',
-    price: 'IDR 325.000',
-    imageMain: dress7,
-    imageHover: dress8,
-    category: 'dress'
+  { 
+    id: 'dress_4', 
+    name: 'Flowbrukat Outer Dress', 
+    series: 'Code DRSBI 00040', 
+    price: 'IDR 325.000', 
+    imageMain: dress7, 
+    imageHover: dress8, 
+    category: 'dress' 
   },
-    {
-    id: 'dress_5',
-    name: 'Wrinkle Rope Dress',
-    series: 'Code DRKMC 00142',
-    price: 'IDR 119.000',
-    imageMain: dress9,
-    imageHover: dress10,
-    category: 'dress'
+  { 
+    id: 'dress_5', 
+    name: 'Wrinkle Rope Dress', 
+    series: 'Code DRKMC 00142', 
+    price: 'IDR 119.000', 
+    imageMain: dress9, 
+    imageHover: dress10, 
+    category: 'dress' 
   },
-  {
-    id: 'dress_6',
-    name: 'White Bordir Brukat Dress',
-    series: 'Code DRKNZF 00111',
-    price: 'IDR 250.000',
-    imageMain: dress11,
-    imageHover: dress12,
-    category: 'dress'
+  { 
+    id: 'dress_6', 
+    name: 'White Bordir Brukat Dress', 
+    series: 'Code DRKNZF 00111', 
+    price: 'IDR 250.000', 
+    imageMain: dress11, 
+    imageHover: dress12, 
+    category: 'dress' 
   },
-  {
-    id: 'dress_7',
-    name: 'Pearlbelt Dress',
-    series: 'Code DRMSTL 6436',
-    price: 'IDR 215.000',
-    imageMain: dress13,
-    imageHover: dress14,
-    category: 'dress'
+  { 
+    id: 'dress_7', 
+    name: 'Pearlbelt Dress', 
+    series: 'Code DRMSTL 6436', 
+    price: 'IDR 215.000', 
+    imageMain: dress13, 
+    imageHover: dress14, 
+    category: 'dress' 
   },
-  {
-    id: 'dress_8',
-    name: 'Flowbordir Dress',
-    series: 'Code DRCRSD 00015',
-    price: 'IDR 215.000',
-    imageMain: dress15,
-    imageHover: dress16,
-    category: 'dress'
- },
-  {
-    id: 'dress_9',
-    name: 'Brukat Outer Plain Dress',
-    series: 'Code DRNDN 00045',
-    price: 'IDR 220.000',
-    imageMain: dress17,
-    imageHover: dress18,
-    category: 'dress'
+  { 
+    id: 'dress_8', 
+    name: 'Flowbordir Dress', 
+    series: 'Code DRCRSD 00015', 
+    price: 'IDR 215.000', 
+    imageMain: dress15, 
+    imageHover: dress16, 
+    category: 'dress' 
   },
-  {
-    id: 'dress_10',
-    name: 'Blastvest Dress',
-    series: 'Code DRMKU 1603',
-    price: 'IDR 178.000',
-    imageMain: dress19,
-    imageHover: dress20,
-    category: 'dress'
+  { 
+    id: 'dress_9', 
+    name: 'Brukat Outer Plain Dress', 
+    series: 'Code DRNDN 00045', 
+    price: 'IDR 220.000', 
+    imageMain: dress17, 
+    imageHover: dress18, 
+    category: 'dress' 
+  },
+  { 
+    id: 'dress_10', 
+    name: 'Blastvest Dress', 
+    series: 'Code DRMKU 1603', 
+    price: 'IDR 178.000', 
+    imageMain: dress19, 
+    imageHover: dress20, 
+    category: 'dress' 
   },
 
   // ===== BLOUSE =====
-  {
-    id: 'blouse_1',
-    name: 'Whitelace Collar Embos Blouse',
-    series: 'Code TPFVR 00839',
-    price: 'IDR 136.000',
-    imageMain: blouse1,
-    imageHover: blouse2,
-    category: 'blouse'
+  { 
+    id: 'blouse_1', 
+    name: 'Whitelace Collar Embos Blouse', 
+    series: 'Code TPFVR 00839', 
+    price: 'IDR 136.000', 
+    imageMain: blouse1, 
+    imageHover: blouse2, 
+    category: 'blouse' 
   },
-  {
-    id: 'blouse_2',
-    name: 'Twocolour Katbol Blouse',
-    series: 'Code DRJSMR 3959',
-    price: 'IDR 156.000',
-    imageMain: blouse3,
-    imageHover: blouse4,
-    category: 'blouse'
+  { 
+    id: 'blouse_2', 
+    name: 'Twocolour Katbol Blouse', 
+    series: 'Code DRJSMR 3959', 
+    price: 'IDR 156.000', 
+    imageMain: blouse3, 
+    imageHover: blouse4, 
+    category: 'blouse' 
   },
-  {
-    id: 'blouse_3',
-    name: 'Sidepleated Blouse',
-    series: 'Code TPSVN 00803',
-    price: 'IDR 146.000',
-    imageMain: blouse5,
-    imageHover: blouse6,
-    category: 'blouse'
+  { 
+    id: 'blouse_3', 
+    name: 'Sidepleated Blouse', 
+    series: 'Code TPSVN 00803', 
+    price: 'IDR 146.000', 
+    imageMain: blouse5, 
+    imageHover: blouse6, 
+    category: 'blouse' 
   },
-  {
-    id: 'blouse_4',
-    name: 'Flow Motive Blouse',
-    series: 'Code TPLYY 00778',
-    price: 'IDR 156.000',
-    imageMain: blouse7,
-    imageHover: blouse8,
-    category: 'blouse'
+  { 
+    id: 'blouse_4', 
+    name: 'Flow Motive Blouse', 
+    series: 'Code TPLYY 00778', 
+    price: 'IDR 156.000', 
+    imageMain: blouse7, 
+    imageHover: blouse8, 
+    category: 'blouse' 
   },
-   {
-    id: 'blouse_5',
-    name: 'Colourvest 2in1 Blouse',
-    series: 'Code TPDVA 00615',
-    price: 'IDR 129.000',
-    imageMain: blouse9,
-    imageHover: blouse10,
-    category: 'blouse'
+  { 
+    id: 'blouse_5', 
+    name: 'Colourvest 2in1 Blouse', 
+    series: 'Code TPDVA 00615', 
+    price: 'IDR 129.000', 
+    imageMain: blouse9, 
+    imageHover: blouse10, 
+    category: 'blouse' 
   },
-  {
-    id: 'blouse_6',
-    name: 'Sideramp Plain Blouse',
-    series: 'Code PTMNT 00509',
-    price: 'IDR 115.000',
-    imageMain: blouse11,
-    imageHover: blouse12,
-    category: 'blouse'
+  { 
+    id: 'blouse_6', 
+    name: 'Sideramp Plain Blouse', 
+    series: 'Code PTMNT 00509', 
+    price: 'IDR 115.000', 
+    imageMain: blouse11, 
+    imageHover: blouse12, 
+    category: 'blouse' 
   },
-  {
-    id: 'blouse_7',
-    name: 'Flowbordir Lace Blouse',
-    series: 'Code TPMGR 00020',
-    price: 'IDR 149.000',
-    imageMain: blouse13,
-    imageHover: blouse14,
-    category: 'blouse'
+  { 
+    id: 'blouse_7', 
+    name: 'Flowbordir Lace Blouse', 
+    series: 'Code TPMGR 00020', 
+    price: 'IDR 149.000', 
+    imageMain: blouse13, 
+    imageHover: blouse14, 
+    category: 'blouse' 
   },
-  {
-    id: 'blouse_8',
-    name: 'Siderope Bordir Blouse',
-    series: 'Code TMLVM 5505',
-    price: 'IDR 106.000',
-    imageMain: blouse15,
-    imageHover: blouse16,
-    category: 'blouse'
+  { 
+    id: 'blouse_8', 
+    name: 'Siderope Bordir Blouse', 
+    series: 'Code TMLVM 5505', 
+    price: 'IDR 106.000', 
+    imageMain: blouse15, 
+    imageHover: blouse16, 
+    category: 'blouse' 
   },
-  {
-    id: 'blouse_9',
-    name: 'Threebt White Blouse',
-    series: 'Code TNCD 9241',
-    price: 'IDR 139.000',
-    imageMain: blouse17,
-    imageHover: blouse18,
-    category: 'blouse'
+  { 
+    id: 'blouse_9', 
+    name: 'Threebt White Blouse', 
+    series: 'Code TNCD 9241', 
+    price: 'IDR 139.000', 
+    imageMain: blouse17, 
+    imageHover: blouse18, 
+    category: 'blouse' 
   },
-  {
-    id: 'blouse_10',
-    name: 'Lovepattern Sleeve Blouse',
-    series: 'Code TPMKA 1912',
-    price: 'IDR 111.000',
-    imageMain: blouse19,
-    imageHover: blouse20,
-    category: 'blouse'
+  { 
+    id: 'blouse_10', 
+    name: 'Lovepattern Sleeve Blouse', 
+    series: 'Code TPMKA 1912', 
+    price: 'IDR 111.000', 
+    imageMain: blouse19, 
+    imageHover: blouse20, 
+    category: 'blouse' 
   },
 
   // ===== TUNIC =====
-  {
-    id: 'tunic_1',
+  { 
+    id: 'tunic_1', 
     name: 'Leafbordir Tunic',
-    series: 'Code TPINS 0070',
-    price: 'IDR 139.000',
-    imageMain: tunic1,
-    imageHover: tunic2,
+    series: 'Code TPINS 0070', 
+    price: 'IDR 139.000', 
+    imageMain: tunic1, 
+    imageHover: tunic2, 
+    category: 'tunic' 
+  },
+  { 
+    id: 'tunic_2', 
+    name: 'Embroydery Tunic', 
+    series: 'Code DRGJY 00771', 
+    price: 'IDR 198.000', 
+    imageMain: tunic3, 
+    imageHover: tunic4, 
+    category: 'tunic' 
+  },
+  { 
+    id: 'tunic_3', 
+    name: 'Flowbordir Crepe Bordir Tunic', 
+    series: 'Code DRFVR 00477', 
+    price: 'IDR 186.000', 
+    imageMain: tunic5, 
+    imageHover: tunic6, 
+    category: 'tunic' 
+  },
+  { 
+    id: 'tunic_4', 
+    name: 'Bordir Colour Tunic', 
+    series: 'Code TPSCL 00117', 
+    price: 'IDR 159.000', 
+    imageMain: tunic7, 
+    imageHover: tunic8, 
+    category: 'tunic' 
+  },
+  { 
+    id: 'tunic_5', 
+    name: 'Cream Flow Tunic', 
+    series: 'Code TPINS 00702', 
+    price: 'IDR 159.000', 
+    imageMain: tunic9, 
+    imageHover: tunic10, 
+    category: 'tunic' 
+  },
+  { 
+    id: 'tunic_6', 
+    name: 'Whiteflow Bordir Tunic', 
+    series: 'Code TPALN 3650', 
+    price: 'IDR 165.000', 
+    imageMain: tunic11, 
+    imageHover: tunic12, 
     category: 'tunic'
   },
-  {
-    id: 'tunic_2',
-    name: 'Embroydery Tunic',
-    series: 'Code DRGJY 00771',
-    price: 'IDR 198.000',
-    imageMain: tunic3,
-    imageHover: tunic4,
-    category: 'tunic'
+  { 
+    id: 'tunic_7', 
+    name: 'Pleatedkrah Tunic', 
+    series: 'Code TNJMCL 00244', 
+    price: 'IDR 169.000', 
+    imageMain: tunic13, 
+    imageHover: tunic14, 
+    category: 'tunic' 
   },
-   {
-    id: 'tunic_3',
-    name: 'Flowbordir Crepe Bordir Tunic',
-    series: 'Code DRFVR 00477',
-    price: 'IDR 186.000',
-    imageMain: tunic5,
-    imageHover: tunic6,
-    category: 'tunic'
+  { 
+    id: 'tunic_8', 
+    name: 'Creamflower Bordir Tunic', 
+    series: 'Code DRYRI 00256', 
+    price: 'IDR 205.000', 
+    imageMain: tunic15, 
+    imageHover: tunic16, 
+    category: 'tunic' 
   },
-  {
-    id: 'tunic_4',
-    name: 'Bordir Colour Tunic',
-    series: 'Code TPSCL 00117',
-    price: 'IDR 159.000',
-    imageMain: tunic7,
-    imageHover: tunic8,
-    category: 'tunic'
+  { 
+    id: 'tunic_9', 
+    name: 'Siderampflow Bordir Tunic', 
+    series: 'Code TNSHRL 4766', 
+    price: 'IDR 149.000', 
+    imageMain: tunic17, 
+    imageHover: tunic18, 
+    category: 'tunic' 
   },
-   {
-    id: 'tunic_5',
-    name: 'Cream Flow Tunic',
-    series: 'Code TPINS 00702',
-    price: 'IDR 159.000',
-    imageMain: tunic9,
-    imageHover: tunic10,
-    category: 'tunic'
-  },
-  {
-    id: 'tunic_6',
-    name: 'Whiteflow Bordir Tunic',
-    series: 'Code TPALN 3650',
-    price: 'IDR 165.000',
-    imageMain: tunic11,
-    imageHover: tunic12,
-    category: 'tunic'
-  },
-   {
-    id: 'tunic_7',
-    name: 'Pleatedkrah Tunic',
-    series: 'Code TNJMCL 00244',
-    price: 'IDR 169.000',
-    imageMain: tunic13,
-    imageHover: tunic14,
-    category: 'tunic'
-  },
-  {
-    id: 'tunic_8',
-    name: 'Creamflower Bordir Tunic',
-    series: 'Code DRYRI 00256',
-    price: 'IDR 205.000',
-    imageMain: tunic15,
-    imageHover: tunic16,
-    category: 'tunic'
-  },
-   {
-    id: 'tunic_9',
-    name: 'Siderampflow Bordir Tunic',
-    series: 'Code TNSHRL 4766',
-    price: 'IDR 149.000',
-    imageMain: tunic17,
-    imageHover: tunic18,
-    category: 'tunic'
-  },
-  {
-    id: 'tunic_10',
-    name: 'Nudes Vi Nesbordir Tunic',
-    series: 'Code TPBAP 3178',
-    price: 'IDR 146.000',
-    imageMain: tunic19,
-    imageHover: tunic20,
-    category: 'tunic',
-    isSoldOut: true
+  { 
+    id: 'tunic_10', 
+    name: 'Nudes Vi Nesbordir Tunic', 
+    series: 'Code TPBAP 3178', 
+    price: 'IDR 146.000', 
+    imageMain: tunic19, 
+    imageHover: tunic20, 
+    category: 'tunic', 
+    isSoldOut: true 
   },
 
-    // ===== OUTER =====
-  {
-    id: 'outer_1',
-    name: 'Ribbonbt Vest Outer',
-    series: 'Code TPCLS 9494',
-    price: 'IDR 110.000',
-    imageMain: outer1,
-    imageHover: outer2,
+  // ===== OUTER =====
+  { 
+    id: 'outer_1', 
+    name: 'Ribbonbt Vest Outer', 
+    series: 'Code TPCLS 9494', 
+    price: 'IDR 110.000', 
+    imageMain: outer1, 
+    imageHover: outer2, 
+    category: 'outer' 
+  },
+  { 
+    id: 'outer_2', 
+    name: 'Plaincolour Outer', 
+    series: 'TPCNDS 00762', 
+    price: 'IDR 139.000', 
+    imageMain: outer3, 
+    imageHover: outer4, 
+    category: 'outer' 
+  },
+  { 
+    id: 'outer_3', 
+    name: 'Sidebt Vest Outer', 
+    series: 'Code TPLCL 00683', 
+    price: 'IDR 69.000', 
+    imageMain: outer5, 
+    imageHover: outer6, 
+    category: 'outer' 
+  },
+  { 
+    id: 'outer_4', 
+    name: '2in1 Plain Shirt & Outer', 
+    series: 'Code TPCNG 6695', 
+    price: 'IDR 146.000', 
+    imageMain: outer7, 
+    imageHover: outer8, 
+    category: 'outer' 
+  },
+  { 
+    id: 'outer_5', 
+    name: 'Pearlbt Korean Outer', 
+    series: 'Code DRMRF 12', 
+    price: 'IDR 136.000', 
+    imageMain: outer9, 
+    imageHover: outer10, 
+    category: 'outer' 
+  },
+  { 
+    id: 'outer_6', 
+    name: 'Sleeveless Stripe Outer', 
+    series: 'Code TPCLS 4819', 
+    price: 'IDR 95.000', 
+    imageMain: outer11, 
+    imageHover: outer12, 
+    category: 'outer' 
+  },
+  { 
+    id: 'outer_7', 
+    name: 'Bluestripe Outer', 
+    series: 'Code TNJSMR 7453', 
+    price: 'IDR 136.000', 
+    imageMain: outer13, 
+    imageHover: outer14, 
     category: 'outer'
   },
-    {
-    id: 'outer_2',
-    name: 'Plaincolour Outer',
-    series: 'TPCNDS 00762',
-    price: 'IDR 139.000',
-    imageMain: outer3,
-    imageHover: outer4,
-    category: 'outer'
+  { 
+    id: 'outer_8', 
+    name: 'Stripe Sleeve Outer', 
+    series: 'Code TPJML 9191', 
+    price: 'IDR 133.000', 
+    imageMain: outer15, 
+    imageHover: outer16, 
+    category: 'outer' 
   },
-    {
-    id: 'outer_3',
-    name: 'Sidebt Vest Outer',
-    series: 'Code TPLCL 00683',
-    price: 'IDR 69.000',
-    imageMain: outer5,
-    imageHover: outer6,
-    category: 'outer'
+  { 
+    id: 'outer_9', 
+    name: 'Ruffle Sleeveless Tunic', 
+    series: 'DRNTN 6045', 
+    price: 'IDR 175.000', 
+    imageMain: outer17, 
+    imageHover: outer18, 
+    category: 'outer' 
   },
-    {
-    id: 'outer_4',
-    name: '2in1 Plain Shirt & Outer',
-    series: 'Code TPCNG 6695',
-    price: 'IDR 146.000',
-    imageMain: outer7,
-    imageHover: outer8,
-    category: 'outer'
-  },
-    {
-    id: 'outer_5',
-    name: 'Pearlbt Korean Outer',
-    series: 'Code DRMRF 12',
-    price: 'IDR 136.000',
-    imageMain: outer9,
-    imageHover: outer10,
-    category: 'outer'
-  },
-    {
-    id: 'outer_6',
-    name: 'Sleeveless Stripe Outer',
-    series: 'Code TPCLS 4819',
-    price: 'IDR 95.000',
-    imageMain: outer11,
-    imageHover: outer12,
-    category: 'outer'
-  },
-    {
-    id: 'outer_7',
-    name: 'Bluestripe Outer',
-    series: 'Code TNJSMR 7453',
-    price: 'IDR 136.000',
-    imageMain: outer13,
-    imageHover: outer14,
-    category: 'outer'
-  },
-    {
-    id: 'outer_8',
-    name: 'Stripe Sleeve Outer',
-    series: 'Code TPJML 9191',
-    price: 'IDR 133.000',
-    imageMain: outer15,
-    imageHover: outer16,
-    category: 'outer'
-  },
-    {
-    id: 'outer_9',
-    name: 'Ruffle Sleeveless Tunic',
-    series: 'DRNTN 6045',
-    price: 'IDR 175.000',
-    imageMain: outer17,
-    imageHover: outer18,
-    category: 'outer'
-  },
-    {
-    id: 'outer_10',
-    name: 'Katbol Semivest Outer',
-    series: 'TPLA 4089',
-    price: 'IDR 118.000',
-    imageMain: outer19,
-    imageHover: outer20,
-    category: 'outer'
+  { 
+    id: 'outer_10', 
+    name: 'Katbol Semivest Outer', 
+    series: 'TPLA 4089', 
+    price: 'IDR 118.000', 
+    imageMain: outer19, 
+    imageHover: outer20, 
+    category: 'outer' 
   },
 
   // ===== SWEATER =====
- {
-    id: 'sweater_1',
-    name: 'Stripe Zipper Sweater',
-    series: 'Code TPMISC 7601',
-    price: 'IDR 139.000',
-    imageMain: sweater1,
-    imageHover: sweater2,
+  { 
+    id: 'sweater_1', 
+    name: 'Stripe Zipper Sweater', 
+    series: 'Code TPMISC 7601', 
+    price: 'IDR 139.000', 
+    imageMain: sweater1, 
+    imageHover: sweater2, 
+    category: 'sweater' 
+  },
+  { 
+    id: 'sweater_2', 
+    name: 'Braidpattern Cardi Sweater', 
+    series: 'Code TNFLML 4205', 
+    price: 'IDR 139.000', 
+    imageMain: sweater3, 
+    imageHover: sweater4, 
+    category: 'sweater' 
+  },
+  { 
+    id: 'sweater_3', 
+    name: 'Printmotif Sweater', 
+    series: 'Code TPKNB 00442', 
+    price: 'IDR 136.000', 
+    imageMain: sweater5, 
+    imageHover: sweater6, 
+    category: 'sweater' 
+  },
+  { 
+    id: 'sweater_4', 
+    name: 'Shouldbutton Knit Sweater', 
+    series: 'Code TPHBE 00793', 
+    price: 'IDR 136.000', 
+    imageMain: sweater7, 
+    imageHover: sweater8, 
+    category: 'sweater' 
+  },
+  { 
+    id: 'sweater_5', 
+    name: 'Sideribbon Cardi Sweater', 
+    series: 'Code TPLYN 00826', 
+    price: 'IDR 128.000', 
+    imageMain: sweater9, 
+    imageHover: sweater10, 
+    category: 'sweater' 
+  },
+  { 
+    id: 'sweater_6', 
+    name: 'Stripe Motif Knit Sweater', 
+    series: 'Code TPMCHL 00692', 
+    price: 'IDR 144.000', 
+    imageMain: sweater11, 
+    imageHover: sweater12, 
+    category: 'sweater' 
+  },
+  { 
+    id: 'sweater_7', 
+    name: 'Stripe Motive Knit Sweater', 
+    series: 'Code TPKM 8217', 
+    price: 'IDR 136.000', 
+    imageMain: sweater13, 
+    imageHover: sweater14, 
     category: 'sweater'
   },
-   {
-    id: 'sweater_2',
-    name: 'Braidpattern Cardi Sweater',
-    series: 'Code TNFLML 4205',
-    price: 'IDR 139.000',
-    imageMain: sweater3,
-    imageHover: sweater4,
-    category: 'sweater'
+  { 
+    id: 'sweater_8', 
+    name: 'Silverlove BT Sweater', 
+    series: 'Code TPKM 6020', 
+    price: 'IDR 139.000', 
+    imageMain: sweater15, 
+    imageHover: sweater16, 
+    category: 'sweater' 
   },
-   {
-    id: 'sweater_3',
-    name: 'Printmotif Sweater',
-    series: 'Code TPKNB 00442',
-    price: 'IDR 136.000',
-    imageMain: sweater5,
-    imageHover: sweater6,
-    category: 'sweater'
+  { 
+    id: 'sweater_9', 
+    name: 'Stripe Krah Sweater', 
+    series: 'Code TPKM 7394', 
+    price: 'IDR 156.000', 
+    imageMain: sweater17, 
+    imageHover: sweater18, 
+    category: 'sweater' 
   },
-   {
-    id: 'sweater_4',
-    name: 'Shouldbutton Knit Sweater',
-    series: 'Code TPHBE 00793',
-    price: 'IDR 136.000',
-    imageMain: sweater7,
-    imageHover: sweater8,
-    category: 'sweater'
-  },
-   {
-    id: 'sweater_5',
-    name: 'Sideribbon Cardi Sweater',
-    series: 'Code TPLYN 00826',
-    price: 'IDR 128.000',
-    imageMain: sweater9,
-    imageHover: sweater10,
-    category: 'sweater'
-  },
-   {
-    id: 'sweater_6',
-    name: 'Stripe Motif Knit Sweater',
-    series: 'Code TPMCHL 00692',
-    price: 'IDR 144.000',
-    imageMain: sweater11,
-    imageHover: sweater12,
-    category: 'sweater'
-  },
-   {
-    id: 'sweater_7',
-    name: 'Stripe Motive Knit Sweater',
-    series: 'Code TPKM 8217',
-    price: 'IDR 136.000',
-    imageMain: sweater13,
-    imageHover: sweater14,
-    category: 'sweater'
-  },
-   {
-    id: 'sweater_8',
-    name: 'Silverlove BT Sweater',
-    series: 'Code TPKM 6020',
-    price: 'IDR 139.000',
-    imageMain: sweater15,
-    imageHover: sweater16,
-    category: 'sweater'
-  },
-   {
-    id: 'sweater_9',
-    name: 'Stripe Krah Sweater',
-    series: 'Code TPKM 7394',
-    price: 'IDR 156.000',
-    imageMain: sweater17,
-    imageHover: sweater18,
-    category: 'sweater'
-  },
-   {
-    id: 'sweater_10',
-    name: 'Goldbt Batwing Sweater',
-    series: 'Code SKSHR 3076',
-    price: 'IDR 149.000',
-    imageMain: sweater19,
-    imageHover: sweater20,
-    category: 'sweater'
+  { 
+    id: 'sweater_10', 
+    name: 'Goldbt Batwing Sweater', 
+    series: 'Code SKSHR 3076', 
+    price: 'IDR 149.000', 
+    imageMain: sweater19, 
+    imageHover: sweater20, 
+    category: 'sweater' 
   },
 
   // ===== PANTS =====
- {
-    id: 'pants_1',
-    name: 'Plaincolour Cargo Pants',
-    series: 'Code SKJML 8620',
-    price: 'IDR 129.000',
-    imageMain: pants1,
-    imageHover: pants2,
-    category: 'pants'
+  { 
+    id: 'pants_1', 
+    name: 'Plaincolour Cargo Pants', 
+    series: 'Code SKJML 8620', 
+    price: 'IDR 129.000', 
+    imageMain: pants1, 
+    imageHover: pants2, 
+    category: 'pants' 
   },
-   {
-    id: 'pants_2',
-    name: '3BT Scuba Pants',
-    series: 'Code PTMSTL 7445',
-    price: 'IDR 99.000',
-    imageMain: pants3,
-    imageHover: pants4,
-    category: 'pants'
+  { 
+    id: 'pants_2', 
+    name: '3BT Scuba Pants', 
+    series: 'Code PTMSTL 7445', 
+    price: 'IDR 99.000', 
+    imageMain: pants3, 
+    imageHover: pants4, 
+    category: 'pants' 
   },
-   {
-    id: 'pants_3',
-    name: 'PLaincolour Scuba Cutbray Pants',
-    series: 'Code PTMSTL 7445',
-    price: 'IDR 99.000',
-    imageMain: pants5,
-    imageHover: pants6,
-    category: 'pants'
+  { 
+    id: 'pants_3', 
+    name: 'Plaincolour Scuba Cutbray Pants', 
+    series: 'Code PTMSTL 7445', 
+    price: 'IDR 99.000', 
+    imageMain: pants5, 
+    imageHover: pants6, 
+    category: 'pants' 
   },
-   {
-    id: 'pants_4',
-    name: '3Plain Scuba Pants',
-    series: 'Code TPMCFN 00788',
-    price: 'IDR 99.000',
-    imageMain: pants7,
-    imageHover: pants8,
-    category: 'pants'
+  { 
+    id: 'pants_4', 
+    name: '3Plain Scuba Pants', 
+    series: 'Code TPMCFN 00788', 
+    price: 'IDR 99.000', 
+    imageMain: pants7, 
+    imageHover: pants8, 
+    category: 'pants' 
   },
-   {
-    id: 'pants_5',
-    name: 'Scuba Cutbray Pants',
-    series: 'Code PTMSTL 7445',
-    price: 'IDR 99.000',
-    imageMain: pants9,
-    imageHover: pants10,
-    category: 'pants'
+  { 
+    id: 'pants_5', 
+    name: 'Scuba Cutbray Pants', 
+    series: 'Code PTMSTL 7445', 
+    price: 'IDR 99.000', 
+    imageMain: pants9, 
+    imageHover: pants10, 
+    category: 'pants' 
   },
-   {
-    id: 'pants_6',
-    name: 'Plain Jeans Pants',
-    series: 'Code PTNWJ 00073',
-    price: 'IDR 186.000',
-    imageMain: pants11,
-    imageHover: pants12,
-    category: 'pants'
+  { 
+    id: 'pants_6', 
+    name: 'Plain Jeans Pants', 
+    series: 'Code PTNWJ 00073', 
+    price: 'IDR 186.000', 
+    imageMain: pants11, 
+    imageHover: pants12, 
+    category: 'pants' 
   },
-   {
-    id: 'pants_7',
-    name: 'Plaincolour Pants',
-    series: 'Code TPSDP 2463',
-    price: 'IDR 108.000',
+  { 
+    id: 'pants_7', 
+    name: 'Plaincolour Pants', 
+    series: 'Code TPSDP 2463', 
+    price: 'IDR 108.000', 
     imageMain: pants13,
-    imageHover: pants14,
-    category: 'pants'
+    imageHover: pants14, 
+    category: 'pants' 
   },
-   {
-    id: 'pants_8',
-    name: 'Rubberwaist SoftJeans Pants',
-    series: 'Code TPJML 1671',
-    price: 'IDR 113.000',
-    imageMain: pants15,
-    imageHover: pants16,
-    category: 'pants'
+  { 
+    id: 'pants_8', 
+    name: 'Rubberwaist SoftJeans Pants', 
+    series: 'Code TPJML 1671', 
+    price: 'IDR 113.000', 
+    imageMain: pants15, 
+    imageHover: pants16, 
+    category: 'pants' 
   },
-   {
-    id: 'pants_9',
-    name: 'Twopocket Cullote Pants',
-    series: 'Code TPJOI 00720',
-    price: 'IDR 156.000',
-    imageMain: pants17,
-    imageHover: pants18,
-    category: 'pants'
+  { 
+    id: 'pants_9', 
+    name: 'Twopocket Cullote Pants', 
+    series: 'Code TPJOI 00720', 
+    price: 'IDR 156.000', 
+    imageMain: pants17, 
+    imageHover: pants18, 
+    category: 'pants' 
   },
-   {
-    id: 'pants_10',
-    name: 'Blackbelt Scuba Pants',
-    series: 'Code PT010',
-    price: 'IDR 146.000',
-    imageMain: pants19,
-    imageHover: pants20,
-    category: 'pants'
+  { 
+    id: 'pants_10', 
+    name: 'Blackbelt Scuba Pants', 
+    series: 'Code PT010', 
+    price: 'IDR 146.000', 
+    imageMain: pants19, 
+    imageHover: pants20, 
+    category: 'pants' 
   },
 
   // ===== SKIRT =====
-  {
-    id: 'skirt_1',
-    name: 'Brukat Skirt',
-    series: 'Code TNAVM 5069',
-    price: 'IDR 139.000',
-    imageMain: skirt1,
-    imageHover: skirt2,
+  { 
+    id: 'skirt_1', 
+    name: 'Brukat Skirt', 
+    series: 'Code TNAVM 5069', 
+    price: 'IDR 139.000', 
+    imageMain: skirt1, 
+    imageHover: skirt2, 
+    category: 'skirt' 
+  },
+  { 
+    id: 'skirt_2', 
+    name: 'Colourflow Bordir Skirt', 
+    series: 'Code TPASG 00536', 
+    price: 'IDR 139.000', 
+    imageMain: skirt3, 
+    imageHover: skirt4, 
+    category: 'skirt' 
+  },
+  { 
+    id: 'skirt_3', 
+    name: 'Rubber Waist Tutu Skirt', 
+    series: 'Code TPCC 5545', 
+    price: 'IDR 99.000', 
+    imageMain: skirt5, 
+    imageHover: skirt6, 
+    category: 'skirt' 
+  },
+  { 
+    id: 'skirt_4', 
+    name: 'Flow Bordir Skirt', 
+    series: 'Code TPMXG 0079', 
+    price: 'IDR 166.000', 
+    imageMain: skirt7, 
+    imageHover: skirt8, 
+    category: 'skirt' 
+  },
+  { 
+    id: 'skirt_5', 
+    name: 'Tinnyflow Bordir Skirt', 
+    series: 'Code TPPMGR 00020', 
+    price: 'IDR 149.000', 
+    imageMain: skirt9, 
+    imageHover: skirt10, 
+    category: 'skirt' 
+  },
+  { 
+    id: 'skirt_6', 
+    name: 'Ribbon Accent Skirt', 
+    series: 'Code PTHBE 7145', 
+    price: 'IDR 139.000', 
+    imageMain: skirt11, 
+    imageHover: skirt12, 
+    category: 'skirt' 
+  },
+  { 
+    id: 'skirt_7', 
+    name: 'Brukat Skirt', 
+    series: 'Code TNAVM 5069', 
+    price: 'IDR 139.000', 
+    imageMain: skirt13, 
+    imageHover: skirt14, 
     category: 'skirt'
   },
-   {
-    id: 'skirt_2',
-    name: 'Colourflow Bordir Skirt',
-    series: 'Code TPASG 00536',
-    price: 'IDR 139.000',
-    imageMain: skirt3,
-    imageHover: skirt4,
-    category: 'skirt'
+  { 
+    id: 'skirt_8', 
+    name: 'Korean Bordir Skirt', 
+    series: 'Code TNASG 00032', 
+    price: 'IDR 166.000', 
+    imageMain: skirt15, 
+    imageHover: skirt16, 
+    category: 'skirt' 
   },
-   {
-    id: 'skirt_3',
-    name: 'Rubber Waist Tutu Skirt',
-    series: 'Code TPCC 5545',
-    price: 'IDR 99.000',
-    imageMain: skirt5,
-    imageHover: skirt6,
-    category: 'skirt'
+  { 
+    id: 'skirt_9', 
+    name: 'Flow Bordir Skirt', 
+    series: 'Code DRAVM 3526', 
+    price: 'IDR 156.000', 
+    imageMain: skirt17, 
+    imageHover: skirt18, 
+    category: 'skirt' 
   },
-   {
-    id: 'skirt_4',
-    name: 'Flow Bordir Skirt',
-    series: 'Code TPMXG 0079',
-    price: 'IDR 166.000',
-    imageMain: skirt7,
-    imageHover: skirt8,
-    category: 'skirt'
-  },
-   {
-    id: 'skirt_5',
-    name: 'Tinnyflow Bordir Skirt',
-    series: 'Code TPPMGR 00020',
-    price: 'IDR 149.000',
-    imageMain: skirt9,
-    imageHover: skirt10,
-    category: 'skirt'
-  },
-   {
-    id: 'skirt_6',
-    name: 'Ribbon Accent Skirt',
-    series: 'Code PTHBE 7145',
-    price: 'IDR 139.000',
-    imageMain: skirt11,
-    imageHover: skirt12,
-    category: 'skirt'
-  },
-   {
-    id: 'skirt_7',
-    name: 'Brukat Skirt',
-    series: 'Code TNAVM 5069',
-    price: 'IDR 139.000',
-    imageMain: skirt13,
-    imageHover: skirt14,
-    category: 'skirt'
-  },
-   {
-    id: 'skirt_8',
-    name: 'Korean Bordir Skirt',
-    series: 'Code TNASG 00032',
-    price: 'IDR 166.000',
-    imageMain: skirt15,
-    imageHover: skirt16,
-    category: 'skirt'
-  },
-   {
-    id: 'skirt_9',
-    name: 'Flow Bordir Skirt',
-    series: 'Code DRAVM 3526 ',
-    price: 'IDR 156.000',
-    imageMain: skirt17,
-    imageHover: skirt18,
-    category: 'skirt'
-  },
-   {
-    id: 'skirt_10',
-    name: 'Flow Bordir Skirt',
-    series: 'Code TNGLR 1773',
-    price: 'IDR 178.000',
-    imageMain: skirt19,
-    imageHover: skirt20,
-    category: 'skirt'
+  { 
+    id: 'skirt_10', 
+    name: 'Flow Bordir Skirt', 
+    series: 'Code TNGLR 1773', 
+    price: 'IDR 178.000', 
+    imageMain: skirt19, 
+    imageHover: skirt20, 
+    category: 'skirt' 
   },
 ];
 
 export const saleProducts: Product[] = [
-  {
-    id: 'sale2',
-    name: 'Shouldbutton Knittop',
-    series: 'Code TPHBE 00793',
-    imageMain: '/images/sale/sale2.jpg',
-    imageHover: '/images/sale/sale2.jpg',
-    category: 'sweater'
+  { 
+    id: 'sale2', 
+    name: 'Shouldbutton Knittop', 
+    series: 'Code TPHBE 00793', 
+    imageMain: '/images/sale/sale2.jpg', 
+    imageHover: '/images/sale/sale2.jpg', category: 'sweater' 
   },
-  {
-    id: 'sale3',
-    name: 'Twopocket Cullote',
-    series: 'Code TPJOI 00720',
-    imageMain: '/images/sale/sale3.jpg',
-    imageHover: '/images/sale/sale3.jpg',
-    category: 'pants'
+  { 
+    id: 'sale3', 
+    name: 'Twopocket Cullote', 
+    series: 'Code TPJOI 00720', 
+    imageMain: '/images/sale/sale3.jpg', 
+    imageHover: '/images/sale/sale3.jpg', 
+    category: 'pants' 
   },
-  {
-    id: 'sale5',
-    name: 'Twocolors Bordir',
-    series: 'Code SETGJY 00772',
-    imageMain: '/images/sale/sale5.jpg',
-    imageHover: '/images/sale/sale5.jpg',
-    category: 'tunic'
+  { 
+    id: 'sale5', 
+    name: 'Twocolors Bordir', 
+    series: 'Code SETGJY 00772', 
+    imageMain: '/images/sale/sale5.jpg', 
+    imageHover: '/images/sale/sale5.jpg', 
+    category: 'tunic' 
   },
-  {
-    id: 'sale6',
-    name: 'Twocolors Bordir Skirt',
-    series: 'Code SETGJY 00775',
-    imageMain: '/images/sale/sale6.jpg',
-    imageHover: '/images/sale/sale6.jpg',
-    category: 'skirt'
+  { 
+    id: 'sale6', 
+    name: 'Twocolors Bordir Skirt', 
+    series: 'Code SETGJY 00775', 
+    imageMain: '/images/sale/sale6.jpg', 
+    imageHover: '/images/sale/sale6.jpg', 
+    category: 'skirt' 
   },
-  {
-    id: 'sale8',
-    name: 'Stripevest Browntop',
-    series: 'Code TPBAP 4380',
-    imageMain: '/images/sale/sale8.jpg',
-    imageHover: '/images/sale/sale8.jpg',
-    category: 'outer'
+  { 
+    id: 'sale8', 
+    name: 'Stripevest Browntop', 
+    series: 'Code TPBAP 4380', 
+    imageMain: '/images/sale/sale8.jpg', 
+    imageHover: '/images/sale/sale8.jpg', 
+    category: 'outer' 
   },
-  {
-    id: 'sale9',
-    name: 'Colour Flow Bordir Skirt',
-    series: 'Code TPASG 00536',
-    imageMain: '/images/sale/sale9.jpg',
-    imageHover: '/images/sale/sale9.jpg',
-    category: 'skirt'
+  { 
+    id: 'sale9', 
+    name: 'Colour Flow Bordir Skirt', 
+    series: 'Code TPASG 00536', 
+    imageMain: '/images/sale/sale9.jpg', 
+    imageHover: '/images/sale/sale9.jpg', 
+    category: 'skirt' 
   },
-  {
-    id: 'sale11',
-    name: 'Stripe Knit Top',
-    series: 'Code TPMCHL 00692',
-    imageMain: '/images/sale/sale11.jpg',
-    imageHover: '/images/sale/sale11.jpg',
-    category: 'sweater'
+  { 
+    id: 'sale11', 
+    name: 'Stripe Knit Top', 
+    series: 'Code TPMCHL 00692', 
+    imageMain: '/images/sale/sale11.jpg', 
+    imageHover: '/images/sale/sale11.jpg', 
+    category: 'sweater' 
   },
-  {
-    id: 'sale12',
-    name: 'Scuba Cutbray',
-    series: 'Code PTMSTL 7445',
-    imageMain: '/images/sale/sale12.jpg',
-    imageHover: '/images/sale/sale12.jpg',
-    category: 'pants'
+  { 
+    id: 'sale12', 
+    name: 'Scuba Cutbray', 
+    series: 'Code PTMSTL 7445', 
+    imageMain: '/images/sale/sale12.jpg', 
+    imageHover: '/images/sale/sale12.jpg', 
+    category: 'pants' 
   },
 ];
 
-export const looksProducts: Product[] = [
-  { 
-    id: 1,
-    bg: 'bg-brand-neutral1',
-    image: '/images/looks/1.jpg',
-    title: 'Retro Look Ideas',
-    category: 'Look 1'
-  }, 
-  {
-    id: 2,
-    bg: 'bg-brand-neutral2',
-    image: '/images/looks/2.jpg',
-    title: 'Casual Look Ideas',
-    category: 'Look 2'
-  }, 
-  {
-    id: 3,
-    bg: 'bg-brand-neutral3',
-    image: '/images/looks/3.jpg',
-    title: 'Latest Look Ideas',
-    category: 'Look 3'
-  }, 
-  {
-    id: 4,
-    bg: 'bg-brand-neutral4',
-    image: '/images/looks/4.jpg',
-    title: 'Feminine Look Ideas',
-    category: 'Look 4'
-  }, 
-  {
-    id: 5,
-    bg: 'bg-brand-neutral1',
-    image: '/images/looks/5.jpg',
-    title: 'Weekend Look Ideas',
-    category: 'Look 5'
-  }, 
-  {
-    id: 6,
-    bg: 'bg-brand-neutral2',
-    image: '/images/looks/6.jpg',
-    title: 'Daily Look Ideas',
-    category: 'Look 6'
-  }, 
-  {
-    id: 7,
-    bg: 'bg-brand-eutral3',
-    image: '/images/looks/7.jpg',
-    title: 'Pinky Look Ideas',
-    category: 'Look 7'
-  }, 
-  {
-    id: 8,
-    bg: 'bg-brand-neutral4',
-    image: '/images/looks/8.jpg',
-    title: 'Clean Look Ideas',
-    category: 'Look 8'
-  }, 
-  {
-    id: 9,
-    bg: 'bg-brand-neutral1',
-    image: '/images/looks/9.jpg',
-    title: 'Cute Look Ideas',
-    category: 'Look 9'
-  }, 
-  {
-    id: 10,
-    bg: 'bg-brand-neutral2',
-    image: '/images/looks/10.jpg',
-    title: 'Earthy Look Ideas',
-    category: 'Look 10'
-  }, 
-  {
-    id: 11,
-    bg: 'bg-brand-neutral3',
-    image: '/images/looks/11.jpg',
-    title: 'Elegant Look Ideas',
-    category: 'Look 11'
-  }, 
-  {
-    id: 12,
-    bg: 'bg-brand-neutral4',
-    image: '/images/looks/12.jpg',
-    title: 'Midnight Look Ideas',
-    category: 'Look 12'
-  }];
-
-export const allProducts = [...bestsellers, ...ourPicks, ...category, ...saleProducts, ...looksProducts];
+export const allProducts = [...bestsellers, ...ourPicks, ...category, ...saleProducts];
