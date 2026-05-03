@@ -16,7 +16,6 @@ interface LooksDetailPageProps {
   cartCount: number;
 }
 
-// ✅ Dipindah ke luar komponen biar ga error circular
 const isSameProduct = (a: Product, b: Product) =>
   a.name.trim().toLowerCase() === b.name.trim().toLowerCase();
 
@@ -147,9 +146,10 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   const lookNumber = lookId ? parseInt(lookId.replace('look-', '')) : 1;
   const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
 
-  const isLookWishlisted = look.items.some(
-    item => item && wishlist.some(w => isSameProduct(w, item))
-  );
+  const validItems = look.items.filter(Boolean);
+
+  const isLookWishlisted = validItems.length > 0 &&
+    validItems.every(item => wishlist.some(w => isSameProduct(w, item)));
 
   const handleAddToCart = () => {
     setIsAdding(true);
@@ -168,8 +168,21 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   };
 
   const handleWishlist = () => {
-    look.items.forEach(item => { if (item) onToggleWishlist(item); });
-    showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
+    if (isLookWishlisted) {
+      validItems.forEach(item => {
+        if (wishlist.some(w => isSameProduct(w, item))) {
+          onToggleWishlist(item);
+        }
+      });
+      showToast('Dihapus dari Wishlist');
+    } else {
+      validItems.forEach(item => {
+        if (!wishlist.some(w => isSameProduct(w, item))) {
+          onToggleWishlist(item);
+        }
+      });
+      showToast('Ditambahkan ke Wishlist');
+    }
   };
 
   const handleBack = () => {
