@@ -82,11 +82,6 @@ export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist, onO
                 className={isWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''}
               />
             </button>
-            <button
-              onClick={() => navigate('/cart')}
-              className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
-              <ShoppingBag size={22} />
-            </button>
           </div>
         </div>
       </header>
