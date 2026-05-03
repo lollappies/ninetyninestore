@@ -91,7 +91,7 @@ export function AllProductsModal({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx % 10 * 0.05 }}
-                  onClick={onClose}>
+                  >
                   <ProductCard
                     product={product}
                     isWishlisted={wishlist.some((item) => item.id === product.id)}

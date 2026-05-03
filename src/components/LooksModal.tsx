@@ -95,7 +95,7 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, cartCount = 0 }: L
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.1 }}
                   className="cursor-pointer group"
-                  onClick={() => { onClose(); navigate(`/looks/look-${look.id}`); }}>
+                  onClick={() => { navigate(`/looks/look-${look.id}`); onClose(); }}>
                   <div className={`${look.bg} rounded-2xl aspect-[3/4] flex items-center justify-center relative overflow-hidden`}>
                     <img src={look.image} alt={look.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
