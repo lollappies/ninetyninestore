@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Heart, ShoppingBag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCustomToast } from './CustomToast';
-import { Product } from '../utils/data';
+import { Product, allProducts } from '../utils/data';
 
 interface ProductCardProps {
   product: Product;
@@ -25,10 +25,27 @@ export function ProductCard({
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
 
+  // Selalu pakai ID canonical dari allProducts berdasarkan nama
+  const getCanonicalId = (p: Product): string => {
+    const found = allProducts.find(
+      (item) => item.name.trim().toLowerCase() === p.name.trim().toLowerCase()
+    );
+    return found ? found.id : p.id;
+  };
+
+  const handleNavigate = () => {
+    const canonicalId = getCanonicalId(product);
+    if (onNavigate) {
+      onNavigate(canonicalId);
+    } else {
+      navigate(`/product/${canonicalId}`);
+    }
+  };
+
   return (
     <div
       className="group flex flex-col gap-3 cursor-pointer"
-      onClick={() => onNavigate ? onNavigate(product.id) : navigate(`/product/${product.id}`)}>
+      onClick={handleNavigate}>
 
       <div
         className="relative aspect-[3/4] overflow-hidden bg-brand-neutral1 rounded-2xl cursor-pointer"
