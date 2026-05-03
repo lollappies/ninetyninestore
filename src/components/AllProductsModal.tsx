@@ -12,22 +12,15 @@ interface AllProductsModalProps {
   onToggleWishlist: (product: Product) => void;
   onAddToCart: (product: Product) => void;
   onOpenWishlist: () => void;
+  wishlistCount: number;
+  cartCount: number;
 }
 
-export function AllProductsModal({
-  isOpen,
-  onClose,
-  wishlist,
-  onToggleWishlist,
-  onAddToCart,
-  onOpenWishlist,
-}: AllProductsModalProps) {
+export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, onAddToCart, onOpenWishlist, wishlistCount, cartCount }: AllProductsModalProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
+    const handleKeyDown = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
@@ -35,40 +28,33 @@ export function AllProductsModal({
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[9999] bg-white overflow-y-auto">
-
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.3 }} className="fixed inset-0 z-[9999] bg-white overflow-y-auto">
           <header className="sticky top-0 bg-white/90 backdrop-blur-md z-10 border-b border-gray-100 px-4 md:px-12">
             <div className="max-w-[1440px] mx-auto flex items-center justify-between h-[72px]">
               <div className="flex items-center gap-3">
-                <span className="font-serif text-xl font-medium tracking-wide text-brand-dark">
-                  Ninetynine
-                </span>
-                <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400 hidden sm:block">
-                  / All Products
-                </span>
+                <span className="font-serif text-xl font-medium tracking-wide text-brand-dark">Ninetynine</span>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400 hidden sm:block">/ All Products</span>
               </div>
               <div className="flex items-center gap-3">
-                <button
-                  onClick={onOpenWishlist}
-                  className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+                <button onClick={onOpenWishlist} className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
                   <Heart size={22} />
+                  {wishlistCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-brand-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                      {wishlistCount}
+                    </span>
+                  )}
                 </button>
                 <button
-                  onClick={() => {
-                    onClose();
-                    setTimeout(() => navigate('/cart', { state: { fromModal: 'allProducts' } }), 150);
-                  }}
-                  className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+                  onClick={() => { onClose(); setTimeout(() => navigate('/cart', { state: { fromModal: 'allProducts' } }), 150); }}
+                  className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
                   <ShoppingBag size={22} />
+                  {cartCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-brand-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                      {cartCount}
+                    </span>
+                  )}
                 </button>
-                <button
-                  onClick={onClose}
-                  className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-dark hover:bg-gray-50 transition-colors">
+                <button onClick={onClose} className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-dark hover:bg-gray-50 transition-colors">
                   <X size={18} />
                 </button>
               </div>
@@ -77,30 +63,18 @@ export function AllProductsModal({
 
           <div className="max-w-[1440px] mx-auto px-4 md:px-12 py-12 md:py-16">
             <div className="mb-12">
-              <span className="text-[10px] tracking-[0.25em] uppercase text-gray-500 block mb-3">
-                Curated For You
-              </span>
-              <h1 className="font-serif text-3xl md:text-5xl text-brand-dark">
-                Our Picks — All Products
-              </h1>
+              <span className="text-[10px] tracking-[0.25em] uppercase text-gray-500 block mb-3">Curated For You</span>
+              <h1 className="font-serif text-3xl md:text-5xl text-brand-dark">Our Picks — All Products</h1>
             </div>
-
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-10">
               {allProducts.map((product, idx) => (
-                <motion.div
-                  key={`all_${product.id}_${idx}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx % 10 * 0.05 }}>
+                <motion.div key={`all_${product.id}_${idx}`} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx % 10 * 0.05 }}>
                   <ProductCard
                     product={product}
                     isWishlisted={wishlist.some((item) => item.id === product.id)}
                     onToggleWishlist={onToggleWishlist}
                     onAddToCart={onAddToCart}
-                    onNavigate={(id) => {
-                      onClose();
-                      setTimeout(() => navigate(`/product/${id}`, { state: { fromModal: 'allProducts' } }), 150);
-                    }}
+                    onNavigate={(id) => { onClose(); setTimeout(() => navigate(`/product/${id}`, { state: { fromModal: 'allProducts' } }), 150); }}
                   />
                 </motion.div>
               ))}

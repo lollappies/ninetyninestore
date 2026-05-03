@@ -38,7 +38,6 @@ export interface CartItem {
   bundleName?: string;
 }
 
-// ✅ TAMBAHAN: helper cek produk sama berdasarkan nama + series
 const isSameProduct = (a: Product, b: Product) =>
   a.name.trim().toLowerCase() === b.name.trim().toLowerCase() &&
   a.series.trim().toLowerCase() === b.series.trim().toLowerCase();
@@ -64,6 +63,9 @@ export function App() {
     }
   }, [location.state]);
 
+  const wishlistCount = wishlist.length;
+  const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
   const handleToggleWishlist = (product: Product) => {
     setWishlist((prev) => {
       const exists = prev.find((item) => isSameProduct(item, product));
@@ -71,7 +73,6 @@ export function App() {
       return [...prev, product];
     });
   };
-
 
   const handleAddToCart = (
     product: Product,
@@ -121,8 +122,8 @@ export function App() {
       <div className="min-h-screen bg-white">
         {isLandingPage && (
           <Navbar
-            wishlistCount={wishlist.length}
-            cartCount={cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+            wishlistCount={wishlistCount}
+            cartCount={cartCount}
             onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
             onOpenWishlist={() => setIsWishlistOpen(true)}
           />
@@ -185,10 +186,21 @@ export function App() {
                   onToggleWishlist={handleToggleWishlist}
                   onAddToCart={(p) => handleAddToCart(p)}
                   onOpenWishlist={() => setIsWishlistOpen(true)}
+                  wishlistCount={wishlistCount}
+                  cartCount={cartCount}
                 />
               }
             />
-            <Route path="/sale" element={<SalePage onOpenWishlist={() => setIsWishlistOpen(true)} />} />
+            <Route
+              path="/sale"
+              element={
+                <SalePage
+                  onOpenWishlist={() => setIsWishlistOpen(true)}
+                  wishlistCount={wishlistCount}
+                  cartCount={cartCount}
+                />
+              }
+            />
             <Route
               path="/sale/:lookId"
               element={
@@ -197,6 +209,8 @@ export function App() {
                   wishlist={wishlist}
                   onToggleWishlist={handleToggleWishlist}
                   onOpenWishlist={() => setIsWishlistOpen(true)}
+                  wishlistCount={wishlistCount}
+                  cartCount={cartCount}
                 />
               }
             />
@@ -208,6 +222,8 @@ export function App() {
                   onOpenWishlist={() => setIsWishlistOpen(true)}
                   wishlist={wishlist}
                   onToggleWishlist={handleToggleWishlist}
+                  wishlistCount={wishlistCount}
+                  cartCount={cartCount}
                 />
               }
             />
@@ -227,6 +243,8 @@ export function App() {
           isOpen={isLooksOpen}
           onClose={() => setIsLooksOpen(false)}
           onOpenWishlist={() => setIsWishlistOpen(true)}
+          wishlistCount={wishlistCount}
+          cartCount={cartCount}
         />
         <AllProductsModal
           isOpen={isAllProductsOpen}
@@ -235,6 +253,8 @@ export function App() {
           onToggleWishlist={handleToggleWishlist}
           onAddToCart={(p) => handleAddToCart(p)}
           onOpenWishlist={() => setIsWishlistOpen(true)}
+          wishlistCount={wishlistCount}
+          cartCount={cartCount}
         />
       </div>
     </CustomToastProvider>
