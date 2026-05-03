@@ -39,7 +39,7 @@ export interface CartItem {
 }
 
 const isSameProduct = (a: Product, b: Product) =>
-  a.name.trim().toLowerCase() === b.name.trim().toLowerCase() && ;
+  a.name.trim().toLowerCase() === b.name.trim().toLowerCase();
   
 export function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
