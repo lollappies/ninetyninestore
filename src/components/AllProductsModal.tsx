@@ -95,12 +95,11 @@ export function AllProductsModal({
                   <ProductCard
                     product={product}
                     isWishlisted={wishlist.some((item) => item.id === product.id)}
-                    onToggleWishlist={(p) => {
+                      onToggleWishlist={(p) => {
                       onToggleWishlist(p);
                       onOpenWishlist();
                     }}
                     onAddToCart={onAddToCart}
-                    onBeforeNavigate={() => onClose()}
                   />
                 </motion.div>
               ))}

@@ -3,7 +3,6 @@ import { Heart, ShoppingBag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCustomToast } from './CustomToast';
 import { Product } from '../utils/data';
-
 interface ProductCardProps {
   product: Product;
   isWishlisted: boolean;
@@ -11,7 +10,6 @@ interface ProductCardProps {
   onAddToCart: (product: Product) => void;
   hideWishlistToast?: boolean;
 }
-
 export function ProductCard({
   product,
   isWishlisted,
@@ -22,16 +20,10 @@ export function ProductCard({
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
-
-  const handleNavigateToProduct = () => {
-    sessionStorage.setItem('productReferrer', 'all-products');
-    navigate(`/product/${product.id}`);
-  };
-
   return (
     <div
       className="group flex flex-col gap-3 cursor-pointer"
-      onClick={handleNavigateToProduct}>
+      onClick={() => navigate(`/product/${product.id}`)}>
       
       <div
         className="relative aspect-[3/4] overflow-hidden bg-brand-neutral1 rounded-2xl cursor-pointer"
@@ -47,9 +39,10 @@ export function ProductCard({
           src={product.imageHover}
           alt={`${product.name} hover`}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`} />
+        
 
         {product.isSoldOut &&
-          <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-medium">
+        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-medium">
             Sold Out
           </div>
         }
@@ -74,10 +67,11 @@ export function ProductCard({
             
             <Heart
               size={18}
-              className={isWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''} />
+              className={
+              isWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''
+              } />
             
           </button>
-
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -98,9 +92,9 @@ export function ProductCard({
         </span>
         <h3 className="text-sm font-medium text-brand-dark">{product.name}</h3>
         {product.price &&
-          <span className="text-xs text-brand-dark mt-1">{product.price}</span>
+        <span className="text-xs text-brand-dark mt-1">{product.price}</span>
         }
       </div>
-    </div>
-  );
+    </div>);
+
 }
