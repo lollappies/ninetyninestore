@@ -161,8 +161,7 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   };
 
   const handleWishlist = () => {
-    look.items.forEach(item => { if (item) onToggleWishlist(item); });
-    showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
+    onOpenWishlist();
   };
 
   const handleBack = () => {
@@ -185,13 +184,10 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
           </div>
 
           <div className="flex items-center gap-2">
-            <button onClick={handleWishlist} className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
-              <Heart size={22} className={isLookWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''} />
-              {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-brand-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                  {wishlistCount}
-                </span>
-              )}
+            <button
+              onClick={handleWishlist}
+              className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <Heart size={22} />
             </button>
           </div>
         </div>
