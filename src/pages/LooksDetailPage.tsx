@@ -142,8 +142,9 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   ];
 
   const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
-  const isLookWishlisted = look.items.some(item => item && wishlist.some(w => w.id === item.id));
-
+  const isLookWishlisted = look.items.some(
+    item => item && wishlist.some(w => isSameProduct(w, item))
+  );
   const handleAddToCart = () => {
     setIsAdding(true);
     look.items.forEach((item) => {
@@ -172,6 +173,9 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
       navigate(-1);
     }
   };
+
+  const isSameProduct = (a: Product, b: Product) =>
+  a.name.trim().toLowerCase() === b.name.trim().toLowerCase();
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }} className="min-h-screen bg-white">
