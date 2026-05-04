@@ -158,6 +158,10 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   const handleWishlist = () => {
     onToggleWishlist(lookAsProduct);
     showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
+    if (!isLookWishlisted) {
+      navigate('/looks/' + lookId, { state: { fromModal: 'looks' } });
+      onOpenWishlist();
+    }
   };
 
   const handleAddToCart = () => {

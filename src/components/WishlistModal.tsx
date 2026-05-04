@@ -5,6 +5,7 @@ import { Product } from '../utils/data';
 import { ProductCard } from './ProductCard';
 import { useCustomToast } from './CustomToast';
 import { Footer } from './Footer';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface WishlistModalProps {
   isOpen: boolean;
@@ -22,18 +23,29 @@ export function WishlistModal({
   onAddToCart
 }: WishlistModalProps) {
   const { showToast } = useCustomToast();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleClose = () => {
+    if (location.state?.fromModal === 'looks') {
+      onClose();
+      navigate('/', { state: { openLooks: true } });
+    } else {
+      onClose();
+    }
+  };
 
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.stopPropagation();
-        onClose();
+        handleClose();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [isOpen, location.state]);
 
   const handleWishlistRemove = (product: Product) => {
     onToggleWishlist(product);
@@ -61,7 +73,7 @@ export function WishlistModal({
                 </span>
               </div>
               <button
-                onClick={onClose}
+                onClick={handleClose}
                 className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-dark hover:bg-gray-50 transition-colors">
                 <X size={18} />
               </button>
