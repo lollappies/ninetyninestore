@@ -16,10 +16,18 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, [isOpen, onClose]);
+
+  const handleOpenWishlist = () => {
+    onClose();
+    setTimeout(() => onOpenWishlist(), 150);
+  };
 
   const looks = [
     { 
@@ -57,15 +65,13 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
       title: 'Weekend Look Ideas', 
       category: 'Look 5' 
     },
-    { 
-      id: 6, 
+    { id: 6, 
       bg: 'bg-brand-neutral2', 
       image: '/images/looks/6.jpg', 
       title: 'Daily Look Ideas', 
       category: 'Look 6' 
     },
-    { 
-      id: 7, 
+    { id: 7, 
       bg: 'bg-brand-neutral3', 
       image: '/images/looks/7.jpg', 
       title: 'Pinky Look Ideas', 
@@ -119,7 +125,7 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
                 <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400">/ Looks</span>
               </div>
               <div className="flex items-center gap-3">
-                <button onClick={onOpenWishlist} className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
+                <button onClick={handleOpenWishlist} className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
                   <Heart size={22} />
                   {wishlistCount > 0 && (
                     <span className="absolute -top-1 -right-1 bg-brand-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
