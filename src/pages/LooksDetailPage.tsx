@@ -154,7 +154,10 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   const handleAddToCart = () => {
     setIsAdding(true);
     look.items.forEach((item) => {
-      if (item) onAddToCart(item, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
+      if (item) {
+        const itemWithLookImage = { ...item, imageMain: look.image };
+        onAddToCart(itemWithLookImage, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
+      }
     });
     showToast('Produk berhasil ditambahkan ke keranjang');
     setTimeout(() => setIsAdding(false), 800);
@@ -162,27 +165,12 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
 
   const handleBuyNow = () => {
     look.items.forEach((item) => {
-      if (item) onAddToCart(item, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
+      if (item) {
+        const itemWithLookImage = { ...item, imageMain: look.image };
+        onAddToCart(itemWithLookImage, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
+      }
     });
     navigate('/checkout');
-  };
-
-  const handleWishlist = () => {
-    if (isLookWishlisted) {
-      validItems.forEach(item => {
-        if (wishlist.some(w => isSameProduct(w, item))) {
-          onToggleWishlist(item);
-        }
-      });
-      showToast('Dihapus dari Wishlist');
-    } else {
-      validItems.forEach(item => {
-        if (!wishlist.some(w => isSameProduct(w, item))) {
-          onToggleWishlist(item);
-        }
-      });
-      showToast('Ditambahkan ke Wishlist');
-    }
   };
 
   const handleBack = () => {
