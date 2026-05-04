@@ -16,9 +16,6 @@ interface LooksDetailPageProps {
   cartCount: number;
 }
 
-const isSameProduct = (a: Product, b: Product) =>
-  a.name.trim().toLowerCase() === b.name.trim().toLowerCase();
-
 const getById = (id: string) => allProducts.find(p => p.id === id)!;
 
 const looksData = [
@@ -83,7 +80,7 @@ const looksData = [
     category: 'Look 7', 
     description: 'Sweet and playful with a touch of pink energy.', 
     price: 'IDR 278.000', 
-    items: [getById('sweater_1'), getById('skirt_4')]
+    items: [getById('sweater_1'), getById('skirt_4')] 
   },
   { 
     id: 8, 
@@ -129,7 +126,7 @@ const looksData = [
     description: 'Refined and sophisticated. Dress to impress.', 
     price: 'IDR 238.000', 
     items: [getById('dress_9'), getById('skirt_6')] 
-  }
+  },
 ];
 
 export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggleWishlist, wishlistCount, cartCount }: LooksDetailPageProps) {
@@ -146,56 +143,31 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   const lookNumber = lookId ? parseInt(lookId.replace('look-', '')) : 1;
   const look = looksData.find((l) => l.id === lookNumber) || looksData[0];
 
-  const validItems = look.items.filter(Boolean);
+  const lookAsProduct: Product = {
+    id: `look-${look.id}`,
+    name: look.title,
+    series: look.category,
+    price: look.price,
+    imageMain: look.image,
+    imageHover: look.image,
+    category: 'dress',
+  };
 
-  const isLookWishlisted = validItems.length > 0 &&
-    validItems.every(item => wishlist.some(w => isSameProduct(w, item)));
+  const isLookWishlisted = wishlist.some(w => w.id === lookAsProduct.id);
 
   const handleWishlist = () => {
-    if (isLookWishlisted) {
-      validItems.forEach(item => {
-        if (wishlist.some(w => isSameProduct(w, item))) {
-          onToggleWishlist(item);
-        }
-      });
-      showToast('Dihapus dari Wishlist');
-    } else {
-      validItems.forEach(item => {
-        if (!wishlist.some(w => isSameProduct(w, item))) {
-          onToggleWishlist(item);
-        }
-      });
-      showToast('Ditambahkan ke Wishlist');
-    }
+    onToggleWishlist(lookAsProduct);
+    showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
   };
 
   const handleAddToCart = () => {
     setIsAdding(true);
-    
-  const lookAsProduct: Product = {
-      id: `look-${look.id}`,
-      name: look.title,
-      series: look.category,
-      price: look.price,
-      imageMain: look.image,
-      imageHover: look.image,
-      category: 'dress', // kategori default
-    };
     onAddToCart(lookAsProduct, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
     showToast('Produk berhasil ditambahkan ke keranjang');
     setTimeout(() => setIsAdding(false), 800);
   };
 
   const handleBuyNow = () => {
-    const lookAsProduct: Product = {
-      id: `look-${look.id}`,
-      name: look.title,
-      series: look.category,
-      price: look.price,
-      imageMain: look.image,
-      imageHover: look.image,
-      category: 'dress',
-    };
     onAddToCart(lookAsProduct, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
     navigate('/checkout');
   };
@@ -220,9 +192,7 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
           </div>
           <div className="flex items-center gap-2">
             <button onClick={handleWishlist} className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
-              <Heart
-                size={22}
-                className={isLookWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''} />
+              <Heart size={22} className={isLookWishlisted ? 'fill-brand-accent stroke-brand-accent' : ''} />
             </button>
           </div>
         </div>
