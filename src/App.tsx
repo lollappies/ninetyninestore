@@ -40,12 +40,13 @@ export interface CartItem {
 
 const isSameProduct = (a: Product, b: Product) =>
   a.name.trim().toLowerCase() === b.name.trim().toLowerCase();
-  
+
 export function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isLooksOpen, setIsLooksOpen] = useState(false);
   const [isAllProductsOpen, setIsAllProductsOpen] = useState(false);
+  const [wishlistOpenedFrom, setWishlistOpenedFrom] = useState<string | null>(null);
   const [wishlist, setWishlist] = useState<Product[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const location = useLocation();
@@ -95,6 +96,19 @@ export function App() {
     });
   };
 
+  const handleOpenWishlist = (from?: string) => {
+    setWishlistOpenedFrom(from || null);
+    setIsWishlistOpen(true);
+  };
+
+  const handleCloseWishlist = () => {
+    setIsWishlistOpen(false);
+    if (wishlistOpenedFrom === 'looks') {
+      setIsLooksOpen(true);
+    }
+    setWishlistOpenedFrom(null);
+  };
+
   const isLandingPage = location.pathname === '/';
 
   const noFooterPages = [
@@ -122,7 +136,7 @@ export function App() {
             wishlistCount={wishlistCount}
             cartCount={cartCount}
             onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
-            onOpenWishlist={() => setIsWishlistOpen(true)}
+            onOpenWishlist={() => handleOpenWishlist()}
           />
         )}
 
@@ -162,7 +176,7 @@ export function App() {
                   onAddToCart={handleAddToCart}
                   wishlist={wishlist}
                   onToggleWishlist={handleToggleWishlist}
-                  onOpenWishlist={() => setIsWishlistOpen(true)}
+                  onOpenWishlist={() => handleOpenWishlist()}
                 />
               }
             />
@@ -171,10 +185,10 @@ export function App() {
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/order-complete" element={<OrderCompletePage setCartItems={setCartItems} />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/profile" element={<ProfilePage onOpenWishlist={() => setIsWishlistOpen(true)} />} />
-            <Route path="/address" element={<AddressPage onOpenWishlist={() => setIsWishlistOpen(true)} />} />
-            <Route path="/orders" element={<OrdersPage onOpenWishlist={() => setIsWishlistOpen(true)} />} />
-            <Route path="/purchase-history" element={<PurchaseHistoryPage onOpenWishlist={() => setIsWishlistOpen(true)} />} />
+            <Route path="/profile" element={<ProfilePage onOpenWishlist={() => handleOpenWishlist()} />} />
+            <Route path="/address" element={<AddressPage onOpenWishlist={() => handleOpenWishlist()} />} />
+            <Route path="/orders" element={<OrdersPage onOpenWishlist={() => handleOpenWishlist()} />} />
+            <Route path="/purchase-history" element={<PurchaseHistoryPage onOpenWishlist={() => handleOpenWishlist()} />} />
             <Route
               path="/category/:categoryName"
               element={
@@ -182,7 +196,7 @@ export function App() {
                   wishlist={wishlist}
                   onToggleWishlist={handleToggleWishlist}
                   onAddToCart={(p) => handleAddToCart(p)}
-                  onOpenWishlist={() => setIsWishlistOpen(true)}
+                  onOpenWishlist={() => handleOpenWishlist()}
                   wishlistCount={wishlistCount}
                   cartCount={cartCount}
                 />
@@ -192,7 +206,7 @@ export function App() {
               path="/sale"
               element={
                 <SalePage
-                  onOpenWishlist={() => setIsWishlistOpen(true)}
+                  onOpenWishlist={() => handleOpenWishlist()}
                   wishlistCount={wishlistCount}
                   cartCount={cartCount}
                 />
@@ -205,7 +219,7 @@ export function App() {
                   onAddToCart={handleAddToCart}
                   wishlist={wishlist}
                   onToggleWishlist={handleToggleWishlist}
-                  onOpenWishlist={() => setIsWishlistOpen(true)}
+                  onOpenWishlist={() => handleOpenWishlist()}
                   wishlistCount={wishlistCount}
                   cartCount={cartCount}
                 />
@@ -216,7 +230,7 @@ export function App() {
               element={
                 <LooksDetailPage
                   onAddToCart={handleAddToCart}
-                  onOpenWishlist={() => setIsWishlistOpen(true)}
+                  onOpenWishlist={() => handleOpenWishlist('looks')}
                   wishlist={wishlist}
                   onToggleWishlist={handleToggleWishlist}
                   wishlistCount={wishlistCount}
@@ -231,7 +245,7 @@ export function App() {
 
         <WishlistModal
           isOpen={isWishlistOpen}
-          onClose={() => setIsWishlistOpen(false)}
+          onClose={handleCloseWishlist}
           wishlist={wishlist}
           onToggleWishlist={handleToggleWishlist}
           onAddToCart={(p) => handleAddToCart(p)}
@@ -239,7 +253,7 @@ export function App() {
         <LooksModal
           isOpen={isLooksOpen}
           onClose={() => setIsLooksOpen(false)}
-          onOpenWishlist={() => setIsWishlistOpen(true)}
+          onOpenWishlist={() => handleOpenWishlist('looks')}
           wishlistCount={wishlistCount}
           cartCount={cartCount}
         />
@@ -249,7 +263,7 @@ export function App() {
           wishlist={wishlist}
           onToggleWishlist={handleToggleWishlist}
           onAddToCart={(p) => handleAddToCart(p)}
-          onOpenWishlist={() => setIsWishlistOpen(true)}
+          onOpenWishlist={() => handleOpenWishlist()}
           wishlistCount={wishlistCount}
           cartCount={cartCount}
         />
