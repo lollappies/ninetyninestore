@@ -151,6 +151,24 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
   const isLookWishlisted = validItems.length > 0 &&
     validItems.every(item => wishlist.some(w => isSameProduct(w, item)));
 
+  const handleWishlist = () => {
+    if (isLookWishlisted) {
+      validItems.forEach(item => {
+        if (wishlist.some(w => isSameProduct(w, item))) {
+          onToggleWishlist(item);
+        }
+      });
+      showToast('Dihapus dari Wishlist');
+    } else {
+      validItems.forEach(item => {
+        if (!wishlist.some(w => isSameProduct(w, item))) {
+          onToggleWishlist(item);
+        }
+      });
+      showToast('Ditambahkan ke Wishlist');
+    }
+  };
+
   const handleAddToCart = () => {
     setIsAdding(true);
     look.items.forEach((item) => {
