@@ -171,23 +171,32 @@ export function LooksDetailPage({ onAddToCart, onOpenWishlist, wishlist, onToggl
 
   const handleAddToCart = () => {
     setIsAdding(true);
-    look.items.forEach((item) => {
-      if (item) {
-        const itemWithLookImage = { ...item, imageMain: look.image };
-        onAddToCart(itemWithLookImage, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
-      }
-    });
+    
+  const lookAsProduct: Product = {
+      id: `look-${look.id}`,
+      name: look.title,
+      series: look.category,
+      price: look.price,
+      imageMain: look.image,
+      imageHover: look.image,
+      category: 'dress', // kategori default
+    };
+    onAddToCart(lookAsProduct, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
     showToast('Produk berhasil ditambahkan ke keranjang');
     setTimeout(() => setIsAdding(false), 800);
   };
 
   const handleBuyNow = () => {
-    look.items.forEach((item) => {
-      if (item) {
-        const itemWithLookImage = { ...item, imageMain: look.image };
-        onAddToCart(itemWithLookImage, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
-      }
-    });
+    const lookAsProduct: Product = {
+      id: `look-${look.id}`,
+      name: look.title,
+      series: look.category,
+      price: look.price,
+      imageMain: look.image,
+      imageHover: look.image,
+      category: 'dress',
+    };
+    onAddToCart(lookAsProduct, quantity, selectedColor, 'All Size', `Look: ${look.title}`);
     navigate('/checkout');
   };
 
