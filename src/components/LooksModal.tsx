@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Footer } from './Footer';
 
+let looksScrollPos = 0;
+
 interface LooksModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -15,7 +17,6 @@ interface LooksModalProps {
 export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, cartCount }: LooksModalProps) {
   const navigate = useNavigate();
   const modalRef = useRef<HTMLDivElement>(null);
-  const scrollPos = useRef<number>(0);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -28,13 +29,8 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
 
   useEffect(() => {
     if (isOpen && modalRef.current) {
-      modalRef.current.scrollTop = scrollPos.current;
+      modalRef.current.scrollTop = looksScrollPos;
     }
-    return () => {
-      if (modalRef.current) {
-        scrollPos.current = modalRef.current.scrollTop;
-      }
-    };
   }, [isOpen]);
 
   const handleOpenWishlist = () => {
@@ -42,7 +38,7 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
     setTimeout(() => onOpenWishlist(), 150);
   };
 
-  const looks = [
+   const looks = [
     { 
       id: 1, 
       bg: 'bg-brand-neutral1', 
@@ -147,7 +143,9 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
                 <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400">/ Looks</span>
               </div>
               <div className="flex items-center gap-3">
-                <button onClick={handleOpenWishlist} className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
+                <button
+                  onClick={handleOpenWishlist}
+                  className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
                   <Heart size={22} />
                   {wishlistCount > 0 && (
                     <span className="absolute -top-1 -right-1 bg-brand-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
@@ -157,7 +155,7 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
                 </button>
                 <button
                   onClick={() => {
-                    if (modalRef.current) scrollPos.current = modalRef.current.scrollTop;
+                    if (modalRef.current) looksScrollPos = modalRef.current.scrollTop;
                     onClose();
                     setTimeout(() => navigate('/cart', { state: { fromModal: 'looks' } }), 150);
                   }}
@@ -169,7 +167,9 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
                     </span>
                   )}
                 </button>
-                <button onClick={onClose} className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-dark hover:bg-gray-50 transition-colors">
+                <button
+                  onClick={onClose}
+                  className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-dark hover:bg-gray-50 transition-colors">
                   <X size={18} />
                 </button>
               </div>
@@ -190,12 +190,15 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
                   transition={{ delay: idx * 0.1 }}
                   className="cursor-pointer group"
                   onClick={() => {
-                    if (modalRef.current) scrollPos.current = modalRef.current.scrollTop;
+                    if (modalRef.current) looksScrollPos = modalRef.current.scrollTop;
                     onClose();
                     setTimeout(() => navigate(`/looks/look-${look.id}`, { state: { fromModal: 'looks' } }), 150);
                   }}>
                   <div className={`${look.bg} rounded-2xl aspect-[3/4] flex items-center justify-center relative overflow-hidden`}>
-                    <img src={look.image} alt={look.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <img
+                      src={look.image}
+                      alt={look.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
                     <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-xl p-4 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                       <p className="text-[9px] tracking-[0.2em] uppercase text-gray-500 mb-1">{look.category}</p>

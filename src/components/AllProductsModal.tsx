@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { Product, allProducts } from '../utils/data';
 import { ProductCard } from './ProductCard';
 
+let allProductsScrollPos = 0;
+
 interface AllProductsModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -19,7 +21,6 @@ interface AllProductsModalProps {
 export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, onAddToCart, onOpenWishlist, wishlistCount, cartCount }: AllProductsModalProps) {
   const navigate = useNavigate();
   const modalRef = useRef<HTMLDivElement>(null);
-  const scrollPos = useRef<number>(0);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -31,13 +32,8 @@ export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, 
 
   useEffect(() => {
     if (isOpen && modalRef.current) {
-      modalRef.current.scrollTop = scrollPos.current;
+      modalRef.current.scrollTop = allProductsScrollPos;
     }
-    return () => {
-      if (modalRef.current) {
-        scrollPos.current = modalRef.current.scrollTop;
-      }
-    };
   }, [isOpen]);
 
   return (
@@ -58,7 +54,9 @@ export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, 
                 <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400 hidden sm:block">/ All Products</span>
               </div>
               <div className="flex items-center gap-3">
-                <button onClick={onOpenWishlist} className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
+                <button
+                  onClick={onOpenWishlist}
+                  className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
                   <Heart size={22} />
                   {wishlistCount > 0 && (
                     <span className="absolute -top-1 -right-1 bg-brand-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
@@ -68,7 +66,7 @@ export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, 
                 </button>
                 <button
                   onClick={() => {
-                    if (modalRef.current) scrollPos.current = modalRef.current.scrollTop;
+                    if (modalRef.current) allProductsScrollPos = modalRef.current.scrollTop;
                     onClose();
                     setTimeout(() => navigate('/cart', { state: { fromModal: 'allProducts' } }), 150);
                   }}
@@ -80,7 +78,9 @@ export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, 
                     </span>
                   )}
                 </button>
-                <button onClick={onClose} className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-dark hover:bg-gray-50 transition-colors">
+                <button
+                  onClick={onClose}
+                  className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-dark hover:bg-gray-50 transition-colors">
                   <X size={18} />
                 </button>
               </div>
@@ -105,7 +105,7 @@ export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, 
                     onToggleWishlist={onToggleWishlist}
                     onAddToCart={onAddToCart}
                     onNavigate={(id) => {
-                      if (modalRef.current) scrollPos.current = modalRef.current.scrollTop;
+                      if (modalRef.current) allProductsScrollPos = modalRef.current.scrollTop;
                       onClose();
                       setTimeout(() => navigate(`/product/${id}`, { state: { fromModal: 'allProducts' } }), 150);
                     }}
