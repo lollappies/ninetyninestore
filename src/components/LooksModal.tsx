@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, Heart, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +14,8 @@ interface LooksModalProps {
 
 export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, cartCount }: LooksModalProps) {
   const navigate = useNavigate();
+  const modalRef = useRef<HTMLDivElement>(null);
+  const scrollPos = useRef<number>(0);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -23,6 +25,17 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
+
+  useEffect(() => {
+    if (isOpen && modalRef.current) {
+      modalRef.current.scrollTop = scrollPos.current;
+    }
+    return () => {
+      if (modalRef.current) {
+        scrollPos.current = modalRef.current.scrollTop;
+      }
+    };
+  }, [isOpen]);
 
   const handleOpenWishlist = () => {
     onClose();
@@ -65,14 +78,16 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
       title: 'Weekend Look Ideas', 
       category: 'Look 5' 
     },
-    { id: 6, 
+    { 
+      id: 6, 
       bg: 'bg-brand-neutral2', 
       image: '/images/looks/6.jpg', 
       title: 'Daily Look Ideas', 
       category: 'Look 6' 
     },
-    { id: 7, 
-      bg: 'bg-brand-neutral3', 
+    { 
+      id: 7, b
+      g: 'bg-brand-neutral3', 
       image: '/images/looks/7.jpg', 
       title: 'Pinky Look Ideas', 
       category: 'Look 7' 
@@ -117,7 +132,14 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.3 }} className="fixed inset-0 z-[9999] bg-white overflow-y-auto">
+        <motion.div
+          ref={modalRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-[9999] bg-white overflow-y-auto">
+
           <header className="sticky top-0 bg-white/90 backdrop-blur-md z-10 border-b border-gray-100 px-4 md:px-12">
             <div className="max-w-[1440px] mx-auto flex items-center justify-between h-[72px]">
               <div className="flex items-center gap-3">
@@ -134,7 +156,11 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
                   )}
                 </button>
                 <button
-                  onClick={() => { onClose(); setTimeout(() => navigate('/cart', { state: { fromModal: 'looks' } }), 150); }}
+                  onClick={() => {
+                    if (modalRef.current) scrollPos.current = modalRef.current.scrollTop;
+                    onClose();
+                    setTimeout(() => navigate('/cart', { state: { fromModal: 'looks' } }), 150);
+                  }}
                   className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
                   <ShoppingBag size={22} />
                   {cartCount > 0 && (
@@ -163,7 +189,11 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.1 }}
                   className="cursor-pointer group"
-                  onClick={() => { onClose(); setTimeout(() => navigate(`/looks/look-${look.id}`, { state: { fromModal: 'looks' } }), 150); }}>
+                  onClick={() => {
+                    if (modalRef.current) scrollPos.current = modalRef.current.scrollTop;
+                    onClose();
+                    setTimeout(() => navigate(`/looks/look-${look.id}`, { state: { fromModal: 'looks' } }), 150);
+                  }}>
                   <div className={`${look.bg} rounded-2xl aspect-[3/4] flex items-center justify-center relative overflow-hidden`}>
                     <img src={look.image} alt={look.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />

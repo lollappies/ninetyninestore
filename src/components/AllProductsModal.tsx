@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, Heart, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -18,17 +18,39 @@ interface AllProductsModalProps {
 
 export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, onAddToCart, onOpenWishlist, wishlistCount, cartCount }: AllProductsModalProps) {
   const navigate = useNavigate();
+  const modalRef = useRef<HTMLDivElement>(null);
+  const scrollPos = useRef<number>(0);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
+  useEffect(() => {
+    if (isOpen && modalRef.current) {
+      modalRef.current.scrollTop = scrollPos.current;
+    }
+    return () => {
+      if (modalRef.current) {
+        scrollPos.current = modalRef.current.scrollTop;
+      }
+    };
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.3 }} className="fixed inset-0 z-[9999] bg-white overflow-y-auto">
+        <motion.div
+          ref={modalRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-[9999] bg-white overflow-y-auto">
+
           <header className="sticky top-0 bg-white/90 backdrop-blur-md z-10 border-b border-gray-100 px-4 md:px-12">
             <div className="max-w-[1440px] mx-auto flex items-center justify-between h-[72px]">
               <div className="flex items-center gap-3">
@@ -45,7 +67,11 @@ export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, 
                   )}
                 </button>
                 <button
-                  onClick={() => { onClose(); setTimeout(() => navigate('/cart', { state: { fromModal: 'allProducts' } }), 150); }}
+                  onClick={() => {
+                    if (modalRef.current) scrollPos.current = modalRef.current.scrollTop;
+                    onClose();
+                    setTimeout(() => navigate('/cart', { state: { fromModal: 'allProducts' } }), 150);
+                  }}
                   className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
                   <ShoppingBag size={22} />
                   {cartCount > 0 && (
@@ -68,13 +94,21 @@ export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, 
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-10">
               {allProducts.map((product, idx) => (
-                <motion.div key={`all_${product.id}_${idx}`} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx % 10 * 0.05 }}>
+                <motion.div
+                  key={`all_${product.id}_${idx}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx % 10 * 0.05 }}>
                   <ProductCard
                     product={product}
                     isWishlisted={wishlist.some((item) => item.id === product.id)}
                     onToggleWishlist={onToggleWishlist}
                     onAddToCart={onAddToCart}
-                    onNavigate={(id) => { onClose(); setTimeout(() => navigate(`/product/${id}`, { state: { fromModal: 'allProducts' } }), 150); }}
+                    onNavigate={(id) => {
+                      if (modalRef.current) scrollPos.current = modalRef.current.scrollTop;
+                      onClose();
+                      setTimeout(() => navigate(`/product/${id}`, { state: { fromModal: 'allProducts' } }), 150);
+                    }}
                   />
                 </motion.div>
               ))}
