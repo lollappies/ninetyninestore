@@ -86,8 +86,8 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
       category: 'Look 6' 
     },
     { 
-      id: 7, b
-      g: 'bg-brand-neutral3', 
+      id: 7, 
+      bg: 'bg-brand-neutral3', 
       image: '/images/looks/7.jpg', 
       title: 'Pinky Look Ideas', 
       category: 'Look 7' 
