@@ -7,6 +7,7 @@ export function StoreJsonLd() {
     "description": "Ninetynine adalah toko fashion wanita terpercaya di Madiun, Jawa Timur. Menjual dress, blouse, tunic, outer, sweater, pants, dan skirt dengan harga terjangkau mulai IDR 69.000. Pengiriman ke seluruh Indonesia.",
     "url": "https://ninetyninestore-nine.vercel.app/",
     "image": "https://ninetyninestore-nine.vercel.app/og-image.jpg",
+    "telephone": "+6281335579050",
     "priceRange": "IDR 69.000 - 325.000",
     "currenciesAccepted": "IDR",
     "paymentAccepted": "Cash, Transfer Bank",
