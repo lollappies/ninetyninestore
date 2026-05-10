@@ -6,6 +6,7 @@ import { ProductCard } from '../components/ProductCard';
 import { Footer } from '../components/Footer';
 import { category as categoryProducts, Product } from '../utils/data';
 import { useEscapeBack } from '../hooks/useEscapeBack';
+import { CategoryJsonLd } from '../components/JsonLd';
 
 interface CategoryPageProps {
   wishlist: Product[];
@@ -40,6 +41,13 @@ export function CategoryPage({ wishlist, onToggleWishlist, onAddToCart, onOpenWi
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="min-h-screen bg-white">
+
+      {/* CategoryJsonLd untuk SEO per kategori */}
+      <CategoryJsonLd
+        categoryName={categoryName || ''}
+        url={`https://ninetyninestore-nine.vercel.app/category/${categoryName}`}
+      />
+
       <header className="sticky top-0 z-30 bg-white border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-[1440px] mx-auto flex items-center justify-between">
           <div className="flex items-center">

@@ -29,7 +29,7 @@ import { SalePage } from './pages/SalePage';
 import { SaleDetailPage } from './pages/SaleDetailPage';
 import { LooksDetailPage } from './pages/LooksDetailPage';
 import { ScrollToTop } from './components/ScrollToTop';
-import { StoreJsonLd } from './components/JsonLd';
+import { StoreJsonLd, FaqJsonLd } from './components/JsonLd';
 
 export interface CartItem {
   product: Product;
@@ -131,7 +131,6 @@ export function App() {
   return (
     <CustomToastProvider>
       <ScrollToTop />
-
       <div className="min-h-screen bg-white">
         {isLandingPage && (
           <Navbar
@@ -154,6 +153,7 @@ export function App() {
               element={
                 <>
                   <StoreJsonLd />
+                  <FaqJsonLd />
                   <HeroSection onExploreLooks={() => setIsLooksOpen(true)} />
                   <Marquee />
                   <BestsellerSection

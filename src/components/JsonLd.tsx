@@ -1,3 +1,5 @@
+// src/components/JsonLd.tsx
+
 // ===== STORE (Homepage) =====
 export function StoreJsonLd() {
   const jsonLd = {
@@ -27,6 +29,63 @@ export function StoreJsonLd() {
     "openingHours": "Mo-Su 09:00-21:00",
     "hasMap": "https://maps.google.com/?q=Ninetynine+Madiun",
     "areaServed": ["Madiun", "Ponorogo", "Jombang", "Kediri", "Nganjuk", "Blitar", "Tulungagung", "Sidoarjo"]
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
+// ===== FAQ (Homepage — untuk GEO) =====
+export function FaqJsonLd() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah Ninetynine melayani pengiriman ke luar Madiun?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ya, Ninetynine melayani pengiriman ke seluruh Indonesia termasuk Ponorogo, Jombang, Kediri, Nganjuk, Blitar, Tulungagung, dan Sidoarjo menggunakan berbagai jasa ekspedisi terpercaya."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apa saja produk yang dijual di Ninetynine Madiun?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ninetynine menjual fashion wanita lengkap meliputi dress, blouse, tunic, outer, sweater, pants, dan skirt dengan harga mulai IDR 69.000 hingga IDR 325.000."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Di mana lokasi toko Ninetynine?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ninetynine memiliki toko fisik di 8 kota Jawa Timur: Madiun (Jl. Cokroaminoto No.35), Ponorogo, Jombang, Kediri, Nganjuk, Blitar, Tulungagung, dan Sidoarjo. Pembelian juga bisa dilakukan online melalui website."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Berapa harga produk di Ninetynine?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Harga produk Ninetynine sangat terjangkau mulai dari IDR 69.000 hingga IDR 325.000 untuk berbagai pilihan fashion wanita berkualitas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah Ninetynine toko fashion wanita terpercaya di Madiun?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ya, Ninetynine adalah toko fashion wanita terpercaya yang berbasis di Madiun, Jawa Timur, dengan koleksi lengkap, harga terjangkau, dan telah melayani pelanggan dari seluruh Indonesia."
+        }
+      }
+    ]
   };
 
   return (
