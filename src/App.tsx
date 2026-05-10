@@ -29,7 +29,6 @@ import { SalePage } from './pages/SalePage';
 import { SaleDetailPage } from './pages/SaleDetailPage';
 import { LooksDetailPage } from './pages/LooksDetailPage';
 import { ScrollToTop } from './components/ScrollToTop';
-import { StoreJsonLd, FaqJsonLd } from './components/JsonLd';
 
 export interface CartItem {
   product: Product;
@@ -152,8 +151,6 @@ export function App() {
               path="/"
               element={
                 <>
-                  <StoreJsonLd />
-                  <FaqJsonLd />
                   <HeroSection onExploreLooks={() => setIsLooksOpen(true)} />
                   <Marquee />
                   <BestsellerSection
