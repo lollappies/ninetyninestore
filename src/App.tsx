@@ -14,7 +14,8 @@ import { Footer } from './components/Footer';
 import { WishlistModal } from './components/WishlistModal';
 import { LooksModal } from './components/LooksModal';
 import { AllProductsModal } from './components/AllProductsModal';
-import { FaqButton } from './components/FaqButton'; // ← BARU
+import { FaqButton } from './components/FaqButton';
+import { StoreJsonLd, FaqJsonLd } from './components/JsonLd'; // ← SEO/GEO
 import { Product } from './utils/data';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CheckoutPage } from './pages/CheckoutPage';
@@ -129,7 +130,6 @@ export function App() {
 
   const showFooter = !noFooterPages.some(path => location.pathname.startsWith(path));
 
-  // Sembunyikan FAQ button di halaman transaksi & login saja
   const hideFaqPages = ['/checkout', '/payment', '/order-complete', '/login'];
   const showFaqButton = !hideFaqPages.some(path => location.pathname.startsWith(path));
 
@@ -153,10 +153,16 @@ export function App() {
 
         <main>
           <Routes>
+
+            {/* ===== HOMEPAGE ===== */}
             <Route
               path="/"
               element={
                 <>
+                  {/* SEO & GEO JSON-LD — hanya di homepage, tidak duplikat */}
+                  <StoreJsonLd />
+                  <FaqJsonLd />
+
                   <HeroSection onExploreLooks={() => setIsLooksOpen(true)} />
                   <Marquee />
                   <BestsellerSection
@@ -175,6 +181,8 @@ export function App() {
                 </>
               }
             />
+
+            {/* ===== PRODUCT DETAIL ===== */}
             <Route
               path="/product/:id"
               element={
@@ -186,15 +194,21 @@ export function App() {
                 />
               }
             />
+
+            {/* ===== CART & TRANSAKSI ===== */}
             <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
             <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/order-complete" element={<OrderCompletePage setCartItems={setCartItems} />} />
+
+            {/* ===== AUTH & PROFIL ===== */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/profile" element={<ProfilePage onOpenWishlist={() => handleOpenWishlist()} />} />
             <Route path="/address" element={<AddressPage onOpenWishlist={() => handleOpenWishlist()} />} />
             <Route path="/orders" element={<OrdersPage onOpenWishlist={() => handleOpenWishlist()} />} />
             <Route path="/purchase-history" element={<PurchaseHistoryPage onOpenWishlist={() => handleOpenWishlist()} />} />
+
+            {/* ===== KATEGORI ===== */}
             <Route
               path="/category/:categoryName"
               element={
@@ -208,6 +222,8 @@ export function App() {
                 />
               }
             />
+
+            {/* ===== SALE ===== */}
             <Route
               path="/sale"
               element={
@@ -231,6 +247,8 @@ export function App() {
                 />
               }
             />
+
+            {/* ===== LOOKS ===== */}
             <Route
               path="/looks/:lookId"
               element={
@@ -244,12 +262,13 @@ export function App() {
                 />
               }
             />
+
           </Routes>
         </main>
 
         {showFooter && <Footer />}
 
-        {/* ← FAQ Floating Button global */}
+        {/* FAQ Floating Button — global di semua halaman kecuali checkout/payment/login */}
         {showFaqButton && <FaqButton />}
 
         <WishlistModal
