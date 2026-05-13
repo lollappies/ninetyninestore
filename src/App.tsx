@@ -1,3 +1,4 @@
+// src/App.tsx
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CustomToastProvider } from './components/CustomToast';
@@ -13,6 +14,7 @@ import { Footer } from './components/Footer';
 import { WishlistModal } from './components/WishlistModal';
 import { LooksModal } from './components/LooksModal';
 import { AllProductsModal } from './components/AllProductsModal';
+import { FaqButton } from './components/FaqButton'; // ← BARU
 import { Product } from './utils/data';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CheckoutPage } from './pages/CheckoutPage';
@@ -126,6 +128,10 @@ export function App() {
   ];
 
   const showFooter = !noFooterPages.some(path => location.pathname.startsWith(path));
+
+  // Sembunyikan FAQ button di halaman transaksi & login saja
+  const hideFaqPages = ['/checkout', '/payment', '/order-complete', '/login'];
+  const showFaqButton = !hideFaqPages.some(path => location.pathname.startsWith(path));
 
   return (
     <CustomToastProvider>
@@ -242,6 +248,9 @@ export function App() {
         </main>
 
         {showFooter && <Footer />}
+
+        {/* ← FAQ Floating Button global */}
+        {showFaqButton && <FaqButton />}
 
         <WishlistModal
           isOpen={isWishlistOpen}
