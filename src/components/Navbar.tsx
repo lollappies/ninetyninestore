@@ -27,6 +27,7 @@ export function Navbar({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [lang, setLang] = useState<'ID' | 'EN'>('ID');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -131,8 +132,10 @@ export function Navbar({
           </a>
         </nav>
 
-        {/* Icons */}
+        {/* Icons + Language Toggle */}
         <div className={iconsClass}>
+
+          {/* Search */}
           <div className="relative" ref={searchRef}>
             <button
               aria-label="Search"
@@ -205,6 +208,7 @@ export function Navbar({
             )}
           </div>
 
+          {/* Wishlist */}
           <button
             aria-label="Wishlist"
             onClick={onOpenWishlist}
@@ -217,6 +221,7 @@ export function Navbar({
             )}
           </button>
 
+          {/* Cart */}
           <button
             aria-label="Cart"
             onClick={() => navigate('/cart')}
@@ -229,14 +234,39 @@ export function Navbar({
             )}
           </button>
 
+          {/* Account */}
           <button
             aria-label="Account"
             onClick={() => navigate('/profile')}
             className="hover:opacity-70 transition-opacity duration-300">
             <User size={20} strokeWidth={1.5} />
           </button>
-        </div>
 
+          {/* Language Toggle — desktop only */}
+          <div className={`hidden md:flex items-center rounded-full p-[3px] transition-all duration-500 ease-in-out ${
+            isScrolled
+              ? 'bg-[#f5ede4] border border-[#d6c4b0]'
+              : 'bg-white/10 border border-white/25'
+          }`}>
+            {(['ID', 'EN'] as const).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`text-[10px] font-medium tracking-widest px-[9px] py-1 rounded-full transition-all duration-500 ease-in-out ${
+                  lang === l
+                    ? isScrolled
+                      ? 'bg-[#2c1810] text-[#f5ede4]'
+                      : 'bg-white/85 text-[#2c1810]'
+                    : isScrolled
+                      ? 'text-[#a0876e]'
+                      : 'text-white/45'
+                }`}>
+                {l}
+              </button>
+            ))}
+          </div>
+
+        </div>
       </div>
     </header>
   );

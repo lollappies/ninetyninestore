@@ -42,14 +42,14 @@ const faqs = [
   {
     question: "Jam operasional toko Ninetynine?",
     answer:
-      "Toko fisik Ninetynine buka setiap hari Senin – Minggu pukul 09.00 – 21.00 WIB. Untuk pembelian online tersedia 24 jam melalui website.",
+      "Toko fisik buka setiap hari Senin – Minggu pukul 09.00 – 21.00 WIB. Pembelian online tersedia 24 jam melalui website.",
   },
 ];
 
 export function FaqPanel({ isOpen, onClose }: FaqPanelProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  // Tutup scroll body saat panel terbuka
+  // Lock scroll body saat panel terbuka
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -62,7 +62,7 @@ export function FaqPanel({ isOpen, onClose }: FaqPanelProps) {
     };
   }, [isOpen]);
 
-  // Tutup saat tekan Escape
+  // Tutup dengan tombol Escape
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -77,10 +77,10 @@ export function FaqPanel({ isOpen, onClose }: FaqPanelProps) {
 
   return (
     <>
-      {/* JSON-LD SEO tetap dimuat */}
+      {/* JSON-LD untuk SEO & GEO — tidak terlihat di UI */}
       <FaqJsonLd />
 
-      {/* Overlay */}
+      {/* Overlay gelap */}
       <div
         onClick={onClose}
         className={`fixed inset-0 z-50 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
@@ -88,15 +88,14 @@ export function FaqPanel({ isOpen, onClose }: FaqPanelProps) {
         }`}
       />
 
-      {/* Panel — slide dari bawah */}
+      {/* Panel slide dari bawah */}
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Pertanyaan Umum (FAQ)"
+        aria-label="Pertanyaan Umum FAQ"
         className={`fixed bottom-0 left-0 right-0 z-50 bg-white rounded-t-2xl shadow-2xl
-          transition-transform duration-300 ease-out
-          ${isOpen ? "translate-y-0" : "translate-y-full"}
-          max-h-[80vh] flex flex-col`}
+          transition-transform duration-300 ease-out max-h-[80vh] flex flex-col
+          ${isOpen ? "translate-y-0" : "translate-y-full"}`}
       >
         {/* Handle bar */}
         <div className="flex justify-center pt-3 pb-1">
@@ -106,16 +105,40 @@ export function FaqPanel({ isOpen, onClose }: FaqPanelProps) {
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-3 border-b border-gray-100">
           <div className="flex items-center gap-2">
-            {/* Mini FAQ icon */}
-            <svg width="28" height="28" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Mini icon FAQ */}
+            <svg
+              width="26" height="26"
+              viewBox="0 0 110 110"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="36" y="32" width="62" height="44" rx="10"
+                fill="none" stroke="#111111" strokeWidth="5"
+              />
+              <polygon
+                points="68,76 80,76 70,90"
+                fill="none" stroke="#111111" strokeWidth="4" strokeLinejoin="round"
+              />
               <rect x="8" y="14" width="72" height="50" rx="10" fill="#111111" />
               <polygon points="22,64 14,80 38,64" fill="#111111" />
-              <rect x="36" y="32" width="62" height="44" rx="10" fill="none" stroke="#111111" strokeWidth="5" />
-              <polygon points="68,76 80,76 70,90" fill="none" stroke="#111111" strokeWidth="4" strokeLinejoin="round" />
-              <text x="44" y="48" textAnchor="middle" fill="white" fontSize="20" fontWeight="900" fontFamily="'Arial Black', Arial, sans-serif" letterSpacing="2">FAQ</text>
+              <text
+                x="44" y="48"
+                textAnchor="middle"
+                fill="white"
+                fontSize="20"
+                fontWeight="900"
+                fontFamily="'Arial Black', Arial, sans-serif"
+                letterSpacing="2"
+              >
+                FAQ
+              </text>
             </svg>
-            <h2 className="text-base font-bold text-gray-900 tracking-wide">Pertanyaan Umum</h2>
+            <h2 className="text-base font-bold text-gray-900 tracking-wide">
+              Pertanyaan Umum
+            </h2>
           </div>
+
           <button
             onClick={onClose}
             aria-label="Tutup FAQ"
@@ -125,13 +148,13 @@ export function FaqPanel({ isOpen, onClose }: FaqPanelProps) {
           </button>
         </div>
 
-        {/* FAQ list — scrollable */}
-        <div className="overflow-y-auto flex-1 px-4 py-3 divide-y divide-gray-100">
+        {/* Daftar FAQ — scrollable */}
+        <div className="overflow-y-auto flex-1 px-4 py-2 divide-y divide-gray-100">
           {faqs.map((faq, index) => (
-            <div key={index} className="py-1">
+            <div key={index}>
               <button
                 onClick={() => toggle(index)}
-                className="w-full flex items-start justify-between gap-3 py-3 text-left group"
+                className="w-full flex items-start justify-between gap-3 py-3.5 text-left group"
                 aria-expanded={openIndex === index}
               >
                 <span className="text-sm font-semibold text-gray-800 leading-snug group-hover:text-black transition-colors">
@@ -145,13 +168,13 @@ export function FaqPanel({ isOpen, onClose }: FaqPanelProps) {
                 />
               </button>
 
-              {/* Accordion answer */}
+              {/* Jawaban accordion */}
               <div
                 className={`overflow-hidden transition-all duration-300 ease-out ${
                   openIndex === index ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <p className="pb-3 text-sm text-gray-600 leading-relaxed pr-6">
+                <p className="pb-4 text-sm text-gray-600 leading-relaxed pr-6">
                   {faq.answer}
                 </p>
               </div>
@@ -159,8 +182,8 @@ export function FaqPanel({ isOpen, onClose }: FaqPanelProps) {
           ))}
         </div>
 
-        {/* Footer */}
-        <div className="px-5 py-3 border-t border-gray-100 bg-gray-50 rounded-b-none">
+        {/* Footer — link WhatsApp */}
+        <div className="px-5 py-3 border-t border-gray-100 bg-gray-50">
           <p className="text-xs text-center text-gray-400">
             Masih ada pertanyaan?{" "}
             <a
