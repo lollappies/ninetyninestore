@@ -12,40 +12,33 @@ export function FaqButton() {
         onClick={() => setIsOpen(true)}
         aria-label="FAQ - Pertanyaan Umum"
         className="fixed bottom-6 right-6 z-50 group"
-        style={{ filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.30))" }}
+        style={{ filter: "drop-shadow(0 4px 20px rgba(0,0,0,0.25))" }}
       >
-        {/* SVG icon dua chat bubble — transparan, tanpa background putih */}
         <svg
-          width="62"
-          height="62"
-          viewBox="0 0 110 110"
+          width="64"
+          height="64"
+          viewBox="0 0 64 64"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="transition-transform duration-200 group-hover:scale-110 group-active:scale-95"
         >
-          {/* Bubble belakang kanan (outline) */}
-          <rect
-            x="36" y="32" width="62" height="44" rx="10"
-            fill="none" stroke="#111111" strokeWidth="5"
-          />
-          <polygon
-            points="68,76 80,76 70,90"
-            fill="none" stroke="#111111" strokeWidth="4" strokeLinejoin="round"
-          />
+          {/* Bubble body */}
+          <rect x="2" y="2" width="56" height="44" rx="10" fill="#111111" />
 
-          {/* Bubble depan kiri (solid) */}
-          <rect x="8" y="14" width="72" height="50" rx="10" fill="#111111" />
-          <polygon points="22,64 14,80 38,64" fill="#111111" />
+          {/* Ekor bubble pojok kiri bawah */}
+          <polygon points="8,46 4,60 22,46" fill="#111111" />
 
-          {/* Teks FAQ */}
+          {/* Teks FAQ di tengah bubble */}
           <text
-            x="44" y="48"
+            x="30"
+            y="30"
             textAnchor="middle"
+            dominantBaseline="middle"
             fill="white"
-            fontSize="20"
+            fontSize="17"
             fontWeight="900"
             fontFamily="'Arial Black', Arial, sans-serif"
-            letterSpacing="2"
+            letterSpacing="2.5"
           >
             FAQ
           </text>

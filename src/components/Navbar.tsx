@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { allProducts, Product } from '../utils/data';
+import { useLang } from '../context/LanguageContext';
 
 interface NavbarProps {
   wishlistCount: number;
@@ -27,16 +28,14 @@ export function Navbar({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [lang, setLang] = useState<'ID' | 'EN'>('ID');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const { lang, setLang, t } = useLang();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -61,7 +60,7 @@ export function Navbar({
       (product) =>
         product.name?.toLowerCase().includes(query) ||
         product.series?.toLowerCase().includes(query) ||
-        (product.price?.toLowerCase().includes(query))
+        product.price?.toLowerCase().includes(query)
     );
     setSearchResults(results);
   }, [searchQuery]);
@@ -98,7 +97,7 @@ export function Navbar({
           <button
             onClick={() => navigate('/sale')}
             className="text-brand-accent text-xs font-bold tracking-[0.15em] uppercase hover:opacity-80 transition-opacity duration-300">
-            Sale
+            {t('nav_sale')}
           </button>
 
           <div
@@ -106,7 +105,7 @@ export function Navbar({
             onMouseEnter={() => setIsDropdownOpen(true)}
             onMouseLeave={() => setIsDropdownOpen(false)}>
             <button className={categoryBtnClass}>
-              Category
+              {t('nav_category')}
               <ChevronDown size={14} className={chevronClass} />
             </button>
             <div className={dropdownClass}>
@@ -128,7 +127,7 @@ export function Navbar({
           </div>
 
           <a href="#stores" className={offlineStoreClass}>
-            Offline Store
+            {t('nav_offline_store')}
           </a>
         </nav>
 
@@ -156,7 +155,7 @@ export function Navbar({
                     <input
                       id="searchInput"
                       type="text"
-                      placeholder="Search products, series..."
+                      placeholder={t('nav_search_placeholder')}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full pl-9 pr-4 py-2 bg-gray-50 border-none rounded-lg text-sm text-brand-dark focus:ring-0 focus:outline-none"
@@ -199,7 +198,7 @@ export function Navbar({
                       </div>
                     ) : (
                       <div className="p-4 text-center text-sm text-gray-500">
-                        No products found for "{searchQuery}"
+                        {t('nav_search_empty')} "{searchQuery}"
                       </div>
                     )}
                   </div>
