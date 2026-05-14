@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLang } from '../context/LanguageContext';
+import { useLanguage } from '../context/LanguageContext';
 
 interface MobileMenuProps {
   isOpen: boolean;

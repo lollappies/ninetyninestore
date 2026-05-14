@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { X, ShoppingBag, Trash2, ArrowRight, Package } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
-import { useLang } from '../context/LanguageContext';
+import { useLanguage } from '../context/LanguageContext';
 import { CartItem } from '../App';
 
 interface CartPageProps {

@@ -1,6 +1,6 @@
 // src/components/Marquee.tsx
 import React, { Fragment } from 'react';
-import { useLang } from '../context/LanguageContext';
+import { useLanguage } from '../context/LanguageContext';
 
 export function Marquee() {
   const { t } = useLang();

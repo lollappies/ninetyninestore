@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ProductCard } from './ProductCard';
 import { bestsellers, Product } from '../utils/data';
-import { useLang } from '../context/LanguageContext';
+import { useLanguage } from '../context/LanguageContext';
 
 interface BestsellerSectionProps {
   wishlist: Product[];

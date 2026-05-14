@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { allProducts, Product } from '../utils/data';
-import { useLang } from '../context/LanguageContext';
+import { useLanguage } from '../context/LanguageContext';
 
 interface NavbarProps {
   wishlistCount: number;

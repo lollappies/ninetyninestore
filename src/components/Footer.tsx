@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useCustomToast } from './CustomToast';
-import { useLang } from '../context/LanguageContext';
+import { useLanguage } from '../context/LanguageContext';
 
 function InstagramIcon() {
   return (
