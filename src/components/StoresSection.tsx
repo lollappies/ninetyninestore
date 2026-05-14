@@ -30,23 +30,35 @@ function getStoreStatus(): StoreStatus {
 }
 
 function StatusBadge({ status, t }: { status: StoreStatus; t: (k: any) => string }) {
-  const config = {
-    open:          { dot: 'bg-emerald-400', ping: true,  label: () => t('store_open') },
-    closed:        { dot: 'bg-red-400',     ping: false, label: () => t('store_closed') },
-    'closing-soon':{ dot: 'bg-amber-400',   ping: true,  label: () => t('store_closing_soon') },
-    'opening-soon':{ dot: 'bg-blue-400',    ping: false, label: () => t('store_opening_soon') },
+  // dot color: hijau = buka, merah = tutup, orange = segera buka/tutup
+  const dotColor = {
+    open:           'bg-emerald-400',
+    closed:         'bg-red-400',
+    'closing-soon': 'bg-orange-400',
+    'opening-soon': 'bg-orange-400',
+  }[status];
+
+  const ping = status === 'open' || status === 'closing-soon' || status === 'opening-soon';
+
+  const label = {
+    open:           t('store_open'),
+    closed:         t('store_closed'),
+    'closing-soon': t('store_closing_soon'),
+    'opening-soon': t('store_opening_soon'),
   }[status];
 
   return (
-    <div className="inline-flex items-center gap-1.5 bg-black/80 px-2.5 py-1 rounded-sm">
-      <span className="relative flex h-1.5 w-1.5 shrink-0">
-        {config.ping && (
-          <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${config.dot} opacity-70`} />
+    <div className="inline-flex items-center gap-1.5 bg-black/75 backdrop-blur-sm px-2.5 py-1.5 rounded-md">
+      {/* Dot */}
+      <span className="relative flex h-2 w-2 shrink-0">
+        {ping && (
+          <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${dotColor} opacity-75`} />
         )}
-        <span className={`relative inline-flex rounded-full h-1.5 w-1.5 ${config.dot}`} />
+        <span className={`relative inline-flex rounded-full h-2 w-2 ${dotColor}`} />
       </span>
-      <span className="text-[9px] font-bold tracking-[0.15em] uppercase text-white">
-        {config.label()}
+      {/* Label teks */}
+      <span className="text-[9px] font-bold tracking-[0.12em] uppercase text-white whitespace-nowrap">
+        {label}
       </span>
     </div>
   );
@@ -61,7 +73,6 @@ export function StoresSection() {
     return () => clearInterval(interval);
   }, []);
 
-  // Sub-label jam sesuai status
   const hoursLabel = {
     open:           t('store_hours'),
     closed:         t('store_opens_at'),
@@ -102,25 +113,25 @@ export function StoresSection() {
               rel="noopener noreferrer"
               className="flex flex-col gap-3 cursor-pointer no-underline">
 
-              {/* Foto + badge status di pojok kiri atas */}
+              {/* Foto + badge status pojok kiri atas */}
               <div className="relative aspect-square overflow-hidden bg-brand-neutral2 rounded-xl">
                 <img
                   src={store.image}
                   alt={store.city}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute top-2 left-2">
+                {/* Badge dengan teks label */}
+                <div className="absolute top-2.5 left-2.5">
                   <StatusBadge status={status} t={t} />
                 </div>
               </div>
 
-              {/* Info toko — nama, alamat, jam operasional */}
+              {/* Nama kota, alamat, jam operasional */}
               <div className="flex flex-col gap-0.5 px-1 text-center">
                 <h3 className="font-serif text-base font-medium text-brand-dark">
                   {store.city}
                 </h3>
                 <p className="text-xs text-gray-500">{store.address}</p>
-                {/* Jam operasional — di bawah alamat, seperti semula */}
                 <p className="text-[9px] tracking-widest uppercase text-brand-accent font-bold mt-1">
                   {hoursLabel}
                 </p>
