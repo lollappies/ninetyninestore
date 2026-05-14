@@ -28,3 +28,5 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 export function useLang() {
   return useContext(LanguageContext);
 }
+
+export const useLanguage = useLang;
