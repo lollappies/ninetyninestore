@@ -7,7 +7,6 @@ export function FaqButton() {
 
   return (
     <>
-      {/* Floating FAQ Button — fixed pojok kanan bawah */}
       <button
         onClick={() => setIsOpen(true)}
         aria-label="FAQ - Pertanyaan Umum"
@@ -22,7 +21,7 @@ export function FaqButton() {
           xmlns="http://www.w3.org/2000/svg"
           className="transition-transform duration-200 group-hover:scale-110 group-active:scale-95"
         >
-          {/* Bubble body — outline only, no fill */}
+          {/* Bubble body — outline only */}
           <rect
             x="3" y="3"
             width="56" height="44"
@@ -32,7 +31,7 @@ export function FaqButton() {
             strokeWidth="3"
           />
 
-          {/* Ekor bubble pojok kiri bawah — outline only */}
+          {/* Ekor bubble pojok kiri bawah */}
           <path
             d="M10 47 L4 61 L24 47 Z"
             fill="none"
@@ -41,25 +40,25 @@ export function FaqButton() {
             strokeLinejoin="round"
           />
 
-          {/* Teks FAQ — font serif seperti nama produk Ninetynine */}
+          {/* FAQ — font sama persis dengan SALE di navbar:
+              font-bold, tracking-[0.15em], uppercase, sans-serif */}
           <text
             x="31"
             y="25"
             textAnchor="middle"
             dominantBaseline="middle"
             fill="#111111"
-            fontSize="15"
-            fontWeight="500"
-            fontFamily="'Playfair Display', 'Georgia', 'Times New Roman', serif"
-            letterSpacing="2"
-            fontStyle="italic"
+            fontSize="12"
+            fontWeight="700"
+            fontFamily="inherit"
+            letterSpacing="1.8"
+            style={{ textTransform: 'uppercase' }}
           >
             FAQ
           </text>
         </svg>
       </button>
 
-      {/* Panel FAQ */}
       <FaqPanel isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
