@@ -3,7 +3,7 @@ import { Heart, ShoppingBag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCustomToast } from './CustomToast';
 import { Product, allProducts } from '../utils/data';
-export const useLanguage = useLang;
+import { useLanguage } from '../context/LanguageContext';
 
 interface ProductCardProps {
   product: Product;
