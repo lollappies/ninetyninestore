@@ -22,72 +22,77 @@ function getStoreStatus(): StoreStatus {
   const isOpen = totalMinutes >= openMinutes && totalMinutes < closeMinutes;
   if (isOpen) {
     return closeMinutes - totalMinutes <= soonMinutes ? 'closing-soon' : 'open';
-  } else {
-    return totalMinutes < openMinutes && openMinutes - totalMinutes <= soonMinutes
-      ? 'opening-soon'
-      : 'closed';
   }
+  return totalMinutes < openMinutes && openMinutes - totalMinutes <= soonMinutes
+    ? 'opening-soon'
+    : 'closed';
 }
 
-function StatusBadge({ status, t }: { status: StoreStatus; t: (k: any) => string }) {
-  const dotColor = {
-    open:           'bg-emerald-400',
-    closed:         'bg-red-400',
-    'closing-soon': 'bg-orange-400',
-    'opening-soon': 'bg-orange-400',
-  }[status];
+function StatusBadge({ status, lang }: { status: StoreStatus; lang: string }) {
+  const dotColor: Record<StoreStatus, string> = {
+    open:           '#34d399', // emerald
+    closed:         '#f87171', // red
+    'closing-soon': '#fb923c', // orange
+    'opening-soon': '#fb923c', // orange
+  };
 
   const ping = status !== 'closed';
 
-  const label = {
-    open:           t('store_open'),
-    closed:         t('store_closed'),
-    'closing-soon': t('store_closing_soon'),
-    'opening-soon': t('store_opening_soon'),
-  }[status];
+  // label hardcode dua bahasa langsung di sini supaya pasti tampil
+  const labelMap: Record<StoreStatus, { id: string; en: string }> = {
+    open:           { id: 'BUKA',         en: 'OPEN' },
+    closed:         { id: 'TUTUP',        en: 'CLOSED' },
+    'closing-soon': { id: 'SEGERA TUTUP', en: 'CLOSING SOON' },
+    'opening-soon': { id: 'SEGERA BUKA',  en: 'OPENING SOON' },
+  };
+
+  const label = lang === 'ID' ? labelMap[status].id : labelMap[status].en;
+  const color = dotColor[status];
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '6px',
-        backgroundColor: 'rgba(0,0,0,0.72)',
-        backdropFilter: 'blur(4px)',
-        padding: '5px 10px',
-        borderRadius: '6px',
-        whiteSpace: 'nowrap',
-      }}
-    >
+    <div style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '6px',
+      backgroundColor: 'rgba(0,0,0,0.75)',
+      backdropFilter: 'blur(6px)',
+      WebkitBackdropFilter: 'blur(6px)',
+      padding: '6px 12px',
+      borderRadius: '8px',
+      border: '1px solid rgba(255,255,255,0.15)',
+      minWidth: 'max-content',
+    }}>
       {/* Dot */}
       <span style={{ position: 'relative', display: 'flex', width: '8px', height: '8px', flexShrink: 0 }}>
         {ping && (
-          <span
-            style={{
-              position: 'absolute',
-              inset: 0,
-              borderRadius: '50%',
-              animation: 'ping 1.2s cubic-bezier(0,0,0.2,1) infinite',
-            }}
-            className={dotColor}
-          />
+          <span style={{
+            position: 'absolute',
+            inset: 0,
+            borderRadius: '50%',
+            backgroundColor: color,
+            opacity: 0.6,
+            animation: 'ping 1.4s ease-in-out infinite',
+          }} />
         )}
-        <span
-          style={{ position: 'relative', display: 'inline-flex', width: '8px', height: '8px', borderRadius: '50%' }}
-          className={dotColor}
-        />
+        <span style={{
+          position: 'relative',
+          width: '8px',
+          height: '8px',
+          borderRadius: '50%',
+          backgroundColor: color,
+          flexShrink: 0,
+        }} />
       </span>
-      {/* Label */}
-      <span
-        style={{
-          fontSize: '10px',
-          fontWeight: 700,
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          color: '#ffffff',
-          lineHeight: 1,
-        }}
-      >
+      {/* Label teks */}
+      <span style={{
+        fontSize: '11px',
+        fontWeight: 700,
+        letterSpacing: '0.08em',
+        color: '#ffffff',
+        whiteSpace: 'nowrap',
+        lineHeight: 1,
+        fontFamily: 'inherit',
+      }}>
         {label}
       </span>
     </div>
@@ -95,7 +100,7 @@ function StatusBadge({ status, t }: { status: StoreStatus; t: (k: any) => string
 }
 
 export function StoresSection() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   const [status, setStatus] = useState<StoreStatus>(getStoreStatus());
 
   useEffect(() => {
@@ -104,10 +109,10 @@ export function StoresSection() {
   }, []);
 
   const hoursLabel = {
-    open:           t('store_hours'),
-    closed:         t('store_opens_at'),
-    'closing-soon': t('store_closes_at'),
-    'opening-soon': t('store_opens_at'),
+    open:           '09.00 – 21.00 WIB',
+    closed:         lang === 'ID' ? 'Buka pukul 09.00 WIB' : 'Opens at 09.00 WIB',
+    'closing-soon': lang === 'ID' ? 'Tutup pukul 21.00 WIB' : 'Closes at 21.00 WIB',
+    'opening-soon': lang === 'ID' ? 'Buka pukul 09.00 WIB' : 'Opens at 09.00 WIB',
   }[status];
 
   return (
@@ -143,19 +148,18 @@ export function StoresSection() {
               rel="noopener noreferrer"
               className="flex flex-col gap-3 cursor-pointer no-underline">
 
-              {/* Foto + badge pojok kiri atas */}
               <div className="relative aspect-square overflow-hidden bg-brand-neutral2 rounded-xl">
                 <img
                   src={store.image}
                   alt={store.city}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div style={{ position: 'absolute', top: '10px', left: '10px' }}>
-                  <StatusBadge status={status} t={t} />
+                {/* Badge pojok kiri atas */}
+                <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 10 }}>
+                  <StatusBadge status={status} lang={lang} />
                 </div>
               </div>
 
-              {/* Nama, alamat, jam */}
               <div className="flex flex-col gap-0.5 px-1 text-center">
                 <h3 className="font-serif text-base font-medium text-brand-dark">
                   {store.city}
