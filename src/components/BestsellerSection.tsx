@@ -1,7 +1,9 @@
+// src/components/BestsellerSection.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ProductCard } from './ProductCard';
 import { bestsellers, Product } from '../utils/data';
+import { useLang } from '../context/LanguageContext';
 
 interface BestsellerSectionProps {
   wishlist: Product[];
@@ -14,6 +16,8 @@ export function BestsellerSection({
   onToggleWishlist,
   onAddToCart
 }: BestsellerSectionProps) {
+  const { t } = useLang();
+
   return (
     <section id="bestseller" className="py-24 px-4 md:px-8 max-w-[1440px] mx-auto">
       <motion.div
@@ -23,10 +27,10 @@ export function BestsellerSection({
         className="text-center mb-16"
       >
         <span className="text-[10px] tracking-[0.2em] uppercase text-gray-500 block mb-3">
-          Most Loved
+          {t('section_bestseller_label')}
         </span>
         <h2 className="font-serif text-3xl md:text-4xl text-brand-dark">
-          Best Seller
+          {t('section_bestseller_title')}
         </h2>
       </motion.div>
 
@@ -40,7 +44,7 @@ export function BestsellerSection({
             transition={{ delay: idx * 0.1 }}
           >
             <ProductCard
-              product={{ ...product, price: undefined }} // ← harga disembunyikan
+              product={{ ...product, price: undefined }}
               isWishlisted={wishlist.some((item) => item.id === product.id)}
               onToggleWishlist={onToggleWishlist}
               onAddToCart={onAddToCart}

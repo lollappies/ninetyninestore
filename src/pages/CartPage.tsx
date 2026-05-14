@@ -1,7 +1,9 @@
+// src/pages/CartPage.tsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { X, ShoppingBag, Trash2, ArrowRight, Package } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
+import { useLang } from '../context/LanguageContext';
 import { CartItem } from '../App';
 
 interface CartPageProps {
@@ -13,13 +15,13 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const { showToast } = useCustomToast();
+  const { t } = useLang();
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   useEffect(() => {
     setSelectedItems(cartItems.map((_, index) => index));
   }, [cartItems.length]);
 
-  // Handle escape key — balik ke looks kalau dari looks, selainnya navigate(-1)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose();
@@ -60,7 +62,7 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
         .filter((i) => i !== index)
         .map((i) => (i > index ? i - 1 : i))
     );
-    showToast('Produk dihapus dari keranjang');
+    showToast(t('cart_remove'));
   };
 
   const removeSelected = () => {
@@ -68,7 +70,7 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
     const newItems = cartItems.filter((_, index) => !selectedItems.includes(index));
     setCartItems(newItems);
     setSelectedItems([]);
-    showToast(`${count} produk dihapus dari keranjang`);
+    showToast(`${count} ${t('cart_remove')}`);
   };
 
   const selectedCartItems = cartItems.filter((_, index) => selectedItems.includes(index));
@@ -81,14 +83,14 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
   const formatCurrency = (val: number) => new Intl.NumberFormat('id-ID').format(val);
 
   const handleClose = () => {
-  if (location.state?.fromModal === 'allProducts') {
-    navigate('/', { state: { openAllProducts: true } });
-  } else if (location.state?.fromModal === 'looks') {
-    navigate('/', { state: { openLooks: true } });
-  } else {
-    navigate(-1);
-  }
-};
+    if (location.state?.fromModal === 'allProducts') {
+      navigate('/', { state: { openAllProducts: true } });
+    } else if (location.state?.fromModal === 'looks') {
+      navigate('/', { state: { openLooks: true } });
+    } else {
+      navigate(-1);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -99,7 +101,7 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
             Ninetynine
           </span>
           <span className="text-[10px] tracking-[0.15em] uppercase text-gray-400">
-            / Shopping Cart
+            / {t('cart_title')}
           </span>
         </div>
         <button
@@ -115,15 +117,15 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
             <ShoppingBag size={32} className="text-gray-400" />
           </div>
           <h2 className="text-lg font-medium text-brand-dark mb-2">
-            Keranjang kamu kosong
+            {t('cart_empty')}
           </h2>
           <p className="text-sm text-gray-500 mb-8">
-            Yuk, tambahkan produk favorit kamu!
+            {t('cart_empty_desc')}
           </p>
           <button
             onClick={() => navigate('/')}
             className="px-8 py-3 bg-[#111] text-white text-sm font-medium rounded-lg hover:bg-black transition-colors">
-            Belanja Sekarang
+            {t('cart_explore')}
           </button>
         </div>
       ) : (
@@ -136,12 +138,14 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
                 onChange={toggleSelectAll}
                 className="w-5 h-5 rounded border-gray-300 accent-[#D32F2F] cursor-pointer"
               />
-              <span className="text-sm text-brand-dark">Pilih Semua</span>
+              <span className="text-sm text-brand-dark">
+                {t('cart_qty')} — {t('section_view_all')}
+              </span>
             </label>
             <button
               onClick={removeSelected}
               className="text-sm text-[#D32F2F] hover:opacity-80 transition-opacity">
-              Hapus Dipilih
+              {t('cart_remove')}
             </button>
           </div>
 
@@ -252,14 +256,14 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
             <div className="max-w-4xl mx-auto flex flex-col gap-4">
               <div className="flex justify-between items-center text-sm">
                 <span className="text-gray-500">
-                  Subtotal ({selectedItems.length} produk)
+                  {t('cart_total')} ({selectedItems.length} {t('cart_qty').toLowerCase()})
                 </span>
                 <span className="text-gray-500">
                   Rp{formatCurrency(subtotal)}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="font-bold text-brand-dark">Total</span>
+                <span className="font-bold text-brand-dark">{t('cart_total')}</span>
                 <span className="text-lg font-bold text-brand-dark">
                   Rp{formatCurrency(subtotal)}
                 </span>
@@ -271,7 +275,7 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
                   selectedItems.length > 0 ? 'bg-[#D32F2F] hover:bg-red-700' : 'bg-gray-300 cursor-not-allowed'
                 }`}>
                 <ArrowRight size={18} />
-                Checkout Sekarang
+                {t('cart_checkout')}
               </button>
             </div>
           </div>
