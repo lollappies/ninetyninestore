@@ -32,7 +32,7 @@ export function Navbar({
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const { lang, setLang, t } = useLang();
+  const { lang, setLang, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
