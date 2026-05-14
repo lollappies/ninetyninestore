@@ -9,7 +9,7 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const { t } = useLang();
+  const { t } = useLanguage();
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const categories = ['Dress', 'Blouse', 'Tunic', 'Outer', 'Sweater', 'Pants', 'Skirt'];
 

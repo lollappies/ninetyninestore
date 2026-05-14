@@ -15,7 +15,7 @@ export function CartPage({ cartItems, setCartItems }: CartPageProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const { showToast } = useCustomToast();
-  const { t } = useLang();
+  const { t } = useLanguage();
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 export function Marquee() {
-  const { t } = useLang();
+  const { t } = useLanguage();
 
   const items = [
     t('marquee_express'),

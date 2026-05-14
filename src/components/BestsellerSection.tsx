@@ -16,7 +16,7 @@ export function BestsellerSection({
   onToggleWishlist,
   onAddToCart
 }: BestsellerSectionProps) {
-  const { t } = useLang();
+  const { t } = useLanguage();
 
   return (
     <section id="bestseller" className="py-24 px-4 md:px-8 max-w-[1440px] mx-auto">

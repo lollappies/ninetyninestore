@@ -45,7 +45,7 @@ const socialLinks = [
 
 export function Footer() {
   const { showToast } = useCustomToast();
-  const { t } = useLang();
+  const { t } = useLanguage();
   const [email, setEmail] = useState('');
 
   const handleSubscribe = (e: React.FormEvent) => {
