@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '../context/LanguageContext';
+import { useLang } from '../context/LanguageContext';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -9,7 +9,7 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const { t } = useLanguage();
+  const { t } = useLang();
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const categories = ['Dress', 'Blouse', 'Tunic', 'Outer', 'Sweater', 'Pants', 'Skirt'];
 
