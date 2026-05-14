@@ -4,13 +4,17 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Package, ShoppingBag, Heart } from 'lucide-react';
 import { CartItem } from '../App';
 import { useEscapeBack } from '../hooks/useEscapeBack';
+import { useLanguage } from '../context/LanguageContext';
+
 interface PurchaseHistoryPageProps {
   onOpenWishlist: () => void;
 }
+
 export function PurchaseHistoryPage({ onOpenWishlist }: PurchaseHistoryPageProps) {
   useEscapeBack();
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useLanguage();
   const { orderData } = location.state || {};
   const orders = orderData ? [orderData] : [];
 
@@ -23,28 +27,29 @@ export function PurchaseHistoryPage({ onOpenWishlist }: PurchaseHistoryPageProps
       className="min-h-screen bg-gray-50 pb-24">
 
       <header className="sticky top-0 z-30 bg-white border-b border-gray-100 py-4 px-4 md:px-8">
-      <div className="max-w-3xl mx-auto flex items-center justify-between">
-        <div className="flex items-center">
-          <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
-            <ArrowLeft size={24} />
-          </button>
-          <span className="font-serif text-xl font-medium ml-2">
-            Riwayat Pembelian
-          </span>
+        <div className="max-w-3xl mx-auto flex items-center justify-between">
+          <div className="flex items-center">
+            <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <ArrowLeft size={24} />
+            </button>
+            <span className="font-serif text-xl font-medium ml-2">
+              {t('purchase_history_title')}
+            </span>
           </div>
-          <div className="flex items-center gap-2"></div>
-          <button
-            onClick={() => onOpenWishlist('/')}
-            className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
-            <Heart size={22} />
-          </button>
-          <button
-            onClick={() => navigate('/cart')}
-            className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
-            <ShoppingBag size={22} />
-          </button>
-        </div>      
-        </header>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => onOpenWishlist()}
+              className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <Heart size={22} />
+            </button>
+            <button
+              onClick={() => navigate('/cart')}
+              className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <ShoppingBag size={22} />
+            </button>
+          </div>
+        </div>
+      </header>
 
       <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col gap-6">
         {orders.length === 0 ? (
@@ -53,13 +58,15 @@ export function PurchaseHistoryPage({ onOpenWishlist }: PurchaseHistoryPageProps
               <Package size={32} />
             </div>
             <h2 className="font-serif text-xl font-medium text-brand-dark mb-2">
-              Belum ada pesanan
+              {t('purchase_history_no_orders')}
             </h2>
             <p className="text-sm text-gray-500 mb-6">
-              Kamu belum melakukan pembelian apapun.
+              {t('purchase_history_no_orders_desc')}
             </p>
-            <button onClick={() => navigate('/')} className="px-6 py-3 bg-brand-dark text-white rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-brand-accent transition-colors">
-              Mulai Belanja
+            <button
+              onClick={() => navigate('/')}
+              className="px-6 py-3 bg-brand-dark text-white rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-brand-accent transition-colors">
+              {t('purchase_history_start_shopping')}
             </button>
           </div>
         ) : (
@@ -76,14 +83,14 @@ export function PurchaseHistoryPage({ onOpenWishlist }: PurchaseHistoryPageProps
                   <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
                     <div className="flex flex-col">
                       <span className="text-[10px] uppercase tracking-widest text-gray-500 mb-1">
-                        Belanja • {formattedDate}
+                        {t('purchase_history_shopping')} • {formattedDate}
                       </span>
                       <span className="text-sm font-bold text-brand-dark">
                         {order.orderNumber}
                       </span>
                     </div>
                     <div className="px-3 py-1 bg-[#E8F5E9] text-[#4CAF50] text-[10px] font-bold uppercase tracking-wider rounded-full">
-                      Selesai
+                      {t('purchase_history_completed')}
                     </div>
                   </div>
 
@@ -96,7 +103,7 @@ export function PurchaseHistoryPage({ onOpenWishlist }: PurchaseHistoryPageProps
                             {item.product.name}
                           </span>
                           <span className="text-[10px] text-gray-500 mb-2">
-                            {item.quantity} barang x {item.product.price}
+                            {item.quantity} {t('purchase_history_items')} x {item.product.price}
                           </span>
                         </div>
                       </div>
@@ -106,14 +113,16 @@ export function PurchaseHistoryPage({ onOpenWishlist }: PurchaseHistoryPageProps
                   <div className="p-4 border-t border-gray-100 flex justify-between items-center">
                     <div className="flex flex-col">
                       <span className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">
-                        Total Belanja
+                        {t('purchase_history_total')}
                       </span>
                       <span className="text-sm font-bold text-brand-accent">
                         IDR {formattedTotal}
                       </span>
                     </div>
-                    <button onClick={() => navigate('/product/' + order.cartItems[0].product.id)} className="px-4 py-2 border border-brand-dark text-brand-dark rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-gray-50 transition-colors">
-                      Beli Lagi
+                    <button
+                      onClick={() => navigate('/product/' + order.cartItems[0].product.id)}
+                      className="px-4 py-2 border border-brand-dark text-brand-dark rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-gray-50 transition-colors">
+                      {t('purchase_history_buy_again')}
                     </button>
                   </div>
                 </div>

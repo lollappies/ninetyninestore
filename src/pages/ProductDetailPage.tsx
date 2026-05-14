@@ -5,6 +5,7 @@ import { ArrowLeft, ShoppingBag, Minus, Plus, Heart } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { allProducts, Product } from '../utils/data';
 import { useEscapeBack } from '../hooks/useEscapeBack';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ProductDetailPageProps {
   onAddToCart: (
@@ -24,6 +25,7 @@ export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist, onO
   const navigate = useNavigate();
   const location = useLocation();
   const { showToast } = useCustomToast();
+  const { t } = useLanguage();
 
   const [selectedColor, setSelectedColor] = useState('Brown');
   const [quantity, setQuantity] = useState(1);
@@ -34,7 +36,7 @@ export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist, onO
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-lg font-medium">Product not found.</p>
+        <p className="text-lg font-medium">{t('product_detail_not_found')}</p>
       </div>
     );
   }
@@ -44,7 +46,7 @@ export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist, onO
 
   const handleAddToCart = () => {
     onAddToCart(product, quantity, selectedColor, 'All Size');
-    showToast('Produk berhasil ditambahkan ke keranjang');
+    showToast(t('product_detail_added_to_cart'));
   };
 
   const handleBuyNow = () => {
@@ -78,14 +80,14 @@ export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist, onO
               <ArrowLeft size={24} />
             </button>
             <span className="font-serif text-xl font-medium ml-2">
-              Detail Produk
+              {t('product_detail_title')}
             </span>
           </div>
           <div className="flex items-center gap-3">
             <button
               onClick={() => {
                 onToggleWishlist(product);
-                showToast(isWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
+                showToast(isWishlisted ? t('product_detail_wishlist_removed') : t('product_detail_wishlist_added'));
               }}
               className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
               <Heart
@@ -127,7 +129,9 @@ export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist, onO
             <hr className="border-gray-100 mb-8" />
 
             <div className="mb-8">
-              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-4">Color</span>
+              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-4">
+                {t('product_detail_color')}
+              </span>
               <div className="flex gap-3">
                 <button onClick={() => setSelectedColor('Brown')} className={`w-8 h-8 rounded-full border-2 ${selectedColor === 'Brown' ? 'border-brand-dark' : 'border-transparent'} flex items-center justify-center p-0.5`}>
                   <div className="w-full h-full rounded-full bg-[#8B6914] border border-black/10" />
@@ -139,12 +143,18 @@ export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist, onO
             </div>
 
             <div className="mb-8">
-              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-4">Ukuran</span>
-              <button className="px-6 py-2 border border-brand-dark rounded-md text-sm font-medium text-brand-dark">All Size</button>
+              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-4">
+                {t('product_detail_size')}
+              </span>
+              <button className="px-6 py-2 border border-brand-dark rounded-md text-sm font-medium text-brand-dark">
+                {t('product_detail_all_size')}
+              </button>
             </div>
 
             <div className="mb-8">
-              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-4">Quantity</span>
+              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-4">
+                {t('product_detail_quantity')}
+              </span>
               <div className="inline-flex items-center border border-gray-200 rounded-md">
                 <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-3 text-gray-500 hover:text-brand-dark transition-colors">
                   <Minus size={16} />
@@ -157,15 +167,19 @@ export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist, onO
             </div>
 
             <div className="mb-8">
-              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-2">Pengiriman</span>
-              <p className="text-sm text-gray-600">Tersedia via JNE, J&T Express, dan pengambilan di toko. Pilih saat checkout.</p>
+              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-2">
+                {t('product_detail_shipping')}
+              </span>
+              <p className="text-sm text-gray-600">{t('product_detail_shipping_desc')}</p>
             </div>
 
             <div className="mb-8">
-              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-2">Email (Untuk Konfirmasi Pesanan)</span>
+              <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 block mb-2">
+                {t('product_detail_email_label')}
+              </span>
               <input
                 type="email"
-                placeholder="your@email.com"
+                placeholder={t('product_detail_email_placeholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-dark focus:ring-1 focus:ring-brand-dark transition-shadow" />
@@ -175,7 +189,7 @@ export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist, onO
               <p className="text-sm text-gray-700 leading-relaxed mb-4">
                 {product.name} dengan detail bordir cantik, flow dress yang anggun dan fleksibel.
               </p>
-              <p className="text-xs text-gray-500 italic">Material: Crepe Bordir</p>
+              <p className="text-xs text-gray-500 italic">{t('product_detail_material')}</p>
             </div>
 
             <div className="flex flex-col gap-3">
@@ -183,12 +197,12 @@ export function ProductDetailPage({ onAddToCart, wishlist, onToggleWishlist, onO
                 onClick={handleAddToCart}
                 className="w-full py-4 border border-brand-dark rounded-lg text-xs font-bold tracking-[0.15em] uppercase text-brand-dark hover:bg-brand-dark hover:text-white transition-colors flex items-center justify-center gap-2">
                 <ShoppingBag size={18} />
-                Add To Cart
+                {t('product_detail_add_to_cart')}
               </button>
               <button
                 onClick={handleBuyNow}
                 className="w-full py-4 bg-brand-dark rounded-lg text-xs font-bold tracking-[0.15em] uppercase text-white hover:bg-brand-accent transition-colors">
-                Buy Now
+                {t('product_detail_buy_now')}
               </button>
             </div>
           </div>

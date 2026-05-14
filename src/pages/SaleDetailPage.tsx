@@ -6,6 +6,7 @@ import { useCustomToast } from '../components/CustomToast';
 import { Footer } from '../components/Footer';
 import { allProducts, Product } from '../utils/data';
 import { useEscapeBack } from '../hooks/useEscapeBack';
+import { useLanguage } from '../context/LanguageContext';
 
 interface SaleDetailPageProps {
   onAddToCart: (
@@ -24,6 +25,7 @@ export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpen
   const { lookId } = useParams<{ lookId: string }>();
   const navigate = useNavigate();
   const { showToast } = useCustomToast();
+  const { t } = useLanguage();
   const [isAdding, setIsAdding] = useState(false);
   useEscapeBack();
 
@@ -96,7 +98,7 @@ export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpen
     look.items.forEach((item) => {
       onAddToCart(item, 1, 'Default', 'All Size', `Bundle: ${look.title}`);
     });
-    showToast('Bundle ditambahkan ke Keranjang');
+    showToast(t('sale_detail_bundle_added'));
     setTimeout(() => setIsAdding(false), 800);
   };
 
@@ -124,15 +126,15 @@ export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpen
               <ArrowLeft size={24} />
             </button>
             <span className="font-serif text-xl font-medium ml-2">
-              Bundle Details
+              {t('sale_detail_title')}
             </span>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={() => {
                 look.items.forEach(item => onToggleWishlist(item));
-                showToast(isLookWishlisted ? 'Dihapus dari Wishlist' : 'Ditambahkan ke Wishlist');
-              }}  
+                showToast(isLookWishlisted ? t('sale_detail_wishlist_removed') : t('sale_detail_wishlist_added'));
+              }}
               className="p-2 text-brand-dark hover:opacity-70 transition-opacity">
               <Heart
                 size={22}
@@ -155,7 +157,7 @@ export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpen
                   alt={look.title}
                   className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute top-4 left-4 bg-brand-accent text-white px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg">
-                  Bundle Sale -{discountPercentage}%
+                  {t('sale_detail_bundle_label')} -{discountPercentage}%
                 </div>
               </div>
             </div>
@@ -174,18 +176,17 @@ export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpen
                 <Info size={20} className="text-brand-accent shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-sm font-bold text-brand-dark mb-1">
-                    Special Bundle Pricing
+                    {t('sale_detail_special_pricing')}
                   </h4>
                   <p className="text-xs text-gray-600">
-                    Dapatkan harga lebih murah dengan membeli 1 set outfit
-                    lengkap ini. Hemat {discountPercentage}% dibandingkan membeli satuan.
+                    {t('sale_detail_special_pricing_desc').replace('{discount}', String(discountPercentage))}
                   </p>
                 </div>
               </div>
             </div>
 
             <h3 className="text-xs font-bold tracking-[0.15em] uppercase text-gray-400 mb-6 border-b border-gray-100 pb-4">
-              Items in this look ({look.items.length})
+              {t('sale_detail_items_in_look')} ({look.items.length})
             </h3>
 
             <div className="flex flex-col gap-6 mb-12">
@@ -216,19 +217,19 @@ export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpen
             {/* Pricing Summary & Action */}
             <div className="mt-auto bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
               <div className="flex justify-between items-center mb-3">
-                <span className="text-gray-500 text-sm">Original Total</span>
+                <span className="text-gray-500 text-sm">{t('sale_detail_original_total')}</span>
                 <span className="text-gray-400 line-through text-sm">
                   {formatCurrency(originalTotal)}
                 </span>
               </div>
               <div className="flex justify-between items-center mb-3">
-                <span className="text-sm text-green-600">Diskon 20%</span>
+                <span className="text-sm text-green-600">{t('sale_detail_discount')}</span>
                 <span className="text-sm text-green-600">
                   -{formatCurrency(originalTotal - bundleTotal)}
                 </span>
               </div>
               <div className="border-t border-gray-100 pt-3 flex justify-between items-center mb-6">
-                <span className="font-bold text-brand-dark">Bundle Price</span>
+                <span className="font-bold text-brand-dark">{t('sale_detail_bundle_price')}</span>
                 <span className="text-2xl font-bold text-brand-accent">
                   {formatCurrency(bundleTotal)}
                 </span>
@@ -238,12 +239,14 @@ export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpen
                 onClick={handleAddBundleToCart}
                 disabled={isAdding}
                 className="w-full py-4 border border-brand-dark text-brand-dark rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-dark hover:text-white transition-colors flex items-center justify-center gap-2 disabled:opacity-70">
-                {isAdding ? 'Adding to Cart...' : <><ShoppingBag size={18} /> Add Bundle to Cart</>}
+                {isAdding
+                  ? t('sale_detail_adding')
+                  : <><ShoppingBag size={18} /> {t('sale_detail_add_bundle')}</>}
               </button>
               <button
                 onClick={handleBuyNow}
                 className="w-full py-4 bg-brand-dark text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-brand-accent transition-colors mt-3">
-                Buy Now
+                {t('product_detail_buy_now')}
               </button>
             </div>
           </div>

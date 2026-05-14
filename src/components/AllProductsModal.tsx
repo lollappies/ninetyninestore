@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Product, allProducts } from '../utils/data';
 import { ProductCard } from './ProductCard';
+import { useLanguage } from '../context/LanguageContext';
 
 let allProductsScrollPos = 0;
 
@@ -21,6 +22,7 @@ interface AllProductsModalProps {
 export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, onAddToCart, onOpenWishlist, wishlistCount, cartCount }: AllProductsModalProps) {
   const navigate = useNavigate();
   const modalRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -51,7 +53,9 @@ export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, 
             <div className="max-w-[1440px] mx-auto flex items-center justify-between h-[72px]">
               <div className="flex items-center gap-3">
                 <span className="font-serif text-xl font-medium tracking-wide text-brand-dark">Ninetynine</span>
-                <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400 hidden sm:block">/ All Products</span>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400 hidden sm:block">
+                  / {t('section_picks_title')}
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <button
@@ -89,8 +93,12 @@ export function AllProductsModal({ isOpen, onClose, wishlist, onToggleWishlist, 
 
           <div className="max-w-[1440px] mx-auto px-4 md:px-12 py-12 md:py-16">
             <div className="mb-12">
-              <span className="text-[10px] tracking-[0.25em] uppercase text-gray-500 block mb-3">Curated For You</span>
-              <h1 className="font-serif text-3xl md:text-5xl text-brand-dark">Our Picks — All Products</h1>
+              <span className="text-[10px] tracking-[0.25em] uppercase text-gray-500 block mb-3">
+                {t('section_picks_label')}
+              </span>
+              <h1 className="font-serif text-3xl md:text-5xl text-brand-dark">
+                {t('section_picks_title')}
+              </h1>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-10">
               {allProducts.map((product, idx) => (

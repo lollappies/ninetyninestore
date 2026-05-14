@@ -3,6 +3,7 @@ import { X, Heart, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Footer } from './Footer';
+import { useLanguage } from '../context/LanguageContext';
 
 let looksScrollPos = 0;
 
@@ -17,6 +18,7 @@ interface LooksModalProps {
 export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, cartCount }: LooksModalProps) {
   const navigate = useNavigate();
   const modalRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -38,91 +40,19 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
     setTimeout(() => onOpenWishlist(), 150);
   };
 
-   const looks = [
-    { 
-      id: 1, 
-      bg: 'bg-brand-neutral1', 
-      image: '/images/looks/1.jpg', 
-      title: 'Retro Look Ideas', 
-      category: 'Look 1' 
-    },
-    { 
-      id: 2, 
-      bg: 'bg-brand-neutral2', 
-      image: '/images/looks/2.jpg', 
-      title: 'Casual Look Ideas', 
-      category: 'Look 2' 
-    },
-    { 
-      id: 3, 
-      bg: 'bg-brand-neutral3', 
-      image: '/images/looks/3.jpg', 
-      title: 'Latest Look Ideas', 
-      category: 'Look 3' 
-    },
-    { 
-      id: 4, 
-      bg: 'bg-brand-neutral4', 
-      image: '/images/looks/4.jpg', 
-      title: 'Feminine Look Ideas', 
-      category: 'Look 4' 
-    },
-    { 
-      id: 5, 
-      bg: 'bg-brand-neutral1', 
-      image: '/images/looks/5.jpg', 
-      title: 'Weekend Look Ideas', 
-      category: 'Look 5' 
-    },
-    { 
-      id: 6, 
-      bg: 'bg-brand-neutral2', 
-      image: '/images/looks/6.jpg', 
-      title: 'Daily Look Ideas', 
-      category: 'Look 6' 
-    },
-    { 
-      id: 7, 
-      bg: 'bg-brand-neutral3', 
-      image: '/images/looks/7.jpg', 
-      title: 'Pinky Look Ideas', 
-      category: 'Look 7' 
-    },
-    { 
-      id: 8, 
-      bg: 'bg-brand-neutral4', 
-      image: '/images/looks/8.jpg', 
-      title: 'Clean Look Ideas', 
-      category: 'Look 8' 
-    },
-    { 
-      id: 9, 
-      bg: 'bg-brand-neutral1', 
-      image: '/images/looks/9.jpg', 
-      title: 'Cute Look Ideas', 
-      category: 'Look 9' 
-    },
-    { 
-      id: 10, 
-      bg: 'bg-brand-neutral2', 
-      image: '/images/looks/10.jpg', 
-      title: 'Earthy Look Ideas', 
-      category: 'Look 10' 
-    },
-    { 
-      id: 11, 
-      bg: 'bg-brand-neutral3', 
-      image: '/images/looks/11.jpg', 
-      title: 'Elegant Look Ideas', 
-      category: 'Look 11' 
-    },
-    { 
-      id: 12, 
-      bg: 'bg-brand-neutral4', 
-      image: '/images/looks/12.jpg', 
-      title: 'Midnight Look Ideas', 
-      category: 'Look 12' 
-    },
+  const looks = [
+    { id: 1, bg: 'bg-brand-neutral1', image: '/images/looks/1.jpg', title: 'Retro Look Ideas', category: 'Look 1' },
+    { id: 2, bg: 'bg-brand-neutral2', image: '/images/looks/2.jpg', title: 'Casual Look Ideas', category: 'Look 2' },
+    { id: 3, bg: 'bg-brand-neutral3', image: '/images/looks/3.jpg', title: 'Latest Look Ideas', category: 'Look 3' },
+    { id: 4, bg: 'bg-brand-neutral4', image: '/images/looks/4.jpg', title: 'Feminine Look Ideas', category: 'Look 4' },
+    { id: 5, bg: 'bg-brand-neutral1', image: '/images/looks/5.jpg', title: 'Weekend Look Ideas', category: 'Look 5' },
+    { id: 6, bg: 'bg-brand-neutral2', image: '/images/looks/6.jpg', title: 'Daily Look Ideas', category: 'Look 6' },
+    { id: 7, bg: 'bg-brand-neutral3', image: '/images/looks/7.jpg', title: 'Pinky Look Ideas', category: 'Look 7' },
+    { id: 8, bg: 'bg-brand-neutral4', image: '/images/looks/8.jpg', title: 'Clean Look Ideas', category: 'Look 8' },
+    { id: 9, bg: 'bg-brand-neutral1', image: '/images/looks/9.jpg', title: 'Cute Look Ideas', category: 'Look 9' },
+    { id: 10, bg: 'bg-brand-neutral2', image: '/images/looks/10.jpg', title: 'Earthy Look Ideas', category: 'Look 10' },
+    { id: 11, bg: 'bg-brand-neutral3', image: '/images/looks/11.jpg', title: 'Elegant Look Ideas', category: 'Look 11' },
+    { id: 12, bg: 'bg-brand-neutral4', image: '/images/looks/12.jpg', title: 'Midnight Look Ideas', category: 'Look 12' },
   ];
 
   return (
@@ -140,7 +70,7 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
             <div className="max-w-[1440px] mx-auto flex items-center justify-between h-[72px]">
               <div className="flex items-center gap-3">
                 <span className="font-serif text-xl font-medium tracking-wide text-brand-dark">Ninetynine</span>
-                <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400">/ Looks</span>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400">/ {t('looks_detail_title')}</span>
               </div>
               <div className="flex items-center gap-3">
                 <button
@@ -178,8 +108,12 @@ export function LooksModal({ isOpen, onClose, onOpenWishlist, wishlistCount, car
 
           <div className="max-w-[1440px] mx-auto px-4 md:px-12 py-12 md:py-16">
             <div className="mb-12">
-              <span className="text-[10px] tracking-[0.25em] uppercase text-gray-500 block mb-3">Style Inspiration</span>
-              <h1 className="font-serif text-3xl md:text-5xl text-brand-dark">Get Your Look</h1>
+              <span className="text-[10px] tracking-[0.25em] uppercase text-gray-500 block mb-3">
+                {t('section_picks_label')}
+              </span>
+              <h1 className="font-serif text-3xl md:text-5xl text-brand-dark">
+                {t('looks_detail_title')}
+              </h1>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {looks.map((look, idx) => (
