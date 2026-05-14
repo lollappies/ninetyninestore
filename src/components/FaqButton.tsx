@@ -14,14 +14,13 @@ export function FaqButton() {
         style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.15))" }}
       >
         <svg
-          width="52"
-          height="52"
+          width="38"
+          height="38"
           viewBox="0 0 64 64"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="transition-transform duration-200 group-hover:scale-110 group-active:scale-95"
         >
-          {/* Bubble body — outline only */}
           <rect
             x="3" y="3"
             width="56" height="44"
@@ -30,8 +29,6 @@ export function FaqButton() {
             stroke="#111111"
             strokeWidth="3"
           />
-
-          {/* Ekor bubble pojok kiri bawah */}
           <path
             d="M10 47 L4 61 L24 47 Z"
             fill="none"
@@ -39,9 +36,6 @@ export function FaqButton() {
             strokeWidth="3"
             strokeLinejoin="round"
           />
-
-          {/* FAQ — font sama persis dengan SALE di navbar:
-              font-bold, tracking-[0.15em], uppercase, sans-serif */}
           <text
             x="31"
             y="25"
