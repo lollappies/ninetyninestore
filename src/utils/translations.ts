@@ -327,6 +327,13 @@ export const translations = {
     // ─── Category Page ────────────────────────────────────────────────────
     category_wishlist_added: 'Ditambahkan ke Wishlist',
     category_wishlist_removed: 'Dihapus dari Wishlist',
+    category_dress: 'Dress',
+    category_blouse: 'Blouse',
+    category_tunic: 'Tunik',
+    category_outer: 'Outer',
+    category_sweater: 'Sweater',
+    category_pants: 'Celana',
+    category_skirt: 'Rok',
 
     // ─── Sale Page ────────────────────────────────────────────────────────
     sale_title: 'Bundle Spesial',
@@ -529,7 +536,7 @@ export const translations = {
       "Ninetynine product prices are very affordable, ranging from IDR 69,000 to IDR 325,000 for quality women's fashion.",
     faq_q5: "Is Ninetynine a trusted women's fashion store in Madiun?",
     faq_a5:
-      'Yes, Ninetynine is a trusted women\'s fashion store based in Madiun, East Java, with a complete collection, affordable prices, and customers from across Indonesia.',
+      "Yes, Ninetynine is a trusted women's fashion store based in Madiun, East Java, with a complete collection, affordable prices, and customers from across Indonesia.",
     faq_q6: 'What payment methods are available?',
     faq_a6: 'Ninetynine accepts Cash and Bank Transfer for your shopping convenience.',
     faq_q7: 'What are Ninetynine store hours?',
@@ -721,6 +728,13 @@ export const translations = {
     // ─── Category Page ────────────────────────────────────────────────────
     category_wishlist_added: 'Added to Wishlist',
     category_wishlist_removed: 'Removed from Wishlist',
+    category_dress: 'Dress',
+    category_blouse: 'Blouse',
+    category_tunic: 'Tunic',
+    category_outer: 'Outer',
+    category_sweater: 'Sweater',
+    category_pants: 'Pants',
+    category_skirt: 'Skirt',
 
     // ─── Sale Page ────────────────────────────────────────────────────────
     sale_title: 'Special Bundles',

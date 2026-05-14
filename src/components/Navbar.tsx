@@ -65,7 +65,15 @@ export function Navbar({
     setSearchResults(results);
   }, [searchQuery]);
 
-  const categories = ['Dress', 'Blouse', 'Tunic', 'Outer', 'Sweater', 'Pants', 'Skirt'];
+  const categories = [
+    { key: 'dress',   label: t('category_dress') },
+    { key: 'blouse',  label: t('category_blouse') },
+    { key: 'tunic',   label: t('category_tunic') },
+    { key: 'outer',   label: t('category_outer') },
+    { key: 'sweater', label: t('category_sweater') },
+    { key: 'pants',   label: t('category_pants') },
+    { key: 'skirt',   label: t('category_skirt') },
+  ];
 
   const headerClass = `fixed top-0 left-0 right-0 z-40 will-change-[background,padding] transition-all duration-500 ease-in-out ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 shadow-sm' : 'bg-transparent py-6'}`;
   const logoClass = `font-serif text-2xl md:text-3xl font-medium tracking-wide transition-colors duration-500 ease-in-out ${isScrolled ? 'text-brand-dark' : 'text-brand-dark md:text-white'}`;
@@ -111,14 +119,14 @@ export function Navbar({
             <div className={dropdownClass}>
               <ul className="bg-brand-dark rounded-lg py-2 min-w-[180px] shadow-xl">
                 {categories.map((cat, idx) => (
-                  <li key={cat} className={idx !== categories.length - 1 ? 'border-b border-white/5' : ''}>
+                  <li key={cat.key} className={idx !== categories.length - 1 ? 'border-b border-white/5' : ''}>
                     <button
                       onClick={() => {
                         setIsDropdownOpen(false);
-                        navigate(`/category/${cat.toLowerCase()}`);
+                        navigate(`/category/${cat.key}`);
                       }}
                       className="w-full text-left block px-5 py-3 text-[11px] tracking-[0.12em] uppercase text-white/80 hover:text-white transition-colors duration-200">
-                      {cat}
+                      {cat.label}
                     </button>
                   </li>
                 ))}
@@ -241,7 +249,7 @@ export function Navbar({
             <User size={20} strokeWidth={1.5} />
           </button>
 
-          {/* Language Toggle — desktop only */}
+          {/* Language Toggle */}
           <div className={`hidden md:flex items-center rounded-full p-[3px] transition-all duration-500 ease-in-out ${
             isScrolled
               ? 'bg-[#f5ede4] border border-[#d6c4b0]'

@@ -7,6 +7,8 @@ import { Footer } from '../components/Footer';
 import { category as categoryProducts, Product } from '../utils/data';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 import { CategoryJsonLd } from '../components/JsonLd';
+import { useLanguage } from '../context/LanguageContext';
+import { TranslationKey } from '../utils/translations';
 
 interface CategoryPageProps {
   wishlist: Product[];
@@ -21,7 +23,22 @@ export function CategoryPage({ wishlist, onToggleWishlist, onAddToCart, onOpenWi
   useEscapeBack();
   const { categoryName } = useParams<{ categoryName: string }>();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [products, setProducts] = useState<Product[]>([]);
+
+  const categoryLabelMap: Record<string, TranslationKey> = {
+    dress:   'category_dress',
+    blouse:  'category_blouse',
+    tunic:   'category_tunic',
+    outer:   'category_outer',
+    sweater: 'category_sweater',
+    pants:   'category_pants',
+    skirt:   'category_skirt',
+  };
+
+  const categoryLabel = categoryName && categoryLabelMap[categoryName]
+    ? t(categoryLabelMap[categoryName])
+    : categoryName ?? '';
 
   useEffect(() => {
     const baseProducts = categoryProducts.filter((p) => p.category === categoryName);
@@ -42,7 +59,6 @@ export function CategoryPage({ wishlist, onToggleWishlist, onAddToCart, onOpenWi
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="min-h-screen bg-white">
 
-      {/* CategoryJsonLd untuk SEO per kategori */}
       <CategoryJsonLd
         categoryName={categoryName || ''}
         url={`https://ninetyninestore-nine.vercel.app/category/${categoryName}`}
@@ -54,7 +70,9 @@ export function CategoryPage({ wishlist, onToggleWishlist, onAddToCart, onOpenWi
             <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
               <ArrowLeft size={24} />
             </button>
-            <span className="font-serif text-xl font-medium ml-2 capitalize">{categoryName}</span>
+            <span className="font-serif text-xl font-medium ml-2 capitalize">
+              {categoryLabel}
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <button onClick={onOpenWishlist} className="relative p-2 text-brand-dark hover:opacity-70 transition-opacity">
