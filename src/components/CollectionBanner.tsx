@@ -1,12 +1,14 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface CollectionBannerProps {
   onExploreLooks: () => void;
 }
 
 export function CollectionBanner({ onExploreLooks }: CollectionBannerProps) {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -21,7 +23,6 @@ export function CollectionBanner({ onExploreLooks }: CollectionBannerProps) {
       ref={sectionRef}
       className="relative h-[80vh] min-h-[600px] w-full overflow-hidden group"
     >
-      {/* Gambar dengan parallax scroll + hover scale */}
       <motion.div className="absolute inset-0" style={{ y: imageY }}>
         <img
           src="/images/landing-page/banner.jpeg"
@@ -30,13 +31,11 @@ export function CollectionBanner({ onExploreLooks }: CollectionBannerProps) {
         />
       </motion.div>
 
-      {/* Overlay */}
       <motion.div
         className="absolute inset-0 bg-black"
         style={{ opacity: overlayOpacity }}
       />
 
-      {/* Content */}
       <div className="relative z-10 h-full max-w-[1440px] mx-auto px-4 md:px-12 flex items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,22 +45,21 @@ export function CollectionBanner({ onExploreLooks }: CollectionBannerProps) {
           className="max-w-xl"
         >
           <span className="text-[10px] tracking-[0.2em] uppercase text-white/80 block mb-4">
-            Ninetynine — 2026
+            {t('banner_label')}
           </span>
           <h2 className="font-serif text-4xl md:text-6xl text-white leading-[1.1] mb-6">
-            Timeless
+            {t('banner_heading1')}
             <br />
-            <em className="font-serif italic text-white/90">Daily Essentials</em>
+            <em className="font-serif italic text-white/90">{t('banner_heading2')}</em>
           </h2>
           <p className="text-white/80 text-sm md:text-base mb-10 max-w-md leading-relaxed">
-            Discover pieces crafted for the modern woman. Refined silhouettes,
-            premium fabrics, and timeless style.
+            {t('banner_desc')}
           </p>
           <button
             onClick={onExploreLooks}
             className="group/btn flex items-center gap-3 text-xs font-bold tracking-[0.15em] uppercase text-white hover:text-brand-neutral2 transition-colors"
           >
-            Get Your Look Now
+            {t('banner_cta')}
             <ArrowRight size={16} className="transition-transform group-hover/btn:translate-x-1" />
           </button>
         </motion.div>
