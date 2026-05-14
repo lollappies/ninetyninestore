@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Package } from 'lucide-react';
 import { getOrdersByStatus, SavedOrder } from '../utils/orderStorage';
 import { useEscapeBack } from '../hooks/useEscapeBack';
+import { useLanguage } from '../context/LanguageContext';
 
 type TabType = 'selesai' | 'dikirim' | 'dibatalkan' | 'dikembalikan';
 
@@ -15,6 +16,7 @@ export function OrdersPage({ onOpenWishlist }: OrdersPageProps) {
   useEscapeBack();
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useLanguage();
 
   const searchParams = new URLSearchParams(location.search);
   const initialTab = searchParams.get('tab') as TabType || 'selesai';
@@ -25,11 +27,11 @@ export function OrdersPage({ onOpenWishlist }: OrdersPageProps) {
     setOrders(getOrdersByStatus(activeTab));
   }, [activeTab]);
 
-  const tabs: { id: TabType; label: string }[] = [
-    { id: 'selesai', label: 'Selesai' },
-    { id: 'dikirim', label: 'Dikirim' },
-    { id: 'dibatalkan', label: 'Dibatalkan' },
-    { id: 'dikembalikan', label: 'Dikembalikan' },
+  const tabs: { id: TabType; labelKey: string }[] = [
+    { id: 'selesai', labelKey: 'orders_tab_completed' },
+    { id: 'dikirim', labelKey: 'orders_tab_shipped' },
+    { id: 'dibatalkan', labelKey: 'orders_tab_cancelled' },
+    { id: 'dikembalikan', labelKey: 'orders_tab_returned' },
   ];
 
   const getStatusColor = (status: string) => {
@@ -57,7 +59,7 @@ export function OrdersPage({ onOpenWishlist }: OrdersPageProps) {
             <ArrowLeft size={24} />
           </button>
           <span className="font-serif text-xl font-medium ml-2">
-            Pesanan Saya
+            {t('orders_title')}
           </span>
         </div>
 
@@ -67,7 +69,7 @@ export function OrdersPage({ onOpenWishlist }: OrdersPageProps) {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`whitespace-nowrap px-4 py-4 text-xs font-medium tracking-wider uppercase relative transition-colors ${activeTab === tab.id ? 'text-brand-dark' : 'text-gray-400 hover:text-gray-600'}`}>
-              {tab.label}
+              {t(tab.labelKey as any)}
               {activeTab === tab.id && (
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-dark" />
               )}
@@ -83,44 +85,39 @@ export function OrdersPage({ onOpenWishlist }: OrdersPageProps) {
               <Package size={32} />
             </div>
             <h2 className="font-serif text-xl font-medium text-brand-dark mb-2">
-              Belum ada pesanan
+              {t('orders_no_orders')}
             </h2>
             <p className="text-sm text-gray-500 mb-6">
-              Tidak ada pesanan dengan status{' '}
-              {tabs.find((t) => t.id === activeTab)?.label.toLowerCase()}.
+              {t('orders_no_orders_desc')}{' '}
+              {t(tabs.find((tab) => tab.id === activeTab)?.labelKey as any)?.toLowerCase()}.
             </p>
             <button
               onClick={() => navigate('/')}
               className="px-6 py-3 bg-brand-dark text-white rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-brand-accent transition-colors">
-              Mulai Belanja
+              {t('orders_start_shopping')}
             </button>
           </div>
         ) : (
           <div className="flex flex-col gap-6">
             {orders.map((order) => {
               const formattedDate = new Date(order.orderDate).toLocaleDateString('id-ID', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric',
+                day: 'numeric', month: 'short', year: 'numeric',
               });
               const formattedTotal = new Intl.NumberFormat('id-ID').format(order.total);
 
               return (
-                <div
-                  key={order.id}
-                  className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-
+                <div key={order.id} className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
                   <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
                     <div className="flex flex-col">
                       <span className="text-[10px] uppercase tracking-widest text-gray-500 mb-1">
-                        Belanja • {formattedDate}
+                        {t('orders_shopping')} • {formattedDate}
                       </span>
                       <span className="text-sm font-bold text-brand-dark">
                         {order.orderNumber}
                       </span>
                     </div>
                     <div className={`px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full ${getStatusColor(order.status)}`}>
-                      {order.status}
+                      {t(tabs.find((tab) => tab.id === order.status)?.labelKey as any)}
                     </div>
                   </div>
 
@@ -136,7 +133,7 @@ export function OrdersPage({ onOpenWishlist }: OrdersPageProps) {
                             {item.product.name}
                           </span>
                           <span className="text-[10px] text-gray-500 mb-2">
-                            {item.quantity} barang x {item.product.price}
+                            {item.quantity} {t('orders_items')} x {item.product.price}
                           </span>
                         </div>
                       </div>
@@ -146,7 +143,7 @@ export function OrdersPage({ onOpenWishlist }: OrdersPageProps) {
                   <div className="p-4 border-t border-gray-100 flex justify-between items-center">
                     <div className="flex flex-col">
                       <span className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">
-                        Total Belanja
+                        {t('orders_total')}
                       </span>
                       <span className="text-sm font-bold text-brand-accent">
                         IDR {formattedTotal}
@@ -155,7 +152,7 @@ export function OrdersPage({ onOpenWishlist }: OrdersPageProps) {
                     <button
                       onClick={() => navigate('/product/' + order.cartItems[0].product.id)}
                       className="px-4 py-2 border border-brand-dark text-brand-dark rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-gray-50 transition-colors">
-                      Beli Lagi
+                      {t('orders_buy_again')}
                     </button>
                   </div>
                 </div>
