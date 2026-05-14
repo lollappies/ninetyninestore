@@ -1,7 +1,8 @@
+// src/components/StoresSection.tsx
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { stores } from '../utils/data';
-import { useLanguage } from '../context/LanguageContext';
+import { useLang } from '../context/LanguageContext';
 
 const OPEN_HOUR = 9;
 const CLOSE_HOUR = 21;
@@ -14,52 +15,45 @@ function getStoreStatus(): StoreStatus {
   const wibOffset = 7 * 60;
   const localOffset = now.getTimezoneOffset();
   const wibTime = new Date(now.getTime() + (wibOffset + localOffset) * 60 * 1000);
-  const hour = wibTime.getHours();
-  const minute = wibTime.getMinutes();
-  const totalMinutes = hour * 60 + minute;
+  const totalMinutes = wibTime.getHours() * 60 + wibTime.getMinutes();
   const openMinutes = OPEN_HOUR * 60;
   const closeMinutes = CLOSE_HOUR * 60;
   const soonMinutes = SOON_THRESHOLD * 60;
   const isOpen = totalMinutes >= openMinutes && totalMinutes < closeMinutes;
   if (isOpen) {
-    if (closeMinutes - totalMinutes <= soonMinutes) return 'closing-soon';
-    return 'open';
+    return closeMinutes - totalMinutes <= soonMinutes ? 'closing-soon' : 'open';
   } else {
-    if (totalMinutes < openMinutes && openMinutes - totalMinutes <= soonMinutes) return 'opening-soon';
-    return 'closed';
+    return totalMinutes < openMinutes && openMinutes - totalMinutes <= soonMinutes
+      ? 'opening-soon'
+      : 'closed';
   }
 }
 
-function StatusBadge({ status }: { status: StoreStatus }) {
-  const { t } = useLanguage();
-
+function StatusBadge({ status, t }: { status: StoreStatus; t: (k: any) => string }) {
   const config = {
-    open: { bg: 'bg-black/80', text: 'text-white', dot: 'bg-emerald-400', ping: true, label: t('store_status_open'), sub: t('store_hours') },
-    closed: { bg: 'bg-black/80', text: 'text-white', dot: 'bg-red-400', ping: false, label: t('store_status_closed'), sub: t('store_opens_at') },
-    'closing-soon': { bg: 'bg-black/80', text: 'text-white', dot: 'bg-amber-400', ping: true, label: t('store_status_closing_soon'), sub: t('store_closes_at') },
-    'opening-soon': { bg: 'bg-black/80', text: 'text-white', dot: 'bg-blue-400', ping: false, label: t('store_status_opening_soon'), sub: t('store_opens_at') },
+    open:          { dot: 'bg-emerald-400', ping: true,  label: () => t('store_open') },
+    closed:        { dot: 'bg-red-400',     ping: false, label: () => t('store_closed') },
+    'closing-soon':{ dot: 'bg-amber-400',   ping: true,  label: () => t('store_closing_soon') },
+    'opening-soon':{ dot: 'bg-blue-400',    ping: false, label: () => t('store_opening_soon') },
   }[status];
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      <div className={`inline-flex items-center gap-1.5 ${config.bg} px-2.5 py-1 rounded-sm`}>
-        <span className="relative flex h-1.5 w-1.5 shrink-0">
-          {config.ping && (
-            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${config.dot} opacity-70`} />
-          )}
-          <span className={`relative inline-flex rounded-full h-1.5 w-1.5 ${config.dot}`} />
-        </span>
-        <span className={`text-[9px] font-bold tracking-[0.15em] uppercase ${config.text}`}>
-          {config.label}
-        </span>
-      </div>
-      <span className="text-[8px] tracking-wide text-gray-400">{config.sub}</span>
+    <div className="inline-flex items-center gap-1.5 bg-black/80 px-2.5 py-1 rounded-sm">
+      <span className="relative flex h-1.5 w-1.5 shrink-0">
+        {config.ping && (
+          <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${config.dot} opacity-70`} />
+        )}
+        <span className={`relative inline-flex rounded-full h-1.5 w-1.5 ${config.dot}`} />
+      </span>
+      <span className="text-[9px] font-bold tracking-[0.15em] uppercase text-white">
+        {config.label()}
+      </span>
     </div>
   );
 }
 
 export function StoresSection() {
-  const { t } = useLanguage();
+  const { t } = useLang();
   const [status, setStatus] = useState<StoreStatus>(getStoreStatus());
 
   useEffect(() => {
@@ -67,14 +61,24 @@ export function StoresSection() {
     return () => clearInterval(interval);
   }, []);
 
+  // Sub-label jam sesuai status
+  const hoursLabel = {
+    open:           t('store_hours'),
+    closed:         t('store_opens_at'),
+    'closing-soon': t('store_closes_at'),
+    'opening-soon': t('store_opens_at'),
+  }[status];
+
   return (
-    <section id="stores" className="py-24 px-4 md:px-8 max-w-[1440px] mx-auto bg-brand-neutral1/30">
+    <section
+      id="stores"
+      className="py-24 px-4 md:px-8 max-w-[1440px] mx-auto bg-brand-neutral1/30">
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
-        className="text-center mb-16"
-      >
+        className="text-center mb-16">
         <span className="text-[10px] tracking-[0.2em] uppercase text-gray-500 block mb-3">
           {t('section_stores_label')}
         </span>
@@ -91,14 +95,14 @@ export function StoresSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ delay: idx * 0.05, duration: 0.5 }}
-            className="group"
-          >
+            className="group">
             <a
               href={store.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col gap-3 cursor-pointer no-underline"
-            >
+              className="flex flex-col gap-3 cursor-pointer no-underline">
+
+              {/* Foto + badge status di pojok kiri atas */}
               <div className="relative aspect-square overflow-hidden bg-brand-neutral2 rounded-xl">
                 <img
                   src={store.image}
@@ -106,12 +110,20 @@ export function StoresSection() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute top-2 left-2">
-                  <StatusBadge status={status} />
+                  <StatusBadge status={status} t={t} />
                 </div>
               </div>
-              <div className="flex flex-col gap-1 px-1 text-center">
-                <h3 className="font-serif text-base font-medium text-brand-dark">{store.city}</h3>
+
+              {/* Info toko — nama, alamat, jam operasional */}
+              <div className="flex flex-col gap-0.5 px-1 text-center">
+                <h3 className="font-serif text-base font-medium text-brand-dark">
+                  {store.city}
+                </h3>
                 <p className="text-xs text-gray-500">{store.address}</p>
+                {/* Jam operasional — di bawah alamat, seperti semula */}
+                <p className="text-[9px] tracking-widest uppercase text-brand-accent font-bold mt-1">
+                  {hoursLabel}
+                </p>
               </div>
             </a>
           </motion.div>
@@ -122,10 +134,11 @@ export function StoresSection() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
-        className="max-w-2xl mx-auto text-center mt-32 mb-12"
-      >
+        className="max-w-2xl mx-auto text-center mt-32 mb-12">
         <h2 className="font-serif md:text-5xl text-brand-dark mb-6 text-[36px]">
-          {t('section_stores_experience_title')}
+          {t('section_stores_experience')} <span className="italic">Ninetynine</span>
+          <br />
+          Fashion in Person
         </h2>
         <p className="text-gray-500 md:text-base max-w-lg mx-auto text-[12px]">
           {t('section_stores_experience_desc')}
