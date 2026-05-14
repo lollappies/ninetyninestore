@@ -36,8 +36,8 @@ export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpen
     {
       id: 1,
       image: '/images/sale/sale1.jpg',
-      title: 'Casual Look',
-      description: 'Keep it easy, keep it stylish! Simple outfits that are comfortable for everyday wear, from hanging out with friends to a relaxed afternoon stroll.',
+      title: t('sale_casual_title'),
+      description: t('sale_casual_desc'),
       items: [
         { ...getById('sale2'), price: 'IDR 133.000' },
         { ...getById('sale3'), price: 'IDR 156.000' },
@@ -46,8 +46,8 @@ export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpen
     {
       id: 2,
       image: '/images/sale/sale4.jpg',
-      title: 'Feminim Look',
-      description: 'Graceful, soft, and utterly charming. Embrace your feminine side with elegant touches that are perfect for every special moment.',
+      title: t('sale_feminim_title'),
+      description: t('sale_feminim_desc'),
       items: [
         { ...getById('sale5'), price: 'IDR 145.000' },
         { ...getById('sale6'), price: 'IDR 130.000' },
@@ -56,8 +56,8 @@ export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpen
     {
       id: 3,
       image: '/images/sale/sale7.jpeg',
-      title: 'Smart Casual Look',
-      description: 'The perfect balance between polished and relaxed. Ideal for semi-formal meetings, stylish hangouts, or any occasion that calls for a put-together vibe.',
+      title: t('sale_smart_casual_title'),
+      description: t('sale_smart_casual_desc'),
       items: [
         { ...getById('sale8'), price: 'IDR 108.000' },
         { ...getById('sale9'), price: 'IDR 139.000' },
@@ -66,8 +66,8 @@ export function SaleDetailPage({ onAddToCart, wishlist, onToggleWishlist, onOpen
     {
       id: 4,
       image: '/images/sale/sale10.jpeg',
-      title: 'Comfy Look',
-      description: 'Because comfort is everything! Cozy yet chic outfits that keep you looking good and feeling great from morning to night, no fuss needed.',
+      title: t('sale_comfy_title'),
+      description: t('sale_comfy_desc'),
       items: [
         { ...getById('sale11'), price: 'IDR 144.000' },
         { ...getById('sale12'), price: 'IDR 99.000' },
