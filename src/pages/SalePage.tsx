@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { X, Heart, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Footer } from './Footer';
+import { Footer } from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
 
 let looksScrollPos = 0;
