@@ -3,18 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { stores } from '../utils/data';
 
-// Jam operasional toko (WIB = UTC+7)
-const OPEN_HOUR = 9;   // 09.00
-const CLOSE_HOUR = 21; // 21.00
-const SOON_THRESHOLD = 1; // "segera buka/tutup" dalam 1 jam ke depan
+const OPEN_HOUR = 9;
+const CLOSE_HOUR = 21;
+const SOON_THRESHOLD = 1;
 
 type StoreStatus = 'open' | 'closed' | 'closing-soon' | 'opening-soon';
 
 function getStoreStatus(): StoreStatus {
-  // Ambil jam saat ini dalam timezone WIB (UTC+7)
   const now = new Date();
-  const wibOffset = 7 * 60; // menit
-  const localOffset = now.getTimezoneOffset(); // menit (negatif untuk timur)
+  const wibOffset = 7 * 60;
+  const localOffset = now.getTimezoneOffset();
   const wibTime = new Date(now.getTime() + (wibOffset + localOffset) * 60 * 1000);
 
   const hour = wibTime.getHours();
@@ -28,16 +26,10 @@ function getStoreStatus(): StoreStatus {
   const isOpen = totalMinutes >= openMinutes && totalMinutes < closeMinutes;
 
   if (isOpen) {
-    // Cek apakah segera tutup (dalam 1 jam)
-    if (closeMinutes - totalMinutes <= soonMinutes) {
-      return 'closing-soon';
-    }
+    if (closeMinutes - totalMinutes <= soonMinutes) return 'closing-soon';
     return 'open';
   } else {
-    // Cek apakah segera buka (dalam 1 jam, sebelum jam buka)
-    if (totalMinutes < openMinutes && openMinutes - totalMinutes <= soonMinutes) {
-      return 'opening-soon';
-    }
+    if (totalMinutes < openMinutes && openMinutes - totalMinutes <= soonMinutes) return 'opening-soon';
     return 'closed';
   }
 }
@@ -45,47 +37,57 @@ function getStoreStatus(): StoreStatus {
 function StatusBadge({ status }: { status: StoreStatus }) {
   const config = {
     open: {
-      dot: 'bg-emerald-500',
-      text: 'text-emerald-600',
-      label: 'Buka',
-      sublabel: `09.00 – 21.00 WIB`,
+      bg: 'bg-black/80',
+      text: 'text-white',
+      dot: 'bg-emerald-400',
+      ping: true,
+      label: 'BUKA',
+      sub: '09.00 – 21.00 WIB',
     },
     closed: {
+      bg: 'bg-black/80',
+      text: 'text-white',
       dot: 'bg-red-400',
-      text: 'text-red-500',
-      label: 'Tutup',
-      sublabel: `Buka pukul 09.00 WIB`,
+      ping: false,
+      label: 'TUTUP',
+      sub: 'Buka pukul 09.00 WIB',
     },
     'closing-soon': {
-      dot: 'bg-amber-500',
-      text: 'text-amber-600',
-      label: 'Segera Tutup',
-      sublabel: `Tutup pukul 21.00 WIB`,
+      bg: 'bg-black/80',
+      text: 'text-white',
+      dot: 'bg-amber-400',
+      ping: true,
+      label: 'SEGERA TUTUP',
+      sub: 'Tutup pukul 21.00 WIB',
     },
     'opening-soon': {
+      bg: 'bg-black/80',
+      text: 'text-white',
       dot: 'bg-blue-400',
-      text: 'text-blue-500',
-      label: 'Segera Buka',
-      sublabel: `Buka pukul 09.00 WIB`,
+      ping: false,
+      label: 'SEGERA BUKA',
+      sub: 'Buka pukul 09.00 WIB',
     },
   }[status];
 
   return (
     <div className="flex flex-col items-center gap-1">
-      <div className="flex items-center gap-1.5">
-        {/* Dot dengan animasi pulse kalau buka */}
-        <span className="relative flex h-2 w-2">
-          {(status === 'open' || status === 'closing-soon') && (
-            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${config.dot} opacity-60`} />
+      {/* Badge — style seperti SOLD OUT */}
+      <div className={`inline-flex items-center gap-1.5 ${config.bg} px-2.5 py-1 rounded-sm`}>
+        {/* Dot indicator */}
+        <span className="relative flex h-1.5 w-1.5 shrink-0">
+          {config.ping && (
+            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${config.dot} opacity-70`} />
           )}
-          <span className={`relative inline-flex rounded-full h-2 w-2 ${config.dot}`} />
+          <span className={`relative inline-flex rounded-full h-1.5 w-1.5 ${config.dot}`} />
         </span>
-        <span className={`text-[9px] tracking-widest uppercase font-bold ${config.text}`}>
+        <span className={`text-[9px] font-bold tracking-[0.15em] uppercase ${config.text}`}>
           {config.label}
         </span>
       </div>
+      {/* Sub-label jam */}
       <span className="text-[8px] tracking-wide text-gray-400">
-        {config.sublabel}
+        {config.sub}
       </span>
     </div>
   );
@@ -94,7 +96,6 @@ function StatusBadge({ status }: { status: StoreStatus }) {
 export function StoresSection() {
   const [status, setStatus] = useState<StoreStatus>(getStoreStatus());
 
-  // Update status setiap menit
   useEffect(() => {
     const interval = setInterval(() => {
       setStatus(getStoreStatus());
@@ -140,14 +141,16 @@ export function StoresSection() {
                   alt={store.city}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                {/* Badge di pojok kiri atas foto — persis seperti SOLD OUT */}
+                <div className="absolute top-2 left-2">
+                  <StatusBadge status={status} />
+                </div>
               </div>
               <div className="flex flex-col gap-1 px-1 text-center">
                 <h3 className="font-serif text-base font-medium text-brand-dark">
                   {store.city}
                 </h3>
-                <p className="text-xs text-gray-500 mb-1">{store.address}</p>
-                {/* Status buka/tutup real-time — sama untuk semua toko */}
-                <StatusBadge status={status} />
+                <p className="text-xs text-gray-500">{store.address}</p>
               </div>
             </a>
           </motion.div>
