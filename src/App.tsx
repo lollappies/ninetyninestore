@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CustomToastProvider } from './components/CustomToast';
+import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { MobileMenu } from './components/MobileMenu';
 import { HeroSection } from './components/HeroSection';
@@ -15,7 +16,7 @@ import { WishlistModal } from './components/WishlistModal';
 import { LooksModal } from './components/LooksModal';
 import { AllProductsModal } from './components/AllProductsModal';
 import { FaqButton } from './components/FaqButton';
-import { StoreJsonLd, FaqJsonLd } from './components/JsonLd'; // ← SEO/GEO
+import { StoreJsonLd, FaqJsonLd } from './components/JsonLd';
 import { Product } from './utils/data';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CheckoutPage } from './pages/CheckoutPage';
@@ -44,7 +45,7 @@ export interface CartItem {
 const isSameProduct = (a: Product, b: Product) =>
   a.name.trim().toLowerCase() === b.name.trim().toLowerCase();
 
-export function App() {
+function AppContent() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isLooksOpen, setIsLooksOpen] = useState(false);
@@ -134,168 +135,172 @@ export function App() {
   const showFaqButton = !hideFaqPages.some(path => location.pathname.startsWith(path));
 
   return (
-    <CustomToastProvider>
-      <ScrollToTop />
-      <div className="min-h-screen bg-white">
-        {isLandingPage && (
-          <Navbar
-            wishlistCount={wishlistCount}
-            cartCount={cartCount}
-            onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
-            onOpenWishlist={() => handleOpenWishlist()}
-          />
-        )}
-
-        <MobileMenu
-          isOpen={isMobileMenuOpen}
-          onClose={() => setIsMobileMenuOpen(false)}
+    <div className="min-h-screen bg-white">
+      {isLandingPage && (
+        <Navbar
+          wishlistCount={wishlistCount}
+          cartCount={cartCount}
+          onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
+          onOpenWishlist={() => handleOpenWishlist()}
         />
+      )}
 
-        <main>
-          <Routes>
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
 
-            {/* ===== HOMEPAGE ===== */}
-            <Route
-              path="/"
-              element={
-                <>
-                  {/* SEO & GEO JSON-LD — hanya di homepage, tidak duplikat */}
-                  <StoreJsonLd />
-                  <FaqJsonLd />
+      <main>
+        <Routes>
 
-                  <HeroSection onExploreLooks={() => setIsLooksOpen(true)} />
-                  <Marquee />
-                  <BestsellerSection
-                    wishlist={wishlist}
-                    onToggleWishlist={handleToggleWishlist}
-                    onAddToCart={(p) => handleAddToCart(p)}
-                  />
-                  <CollectionBanner onExploreLooks={() => setIsLooksOpen(true)} />
-                  <OurPicksSection
-                    wishlist={wishlist}
-                    onToggleWishlist={handleToggleWishlist}
-                    onAddToCart={(p) => handleAddToCart(p)}
-                    onBrowseAll={() => setIsAllProductsOpen(true)}
-                  />
-                  <StoresSection />
-                </>
-              }
-            />
-
-            {/* ===== PRODUCT DETAIL ===== */}
-            <Route
-              path="/product/:id"
-              element={
-                <ProductDetailPage
-                  onAddToCart={handleAddToCart}
-                  wishlist={wishlist}
-                  onToggleWishlist={handleToggleWishlist}
-                  onOpenWishlist={() => handleOpenWishlist()}
-                />
-              }
-            />
-
-            {/* ===== CART & TRANSAKSI ===== */}
-            <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
-            <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} />} />
-            <Route path="/payment" element={<PaymentPage />} />
-            <Route path="/order-complete" element={<OrderCompletePage setCartItems={setCartItems} />} />
-
-            {/* ===== AUTH & PROFIL ===== */}
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/profile" element={<ProfilePage onOpenWishlist={() => handleOpenWishlist()} />} />
-            <Route path="/address" element={<AddressPage onOpenWishlist={() => handleOpenWishlist()} />} />
-            <Route path="/orders" element={<OrdersPage onOpenWishlist={() => handleOpenWishlist()} />} />
-            <Route path="/purchase-history" element={<PurchaseHistoryPage onOpenWishlist={() => handleOpenWishlist()} />} />
-
-            {/* ===== KATEGORI ===== */}
-            <Route
-              path="/category/:categoryName"
-              element={
-                <CategoryPage
+          {/* ===== HOMEPAGE ===== */}
+          <Route
+            path="/"
+            element={
+              <>
+                <StoreJsonLd />
+                <FaqJsonLd />
+                <HeroSection onExploreLooks={() => setIsLooksOpen(true)} />
+                <Marquee />
+                <BestsellerSection
                   wishlist={wishlist}
                   onToggleWishlist={handleToggleWishlist}
                   onAddToCart={(p) => handleAddToCart(p)}
-                  onOpenWishlist={() => handleOpenWishlist()}
-                  wishlistCount={wishlistCount}
-                  cartCount={cartCount}
                 />
-              }
-            />
-
-            {/* ===== SALE ===== */}
-            <Route
-              path="/sale"
-              element={
-                <SalePage
-                  onOpenWishlist={() => handleOpenWishlist()}
-                  wishlistCount={wishlistCount}
-                  cartCount={cartCount}
-                />
-              }
-            />
-            <Route
-              path="/sale/:lookId"
-              element={
-                <SaleDetailPage
-                  onAddToCart={handleAddToCart}
+                <CollectionBanner onExploreLooks={() => setIsLooksOpen(true)} />
+                <OurPicksSection
                   wishlist={wishlist}
                   onToggleWishlist={handleToggleWishlist}
-                  onOpenWishlist={() => handleOpenWishlist()}
-                  wishlistCount={wishlistCount}
-                  cartCount={cartCount}
+                  onAddToCart={(p) => handleAddToCart(p)}
+                  onBrowseAll={() => setIsAllProductsOpen(true)}
                 />
-              }
-            />
+                <StoresSection />
+              </>
+            }
+          />
 
-            {/* ===== LOOKS ===== */}
-            <Route
-              path="/looks/:lookId"
-              element={
-                <LooksDetailPage
-                  onAddToCart={handleAddToCart}
-                  onOpenWishlist={() => handleOpenWishlist('looks')}
-                  wishlist={wishlist}
-                  onToggleWishlist={handleToggleWishlist}
-                  wishlistCount={wishlistCount}
-                  cartCount={cartCount}
-                />
-              }
-            />
+          {/* ===== PRODUCT DETAIL ===== */}
+          <Route
+            path="/product/:id"
+            element={
+              <ProductDetailPage
+                onAddToCart={handleAddToCart}
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onOpenWishlist={() => handleOpenWishlist()}
+              />
+            }
+          />
 
-          </Routes>
-        </main>
+          {/* ===== CART & TRANSAKSI ===== */}
+          <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
+          <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} />} />
+          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/order-complete" element={<OrderCompletePage setCartItems={setCartItems} />} />
 
-        {showFooter && <Footer />}
+          {/* ===== AUTH & PROFIL ===== */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/profile" element={<ProfilePage onOpenWishlist={() => handleOpenWishlist()} />} />
+          <Route path="/address" element={<AddressPage onOpenWishlist={() => handleOpenWishlist()} />} />
+          <Route path="/orders" element={<OrdersPage onOpenWishlist={() => handleOpenWishlist()} />} />
+          <Route path="/purchase-history" element={<PurchaseHistoryPage onOpenWishlist={() => handleOpenWishlist()} />} />
 
-        {/* FAQ Floating Button — global di semua halaman kecuali checkout/payment/login */}
-        {showFaqButton && <FaqButton />}
+          {/* ===== KATEGORI ===== */}
+          <Route
+            path="/category/:categoryName"
+            element={
+              <CategoryPage
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onAddToCart={(p) => handleAddToCart(p)}
+                onOpenWishlist={() => handleOpenWishlist()}
+                wishlistCount={wishlistCount}
+                cartCount={cartCount}
+              />
+            }
+          />
 
-        <WishlistModal
-          isOpen={isWishlistOpen}
-          onClose={handleCloseWishlist}
-          wishlist={wishlist}
-          onToggleWishlist={handleToggleWishlist}
-          onAddToCart={(p) => handleAddToCart(p)}
-        />
-        <LooksModal
-          isOpen={isLooksOpen}
-          onClose={() => setIsLooksOpen(false)}
-          onOpenWishlist={() => handleOpenWishlist('looks')}
-          wishlistCount={wishlistCount}
-          cartCount={cartCount}
-        />
-        <AllProductsModal
-          isOpen={isAllProductsOpen}
-          onClose={() => setIsAllProductsOpen(false)}
-          wishlist={wishlist}
-          onToggleWishlist={handleToggleWishlist}
-          onAddToCart={(p) => handleAddToCart(p)}
-          onOpenWishlist={() => handleOpenWishlist()}
-          wishlistCount={wishlistCount}
-          cartCount={cartCount}
-        />
-      </div>
-    </CustomToastProvider>
+          {/* ===== SALE ===== */}
+          <Route
+            path="/sale"
+            element={
+              <SalePage
+                onOpenWishlist={() => handleOpenWishlist()}
+                wishlistCount={wishlistCount}
+                cartCount={cartCount}
+              />
+            }
+          />
+          <Route
+            path="/sale/:lookId"
+            element={
+              <SaleDetailPage
+                onAddToCart={handleAddToCart}
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onOpenWishlist={() => handleOpenWishlist()}
+                wishlistCount={wishlistCount}
+                cartCount={cartCount}
+              />
+            }
+          />
+
+          {/* ===== LOOKS ===== */}
+          <Route
+            path="/looks/:lookId"
+            element={
+              <LooksDetailPage
+                onAddToCart={handleAddToCart}
+                onOpenWishlist={() => handleOpenWishlist('looks')}
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                wishlistCount={wishlistCount}
+                cartCount={cartCount}
+              />
+            }
+          />
+
+        </Routes>
+      </main>
+
+      {showFooter && <Footer />}
+
+      {showFaqButton && <FaqButton />}
+
+      <WishlistModal
+        isOpen={isWishlistOpen}
+        onClose={handleCloseWishlist}
+        wishlist={wishlist}
+        onToggleWishlist={handleToggleWishlist}
+        onAddToCart={(p) => handleAddToCart(p)}
+      />
+      <LooksModal
+        isOpen={isLooksOpen}
+        onClose={() => setIsLooksOpen(false)}
+        onOpenWishlist={() => handleOpenWishlist('looks')}
+        wishlistCount={wishlistCount}
+        cartCount={cartCount}
+      />
+      <AllProductsModal
+        isOpen={isAllProductsOpen}
+        onClose={() => setIsAllProductsOpen(false)}
+        wishlist={wishlist}
+        onToggleWishlist={handleToggleWishlist}
+        onAddToCart={(p) => handleAddToCart(p)}
+        onOpenWishlist={() => handleOpenWishlist()}
+        wishlistCount={wishlistCount}
+        cartCount={cartCount}
+      />
+    </div>
+  );
+}
+
+export function App() {
+  return (
+    <LanguageProvider>
+      <CustomToastProvider>
+        <AppContent />
+      </CustomToastProvider>
+    </LanguageProvider>
   );
 }
