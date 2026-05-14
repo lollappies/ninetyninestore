@@ -30,7 +30,6 @@ function getStoreStatus(): StoreStatus {
 }
 
 function StatusBadge({ status, t }: { status: StoreStatus; t: (k: any) => string }) {
-  // dot color: hijau = buka, merah = tutup, orange = segera buka/tutup
   const dotColor = {
     open:           'bg-emerald-400',
     closed:         'bg-red-400',
@@ -38,7 +37,7 @@ function StatusBadge({ status, t }: { status: StoreStatus; t: (k: any) => string
     'opening-soon': 'bg-orange-400',
   }[status];
 
-  const ping = status === 'open' || status === 'closing-soon' || status === 'opening-soon';
+  const ping = status !== 'closed';
 
   const label = {
     open:           t('store_open'),
@@ -48,16 +47,47 @@ function StatusBadge({ status, t }: { status: StoreStatus; t: (k: any) => string
   }[status];
 
   return (
-    <div className="inline-flex items-center gap-1.5 bg-black/75 backdrop-blur-sm px-2.5 py-1.5 rounded-md">
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '6px',
+        backgroundColor: 'rgba(0,0,0,0.72)',
+        backdropFilter: 'blur(4px)',
+        padding: '5px 10px',
+        borderRadius: '6px',
+        whiteSpace: 'nowrap',
+      }}
+    >
       {/* Dot */}
-      <span className="relative flex h-2 w-2 shrink-0">
+      <span style={{ position: 'relative', display: 'flex', width: '8px', height: '8px', flexShrink: 0 }}>
         {ping && (
-          <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${dotColor} opacity-75`} />
+          <span
+            style={{
+              position: 'absolute',
+              inset: 0,
+              borderRadius: '50%',
+              animation: 'ping 1.2s cubic-bezier(0,0,0.2,1) infinite',
+            }}
+            className={dotColor}
+          />
         )}
-        <span className={`relative inline-flex rounded-full h-2 w-2 ${dotColor}`} />
+        <span
+          style={{ position: 'relative', display: 'inline-flex', width: '8px', height: '8px', borderRadius: '50%' }}
+          className={dotColor}
+        />
       </span>
-      {/* Label teks */}
-      <span className="text-[9px] font-bold tracking-[0.12em] uppercase text-white whitespace-nowrap">
+      {/* Label */}
+      <span
+        style={{
+          fontSize: '10px',
+          fontWeight: 700,
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          color: '#ffffff',
+          lineHeight: 1,
+        }}
+      >
         {label}
       </span>
     </div>
@@ -113,20 +143,19 @@ export function StoresSection() {
               rel="noopener noreferrer"
               className="flex flex-col gap-3 cursor-pointer no-underline">
 
-              {/* Foto + badge status pojok kiri atas */}
+              {/* Foto + badge pojok kiri atas */}
               <div className="relative aspect-square overflow-hidden bg-brand-neutral2 rounded-xl">
                 <img
                   src={store.image}
                   alt={store.city}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                {/* Badge dengan teks label */}
-                <div className="absolute top-2.5 left-2.5">
+                <div style={{ position: 'absolute', top: '10px', left: '10px' }}>
                   <StatusBadge status={status} t={t} />
                 </div>
               </div>
 
-              {/* Nama kota, alamat, jam operasional */}
+              {/* Nama, alamat, jam */}
               <div className="flex flex-col gap-0.5 px-1 text-center">
                 <h3 className="font-serif text-base font-medium text-brand-dark">
                   {store.city}
