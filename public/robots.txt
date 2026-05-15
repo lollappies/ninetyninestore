@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+
 Disallow: /checkout
 Disallow: /payment
 Disallow: /order-complete
@@ -8,7 +9,6 @@ Disallow: /address
 Disallow: /orders
 Disallow: /purchase-history
 
-# Izinkan AI crawler untuk GEO
 User-agent: GPTBot
 Allow: /
 
