@@ -1,5 +1,5 @@
 // src/App.tsx
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CustomToastProvider } from './components/CustomToast';
 import { LanguageProvider } from './context/LanguageContext';
@@ -18,20 +18,6 @@ import { AllProductsModal } from './components/AllProductsModal';
 import { FaqButton } from './components/FaqButton';
 import { StoreJsonLd, FaqJsonLd } from './components/JsonLd';
 import { Product } from './utils/data';
-import { ProductDetailPage } from './pages/ProductDetailPage';
-import { CheckoutPage } from './pages/CheckoutPage';
-import { PaymentPage } from './pages/PaymentPage';
-import { OrderCompletePage } from './pages/OrderCompletePage';
-import { LoginPage } from './pages/LoginPage';
-import { PurchaseHistoryPage } from './pages/PurchaseHistoryPage';
-import { CartPage } from './pages/CartPage';
-import { ProfilePage } from './pages/ProfilePage';
-import { AddressPage } from './pages/AddressPage';
-import { OrdersPage } from './pages/OrdersPage';
-import { CategoryPage } from './pages/CategoryPage';
-import { SalePage } from './pages/SalePage';
-import { SaleDetailPage } from './pages/SaleDetailPage';
-import { LooksDetailPage } from './pages/LooksDetailPage';
 import { ScrollToTop } from './components/ScrollToTop';
 
 export interface CartItem {
@@ -77,6 +63,90 @@ function AppContent() {
       return [...prev, product];
     });
   };
+
+  const ProductDetailPage = lazy(() =>
+  import('./pages/ProductDetailPage').then(module => ({
+    default: module.ProductDetailPage
+  }))
+);
+
+const CheckoutPage = lazy(() =>
+  import('./pages/CheckoutPage').then(module => ({
+    default: module.CheckoutPage
+  }))
+);
+
+const PaymentPage = lazy(() =>
+  import('./pages/PaymentPage').then(module => ({
+    default: module.PaymentPage
+  }))
+);
+
+const OrderCompletePage = lazy(() =>
+  import('./pages/OrderCompletePage').then(module => ({
+    default: module.OrderCompletePage
+  }))
+);
+
+const LoginPage = lazy(() =>
+  import('./pages/LoginPage').then(module => ({
+    default: module.LoginPage
+  }))
+);
+
+const PurchaseHistoryPage = lazy(() =>
+  import('./pages/PurchaseHistoryPage').then(module => ({
+    default: module.PurchaseHistoryPage
+  }))
+);
+
+const CartPage = lazy(() =>
+  import('./pages/CartPage').then(module => ({
+    default: module.CartPage
+  }))
+);
+
+const ProfilePage = lazy(() =>
+  import('./pages/ProfilePage').then(module => ({
+    default: module.ProfilePage
+  }))
+);
+
+const AddressPage = lazy(() =>
+  import('./pages/AddressPage').then(module => ({
+    default: module.AddressPage
+  }))
+);
+
+const OrdersPage = lazy(() =>
+  import('./pages/OrdersPage').then(module => ({
+    default: module.OrdersPage
+  }))
+);
+
+const CategoryPage = lazy(() =>
+  import('./pages/CategoryPage').then(module => ({
+    default: module.CategoryPage
+  }))
+);
+
+const SalePage = lazy(() =>
+  import('./pages/SalePage').then(module => ({
+    default: module.SalePage
+  }))
+);
+
+const SaleDetailPage = lazy(() =>
+  import('./pages/SaleDetailPage').then(module => ({
+    default: module.SaleDetailPage
+  }))
+);
+
+const LooksDetailPage = lazy(() =>
+  import('./pages/LooksDetailPage').then(module => ({
+    default: module.LooksDetailPage
+  }))
+);
 
   const handleAddToCart = (
     product: Product,
@@ -151,7 +221,15 @@ function AppContent() {
       />
 
       <main>
-        <Routes>
+        <Suspense
+          fallback={
+            <div className="min-h-screen flex items-center justify-center text-sm tracking-[0.2em] uppercase">
+              Loading...
+            </div>
+          }
+        >
+          <Routes>
+          </Suspense>
 
           {/* ===== HOMEPAGE ===== */}
           <Route
