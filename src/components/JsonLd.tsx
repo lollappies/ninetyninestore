@@ -19,7 +19,6 @@ export function OrganizationJsonLd() {
       "postalCode": "63133",
       "addressCountry": "ID"
     },
-    // ✅ DIUBAH: sameAs sekarang lengkap 4 profil (Instagram, TikTok, Shopee, WhatsApp)
     "sameAs": [
       "https://www.instagram.com/99outfitstore",
       "https://www.tiktok.com/@always.ninetynine",
@@ -65,6 +64,45 @@ export function StoreJsonLd() {
     "openingHours": "Mo-Su 09:00-21:00",
     "hasMap": "https://maps.google.com/?q=Ninetynine+Madiun",
     "areaServed": ["Madiun", "Ponorogo", "Jombang", "Kediri", "Nganjuk", "Blitar", "Tulungagung", "Sidoarjo"]
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
+// ===== WEBPAGE / ARTICLE (Homepage — untuk datePublished, dateModified, author) =====
+export function WebPageJsonLd() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Ninetynine | Fashion Wanita Madiun Mulai IDR 69.000 — Terpercaya & Terlengkap",
+    "description": "Toko fashion wanita Madiun. Dress, blouse, tunic, outer, sweater, pants, skirt mulai IDR 69.000. Pengiriman ke seluruh Indonesia.",
+    "url": "https://ninetyninestore-nine.vercel.app/",
+    "datePublished": "2024-01-01",
+    "dateModified": new Date().toISOString().split('T')[0],
+    "author": {
+      "@type": "Organization",
+      "name": "Ninetynine",
+      "url": "https://ninetyninestore-nine.vercel.app/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Ninetynine",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ninetyninestore-nine.vercel.app/og-image.jpg"
+      }
+    },
+    "inLanguage": "id-ID",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Ninetynine",
+      "url": "https://ninetyninestore-nine.vercel.app"
+    }
   };
 
   return (
