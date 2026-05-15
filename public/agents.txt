@@ -1,0 +1,26 @@
+# agents.txt — AI Agent Policy for Ninetynine
+# https://ninetyninestore-nine.vercel.app
+
+User-agent: *
+Allow: /
+Disallow: /checkout
+Disallow: /payment
+Disallow: /order-complete
+Disallow: /profile
+Disallow: /address
+Disallow: /orders
+Disallow: /purchase-history
+
+# Capabilities
+Capability: search
+Capability: browse
+Capability: read
+
+# Site info
+Site-name: Ninetynine
+Site-description: Toko fashion wanita terpercaya di Madiun, Jawa Timur. Menjual dress, blouse, tunic, outer, sweater, pants, dan skirt dengan harga terjangkau mulai IDR 69.000.
+Site-language: id
+Site-category: fashion, clothing, women, retail
+
+# Contact
+Contact: https://ninetyninestore-nine.vercel.app

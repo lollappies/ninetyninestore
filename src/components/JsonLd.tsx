@@ -1,5 +1,37 @@
 // src/components/JsonLd.tsx
 
+// ===== ORGANIZATION (Global — untuk GEO & Knowledge Graph) =====
+export function OrganizationJsonLd() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ninetynine",
+    "url": "https://ninetyninestore-nine.vercel.app/",
+    "logo": "https://ninetyninestore-nine.vercel.app/og-image.jpg",
+    "description": "Ninetynine adalah toko fashion wanita terpercaya di Madiun, Jawa Timur. Menjual dress, blouse, tunic, outer, sweater, pants, dan skirt dengan harga terjangkau mulai IDR 69.000. Pengiriman ke seluruh Indonesia.",
+    "telephone": "+6281335579050",
+    "email": "ninetynine@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jl. Cokroaminoto No.35",
+      "addressLocality": "Madiun",
+      "addressRegion": "Jawa Timur",
+      "postalCode": "63133",
+      "addressCountry": "ID"
+    },
+    "sameAs": [
+      "https://www.instagram.com/ninetynine.store"
+    ]
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 // ===== STORE (Homepage) =====
 export function StoreJsonLd() {
   const jsonLd = {
