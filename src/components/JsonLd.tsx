@@ -242,3 +242,67 @@ export function CategoryJsonLd({ categoryName, url }: CategoryJsonLdProps) {
     />
   );
 }
+
+// ===== WEBSITE JSON LD =====
+export function WebsiteJsonLd() {
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+
+    "@type": "WebSite",
+
+    "name": "Ninetynine",
+
+    "url":
+      "https://ninetyninestore-nine.vercel.app",
+
+    "description":
+      "Toko fashion wanita terpercaya di Madiun, Jawa Timur.",
+
+    "inLanguage": "id-ID",
+
+    "publisher": {
+      "@type": "Organization",
+      "name": "Ninetynine"
+    }
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd)
+      }}
+    />
+  );
+}
+
+// ===== SPEAKABLE JSON LD =====
+export function SpeakableJsonLd() {
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+
+    "@type": "WebPage",
+
+    "speakable": {
+      "@type": "SpeakableSpecification",
+
+      "cssSelector": [
+        ".ai-summary"
+      ]
+    },
+
+    "url":
+      "https://ninetyninestore-nine.vercel.app/"
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd)
+      }}
+    />
+  );
+}
