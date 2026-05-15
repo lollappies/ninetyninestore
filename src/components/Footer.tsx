@@ -96,17 +96,22 @@ export function Footer() {
               {t('footer_fashion_title')}
             </h4>
             <ul className="flex flex-col gap-4">
-              {[
-                { key: 'footer_about', href: '#' },
-                { key: 'footer_our_story', href: '#' },
-                { key: 'footer_offline_store', href: '#stores' },
-              ].map(({ key, href }) => (
-                <li key={key}>
-                  <a href={href} className="text-sm text-gray-400 hover:text-white transition-colors">
-                    {t(key as any)}
-                  </a>
-                </li>
-              ))}
+              {/* ✅ DIUBAH: href sekarang mengarah ke halaman nyata */}
+              <li>
+                <a href="/about" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  {t('footer_about')}
+                </a>
+              </li>
+              <li>
+                <a href="/about#story" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  {t('footer_our_story')}
+                </a>
+              </li>
+              <li>
+                <a href="#stores" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  {t('footer_offline_store')}
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -116,17 +121,22 @@ export function Footer() {
               {t('footer_cs_title')}
             </h4>
             <ul className="flex flex-col gap-4">
-              {[
-                { key: 'footer_shipping' },
-                { key: 'footer_faq' },
-                { key: 'footer_contact' },
-              ].map(({ key }) => (
-                <li key={key}>
-                  <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
-                    {t(key as any)}
-                  </a>
-                </li>
-              ))}
+              {/* ✅ DIUBAH: href sekarang mengarah ke halaman nyata */}
+              <li>
+                <a href="/contact#shipping" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  {t('footer_shipping')}
+                </a>
+              </li>
+              <li>
+                <a href="/contact#faq" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  {t('footer_faq')}
+                </a>
+              </li>
+              <li>
+                <a href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  {t('footer_contact')}
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -155,21 +165,22 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
+        {/* Bottom — Trust Pages */}
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/10 gap-4">
           <span className="text-xs text-gray-500">
             {t('footer_copyright')}
           </span>
+          {/* ✅ DIUBAH: href sekarang mengarah ke halaman nyata, bukan "#" */}
           <div className="flex items-center gap-6">
-            {[
-              { key: 'footer_privacy' },
-              { key: 'footer_terms' },
-              { key: 'footer_cookie' },
-            ].map(({ key }) => (
-              <a key={key} href="#" className="text-xs text-gray-500 hover:text-white transition-colors">
-                {t(key as any)}
-              </a>
-            ))}
+            <a href="/privacy" className="text-xs text-gray-500 hover:text-white transition-colors">
+              {t('footer_privacy')}
+            </a>
+            <a href="/terms" className="text-xs text-gray-500 hover:text-white transition-colors">
+              {t('footer_terms')}
+            </a>
+            <a href="/privacy#cookies" className="text-xs text-gray-500 hover:text-white transition-colors">
+              {t('footer_cookie')}
+            </a>
           </div>
         </div>
       </div>

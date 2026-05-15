@@ -19,8 +19,12 @@ export function OrganizationJsonLd() {
       "postalCode": "63133",
       "addressCountry": "ID"
     },
+    // ✅ DIUBAH: sameAs sekarang lengkap 4 profil (Instagram, TikTok, Shopee, WhatsApp)
     "sameAs": [
-      "https://www.instagram.com/ninetynine.store"
+      "https://www.instagram.com/99outfitstore",
+      "https://www.tiktok.com/@always.ninetynine",
+      "https://id.shp.ee/RHtRFQfp",
+      "https://api.whatsapp.com/send/?phone=6281335579050"
     ]
   };
 
