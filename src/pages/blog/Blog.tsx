@@ -72,8 +72,8 @@ export default function Blog() {
         </Link>
 
 
-        <Link to="/blog/tips-mix-and-match-wanita">
-
+            <Link to="/blog/tips-mix-and-match-wanita">
+            
             <div className="border rounded-2xl p-8 hover:shadow-xl transition cursor-pointer">
 
             <p className="text-sm text-gray-400 uppercase">
