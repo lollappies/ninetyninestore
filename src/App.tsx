@@ -118,11 +118,9 @@ function AppContent() {
     setWishlistOpenedFrom(null);
   };
 
-  // Pages that hide the navbar
-  const hiddenNavbarPages = ['/checkout', '/payment', '/login'];
-  const showNavbar = !hiddenNavbarPages.some((path) =>
-    location.pathname.startsWith(path)
-  );
+  // ✅ FIX: Navbar global HANYA tampil di homepage (/)
+  // Halaman lain (category, sale, product, dll) punya header sendiri dengan back button
+  const isLandingPage = location.pathname === '/';
 
   // Pages that hide the footer
   const noFooterPages = [
@@ -134,6 +132,9 @@ function AppContent() {
     '/orders',
     '/purchase-history',
     '/login',
+    '/sale',
+    '/looks',
+    '/category',
   ];
   const showFooter = !noFooterPages.some((path) =>
     location.pathname.startsWith(path)
@@ -149,7 +150,8 @@ function AppContent() {
     <div className="min-h-screen bg-white">
       <ScrollToTop />
 
-      {showNavbar && (
+      {/* ✅ Navbar global hanya untuk homepage */}
+      {isLandingPage && (
         <Navbar
           wishlistCount={wishlistCount}
           cartCount={cartCount}
