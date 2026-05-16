@@ -168,76 +168,71 @@ function AppContent() {
         {/* HOME */}
         <Route
           path="/"
-element={
-  <>
-    <SeoHelmet
-      title="NineTynine Store | Fashion Wanita Trendy Dress, Blouse, Outer"
-      description="NineTynine Store menyediakan fashion wanita modern mulai dari dress, blouse, tunic, outer, sweater, dan koleksi trend terbaru dengan gaya kekinian."
-      keywords="fashion wanita,dress wanita,blouse,tunik,outer,sweater,baju wanita kekinian,ninetynine store"
-      url="https://ninetyninestore-nine.vercel.app/"
-      image="https://ninetyninestore-nine.vercel.app/og-image.jpg"
-    />
+          element={
+            <>
+              <SeoHelmet
+                title="NineTynine Store | Fashion Wanita Trendy Dress, Blouse, Outer"
+                description="NineTynine Store menyediakan fashion wanita modern mulai dari dress, blouse, tunic, outer, sweater, dan koleksi trend terbaru dengan gaya kekinian."
+                keywords="fashion wanita,dress wanita,blouse,tunik,outer,sweater,baju wanita kekinian,ninetynine store"
+                url="https://ninetyninestore-nine.vercel.app/"
+                image="https://ninetyninestore-nine.vercel.app/og-image.jpg"
+              />
 
-    <WebsiteJsonLd />
-    <StoreJsonLd />
-    <FaqJsonLd />
-    <SpeakableJsonLd />
+              <WebsiteJsonLd />
+              <StoreJsonLd />
+              <FaqJsonLd />
+              <SpeakableJsonLd />
 
-    <HeroSection
-      onExploreLooks={() => setIsLooksOpen(true)}
-    />
+              <HeroSection
+                onExploreLooks={() => setIsLooksOpen(true)}
+              />
 
-    <Marquee />
+              <Marquee />
 
-    <BestsellerSection
-      wishlist={wishlist}
-      onToggleWishlist={handleToggleWishlist}
-      onAddToCart={handleAddToCart}
-    />
+              <BestsellerSection
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onAddToCart={handleAddToCart}
+              />
 
-    <CollectionBanner
-      onExploreLooks={() => setIsLooksOpen(true)}
-    />
+              <CollectionBanner
+                onExploreLooks={() => setIsLooksOpen(true)}
+              />
 
-    <OurPicksSection
-      wishlist={wishlist}
-      onToggleWishlist={handleToggleWishlist}
-      onAddToCart={handleAddToCart}
-      onBrowseAll={() => setIsAllProductsOpen(true)}
-    />
+              <OurPicksSection
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onAddToCart={handleAddToCart}
+                onBrowseAll={() => setIsAllProductsOpen(true)}
+              />
 
-    <StoresSection />
+              <StoresSection />
 
-    {/* HIDDEN SEO CONTENT */}
-    <section className="sr-only">
-      <h1>NineTynine Store Fashion Wanita Madiun</h1>
+              <section className="sr-only">
+                <h1>NineTynine Store Fashion Wanita Madiun</h1>
 
-      <p>
-        NineTynine Store adalah toko fashion wanita Madiun
-        yang menyediakan dress, blouse, tunic,
-        outer, sweater, pants dan skirt.
-      </p>
+                <p>
+                  NineTynine Store adalah toko fashion wanita Madiun
+                  yang menyediakan dress, blouse, tunic,
+                  outer, sweater, pants dan skirt.
+                </p>
 
-      <p>
-        Fashion wanita kekinian Madiun dengan
-        model trendy, korean style,
-        casual outfit dan outfit modern.
-      </p>
+                <p>
+                  Fashion wanita kekinian Madiun dengan
+                  model trendy, korean style,
+                  casual outfit dan outfit modern.
+                </p>
 
-      <p>
-        Kategori populer:
-        dress wanita,
-        blouse wanita,
-        tunic wanita,
-        outer wanita,
-        sweater wanita.
-      </p>
-    </section>
-
-  </>
-}
-/>
-
+                <p>
+                  Toko baju wanita online Madiun dengan
+                  koleksi outfit korean style,
+                  outfit hangout,
+                  fashion wanita terbaru.
+                </p>
+              </section>
+            </>
+          }
+        />
           {/* PRODUCT DETAIL */}
           <Route
             path="/product/:id"
