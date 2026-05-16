@@ -18,7 +18,6 @@ import { Footer } from './components/Footer';
 import { WishlistModal } from './components/WishlistModal';
 import { LooksModal } from './components/LooksModal';
 import { AllProductsModal } from './components/AllProductsModal';
-
 import { FaqButton } from './components/FaqButton';
 
 import { Product } from './utils/data';
@@ -210,9 +209,23 @@ function AppContent() {
     });
   };
 
+  /* HIDE COMPONENTS PADA HALAMAN TERTENTU */
+
+  const hiddenRoutes = [
+    '/checkout',
+    '/payment',
+    '/login'
+  ];
+
+  const showNavbar =
+    !hiddenRoutes.some(route =>
+      location.pathname.startsWith(route)
+    );
+
   const showFooter =
-    !location.pathname.includes('/checkout') &&
-    !location.pathname.includes('/payment');
+    !hiddenRoutes.some(route =>
+      location.pathname.startsWith(route)
+    );
 
   const showFaqButton =
     !location.pathname.includes('/checkout');
@@ -220,25 +233,27 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-white">
 
-      {/* NAVBAR */}
-      <Navbar
-        wishlistCount={wishlistCount}
-        cartCount={cartCount}
-        onWishlistClick={() =>
-          setIsWishlistOpen(true)
-        }
-        onMenuClick={() =>
-          setIsMobileMenuOpen(true)
-        }
-      />
+      {showNavbar && (
+        <>
+          <Navbar
+            wishlistCount={wishlistCount}
+            cartCount={cartCount}
+            onWishlistClick={() =>
+              setIsWishlistOpen(true)
+            }
+            onMenuClick={() =>
+              setIsMobileMenuOpen(true)
+            }
+          />
 
-      {/* MOBILE MENU */}
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() =>
-          setIsMobileMenuOpen(false)
-        }
-      />
+          <MobileMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() =>
+              setIsMobileMenuOpen(false)
+            }
+          />
+        </>
+      )}
 
       <Suspense
         fallback={
@@ -274,12 +289,8 @@ function AppContent() {
 
                 <BestsellerSection
                   wishlist={wishlist}
-                  onToggleWishlist={
-                    handleToggleWishlist
-                  }
-                  onAddToCart={
-                    handleAddToCart
-                  }
+                  onToggleWishlist={handleToggleWishlist}
+                  onAddToCart={handleAddToCart}
                 />
 
                 <CollectionBanner
@@ -290,12 +301,8 @@ function AppContent() {
 
                 <OurPicksSection
                   wishlist={wishlist}
-                  onToggleWishlist={
-                    handleToggleWishlist
-                  }
-                  onAddToCart={
-                    handleAddToCart
-                  }
+                  onToggleWishlist={handleToggleWishlist}
+                  onAddToCart={handleAddToCart}
                   onBrowseAll={() =>
                     setIsAllProductsOpen(true)
                   }
@@ -310,13 +317,9 @@ function AppContent() {
             path="/product/:id"
             element={
               <ProductDetailPage
-                onAddToCart={
-                  handleAddToCart
-                }
+                onAddToCart={handleAddToCart}
                 wishlist={wishlist}
-                onToggleWishlist={
-                  handleToggleWishlist
-                }
+                onToggleWishlist={handleToggleWishlist}
                 onOpenWishlist={() =>
                   setIsWishlistOpen(true)
                 }
@@ -329,9 +332,7 @@ function AppContent() {
             element={
               <CartPage
                 cartItems={cartItems}
-                setCartItems={
-                  setCartItems
-                }
+                setCartItems={setCartItems}
               />
             }
           />
@@ -354,9 +355,7 @@ function AppContent() {
             path="/order-complete"
             element={
               <OrderCompletePage
-                setCartItems={
-                  setCartItems
-                }
+                setCartItems={setCartItems}
               />
             }
           />
@@ -383,9 +382,7 @@ function AppContent() {
 
           <Route
             path="/purchase-history"
-            element={
-              <PurchaseHistoryPage />
-            }
+            element={<PurchaseHistoryPage />}
           />
 
           <Route
@@ -393,19 +390,13 @@ function AppContent() {
             element={
               <CategoryPage
                 wishlist={wishlist}
-                onToggleWishlist={
-                  handleToggleWishlist
-                }
-                onAddToCart={
-                  handleAddToCart
-                }
-                wishlistCount={
-                  wishlistCount
-                }
-                cartCount={cartCount}
+                onToggleWishlist={handleToggleWishlist}
+                onAddToCart={handleAddToCart}
                 onOpenWishlist={() =>
                   setIsWishlistOpen(true)
                 }
+                wishlistCount={wishlistCount}
+                cartCount={cartCount}
               />
             }
           />
@@ -417,28 +408,20 @@ function AppContent() {
 
           <Route
             path="/sale/:lookId"
-            element={
-              <SaleDetailPage />
-            }
+            element={<SaleDetailPage />}
           />
 
           <Route
             path="/looks/:lookId"
             element={
               <LooksDetailPage
-                onAddToCart={
-                  handleAddToCart
-                }
+                onAddToCart={handleAddToCart}
                 onOpenWishlist={() =>
                   setIsLooksOpen(true)
                 }
                 wishlist={wishlist}
-                onToggleWishlist={
-                  handleToggleWishlist
-                }
-                wishlistCount={
-                  wishlistCount
-                }
+                onToggleWishlist={handleToggleWishlist}
+                wishlistCount={wishlistCount}
                 cartCount={cartCount}
               />
             }
@@ -457,12 +440,8 @@ function AppContent() {
           setIsWishlistOpen(false)
         }
         wishlist={wishlist}
-        onToggleWishlist={
-          handleToggleWishlist
-        }
-        onAddToCart={
-          handleAddToCart
-        }
+        onToggleWishlist={handleToggleWishlist}
+        onAddToCart={handleAddToCart}
       />
 
       <LooksModal
@@ -482,8 +461,6 @@ function AppContent() {
     </div>
   );
 }
-
-/* ================= EXPORT ================= */
 
 export default function App() {
   return (
