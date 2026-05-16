@@ -276,3 +276,86 @@ export function SpeakableJsonLd() {
     />
   );
 }
+
+interface ProductJsonLdProps {
+  name: string;
+  description?: string;
+  price: string;
+  image: string;
+  id: string;
+  category: string;
+}
+
+export function ProductJsonLd({
+  name,
+  description,
+  price,
+  image,
+  id,
+  category
+}: ProductJsonLdProps) {
+
+  const priceNumber =
+    price?.replace(/[^0-9]/g,'') || '0';
+
+  const jsonLd = {
+
+    "@context":"https://schema.org",
+
+    "@type":"Product",
+
+    "name":name,
+
+    "description":
+      description ||
+      `${name} - Fashion wanita dari Ninetynine`,
+
+    "image":image,
+
+    "sku":id,
+
+    "category":category,
+
+    "brand":{
+
+      "@type":"Brand",
+
+      "name":"Ninetynine"
+
+    },
+
+    "offers":{
+
+      "@type":"Offer",
+
+      "priceCurrency":"IDR",
+
+      "price":priceNumber,
+
+      "availability":
+      "https://schema.org/InStock",
+
+      "seller":{
+
+        "@type":"Organization",
+
+        "name":"Ninetynine"
+
+      }
+
+    }
+
+  };
+
+  return(
+
+<script
+type="application/ld+json"
+dangerouslySetInnerHTML={{
+__html:JSON.stringify(jsonLd)
+}}
+/>
+
+)
+
+}

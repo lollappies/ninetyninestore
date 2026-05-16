@@ -75,7 +75,6 @@ export const translations = {
     product_removed_from_wishlist: 'Dihapus dari Wishlist',
     product_added_to_wishlist: 'Ditambahkan ke Wishlist',
     product_added_to_cart: 'Ditambahkan ke Keranjang',
-    product_detail_add_to_cart: 'Tambah ke Keranjang',
 
     // Wishlist
     wishlist_title: 'Wishlist Saya',
@@ -550,7 +549,6 @@ export const translations = {
     product_removed_from_wishlist: 'Removed from Wishlist',
     product_added_to_wishlist: 'Added to Wishlist',
     product_added_to_cart: 'Added to Cart',
-    product_detail_add_to_cart: 'Add to Cart',
 
     // Wishlist
     wishlist_title: 'My Wishlist',
