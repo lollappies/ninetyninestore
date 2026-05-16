@@ -233,6 +233,7 @@ setWishlistOpenedFrom(null)
 
 const isLandingPage=
 location.pathname==='/'
+location.pathname.startsWith('/blog')
 
 
 
