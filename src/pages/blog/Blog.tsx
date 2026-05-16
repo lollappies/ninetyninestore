@@ -71,6 +71,33 @@ export default function Blog() {
 
         </Link>
 
+
+        <Link to="/blog/tips-mix-and-match-wanita">
+
+            <div className="border rounded-2xl p-8 hover:shadow-xl transition cursor-pointer">
+
+            <p className="text-sm text-gray-400 uppercase">
+            Fashion Tips
+            </p>
+
+            <h2 className="text-3xl font-semibold mt-3">
+
+            Tips Mix and Match Outfit Wanita
+            Agar Tampil Stylish
+
+            </h2>
+
+            <p className="mt-4 text-gray-600">
+
+            Inspirasi padu padan dress,
+            tunic, blouse dan outfit wanita modern.
+
+            </p>
+
+            </div>
+
+            </Link>
+
       </div>
 
     </div>

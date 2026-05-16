@@ -52,6 +52,7 @@ import { ScrollToTop } from './components/ScrollToTop';
 import Blog from './pages/blog/Blog';
 import TrendFashionWanita2026 from './pages/blog/TrendFashionWanita2026';
 import OutfitCasualWanita from './pages/blog/OutfitCasualWanita';
+import TipsMixAndMatchWanita from './pages/blog/tips-mix-and-match-wanita';
 
 export interface CartItem {
   product: Product;
@@ -588,6 +589,11 @@ element={<TrendFashionWanita2026 />}
 <Route
 path="/blog/outfit-casual-wanita"
 element={<OutfitCasualWanita />}
+/>
+
+<Route
+path="/blog/tips-mix-and-match-wanita"
+element={<TipsMixAndMatchWanita />}
 />
 
 </Routes>
