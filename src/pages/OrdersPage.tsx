@@ -1,7 +1,8 @@
+// src/pages/OrdersPage.tsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Package } from 'lucide-react';
+import { ArrowLeft, Package, X } from 'lucide-react';
 import { getOrdersByStatus, SavedOrder } from '../utils/orderStorage';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 import { useLanguage } from '../context/LanguageContext';
@@ -28,19 +29,19 @@ export function OrdersPage({ onOpenWishlist }: OrdersPageProps) {
   }, [activeTab]);
 
   const tabs: { id: TabType; labelKey: string }[] = [
-    { id: 'selesai', labelKey: 'orders_tab_completed' },
-    { id: 'dikirim', labelKey: 'orders_tab_shipped' },
-    { id: 'dibatalkan', labelKey: 'orders_tab_cancelled' },
+    { id: 'selesai',      labelKey: 'orders_tab_completed' },
+    { id: 'dikirim',      labelKey: 'orders_tab_shipped' },
+    { id: 'dibatalkan',   labelKey: 'orders_tab_cancelled' },
     { id: 'dikembalikan', labelKey: 'orders_tab_returned' },
   ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'selesai': return 'bg-[#E8F5E9] text-[#4CAF50]';
-      case 'dikirim': return 'bg-[#E3F2FD] text-[#2196F3]';
-      case 'dibatalkan': return 'bg-[#FFEBEE] text-[#F44336]';
+      case 'selesai':      return 'bg-[#E8F5E9] text-[#4CAF50]';
+      case 'dikirim':      return 'bg-[#E3F2FD] text-[#2196F3]';
+      case 'dibatalkan':   return 'bg-[#FFEBEE] text-[#F44336]';
       case 'dikembalikan': return 'bg-[#FFF3E0] text-[#FF9800]';
-      default: return 'bg-gray-100 text-gray-600';
+      default:             return 'bg-gray-100 text-gray-600';
     }
   };
 
@@ -52,15 +53,25 @@ export function OrdersPage({ onOpenWishlist }: OrdersPageProps) {
       className="min-h-screen bg-gray-50 pb-24">
 
       <header className="sticky top-0 z-30 bg-white border-b border-gray-100">
-        <div className="py-4 px-4 md:px-8 max-w-3xl mx-auto flex items-center">
+        <div className="py-4 px-4 md:px-8 max-w-3xl mx-auto flex items-center justify-between">
+          <div className="flex items-center">
+            <button
+              onClick={() => navigate('/profile')}
+              className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
+              <ArrowLeft size={24} />
+            </button>
+            <span className="font-serif text-xl font-medium ml-2">
+              {t('orders_title')}
+            </span>
+          </div>
+
+          {/* Tombol X → close ke /profile */}
           <button
             onClick={() => navigate('/profile')}
-            className="p-2 -ml-2 text-brand-dark hover:opacity-70 transition-opacity">
-            <ArrowLeft size={24} />
+            className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors"
+            aria-label="Close">
+            <X size={16} />
           </button>
-          <span className="font-serif text-xl font-medium ml-2">
-            {t('orders_title')}
-          </span>
         </div>
 
         <div className="max-w-3xl mx-auto px-4 md:px-8 flex overflow-x-auto no-scrollbar border-t border-gray-50">

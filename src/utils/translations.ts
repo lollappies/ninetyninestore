@@ -122,7 +122,7 @@ export const translations = {
     mobile_menu_category: 'Kategori',
     mobile_menu_offline_store: 'Toko Offline',
 
-    // Category dropdown (Navbar)
+    // Category dropdown
     category_dress: 'Dress',
     category_blouse: 'Blouse',
     category_tunic: 'Tunic',
@@ -131,7 +131,7 @@ export const translations = {
     category_pants: 'Pants',
     category_skirt: 'Skirt',
 
-    // Profile — semua versi key
+    // Profile
     profile_title: 'Pengaturan Akun',
     profile_login_btn: 'Daftar / Masuk',
     profile_login_desc: 'Login atau buat akun baru untuk pengalaman belanja lebih baik',
@@ -146,21 +146,34 @@ export const translations = {
     profile_purchase_history: 'Riwayat Pembelian',
     profile_purchase_history_desc: 'Lihat semua transaksi yang telah selesai',
 
-    // Login
+    // Login — semua versi key
     login_tab: 'Masuk',
+    login_title: 'Masuk',
     signup_tab: 'Daftar',
+    login_signup_tab: 'Daftar',
     login_email_label: 'Email atau Username',
+    login_email: 'Email atau Username',
     login_email_placeholder: 'email@contoh.com atau username',
     login_pass_label: 'Kata Sandi',
+    login_password: 'Kata Sandi',
     login_pass_placeholder: 'Masukkan kata sandi',
+    login_password_placeholder: 'Masukkan kata sandi',
     login_btn: 'Masuk',
-    signup_name_label: 'Nama Lengkap',
-    signup_username_label: 'Username',
-    signup_email_label: 'Email',
-    signup_pass_label: 'Kata Sandi',
-    signup_pass_placeholder: 'Buat kata sandi yang kuat',
-    signup_btn: 'Daftar',
     login_success: 'Login berhasil',
+    signup_name_label: 'Nama Lengkap',
+    signup_full_name: 'Nama Lengkap',
+    signup_full_name_placeholder: 'John Doe',
+    signup_username_label: 'Username',
+    signup_username: 'Username',
+    signup_username_placeholder: '@username',
+    signup_email_label: 'Email',
+    signup_email: 'Email',
+    signup_email_placeholder: 'email@contoh.com',
+    signup_pass_label: 'Kata Sandi',
+    signup_password: 'Kata Sandi',
+    signup_pass_placeholder: 'Buat kata sandi yang kuat',
+    signup_password_placeholder: 'Buat kata sandi yang kuat',
+    signup_btn: 'Daftar',
     signup_success: 'Akun berhasil dibuat',
 
     // Address
@@ -185,18 +198,24 @@ export const translations = {
     address_primary: 'Utama',
     address_landmark: 'Patokan',
 
-    // Orders
+    // Orders — semua versi key
     orders_title: 'Pesanan Saya',
     orders_tab_done: 'Selesai',
+    orders_tab_completed: 'Selesai',
     orders_tab_shipped: 'Dikirim',
     orders_tab_cancelled: 'Dibatalkan',
     orders_tab_returned: 'Dikembalikan',
     orders_empty: 'Belum ada pesanan',
+    orders_no_orders: 'Belum ada pesanan',
     orders_empty_desc: 'Tidak ada pesanan dengan status',
+    orders_no_orders_desc: 'Tidak ada pesanan dengan status',
     orders_start_shop: 'Mulai Belanja',
+    orders_start_shopping: 'Mulai Belanja',
     orders_date: 'Belanja',
+    orders_shopping: 'Belanja',
     orders_total: 'Total Belanja',
     orders_buy_again: 'Beli Lagi',
+    orders_items: 'barang',
 
     // Purchase History
     history_title: 'Riwayat Pembelian',
@@ -285,7 +304,7 @@ export const translations = {
     order_payment_mandiri: 'Mandiri Virtual Account',
     order_payment_qris: 'QRIS',
 
-    // Sale Page — semua versi key
+    // Sale Page
     sale_title: 'Bundel Spesial',
     sale_offer_label: 'Penawaran Terbatas',
     sale_limited_offer: 'Penawaran Terbatas',
@@ -295,8 +314,6 @@ export const translations = {
     sale_shop_look: 'Belanja Looknya',
     sale_shop_the_look: 'Belanja Looknya',
     sale_save: 'Hemat',
-
-    // Sale looks titles & descs
     sale_casual_title: 'Casual Chic',
     sale_casual_desc: 'Outfit nyaman untuk aktivitas sehari-hari yang tetap stylish.',
     sale_feminim_title: 'Feminine Touch',
@@ -466,7 +483,7 @@ export const translations = {
     mobile_menu_category: 'Category',
     mobile_menu_offline_store: 'Offline Store',
 
-    // Category dropdown (Navbar)
+    // Category dropdown
     category_dress: 'Dress',
     category_blouse: 'Blouse',
     category_tunic: 'Tunic',
@@ -475,7 +492,7 @@ export const translations = {
     category_pants: 'Pants',
     category_skirt: 'Skirt',
 
-    // Profile — semua versi key
+    // Profile
     profile_title: 'Account Settings',
     profile_login_btn: 'Register / Sign In',
     profile_login_desc: 'Log in or create a new account for a better shopping experience',
@@ -490,21 +507,34 @@ export const translations = {
     profile_purchase_history: 'Purchase History',
     profile_purchase_history_desc: 'View all your completed transactions',
 
-    // Login
+    // Login — semua versi key
     login_tab: 'Log In',
+    login_title: 'Log In',
     signup_tab: 'Sign Up',
+    login_signup_tab: 'Sign Up',
     login_email_label: 'Email or Username',
+    login_email: 'Email or Username',
     login_email_placeholder: 'example@email.com or username',
     login_pass_label: 'Password',
+    login_password: 'Password',
     login_pass_placeholder: 'Enter your password',
+    login_password_placeholder: 'Enter your password',
     login_btn: 'Log In',
-    signup_name_label: 'Full Name',
-    signup_username_label: 'Username',
-    signup_email_label: 'Email',
-    signup_pass_label: 'Password',
-    signup_pass_placeholder: 'Create a strong password',
-    signup_btn: 'Sign Up',
     login_success: 'Login successful',
+    signup_name_label: 'Full Name',
+    signup_full_name: 'Full Name',
+    signup_full_name_placeholder: 'John Doe',
+    signup_username_label: 'Username',
+    signup_username: 'Username',
+    signup_username_placeholder: '@username',
+    signup_email_label: 'Email',
+    signup_email: 'Email',
+    signup_email_placeholder: 'example@email.com',
+    signup_pass_label: 'Password',
+    signup_password: 'Password',
+    signup_pass_placeholder: 'Create a strong password',
+    signup_password_placeholder: 'Create a strong password',
+    signup_btn: 'Sign Up',
     signup_success: 'Account created successfully',
 
     // Address
@@ -529,18 +559,24 @@ export const translations = {
     address_primary: 'Primary',
     address_landmark: 'Landmark',
 
-    // Orders
+    // Orders — semua versi key
     orders_title: 'My Orders',
     orders_tab_done: 'Completed',
+    orders_tab_completed: 'Completed',
     orders_tab_shipped: 'Shipped',
     orders_tab_cancelled: 'Cancelled',
     orders_tab_returned: 'Returned',
     orders_empty: 'No orders yet',
+    orders_no_orders: 'No orders yet',
     orders_empty_desc: 'No orders with status',
+    orders_no_orders_desc: 'No orders with status',
     orders_start_shop: 'Start Shopping',
+    orders_start_shopping: 'Start Shopping',
     orders_date: 'Purchase',
+    orders_shopping: 'Purchase',
     orders_total: 'Total Purchase',
     orders_buy_again: 'Buy Again',
+    orders_items: 'items',
 
     // Purchase History
     history_title: 'Purchase History',
@@ -629,7 +665,7 @@ export const translations = {
     order_payment_mandiri: 'Mandiri Virtual Account',
     order_payment_qris: 'QRIS',
 
-    // Sale Page — semua versi key
+    // Sale Page
     sale_title: 'Special Bundles',
     sale_offer_label: 'Limited Time Offer',
     sale_limited_offer: 'Limited Time Offer',
@@ -639,8 +675,6 @@ export const translations = {
     sale_shop_look: 'Shop The Look',
     sale_shop_the_look: 'Shop The Look',
     sale_save: 'Save',
-
-    // Sale looks titles & descs
     sale_casual_title: 'Casual Chic',
     sale_casual_desc: 'Comfortable outfit for daily activities that stays stylish.',
     sale_feminim_title: 'Feminine Touch',

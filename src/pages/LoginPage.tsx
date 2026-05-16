@@ -1,6 +1,7 @@
+// src/pages/LoginPage.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, X } from 'lucide-react';
 import { useCustomToast } from '../components/CustomToast';
 import { useEscapeBack } from '../hooks/useEscapeBack';
 import { useLanguage } from '../context/LanguageContext';
@@ -23,11 +24,21 @@ export function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-24 px-4 relative">
+
+      {/* Tombol Back kiri atas */}
       <button
         onClick={() => navigate('/profile')}
         className="absolute top-6 left-6 p-2 text-brand-dark hover:opacity-70 transition-opacity z-10"
         aria-label="Back to profile">
         <ArrowLeft size={24} />
+      </button>
+
+      {/* Tombol X kanan atas → close ke profile */}
+      <button
+        onClick={() => navigate('/profile')}
+        className="absolute top-6 right-6 w-8 h-8 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors z-10"
+        aria-label="Close">
+        <X size={16} />
       </button>
 
       <div className="bg-white rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-gray-100 w-full max-w-[440px] overflow-hidden">
