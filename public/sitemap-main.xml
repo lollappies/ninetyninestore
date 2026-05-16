@@ -37,4 +37,16 @@
     <loc>https://ninetyninestore-nine.vercel.app/sale</loc>
   </url>
 
+  <url>
+  <loc>
+    https://ninetyninestore-nine.vercel.app/blog
+  </loc>
+  </url>
+
+  <url>
+  <loc>
+    https://ninetyninestore-nine.vercel.app/blog/trend-fashion-wanita-2026
+  </loc>
+  </url>
+  
 </urlset>

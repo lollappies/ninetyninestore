@@ -49,6 +49,8 @@ import { SaleDetailPage } from './pages/SaleDetailPage';
 import { LooksDetailPage } from './pages/LooksDetailPage';
 
 import { ScrollToTop } from './components/ScrollToTop';
+import Blog from './pages/blog/Blog';
+import TrendFashionWanita2026 from './pages/blog/TrendFashionWanita2026';
 
 export interface CartItem {
   product: Product;
@@ -525,6 +527,16 @@ wishlistCount={wishlistCount}
 cartCount={cartCount}
 />
 }
+/>
+
+<Route
+path="/blog"
+element={<Blog />}
+/>
+
+<Route
+path="/blog/trend-fashion-wanita-2026"
+element={<TrendFashionWanita2026 />}
 />
 
 </Routes>
