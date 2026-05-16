@@ -1,26 +1,13 @@
 {
   "rewrites": [
     {
-      "source": "/category/(.*)",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/sale",
+      "source": "/((?!sitemap-main.xml|robots.txt|sitemap.xml|images|favicon.ico).*)",
       "destination": "/index.html"
     }
   ],
   "headers": [
     {
-      "source": "/robots.txt",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain"
-        }
-      ]
-    },
-    {
-      "source": "/sitemap-main.xml",
+      "source": "/(.*).xml",
       "headers": [
         {
           "key": "Content-Type",
