@@ -99,27 +99,37 @@ export const translations = {
     faq_close: 'Tutup',
     faq_still_question: 'Masih ada pertanyaan?',
     faq_chat_whatsapp: 'Chat via WhatsApp',
-
-    // FAQ Q&A — updated
     faq_q1: 'Apakah Ninetynine melayani pengiriman ke luar Madiun?',
     faq_a1: 'Ya, Ninetynine melayani pengiriman ke seluruh Indonesia menggunakan jasa ekspedisi terpercaya seperti JNE dan J&T.',
     faq_q2: 'Produk apa saja yang tersedia di Ninetynine?',
     faq_a2: 'Ninetynine menyediakan berbagai koleksi fashion wanita seperti dress, blouse, tunic, outer, sweater, pants, dan skirt dengan model yang selalu up-to-date.',
     faq_q3: 'Di mana lokasi toko Ninetynine?',
-    faq_a3: 'Pusat toko Ninetynine berada di Kota Kediri dan hadir di beberapa kota di Jawa Timur, seperti Madiun, Ponorogo, Jombang, Nganjuk, Blitar, Tulungagung, dan Sidoarjo untuk memudahkan pelanggan berbelanja secara langsung.',
+    faq_a3: 'Pusat toko Ninetynine berada di Kota Kediri dan hadir di beberapa kota di Jawa Timur, seperti Madiun, Ponorogo, Jombang, Nganjuk, Blitar, Tulungagung, dan Sidoarjo.',
     faq_q4: 'Berapa kisaran harga produk di Ninetynine?',
     faq_a4: 'Harga produk Ninetynine sangat terjangkau, mulai dari IDR 69.000 hingga IDR 325.000.',
     faq_q5: 'Apakah Ninetynine merupakan toko fashion wanita terpercaya?',
-    faq_a5: 'Ya, Ninetynine merupakan toko fashion wanita terpercaya yang menghadirkan produk berkualitas, harga terjangkau, dan pelayanan terbaik bagi pelanggan.',
+    faq_a5: 'Ya, Ninetynine merupakan toko fashion wanita terpercaya yang menghadirkan produk berkualitas, harga terjangkau, dan pelayanan terbaik.',
     faq_q6: 'Metode pembayaran apa yang tersedia?',
     faq_a6: 'Ninetynine menyediakan pembayaran melalui transfer bank BCA, Bank Mandiri, QRIS, serta pembayaran tunai bagi pelanggan yang datang langsung ke toko.',
     faq_q7: 'Bagaimana jam operasional Ninetynine?',
     faq_a7: 'Toko fisik buka setiap hari pukul 09.00–21.00 WIB, sementara pemesanan melalui website dapat dilakukan kapan saja selama 24 jam.',
 
-    // MobileMenu
+    // MobileMenu — key lengkap (dua versi supaya tidak ada yang undefined)
     mobile_sale: 'Sale',
     mobile_category: 'Kategori',
     mobile_offline_store: 'Toko Offline',
+    mobile_menu_sale: 'Sale',
+    mobile_menu_category: 'Kategori',
+    mobile_menu_offline_store: 'Toko Offline',
+
+    // Category dropdown (Navbar)
+    category_dress: 'Dress',
+    category_blouse: 'Blouse',
+    category_tunic: 'Tunic',
+    category_outer: 'Outer',
+    category_sweater: 'Sweater',
+    category_pants: 'Pants',
+    category_skirt: 'Skirt',
 
     // Profile
     profile_title: 'Pengaturan Akun',
@@ -280,7 +290,7 @@ export const translations = {
     // Sale Detail
     sale_detail_title: 'Detail Bundel',
     sale_bundle_pricing: 'Harga Bundel Spesial',
-    sale_bundle_desc: 'Dapatkan harga lebih murah dengan membeli 1 set outfit lengkap ini. Hemat dibandingkan membeli satuan.',
+    sale_bundle_desc: 'Dapatkan harga lebih murah dengan membeli 1 set outfit lengkap ini.',
     sale_items_in_look: 'Item dalam look ini',
     sale_original_total: 'Total Asli',
     sale_discount: 'Diskon',
@@ -414,27 +424,37 @@ export const translations = {
     faq_close: 'Close',
     faq_still_question: 'Still have questions?',
     faq_chat_whatsapp: 'Chat via WhatsApp',
-
-    // FAQ Q&A — updated
     faq_q1: 'Does Ninetynine ship outside Madiun?',
     faq_a1: 'Yes, Ninetynine ships across Indonesia using trusted couriers such as JNE and J&T.',
     faq_q2: 'What products are available at Ninetynine?',
-    faq_a2: 'Ninetynine offers a wide range of women\'s fashion including dresses, blouses, tunics, outers, sweaters, pants, and skirts — always up-to-date with the latest styles.',
+    faq_a2: "Ninetynine offers a wide range of women's fashion including dresses, blouses, tunics, outers, sweaters, pants, and skirts — always up-to-date.",
     faq_q3: 'Where are Ninetynine stores located?',
-    faq_a3: 'Ninetynine\'s main store is in Kediri and is also present in several cities across East Java, including Madiun, Ponorogo, Jombang, Nganjuk, Blitar, Tulungagung, and Sidoarjo.',
+    faq_a3: "Ninetynine's main store is in Kediri and is also present in several cities across East Java, including Madiun, Ponorogo, Jombang, Nganjuk, Blitar, Tulungagung, and Sidoarjo.",
     faq_q4: 'What is the price range at Ninetynine?',
     faq_a4: 'Ninetynine products are very affordable, ranging from IDR 69,000 to IDR 325,000.',
-    faq_q5: 'Is Ninetynine a trusted women\'s fashion store?',
-    faq_a5: 'Yes, Ninetynine is a trusted women\'s fashion store offering quality products, affordable prices, and excellent service for every customer.',
+    faq_q5: "Is Ninetynine a trusted women's fashion store?",
+    faq_a5: "Yes, Ninetynine is a trusted women's fashion store offering quality products, affordable prices, and excellent service.",
     faq_q6: 'What payment methods are available?',
-    faq_a6: 'Ninetynine accepts bank transfers via BCA and Mandiri, QRIS, as well as cash payment for customers visiting the store directly.',
-    faq_q7: 'What are Ninetynine\'s operating hours?',
+    faq_a6: 'Ninetynine accepts bank transfers via BCA and Mandiri, QRIS, as well as cash payment for in-store customers.',
+    faq_q7: "What are Ninetynine's operating hours?",
     faq_a7: 'Physical stores are open every day from 09.00–21.00 WIB, while orders via the website can be placed anytime, 24 hours a day.',
 
-    // MobileMenu
+    // MobileMenu — key lengkap (dua versi supaya tidak ada yang undefined)
     mobile_sale: 'Sale',
     mobile_category: 'Category',
     mobile_offline_store: 'Offline Store',
+    mobile_menu_sale: 'Sale',
+    mobile_menu_category: 'Category',
+    mobile_menu_offline_store: 'Offline Store',
+
+    // Category dropdown (Navbar)
+    category_dress: 'Dress',
+    category_blouse: 'Blouse',
+    category_tunic: 'Tunic',
+    category_outer: 'Outer',
+    category_sweater: 'Sweater',
+    category_pants: 'Pants',
+    category_skirt: 'Skirt',
 
     // Profile
     profile_title: 'Account Settings',
@@ -595,7 +615,7 @@ export const translations = {
     // Sale Detail
     sale_detail_title: 'Bundle Details',
     sale_bundle_pricing: 'Special Bundle Pricing',
-    sale_bundle_desc: 'Get a better price by buying this complete outfit set. Save compared to buying individually.',
+    sale_bundle_desc: 'Get a better price by buying this complete outfit set.',
     sale_items_in_look: 'Items in this look',
     sale_original_total: 'Original Total',
     sale_discount: 'Discount',

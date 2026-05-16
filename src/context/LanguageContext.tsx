@@ -1,3 +1,4 @@
+// src/context/LanguageContext.tsx
 import React, { createContext, useContext, useState } from 'react';
 import { Lang, TranslationKey, translations } from '../utils/translations';
 
@@ -8,14 +9,17 @@ interface LanguageContextType {
 }
 
 const LanguageContext = createContext<LanguageContextType>({
-  lang: 'EN',
+  lang: 'ID',
   setLang: () => {},
-  t: (key) => translations.EN[key],
+  t: (key) => translations.ID[key] ?? key,
 });
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Lang>('EN');
-  const t = (key: TranslationKey): string => translations[lang][key];
+  const [lang, setLang] = useState<Lang>('ID');
+
+  const t = (key: TranslationKey): string => {
+    return translations[lang][key] ?? translations.ID[key] ?? key;
+  };
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t }}>
