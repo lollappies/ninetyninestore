@@ -1,9 +1,12 @@
 import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+
 import { CustomToastProvider } from './components/CustomToast';
 import { LanguageProvider } from './context/LanguageContext';
+
 import { Navbar } from './components/Navbar';
 import { MobileMenu } from './components/MobileMenu';
+
 import { HeroSection } from './components/HeroSection';
 import { Marquee } from './components/Marquee';
 import { BestsellerSection } from './components/BestsellerSection';
@@ -11,12 +14,17 @@ import { CollectionBanner } from './components/CollectionBanner';
 import { OurPicksSection } from './components/OurPicksSection';
 import { StoresSection } from './components/StoresSection';
 import { Footer } from './components/Footer';
+
 import { WishlistModal } from './components/WishlistModal';
 import { LooksModal } from './components/LooksModal';
 import { AllProductsModal } from './components/AllProductsModal';
+
 import { FaqButton } from './components/FaqButton';
+
 import { Product } from './utils/data';
+
 import { SeoHelmet } from './components/SeoHelmet';
+
 import {
   StoreJsonLd,
   FaqJsonLd,
@@ -36,64 +44,96 @@ const isSameProduct = (a: Product, b: Product) =>
   a.name.trim().toLowerCase() === b.name.trim().toLowerCase();
 
 /* ================= LAZY PAGES ================= */
+
 const ProductDetailPage = lazy(() =>
-  import('./pages/ProductDetailPage').then(m => ({ default: m.ProductDetailPage }))
+  import('./pages/ProductDetailPage').then(m => ({
+    default: m.ProductDetailPage
+  }))
 );
 
 const CheckoutPage = lazy(() =>
-  import('./pages/CheckoutPage').then(m => ({ default: m.CheckoutPage }))
+  import('./pages/CheckoutPage').then(m => ({
+    default: m.CheckoutPage
+  }))
 );
 
 const PaymentPage = lazy(() =>
-  import('./pages/PaymentPage').then(m => ({ default: m.PaymentPage }))
+  import('./pages/PaymentPage').then(m => ({
+    default: m.PaymentPage
+  }))
 );
 
 const OrderCompletePage = lazy(() =>
-  import('./pages/OrderCompletePage').then(m => ({ default: m.OrderCompletePage }))
+  import('./pages/OrderCompletePage').then(m => ({
+    default: m.OrderCompletePage
+  }))
 );
 
 const LoginPage = lazy(() =>
-  import('./pages/LoginPage').then(m => ({ default: m.LoginPage }))
+  import('./pages/LoginPage').then(m => ({
+    default: m.LoginPage
+  }))
 );
 
 const PurchaseHistoryPage = lazy(() =>
-  import('./pages/PurchaseHistoryPage').then(m => ({ default: m.PurchaseHistoryPage }))
+  import('./pages/PurchaseHistoryPage').then(m => ({
+    default: m.PurchaseHistoryPage
+  }))
 );
 
 const CartPage = lazy(() =>
-  import('./pages/CartPage').then(m => ({ default: m.CartPage }))
+  import('./pages/CartPage').then(m => ({
+    default: m.CartPage
+  }))
 );
 
 const ProfilePage = lazy(() =>
-  import('./pages/ProfilePage').then(m => ({ default: m.ProfilePage }))
+  import('./pages/ProfilePage').then(m => ({
+    default: m.ProfilePage
+  }))
 );
 
 const AddressPage = lazy(() =>
-  import('./pages/AddressPage').then(m => ({ default: m.AddressPage }))
+  import('./pages/AddressPage').then(m => ({
+    default: m.AddressPage
+  }))
 );
 
 const OrdersPage = lazy(() =>
-  import('./pages/OrdersPage').then(m => ({ default: m.OrdersPage }))
+  import('./pages/OrdersPage').then(m => ({
+    default: m.OrdersPage
+  }))
 );
 
 const CategoryPage = lazy(() =>
-  import('./pages/CategoryPage').then(m => ({ default: m.CategoryPage }))
+  import('./pages/CategoryPage').then(m => ({
+    default: m.CategoryPage
+  }))
 );
 
 const SalePage = lazy(() =>
-  import('./pages/SalePage').then(m => ({ default: m.SalePage }))
+  import('./pages/SalePage').then(m => ({
+    default: m.SalePage
+  }))
 );
 
 const SaleDetailPage = lazy(() =>
-  import('./pages/SaleDetailPage').then(m => ({ default: m.SaleDetailPage }))
+  import('./pages/SaleDetailPage').then(m => ({
+    default: m.SaleDetailPage
+  }))
 );
 
 const LooksDetailPage = lazy(() =>
-  import('./pages/LooksDetailPage').then(m => ({ default: m.LooksDetailPage }))
+  import('./pages/LooksDetailPage').then(m => ({
+    default: m.LooksDetailPage
+  }))
 );
 
-/* ================= APP ================= */
+/* ================= APP CONTENT ================= */
+
 function AppContent() {
+  const location = useLocation();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isLooksOpen, setIsLooksOpen] = useState(false);
@@ -102,13 +142,12 @@ function AppContent() {
   const [wishlist, setWishlist] = useState<Product[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const location = useLocation();
-
   useEffect(() => {
     if (location.state?.openAllProducts) {
       setIsAllProductsOpen(true);
       window.history.replaceState({}, '');
     }
+
     if (location.state?.openLooks) {
       setIsLooksOpen(true);
       window.history.replaceState({}, '');
@@ -116,12 +155,24 @@ function AppContent() {
   }, [location.state]);
 
   const wishlistCount = wishlist.length;
-  const cartCount = cartItems.reduce((a, b) => a + b.quantity, 0);
+
+  const cartCount = cartItems.reduce(
+    (a, b) => a + b.quantity,
+    0
+  );
 
   const handleToggleWishlist = (product: Product) => {
     setWishlist(prev => {
-      const exists = prev.find(p => isSameProduct(p, product));
-      if (exists) return prev.filter(p => !isSameProduct(p, product));
+      const exists = prev.find(
+        p => isSameProduct(p, product)
+      );
+
+      if (exists) {
+        return prev.filter(
+          p => !isSameProduct(p, product)
+        );
+      }
+
       return [...prev, product];
     });
   };
@@ -146,162 +197,248 @@ function AppContent() {
         return copy;
       }
 
-      return [...prev, { product, quantity, color, size, bundleName }];
+      return [
+        ...prev,
+        {
+          product,
+          quantity,
+          color,
+          size,
+          bundleName
+        }
+      ];
     });
   };
 
-  const handleOpenWishlist = () => setIsWishlistOpen(true);
-  const handleCloseWishlist = () => setIsWishlistOpen(false);
-
-  const showFooter = !location.pathname.includes('/checkout') &&
+  const showFooter =
+    !location.pathname.includes('/checkout') &&
     !location.pathname.includes('/payment');
 
-  const showFaqButton = !location.pathname.includes('/checkout');
+  const showFaqButton =
+    !location.pathname.includes('/checkout');
 
   return (
     <div className="min-h-screen bg-white">
 
-      <Suspense fallback={<div className="p-10 text-center">Loading...</div>}>
+      {/* NAVBAR */}
+      <Navbar
+        wishlistCount={wishlistCount}
+        cartCount={cartCount}
+        onWishlistClick={() =>
+          setIsWishlistOpen(true)
+        }
+        onMenuClick={() =>
+          setIsMobileMenuOpen(true)
+        }
+      />
+
+      {/* MOBILE MENU */}
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() =>
+          setIsMobileMenuOpen(false)
+        }
+      />
+
+      <Suspense
+        fallback={
+          <div className="p-10 text-center">
+            Loading...
+          </div>
+        }
+      >
 
         <Routes>
 
-        {/* HOME */}
-        <Route
-          path="/"
-          element={
-            <>
-              <SeoHelmet
-                title="NineTynine Store | Fashion Wanita Trendy Dress, Blouse, Outer"
-                description="NineTynine Store menyediakan fashion wanita modern mulai dari dress, blouse, tunic, outer, sweater, dan koleksi trend terbaru dengan gaya kekinian."
-                keywords="fashion wanita,dress wanita,blouse,tunik,outer,sweater,baju wanita kekinian,ninetynine store"
-                url="https://ninetyninestore-nine.vercel.app/"
-                image="https://ninetyninestore-nine.vercel.app/og-image.jpg"
-              />
+          <Route
+            path="/"
+            element={
+              <>
+                <SeoHelmet
+                  title="NineTynine Store"
+                  description="Fashion wanita modern"
+                />
 
-              <WebsiteJsonLd />
-              <StoreJsonLd />
-              <FaqJsonLd />
-              <SpeakableJsonLd />
+                <WebsiteJsonLd />
+                <StoreJsonLd />
+                <FaqJsonLd />
+                <SpeakableJsonLd />
 
-              <HeroSection
-                onExploreLooks={() => setIsLooksOpen(true)}
-              />
+                <HeroSection
+                  onExploreLooks={() =>
+                    setIsLooksOpen(true)
+                  }
+                />
 
-              <Marquee />
+                <Marquee />
 
-              <BestsellerSection
-                wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                onAddToCart={handleAddToCart}
-              />
+                <BestsellerSection
+                  wishlist={wishlist}
+                  onToggleWishlist={
+                    handleToggleWishlist
+                  }
+                  onAddToCart={
+                    handleAddToCart
+                  }
+                />
 
-              <CollectionBanner
-                onExploreLooks={() => setIsLooksOpen(true)}
-              />
+                <CollectionBanner
+                  onExploreLooks={() =>
+                    setIsLooksOpen(true)
+                  }
+                />
 
-              <OurPicksSection
-                wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                onAddToCart={handleAddToCart}
-                onBrowseAll={() => setIsAllProductsOpen(true)}
-              />
+                <OurPicksSection
+                  wishlist={wishlist}
+                  onToggleWishlist={
+                    handleToggleWishlist
+                  }
+                  onAddToCart={
+                    handleAddToCart
+                  }
+                  onBrowseAll={() =>
+                    setIsAllProductsOpen(true)
+                  }
+                />
 
-              <StoresSection />
+                <StoresSection />
+              </>
+            }
+          />
 
-              <section className="sr-only">
-                <h1>NineTynine Store Fashion Wanita Madiun</h1>
-
-                <p>
-                  NineTynine Store adalah toko fashion wanita Madiun
-                  yang menyediakan dress, blouse, tunic,
-                  outer, sweater, pants dan skirt.
-                </p>
-
-                <p>
-                  Fashion wanita kekinian Madiun dengan
-                  model trendy, korean style,
-                  casual outfit dan outfit modern.
-                </p>
-
-                <p>
-                  Toko baju wanita online Madiun dengan
-                  koleksi outfit korean style,
-                  outfit hangout,
-                  fashion wanita terbaru.
-                </p>
-              </section>
-            </>
-          }
-        />
-          {/* PRODUCT DETAIL */}
           <Route
             path="/product/:id"
             element={
               <ProductDetailPage
-                onAddToCart={handleAddToCart}
+                onAddToCart={
+                  handleAddToCart
+                }
                 wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                onOpenWishlist={handleOpenWishlist}
+                onToggleWishlist={
+                  handleToggleWishlist
+                }
+                onOpenWishlist={() =>
+                  setIsWishlistOpen(true)
+                }
               />
             }
           />
 
-          {/* CART */}
-          <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
+          <Route
+            path="/cart"
+            element={
+              <CartPage
+                cartItems={cartItems}
+                setCartItems={
+                  setCartItems
+                }
+              />
+            }
+          />
 
-          {/* CHECKOUT */}
-          <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} />} />
+          <Route
+            path="/checkout"
+            element={
+              <CheckoutPage
+                cartItems={cartItems}
+              />
+            }
+          />
 
-          {/* PAYMENT */}
-          <Route path="/payment" element={<PaymentPage />} />
+          <Route
+            path="/payment"
+            element={<PaymentPage />}
+          />
 
-          {/* ORDER COMPLETE */}
-          <Route path="/order-complete" element={<OrderCompletePage setCartItems={setCartItems} />} />
+          <Route
+            path="/order-complete"
+            element={
+              <OrderCompletePage
+                setCartItems={
+                  setCartItems
+                }
+              />
+            }
+          />
 
-          {/* LOGIN */}
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/login"
+            element={<LoginPage />}
+          />
 
-          {/* PROFILE */}
-          <Route path="/profile" element={<ProfilePage onOpenWishlist={handleOpenWishlist} />} />
+          <Route
+            path="/profile"
+            element={<ProfilePage />}
+          />
 
-          {/* ADDRESS */}
-          <Route path="/address" element={<AddressPage onOpenWishlist={handleOpenWishlist} />} />
+          <Route
+            path="/address"
+            element={<AddressPage />}
+          />
 
-          {/* ORDERS */}
-          <Route path="/orders" element={<OrdersPage onOpenWishlist={handleOpenWishlist} />} />
+          <Route
+            path="/orders"
+            element={<OrdersPage />}
+          />
 
-          {/* PURCHASE HISTORY */}
-          <Route path="/purchase-history" element={<PurchaseHistoryPage onOpenWishlist={handleOpenWishlist} />} />
+          <Route
+            path="/purchase-history"
+            element={
+              <PurchaseHistoryPage />
+            }
+          />
 
-          {/* CATEGORY */}
           <Route
             path="/category/:categoryName"
             element={
               <CategoryPage
                 wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                onAddToCart={handleAddToCart}
-                onOpenWishlist={handleOpenWishlist}
-                wishlistCount={wishlistCount}
+                onToggleWishlist={
+                  handleToggleWishlist
+                }
+                onAddToCart={
+                  handleAddToCart
+                }
+                wishlistCount={
+                  wishlistCount
+                }
                 cartCount={cartCount}
+                onOpenWishlist={() =>
+                  setIsWishlistOpen(true)
+                }
               />
             }
           />
 
-          {/* SALE */}
-          <Route path="/sale" element={<SalePage />} />
-          <Route path="/sale/:lookId" element={<SaleDetailPage />} />
+          <Route
+            path="/sale"
+            element={<SalePage />}
+          />
 
-          {/* LOOKS */}
+          <Route
+            path="/sale/:lookId"
+            element={
+              <SaleDetailPage />
+            }
+          />
+
           <Route
             path="/looks/:lookId"
             element={
               <LooksDetailPage
-                onAddToCart={handleAddToCart}
-                onOpenWishlist={() => setIsLooksOpen(true)}
+                onAddToCart={
+                  handleAddToCart
+                }
+                onOpenWishlist={() =>
+                  setIsLooksOpen(true)
+                }
                 wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                wishlistCount={wishlistCount}
+                onToggleWishlist={
+                  handleToggleWishlist
+                }
+                wishlistCount={
+                  wishlistCount
+                }
                 cartCount={cartCount}
               />
             }
@@ -316,27 +453,38 @@ function AppContent() {
 
       <WishlistModal
         isOpen={isWishlistOpen}
-        onClose={handleCloseWishlist}
+        onClose={() =>
+          setIsWishlistOpen(false)
+        }
         wishlist={wishlist}
-        onToggleWishlist={handleToggleWishlist}
-        onAddToCart={handleAddToCart}
+        onToggleWishlist={
+          handleToggleWishlist
+        }
+        onAddToCart={
+          handleAddToCart
+        }
       />
 
       <LooksModal
         isOpen={isLooksOpen}
-        onClose={() => setIsLooksOpen(false)}
+        onClose={() =>
+          setIsLooksOpen(false)
+        }
       />
 
       <AllProductsModal
         isOpen={isAllProductsOpen}
-        onClose={() => setIsAllProductsOpen(false)}
+        onClose={() =>
+          setIsAllProductsOpen(false)
+        }
       />
 
     </div>
   );
 }
 
-/* ================= DEFAULT EXPORT FIX ================= */
+/* ================= EXPORT ================= */
+
 export default function App() {
   return (
     <LanguageProvider>
