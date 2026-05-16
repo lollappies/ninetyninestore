@@ -213,26 +213,29 @@ setIsWishlistOpen(true)
 
 
 const handleCloseWishlist=()=>{
-
 setIsWishlistOpen(false)
-
 if(
 wishlistOpenedFrom==='looks'
 ){
-
 setIsLooksOpen(true)
-
 }
-
 setWishlistOpenedFrom(null)
-
 }
 
 
 
-const isLandingPage=
-location.pathname==='/'
+const hideNavbarPages=[
+'/checkout',
+'/payment',
+'/order-complete',
+'/login'
+]
 
+const showNavbar=
+!hideNavbarPages.some(
+path=>
+location.pathname.startsWith(path)
+)
 
 
 const noFooterPages=[
@@ -299,7 +302,7 @@ return(
 <SpeakableJsonLd/>
 
 
-{isLandingPage&&(
+{showNavbar&&(
 
 <Navbar
 wishlistCount={wishlistCount}
