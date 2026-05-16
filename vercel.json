@@ -1,9 +1,7 @@
 {
-  "cleanUrls": false,
-
   "rewrites": [
     {
-      "source": "/category/:path*",
+      "source": "/category/(.*)",
       "destination": "/index.html"
     },
     {
@@ -11,23 +9,22 @@
       "destination": "/index.html"
     }
   ],
-
   "headers": [
-    {
-      "source": "/sitemap-main.xml",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/xml"
-        }
-      ]
-    },
     {
       "source": "/robots.txt",
       "headers": [
         {
           "key": "Content-Type",
           "value": "text/plain"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap-main.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml"
         }
       ]
     }
