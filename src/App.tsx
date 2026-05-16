@@ -1,7 +1,7 @@
 // src/App.tsx
 
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Link } from 'react-router-dom';
 
 import { CustomToastProvider } from './components/CustomToast';
 import { LanguageProvider } from './context/LanguageContext';
@@ -246,7 +246,8 @@ const noFooterPages=[
 '/login',
 '/sale',
 '/looks',
-'/category'
+'/category',
+'/blog'
 
 ]
 
@@ -361,6 +362,50 @@ onBrowseAll={()=>
 setIsAllProductsOpen(true)
 }
 />
+
+<div className="max-w-7xl mx-auto px-6 py-20">
+
+<h2 className="text-4xl font-bold mb-8">
+
+Fashion Journal
+
+</h2>
+
+<p className="text-gray-500 mb-8">
+
+Inspirasi fashion terbaru dari Ninetynine
+
+</p>
+
+<Link to="/blog/trend-fashion-wanita-2026">
+
+<div className="border rounded-2xl p-8 hover:shadow-xl transition cursor-pointer">
+
+<p className="text-sm uppercase text-gray-400">
+
+Fashion Trend
+
+</p>
+
+<h3 className="text-2xl font-semibold mt-3">
+
+Trend Fashion Wanita 2026:
+Inspirasi Outfit Casual dan Elegan
+
+</h3>
+
+<p className="mt-4 text-gray-600">
+
+Temukan inspirasi dress, blouse,
+tunic hingga outfit casual wanita terbaru.
+
+</p>
+
+</div>
+
+</Link>
+
+</div>
 
 <StoresSection/>
 
