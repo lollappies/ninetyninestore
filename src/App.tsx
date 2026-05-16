@@ -165,41 +165,51 @@ function AppContent() {
 
         <Routes>
 
-          {/* HOME */}
-          <Route
-            path="/"
-            element={
-              <>
-                <SeoHelmet
-                  title="Ninetynine Store"
-                  description="Fashion wanita Madiun"
-                  url="https://ninetyninestore-nine.vercel.app/"
-                />
+        {/* HOME */}
+        <Route
+          path="/"
+          element={
+            <>
+              <SeoHelmet
+                title="NineTynine Store | Fashion Wanita Trendy Dress, Blouse, Outer"
+                description="NineTynine Store menyediakan fashion wanita modern mulai dari dress, blouse, tunic, outer, sweater, dan koleksi trend terbaru dengan gaya kekinian."
+                keywords="fashion wanita,dress wanita,blouse,tunik,outer,sweater,baju wanita kekinian,ninetynine store"
+                url="https://ninetyninestore-nine.vercel.app/"
+                image="https://ninetyninestore-nine.vercel.app/og-image.jpg"
+              />
 
-                <WebsiteJsonLd />
-                <StoreJsonLd />
-                <FaqJsonLd />
-                <SpeakableJsonLd />
+              <WebsiteJsonLd />
+              <StoreJsonLd />
+              <FaqJsonLd />
+              <SpeakableJsonLd />
 
-                <HeroSection onExploreLooks={() => setIsLooksOpen(true)} />
-                <Marquee />
-                <BestsellerSection
-                  wishlist={wishlist}
-                  onToggleWishlist={handleToggleWishlist}
-                  onAddToCart={handleAddToCart}
-                />
-                <CollectionBanner onExploreLooks={() => setIsLooksOpen(true)} />
-                <OurPicksSection
-                  wishlist={wishlist}
-                  onToggleWishlist={handleToggleWishlist}
-                  onAddToCart={handleAddToCart}
-                  onBrowseAll={() => setIsAllProductsOpen(true)}
-                />
-                <StoresSection />
-              </>
-            }
-          />
+              <HeroSection
+                onExploreLooks={() => setIsLooksOpen(true)}
+              />
 
+              <Marquee />
+
+              <BestsellerSection
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onAddToCart={handleAddToCart}
+              />
+
+              <CollectionBanner
+                onExploreLooks={() => setIsLooksOpen(true)}
+              />
+
+              <OurPicksSection
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onAddToCart={handleAddToCart}
+                onBrowseAll={() => setIsAllProductsOpen(true)}
+              />
+
+              <StoresSection />
+            </>
+          }
+        />
           {/* PRODUCT DETAIL */}
           <Route
             path="/product/:id"

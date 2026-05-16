@@ -1,25 +1,23 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
-interface SeoHelmetProps {
+interface SeoProps {
   title: string;
   description: string;
-  keywords?: string;
   url: string;
-  image: string;
+  image?: string;
+  keywords?: string;
 }
 
-export function SeoHelmet({
+export const SeoHelmet = ({
   title,
   description,
-  keywords,
   url,
-  image
-}: SeoHelmetProps) {
-
+  image,
+  keywords
+}: SeoProps) => {
   return (
     <Helmet>
 
-      {/* BASIC */}
       <title>{title}</title>
 
       <meta
@@ -32,31 +30,12 @@ export function SeoHelmet({
         content={keywords}
       />
 
-      <meta
-        name="robots"
-        content="index, follow"
-      />
-
-      <meta
-        name="googlebot"
-        content="index, follow"
-      />
-
-      <meta
-        name="bingbot"
-        content="index, follow"
-      />
-
       <link
         rel="canonical"
         href={url}
       />
 
-      {/* OPEN GRAPH */}
-      <meta
-        property="og:type"
-        content="website"
-      />
+      {/* Open Graph */}
 
       <meta
         property="og:title"
@@ -69,6 +48,11 @@ export function SeoHelmet({
       />
 
       <meta
+        property="og:type"
+        content="website"
+      />
+
+      <meta
         property="og:url"
         content={url}
       />
@@ -78,7 +62,8 @@ export function SeoHelmet({
         content={image}
       />
 
-      {/* TWITTER */}
+      {/* Twitter */}
+
       <meta
         name="twitter:card"
         content="summary_large_image"
@@ -101,4 +86,4 @@ export function SeoHelmet({
 
     </Helmet>
   );
-}
+};
