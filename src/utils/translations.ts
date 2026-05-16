@@ -114,7 +114,7 @@ export const translations = {
     faq_q7: 'Bagaimana jam operasional Ninetynine?',
     faq_a7: 'Toko fisik buka setiap hari pukul 09.00–21.00 WIB, sementara pemesanan melalui website dapat dilakukan kapan saja selama 24 jam.',
 
-    // MobileMenu — key lengkap (dua versi supaya tidak ada yang undefined)
+    // MobileMenu
     mobile_sale: 'Sale',
     mobile_category: 'Kategori',
     mobile_offline_store: 'Toko Offline',
@@ -131,14 +131,20 @@ export const translations = {
     category_pants: 'Pants',
     category_skirt: 'Skirt',
 
-    // Profile
+    // Profile — semua versi key
     profile_title: 'Pengaturan Akun',
     profile_login_btn: 'Daftar / Masuk',
     profile_login_desc: 'Login atau buat akun baru untuk pengalaman belanja lebih baik',
+    profile_login_signup: 'Daftar / Masuk',
+    profile_login_signup_desc: 'Login atau buat akun baru untuk pengalaman belanja lebih baik',
     profile_address: 'Alamat Saya',
     profile_address_desc: 'Atur alamat pengiriman untuk pesanan Anda',
+    profile_my_address: 'Alamat Saya',
+    profile_my_address_desc: 'Atur alamat pengiriman untuk pesanan Anda',
     profile_history: 'Riwayat Pembelian',
     profile_history_desc: 'Lihat semua transaksi yang telah selesai',
+    profile_purchase_history: 'Riwayat Pembelian',
+    profile_purchase_history_desc: 'Lihat semua transaksi yang telah selesai',
 
     // Login
     login_tab: 'Masuk',
@@ -279,13 +285,26 @@ export const translations = {
     order_payment_mandiri: 'Mandiri Virtual Account',
     order_payment_qris: 'QRIS',
 
-    // Sale Page
+    // Sale Page — semua versi key
     sale_title: 'Bundel Spesial',
     sale_offer_label: 'Penawaran Terbatas',
+    sale_limited_offer: 'Penawaran Terbatas',
     sale_heading: 'Tampilan Lengkap',
+    sale_complete_looks: 'Tampilan Lengkap',
     sale_desc: 'Hemat lebih banyak dengan membeli outfit lengkap. Dikurasi oleh stylist kami untuk keanggunan sehari-hari.',
     sale_shop_look: 'Belanja Looknya',
+    sale_shop_the_look: 'Belanja Looknya',
     sale_save: 'Hemat',
+
+    // Sale looks titles & descs
+    sale_casual_title: 'Casual Chic',
+    sale_casual_desc: 'Outfit nyaman untuk aktivitas sehari-hari yang tetap stylish.',
+    sale_feminim_title: 'Feminine Touch',
+    sale_feminim_desc: 'Tampil feminin dengan paduan warna lembut dan detail cantik.',
+    sale_smart_casual_title: 'Smart Casual',
+    sale_smart_casual_desc: 'Sempurna untuk suasana semi-formal maupun hangout santai.',
+    sale_comfy_title: 'Comfy & Cozy',
+    sale_comfy_desc: 'Pilihan nyaman untuk hari-hari bersantai tanpa kehilangan gaya.',
 
     // Sale Detail
     sale_detail_title: 'Detail Bundel',
@@ -439,7 +458,7 @@ export const translations = {
     faq_q7: "What are Ninetynine's operating hours?",
     faq_a7: 'Physical stores are open every day from 09.00–21.00 WIB, while orders via the website can be placed anytime, 24 hours a day.',
 
-    // MobileMenu — key lengkap (dua versi supaya tidak ada yang undefined)
+    // MobileMenu
     mobile_sale: 'Sale',
     mobile_category: 'Category',
     mobile_offline_store: 'Offline Store',
@@ -456,14 +475,20 @@ export const translations = {
     category_pants: 'Pants',
     category_skirt: 'Skirt',
 
-    // Profile
+    // Profile — semua versi key
     profile_title: 'Account Settings',
     profile_login_btn: 'Register / Sign In',
     profile_login_desc: 'Log in or create a new account for a better shopping experience',
+    profile_login_signup: 'Register / Sign In',
+    profile_login_signup_desc: 'Log in or create a new account for a better shopping experience',
     profile_address: 'My Address',
     profile_address_desc: 'Manage your shipping addresses',
+    profile_my_address: 'My Address',
+    profile_my_address_desc: 'Manage your shipping addresses',
     profile_history: 'Purchase History',
     profile_history_desc: 'View all your completed transactions',
+    profile_purchase_history: 'Purchase History',
+    profile_purchase_history_desc: 'View all your completed transactions',
 
     // Login
     login_tab: 'Log In',
@@ -604,13 +629,26 @@ export const translations = {
     order_payment_mandiri: 'Mandiri Virtual Account',
     order_payment_qris: 'QRIS',
 
-    // Sale Page
+    // Sale Page — semua versi key
     sale_title: 'Special Bundles',
     sale_offer_label: 'Limited Time Offer',
+    sale_limited_offer: 'Limited Time Offer',
     sale_heading: 'Complete Looks',
+    sale_complete_looks: 'Complete Looks',
     sale_desc: 'Save more when you buy the complete outfit. Curated by our stylists for your everyday elegance.',
     sale_shop_look: 'Shop The Look',
+    sale_shop_the_look: 'Shop The Look',
     sale_save: 'Save',
+
+    // Sale looks titles & descs
+    sale_casual_title: 'Casual Chic',
+    sale_casual_desc: 'Comfortable outfit for daily activities that stays stylish.',
+    sale_feminim_title: 'Feminine Touch',
+    sale_feminim_desc: 'Look feminine with soft color combinations and pretty details.',
+    sale_smart_casual_title: 'Smart Casual',
+    sale_smart_casual_desc: 'Perfect for semi-formal occasions or casual hangouts.',
+    sale_comfy_title: 'Comfy & Cozy',
+    sale_comfy_desc: 'Comfortable choices for relaxing days without losing style.',
 
     // Sale Detail
     sale_detail_title: 'Bundle Details',
