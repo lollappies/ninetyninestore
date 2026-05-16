@@ -63,3 +63,31 @@ export default function Blog() {
     </>
   );
 }
+
+        <Link to="/blog/outfit-casual-wanita">
+
+        <div className="border rounded-2xl p-8 mt-6 hover:shadow-xl transition">
+
+        <p className="text-sm text-gray-400">
+
+        Fashion Tips
+
+        </p>
+
+        <h2 className="text-3xl font-semibold mt-3">
+
+        Inspirasi Outfit Casual Wanita
+        untuk Hangout dan Kuliah
+
+        </h2>
+
+        <p className="text-gray-600 mt-4">
+
+        Ide outfit casual wanita modern
+        untuk hangout dan aktivitas sehari-hari.
+
+        </p>
+
+        </div>
+
+        </Link>

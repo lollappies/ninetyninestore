@@ -51,6 +51,7 @@ import { LooksDetailPage } from './pages/LooksDetailPage';
 import { ScrollToTop } from './components/ScrollToTop';
 import Blog from './pages/blog/Blog';
 import TrendFashionWanita2026 from './pages/blog/TrendFashionWanita2026';
+import OutfitCasualWanita from './pages/blog/OutfitCasualWanita';
 
 export interface CartItem {
   product: Product;
@@ -582,6 +583,11 @@ element={<Blog />}
 <Route
 path="/blog/trend-fashion-wanita-2026"
 element={<TrendFashionWanita2026 />}
+/>
+
+<Route
+path="/blog/outfit-casual-wanita"
+element={<OutfitCasualWanita />}
 />
 
 </Routes>
