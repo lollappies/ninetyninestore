@@ -165,51 +165,82 @@ function AppContent() {
 
         <Routes>
 
-        {/* HOME */}
-        <Route
-          path="/"
-          element={
-            <>
-              <SeoHelmet
-                title="NineTynine Store | Fashion Wanita Trendy Dress, Blouse, Outer"
-                description="NineTynine Store menyediakan fashion wanita modern mulai dari dress, blouse, tunic, outer, sweater, dan koleksi trend terbaru dengan gaya kekinian."
-                keywords="fashion wanita,dress wanita,blouse,tunik,outer,sweater,baju wanita kekinian,ninetynine store"
-                url="https://ninetyninestore-nine.vercel.app/"
-                image="https://ninetyninestore-nine.vercel.app/og-image.jpg"
-              />
+{/* HOME */}
+<Route
+  path="/"
+  element={
+    <>
+      <SeoHelmet
+        title="NineTynine Store | Fashion Wanita Trendy Dress, Blouse, Outer"
+        description="NineTynine Store menyediakan fashion wanita modern mulai dari dress, blouse, tunic, outer, sweater, dan koleksi trend terbaru dengan gaya kekinian."
+        keywords="fashion wanita,dress wanita,blouse,tunik,outer,sweater,baju wanita kekinian,ninetynine store"
+        url="https://ninetyninestore-nine.vercel.app/"
+        image="https://ninetyninestore-nine.vercel.app/og-image.jpg"
+      />
 
-              <WebsiteJsonLd />
-              <StoreJsonLd />
-              <FaqJsonLd />
-              <SpeakableJsonLd />
+      <WebsiteJsonLd />
+      <StoreJsonLd />
+      <FaqJsonLd />
+      <SpeakableJsonLd />
 
-              <HeroSection
-                onExploreLooks={() => setIsLooksOpen(true)}
-              />
+      <HeroSection
+        onExploreLooks={() => setIsLooksOpen(true)}
+      />
 
-              <Marquee />
+      <Marquee />
 
-              <BestsellerSection
-                wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                onAddToCart={handleAddToCart}
-              />
+      <BestsellerSection
+        wishlist={wishlist}
+        onToggleWishlist={handleToggleWishlist}
+        onAddToCart={handleAddToCart}
+      />
 
-              <CollectionBanner
-                onExploreLooks={() => setIsLooksOpen(true)}
-              />
+      <CollectionBanner
+        onExploreLooks={() => setIsLooksOpen(true)}
+      />
 
-              <OurPicksSection
-                wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                onAddToCart={handleAddToCart}
-                onBrowseAll={() => setIsAllProductsOpen(true)}
-              />
+      <OurPicksSection
+        wishlist={wishlist}
+        onToggleWishlist={handleToggleWishlist}
+        onAddToCart={handleAddToCart}
+        onBrowseAll={() => setIsAllProductsOpen(true)}
+      />
 
-              <StoresSection />
-            </>
-          }
-        />
+      <StoresSection />
+
+      {/* SEO Hidden Content */}
+      <section className="sr-only">
+
+        <h1>
+          NineTynine Store Fashion Wanita Madiun
+        </h1>
+
+        <p>
+          NineTynine Store adalah toko fashion wanita di
+          Madiun yang menyediakan koleksi dress,
+          blouse, tunic, outer, sweater,
+          skirt, pants, dan outfit kekinian wanita.
+        </p>
+
+        <p>
+          Kami menghadirkan fashion wanita modern
+          dengan model trendy dan harga terjangkau.
+          Koleksi tersedia mulai dari outfit casual,
+          outfit hangout, outfit korean style,
+          hingga fashion wanita terbaru.
+        </p>
+
+        <p>
+          Kategori populer di NineTynine Store:
+          dress wanita, blouse wanita,
+          tunic modern, outer wanita,
+          sweater wanita, fashion kekinian Madiun.
+        </p>
+
+      </section>
+    </>
+  }
+/>          
           {/* PRODUCT DETAIL */}
           <Route
             path="/product/:id"
