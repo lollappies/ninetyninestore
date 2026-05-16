@@ -44,13 +44,15 @@ export function CollectionBanner({ onExploreLooks }: CollectionBannerProps) {
           transition={{ duration: 0.8 }}
           className="max-w-xl"
         >
+          {/* ✅ FIX: pakai banner_year (bukan banner_label) */}
           <span className="text-[10px] tracking-[0.2em] uppercase text-white/80 block mb-4">
-            {t('banner_label')}
+            {t('banner_year')}
           </span>
+          {/* ✅ FIX: pakai banner_title_1 & banner_title_2 (bukan banner_heading1 & banner_heading2) */}
           <h2 className="font-serif text-4xl md:text-6xl text-white leading-[1.1] mb-6">
-            {t('banner_heading1')}
+            {t('banner_title_1')}
             <br />
-            <em className="font-serif italic text-white/90">{t('banner_heading2')}</em>
+            <em className="font-serif italic text-white/90">{t('banner_title_2')}</em>
           </h2>
           <p className="text-white/80 text-sm md:text-base mb-10 max-w-md leading-relaxed">
             {t('banner_desc')}
