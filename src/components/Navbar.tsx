@@ -296,7 +296,7 @@ export function Navbar({
               ? 'bg-[#f5ede4] border border-[#d6c4b0]'
               : 'bg-white/10 border border-white/25'
           }`}>
-            {(['ID', 'EN'] as const).map((l) => (
+            {(['EN', 'ID'] as const).map((l) => (
               <button
                 key={l}
                 onClick={() => setLang(l)}
