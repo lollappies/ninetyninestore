@@ -1,3 +1,4 @@
+// src/components/Navbar.tsx
 import React, { useEffect, useState, useRef } from 'react';
 import {
   Search,
@@ -6,9 +7,9 @@ import {
   User,
   Menu,
   ChevronDown,
-  X
+  X,
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { allProducts, Product } from '../utils/data';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -23,7 +24,7 @@ export function Navbar({
   wishlistCount,
   cartCount,
   onOpenMobileMenu,
-  onOpenWishlist
+  onOpenWishlist,
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -32,7 +33,10 @@ export function Navbar({
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const { lang, setLang, t } = useLanguage();
+
+  const isHomepage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -65,6 +69,14 @@ export function Navbar({
     setSearchResults(results);
   }, [searchQuery]);
 
+  const handleOfflineStoreClick = () => {
+    if (isHomepage) {
+      document.getElementById('stores')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/', { state: { scrollTo: 'stores' } });
+    }
+  };
+
   const categories = [
     { key: 'dress',   label: t('category_dress') },
     { key: 'blouse',  label: t('category_blouse') },
@@ -75,13 +87,38 @@ export function Navbar({
     { key: 'skirt',   label: t('category_skirt') },
   ];
 
-  const headerClass = `fixed top-0 left-0 right-0 z-40 will-change-[background,padding] transition-all duration-500 ease-in-out ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 shadow-sm' : 'bg-transparent py-6'}`;
-  const logoClass = `font-serif text-2xl md:text-3xl font-medium tracking-wide transition-colors duration-500 ease-in-out ${isScrolled ? 'text-brand-dark' : 'text-brand-dark md:text-white'}`;
-  const categoryBtnClass = `flex items-center gap-1 text-xs font-medium tracking-[0.15em] uppercase transition-colors duration-500 ease-in-out ${isScrolled ? 'text-brand-dark' : 'text-white'}`;
-  const offlineStoreClass = `text-xs font-medium tracking-[0.15em] uppercase transition-colors duration-500 ease-in-out ${isScrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-brand-neutral2'}`;
-  const iconsClass = `flex items-center gap-4 md:gap-6 transition-colors duration-500 ease-in-out ${isScrolled || isSearchOpen ? 'text-brand-dark' : 'text-brand-dark md:text-white'}`;
-  const chevronClass = `transition-transform duration-300 ease-out ${isDropdownOpen ? 'rotate-180' : ''}`;
-  const dropdownClass = `absolute top-full left-1/2 -translate-x-1/2 pt-4 transition-all duration-300 ease-out ${isDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`;
+  // Navbar jadi solid (non-transparent) jika bukan di homepage, atau sudah di-scroll
+  const isSolid = !isHomepage || isScrolled;
+
+  const headerClass = `fixed top-0 left-0 right-0 z-40 will-change-[background,padding] transition-all duration-500 ease-in-out ${
+    isSolid
+      ? 'bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 shadow-sm'
+      : 'bg-transparent py-6'
+  }`;
+
+  const logoClass = `font-serif text-2xl md:text-3xl font-medium tracking-wide transition-colors duration-500 ease-in-out ${
+    isSolid ? 'text-brand-dark' : 'text-brand-dark md:text-white'
+  }`;
+
+  const categoryBtnClass = `flex items-center gap-1 text-xs font-medium tracking-[0.15em] uppercase transition-colors duration-500 ease-in-out ${
+    isSolid ? 'text-brand-dark' : 'text-white'
+  }`;
+
+  const offlineStoreClass = `text-xs font-medium tracking-[0.15em] uppercase transition-colors duration-500 ease-in-out ${
+    isSolid ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-brand-neutral2'
+  }`;
+
+  const iconsClass = `flex items-center gap-4 md:gap-6 transition-colors duration-500 ease-in-out ${
+    isSolid || isSearchOpen ? 'text-brand-dark' : 'text-brand-dark md:text-white'
+  }`;
+
+  const chevronClass = `transition-transform duration-300 ease-out ${
+    isDropdownOpen ? 'rotate-180' : ''
+  }`;
+
+  const dropdownClass = `absolute top-full left-1/2 -translate-x-1/2 pt-4 transition-all duration-300 ease-out ${
+    isDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+  }`;
 
   return (
     <header className={headerClass}>
@@ -95,9 +132,10 @@ export function Navbar({
             aria-label="Open menu">
             <Menu size={24} />
           </button>
-          <a href="#" className={logoClass}>
+          {/* Pakai Link bukan <a href="#"> supaya tidak full reload */}
+          <Link to="/" className={logoClass}>
             Ninetynine
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Nav */}
@@ -119,7 +157,9 @@ export function Navbar({
             <div className={dropdownClass}>
               <ul className="bg-brand-dark rounded-lg py-2 min-w-[180px] shadow-xl">
                 {categories.map((cat, idx) => (
-                  <li key={cat.key} className={idx !== categories.length - 1 ? 'border-b border-white/5' : ''}>
+                  <li
+                    key={cat.key}
+                    className={idx !== categories.length - 1 ? 'border-b border-white/5' : ''}>
                     <button
                       onClick={() => {
                         setIsDropdownOpen(false);
@@ -134,9 +174,10 @@ export function Navbar({
             </div>
           </div>
 
-          <a href="#stores" className={offlineStoreClass}>
+          {/* Offline Store — scroll ke #stores jika di homepage, navigate + scroll jika di halaman lain */}
+          <button onClick={handleOfflineStoreClick} className={offlineStoreClass}>
             {t('nav_offline_store')}
-          </a>
+          </button>
         </nav>
 
         {/* Icons + Language Toggle */}
@@ -251,7 +292,7 @@ export function Navbar({
 
           {/* Language Toggle */}
           <div className={`hidden md:flex items-center rounded-full p-[3px] transition-all duration-500 ease-in-out ${
-            isScrolled
+            isSolid
               ? 'bg-[#f5ede4] border border-[#d6c4b0]'
               : 'bg-white/10 border border-white/25'
           }`}>
@@ -261,10 +302,10 @@ export function Navbar({
                 onClick={() => setLang(l)}
                 className={`text-[10px] font-medium tracking-widest px-[9px] py-1 rounded-full transition-all duration-500 ease-in-out ${
                   lang === l
-                    ? isScrolled
+                    ? isSolid
                       ? 'bg-[#2c1810] text-[#f5ede4]'
                       : 'bg-white/85 text-[#2c1810]'
-                    : isScrolled
+                    : isSolid
                       ? 'text-[#a0876e]'
                       : 'text-white/45'
                 }`}>
