@@ -14,7 +14,7 @@
 
   "headers": [
     {
-      "source": "/sitemap.xml",
+      "source": "/sitemap-main.xml",
       "headers": [
         {
           "key": "Content-Type",

@@ -24,8 +24,4 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
-Sitemap: https://ninetyninestore-nine.vercel.app/sitemap.xml
-
-# AI FILES
-Allow: /llms.txt
-Allow: /agents.txt
+Sitemap: https://ninetyninestore-nine.vercel.app/sitemap-main.xml
