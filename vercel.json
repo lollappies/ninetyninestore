@@ -1,13 +1,13 @@
 {
   "rewrites": [
     {
-      "source": "/((?!sitemap-v2.xml\\.xml|robots\\.txt|sitemap\\.xml|images|favicon\\.ico).*)",
+      "source": "/((?!sitemap-main.xml|robots.txt|sitemap.xml|images|favicon.ico).*)",
       "destination": "/index.html"
     }
   ],
   "headers": [
     {
-      "source": "/(.*)\\.xml",
+      "source": "/(.*).xml",
       "headers": [
         {
           "key": "Content-Type",
