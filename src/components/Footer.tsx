@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCustomToast } from './CustomToast';
 import { useLanguage } from '../context/LanguageContext';
+import { Link } from "react-router-dom";
 
 function InstagramIcon() {
   return (
@@ -98,19 +99,19 @@ export function Footer() {
             <ul className="flex flex-col gap-4">
               {/* ✅ DIUBAH: href sekarang mengarah ke halaman nyata */}
               <li>
-                <a href="/about" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link to="/about" className="text-sm text-gray-400 hover:text-white transition-colors">
                   {t('footer_about')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/about#story" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link to="/about#story" className="text-sm text-gray-400 hover:text-white transition-colors">
                   {t('footer_our_story')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#stores" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link to="/#stores" className="text-sm text-gray-400 hover:text-white transition-colors">
                   {t('footer_offline_store')}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -123,19 +124,19 @@ export function Footer() {
             <ul className="flex flex-col gap-4">
               {/* ✅ DIUBAH: href sekarang mengarah ke halaman nyata */}
               <li>
-                <a href="/contact#shipping" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link to="/contact#shipping" className="text-sm text-gray-400 hover:text-white transition-colors">
                   {t('footer_shipping')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact#faq" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link to="/contact#faq" className="text-sm text-gray-400 hover:text-white transition-colors">
                   {t('footer_faq')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link to="/contact" className="text-sm text-gray-400 hover:text-white transition-colors">
                   {t('footer_contact')}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -165,6 +166,69 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Fashion Journal Mini */}
+        <div className="pt-10 border-t border-white/10 mb-10">
+
+        <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-6">
+        Fashion Journal
+        </h4>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Link
+        to="/blog/trend-fashion-wanita-2026"
+        className="bg-white/5 rounded-xl p-4 hover:bg-white/10 hover:-translate-y-1 transition duration-300"        >
+        <p className="text-xs text-gray-500 uppercase">
+        Trend
+        </p>
+
+        <h5 className="text-white mt-2 text-sm font-medium">
+        Trend Fashion Wanita 2026
+        </h5>
+
+        <p className="text-gray-400 text-xs mt-2">
+        Inspirasi outfit casual & elegan
+        </p>
+        </Link>
+
+
+        <Link
+        to="/blog/outfit-casual-wanita"
+        className="bg-white/5 rounded-xl p-4 hover:bg-white/10 hover:-translate-y-1 transition duration-300"
+        >
+        <p className="text-xs text-gray-500 uppercase">
+        Outfit
+        </p>
+
+        <h5 className="text-white mt-2 text-sm font-medium">
+        Outfit Casual Wanita
+        </h5>
+
+        <p className="text-gray-400 text-xs mt-2">
+        Mix and match simple sehari-hari
+        </p>
+        </Link>
+
+
+        <Link
+        to="/blog/tips-mix-and-match-wanita"
+        className="bg-white/5 rounded-xl p-4 hover:bg-white/10 hover:-translate-y-1 transition duration-300"
+        >
+        <p className="text-xs text-gray-500 uppercase">
+        Tips
+        </p>
+
+        <h5 className="text-white mt-2 text-sm font-medium">
+        Tips Mix & Match Wanita
+        </h5>
+
+        <p className="text-gray-400 text-xs mt-2">
+        Panduan styling modern
+        </p>
+        </Link>
+
+        </div>
+
+        </div>
         {/* Bottom — Trust Pages */}
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/10 gap-4">
           <span className="text-xs text-gray-500">
@@ -172,15 +236,15 @@ export function Footer() {
           </span>
           {/* ✅ DIUBAH: href sekarang mengarah ke halaman nyata, bukan "#" */}
           <div className="flex items-center gap-6">
-            <a href="/privacy" className="text-xs text-gray-500 hover:text-white transition-colors">
+            <Link to="/privacy" className="text-xs text-gray-500 hover:text-white transition-colors">
               {t('footer_privacy')}
-            </a>
-            <a href="/terms" className="text-xs text-gray-500 hover:text-white transition-colors">
+            </Link>
+            <Link to="/terms" className="text-xs text-gray-500 hover:text-white transition-colors">
               {t('footer_terms')}
-            </a>
-            <a href="/privacy#cookies" className="text-xs text-gray-500 hover:text-white transition-colors">
+            </Link>
+            <Link to="/privacy#cookies" className="text-xs text-gray-500 hover:text-white transition-colors">
               {t('footer_cookie')}
-            </a>
+            </Link>
           </div>
         </div>
       </div>
