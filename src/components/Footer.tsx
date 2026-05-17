@@ -167,68 +167,147 @@ export function Footer() {
         </div>
 
         {/* Fashion Journal Mini */}
-        <div className="pt-10 border-t border-white/10 mb-10">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
-        <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-6">
-        Fashion Journal
-        </h4>
+  {/* Brand */}
+  <div className="flex flex-col gap-6">
+    <span className="font-serif text-3xl text-white">
+      Ninetynine
+    </span>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Link
-        to="/blog/trend-fashion-wanita-2026"
-        className="bg-white/5 rounded-xl p-4 hover:bg-white/10 hover:-translate-y-1 transition duration-300"        >
-        <p className="text-xs text-gray-500 uppercase">
-        Trend
-        </p>
+    <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
+      {t('footer_brand_desc')}
+    </p>
 
-        <h5 className="text-white mt-2 text-sm font-medium">
-        Trend Fashion Wanita 2026
-        </h5>
-
-        <p className="text-gray-400 text-xs mt-2">
-        Inspirasi outfit casual & elegan
-        </p>
-        </Link>
-
-
-        <Link
-        to="/blog/outfit-casual-wanita"
-        className="bg-white/5 rounded-xl p-4 hover:bg-white/10 hover:-translate-y-1 transition duration-300"
+    <div className="flex items-center gap-3">
+      {socialLinks.map((social) => (
+        <a
+          key={social.label}
+          href={social.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-brand-accent transition"
         >
-        <p className="text-xs text-gray-500 uppercase">
-        Outfit
-        </p>
-
-        <h5 className="text-white mt-2 text-sm font-medium">
-        Outfit Casual Wanita
-        </h5>
-
-        <p className="text-gray-400 text-xs mt-2">
-        Mix and match simple sehari-hari
-        </p>
-        </Link>
+          <social.icon />
+        </a>
+      ))}
+    </div>
+  </div>
 
 
+  {/* Fashion */}
+  <div>
+    <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-6">
+      Fashion
+    </h4>
+
+    <ul className="flex flex-col gap-4">
+
+      <li>
         <Link
-        to="/blog/tips-mix-and-match-wanita"
-        className="bg-white/5 rounded-xl p-4 hover:bg-white/10 hover:-translate-y-1 transition duration-300"
+          to="/about"
+          className="text-sm text-gray-400 hover:text-white"
         >
-        <p className="text-xs text-gray-500 uppercase">
-        Tips
-        </p>
-
-        <h5 className="text-white mt-2 text-sm font-medium">
-        Tips Mix & Match Wanita
-        </h5>
-
-        <p className="text-gray-400 text-xs mt-2">
-        Panduan styling modern
-        </p>
+          About Ninetynine
         </Link>
+      </li>
+
+      <li>
+        <Link
+          to="/about#story"
+          className="text-sm text-gray-400 hover:text-white"
+        >
+          Our Story
+        </Link>
+      </li>
+
+      <li>
+        <Link
+          to="/#stores"
+          className="text-sm text-gray-400 hover:text-white"
+        >
+          Offline Store
+        </Link>
+      </li>
+
+    </ul>
+  </div>
+
+
+  {/* Customer Service */}
+  <div>
+    <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-6">
+      Customer Service
+    </h4>
+
+    <ul className="flex flex-col gap-4">
+
+      <li>
+        <Link
+          to="/contact"
+          className="text-sm text-gray-400 hover:text-white"
+        >
+          Shipping Information
+        </Link>
+      </li>
+
+      <li>
+        <Link
+          to="/contact#faq"
+          className="text-sm text-gray-400 hover:text-white"
+        >
+          FAQ
+        </Link>
+      </li>
+
+      <li>
+        <Link
+          to="/contact"
+          className="text-sm text-gray-400 hover:text-white"
+        >
+          Contact Us
+        </Link>
+      </li>
+
+    </ul>
+  </div>
+
+
+        {/* Fashion Journal */}
+        <div>
+
+          <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-6">
+            Fashion Journal
+          </h4>
+
+          <div className="flex flex-col gap-4">
+
+            <Link
+              to="/blog/trend-fashion-wanita-2026"
+              className="text-sm text-gray-400 hover:text-white transition"
+            >
+              Trend Fashion Wanita 2026
+            </Link>
+
+            <Link
+              to="/blog/outfit-casual-wanita"
+              className="text-sm text-gray-400 hover:text-white transition"
+            >
+              Outfit Casual Wanita
+            </Link>
+
+            <Link
+              to="/blog/tips-mix-and-match-wanita"
+              className="text-sm text-gray-400 hover:text-white transition"
+            >
+              Tips Mix & Match Wanita
+            </Link>
+
+          </div>
 
         </div>
 
-        </div>
+      </div>        
         {/* Bottom — Trust Pages */}
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/10 gap-4">
           <span className="text-xs text-gray-500">
