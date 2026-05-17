@@ -1,13 +1,14 @@
 {
   "rewrites": [
     {
-      "source": "/((?!sitemap-main.xml|robots.txt|sitemap.xml|images|favicon.ico).*)",
+      "source": "/((?!sitemap-main\\.xml|robots\\.txt|images|favicon\\.ico).*)",
       "destination": "/index.html"
     }
   ],
+
   "headers": [
     {
-      "source": "/(.*).xml",
+      "source": "/sitemap-main.xml",
       "headers": [
         {
           "key": "Content-Type",
@@ -15,6 +16,7 @@
         }
       ]
     },
+
     {
       "source": "/assets/(.*)",
       "headers": [
@@ -24,6 +26,7 @@
         }
       ]
     },
+
     {
       "source": "/((?!assets).*)",
       "headers": [
