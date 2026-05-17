@@ -1,3 +1,4 @@
+// src/components/CollectionBanner.tsx
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -21,7 +22,7 @@ export function CollectionBanner({ onExploreLooks }: CollectionBannerProps) {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[80vh] min-h-[600px] w-full overflow-hidden group"
+      className="relative h-[60vh] md:h-[80vh] min-h-[400px] md:min-h-[600px] w-full overflow-hidden group"
     >
       <motion.div className="absolute inset-0" style={{ y: imageY }}>
         <img
@@ -36,7 +37,7 @@ export function CollectionBanner({ onExploreLooks }: CollectionBannerProps) {
         style={{ opacity: overlayOpacity }}
       />
 
-      <div className="relative z-10 h-full max-w-[1440px] mx-auto px-4 md:px-12 flex items-center">
+      <div className="relative z-10 h-full max-w-[1440px] mx-auto px-6 md:px-12 flex items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -44,17 +45,15 @@ export function CollectionBanner({ onExploreLooks }: CollectionBannerProps) {
           transition={{ duration: 0.8 }}
           className="max-w-xl"
         >
-          {/* ✅ FIX: pakai banner_year (bukan banner_label) */}
-          <span className="text-[10px] tracking-[0.2em] uppercase text-white/80 block mb-4">
+          <span className="text-[10px] tracking-[0.2em] uppercase text-white/80 block mb-3 md:mb-4">
             {t('banner_year')}
           </span>
-          {/* ✅ FIX: pakai banner_title_1 & banner_title_2 (bukan banner_heading1 & banner_heading2) */}
-          <h2 className="font-serif text-4xl md:text-6xl text-white leading-[1.1] mb-6">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl text-white leading-[1.15] md:leading-[1.1] mb-4 md:mb-6">
             {t('banner_title_1')}
             <br />
             <em className="font-serif italic text-white/90">{t('banner_title_2')}</em>
           </h2>
-          <p className="text-white/80 text-sm md:text-base mb-10 max-w-md leading-relaxed">
+          <p className="text-white/80 text-sm md:text-base mb-7 md:mb-10 max-w-sm md:max-w-md leading-relaxed">
             {t('banner_desc')}
           </p>
           <button

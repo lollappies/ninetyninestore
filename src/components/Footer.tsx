@@ -1,3 +1,4 @@
+// src/components/Footer.tsx
 import React, { useState } from 'react';
 import { useCustomToast } from './CustomToast';
 import { useLanguage } from '../context/LanguageContext';
@@ -41,79 +42,76 @@ const socialLinks = [
   {
     icon: InstagramIcon,
     href: 'https://www.instagram.com/99outfitstore?igsh=MWtlMWRvanBzZnVo',
-    label:'Instagram'
+    label: 'Instagram'
   },
   {
-    icon:TikTokIcon,
-    href:'https://www.tiktok.com/@always.ninetynine',
-    label:'TikTok'
+    icon: TikTokIcon,
+    href: 'https://www.tiktok.com/@always.ninetynine',
+    label: 'TikTok'
   },
   {
-    icon:ShopeeIcon,
-    href:'https://id.shp.ee/RHtRFQfp',
-    label:'Shopee'
+    icon: ShopeeIcon,
+    href: 'https://id.shp.ee/RHtRFQfp',
+    label: 'Shopee'
   },
   {
-    icon:WhatsAppIcon,
-    href:'https://api.whatsapp.com/send/?phone=6281335579050',
-    label:'WhatsApp'
+    icon: WhatsAppIcon,
+    href: 'https://api.whatsapp.com/send/?phone=6281335579050',
+    label: 'WhatsApp'
   }
 ];
 
 export function Footer() {
-  const {showToast}=useCustomToast();
-  const {t}=useLanguage();
+  const { showToast } = useCustomToast();
+  const { t } = useLanguage();
+  const [email, setEmail] = useState('');
 
-  const [email,setEmail]=useState('');
-
-  const handleSubscribe=(e:React.FormEvent)=>{
+  const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-
-    const trimmed=email.trim();
-
-    if(!trimmed){
+    const trimmed = email.trim();
+    if (!trimmed) {
       showToast(t('toast_email_empty'));
       return;
     }
-
-    const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if(!emailRegex.test(trimmed)){
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmed)) {
       showToast(t('toast_email_invalid'));
       return;
     }
-
     showToast(t('toast_subscribe_success'));
     setEmail('');
   };
 
   return (
-    <footer className="bg-black pt-20 pb-10 border-t border-white/10">
-
+    <footer className="bg-black pt-14 md:pt-20 pb-8 md:pb-10 border-t border-white/10">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+        {/*
+          Mobile:  Brand full-width, lalu 2-kolom untuk link groups, lalu Stay Updated full-width
+          Tablet:  2-kolom (Brand + 3 link groups)
+          Desktop: 5-kolom seperti semula
+        */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-10 lg:gap-12 mb-12 md:mb-16">
 
-          {/* Brand */}
-          <div className="flex flex-col gap-6">
-            <span className="font-serif text-3xl text-white">
+          {/* Brand — full-width di mobile */}
+          <div className="col-span-2 md:col-span-1 flex flex-col gap-5">
+            <span className="font-serif text-2xl md:text-3xl text-white">
               Ninetynine
             </span>
-
             <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
               {t('footer_brand_desc')}
             </p>
-
             <div className="flex items-center gap-3">
-              {socialLinks.map((social)=>(
+              {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={social.label}
                   className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-brand-accent hover:scale-110 transition-all"
                 >
-                  <social.icon/>
+                  <social.icon />
                 </a>
               ))}
             </div>
@@ -121,25 +119,22 @@ export function Footer() {
 
           {/* Fashion */}
           <div>
-            <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-6">
+            <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-5 md:mb-6">
               Fashion
             </h4>
-
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3 md:gap-4">
               <li>
-                <Link to="/about" className="text-sm text-gray-400 hover:text-white">
+                <Link to="/about" className="text-sm text-gray-400 hover:text-white transition-colors">
                   About Ninetynine
                 </Link>
               </li>
-
               <li>
-                <Link to="/about#story" className="text-sm text-gray-400 hover:text-white">
+                <Link to="/about#story" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Our Story
                 </Link>
               </li>
-
               <li>
-                <Link to="/#stores" className="text-sm text-gray-400 hover:text-white">
+                <Link to="/#stores" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Offline Store
                 </Link>
               </li>
@@ -148,25 +143,22 @@ export function Footer() {
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-6">
+            <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-5 md:mb-6">
               Customer Service
             </h4>
-
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3 md:gap-4">
               <li>
-                <Link to="/contact" className="text-sm text-gray-400 hover:text-white">
+                <Link to="/contact" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Shipping Information
                 </Link>
               </li>
-
               <li>
-                <Link to="/contact#faq" className="text-sm text-gray-400 hover:text-white">
+                <Link to="/contact#faq" className="text-sm text-gray-400 hover:text-white transition-colors">
                   FAQ
                 </Link>
               </li>
-
               <li>
-                <Link to="/contact" className="text-sm text-gray-400 hover:text-white">
+                <Link to="/contact" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Contact Us
                 </Link>
               </li>
@@ -174,54 +166,48 @@ export function Footer() {
           </div>
 
           {/* Fashion Journal */}
-          <div>
-            <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-6">
+          <div className="col-span-2 md:col-span-1">
+            <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-5 md:mb-6">
               Fashion Journal
             </h4>
-
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3 md:gap-4">
               <li>
-                <Link to="/blog/trend-fashion-wanita-2026" className="text-sm text-gray-400 hover:text-white">
+                <Link to="/blog/trend-fashion-wanita-2026" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Trend Fashion Wanita 2026
                 </Link>
               </li>
-
               <li>
-                <Link to="/blog/outfit-casual-wanita" className="text-sm text-gray-400 hover:text-white">
+                <Link to="/blog/outfit-casual-wanita" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Outfit Casual Wanita
                 </Link>
               </li>
-
               <li>
-                <Link to="/blog/tips-mix-and-match-wanita" className="text-sm text-gray-400 hover:text-white">
+                <Link to="/blog/tips-mix-and-match-wanita" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Tips Mix & Match Wanita
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Stay Updated */}
-          <div>
-            <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-6">
+          {/* Stay Updated — full-width di mobile & tablet kecil */}
+          <div className="col-span-2 md:col-span-3 lg:col-span-1">
+            <h4 className="text-xs font-bold tracking-[0.15em] uppercase text-white mb-5 md:mb-6">
               Stay Updated
             </h4>
-
             <p className="text-sm text-gray-400 mb-4">
               Subscribe for new arrivals, exclusive offers, and style inspiration.
             </p>
-
-            <form className="flex flex-col gap-3" onSubmit={handleSubscribe}>
+            <form className="flex flex-col gap-3 max-w-sm lg:max-w-none" onSubmit={handleSubscribe}>
               <input
                 type="email"
                 value={email}
-                onChange={(e)=>setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email address"
-                className="w-full px-4 py-3 bg-white/10 border border-white/10 text-white rounded-md"
+                className="w-full px-4 py-3 bg-white/10 border border-white/10 text-white rounded-md text-sm placeholder:text-gray-500 focus:outline-none focus:border-white/30 transition-colors"
               />
-
               <button
                 type="submit"
-                className="w-full bg-white text-black py-3 rounded-md text-xs font-bold"
+                className="w-full bg-white text-black py-3 rounded-md text-xs font-bold tracking-[0.1em] hover:bg-gray-100 transition-colors"
               >
                 SUBSCRIBE
               </button>
@@ -230,32 +216,25 @@ export function Footer() {
 
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/10 gap-4">
-
+        {/* Bottom bar */}
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between pt-6 md:pt-8 border-t border-white/10 gap-4">
           <span className="text-xs text-gray-500">
             {t('footer_copyright')}
           </span>
-
-          <div className="flex gap-6">
-
-            <Link to="/privacy" className="text-xs text-gray-500 hover:text-white">
+          <div className="flex gap-4 md:gap-6">
+            <Link to="/privacy" className="text-xs text-gray-500 hover:text-white transition-colors">
               Privacy Policy
             </Link>
-
-            <Link to="/terms" className="text-xs text-gray-500 hover:text-white">
+            <Link to="/terms" className="text-xs text-gray-500 hover:text-white transition-colors">
               Terms of Service
             </Link>
-
-            <Link to="/privacy#cookies" className="text-xs text-gray-500 hover:text-white">
+            <Link to="/privacy#cookies" className="text-xs text-gray-500 hover:text-white transition-colors">
               Cookie Policy
             </Link>
-
           </div>
-
         </div>
 
       </div>
-
     </footer>
   );
 }

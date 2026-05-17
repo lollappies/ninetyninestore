@@ -87,16 +87,15 @@ export function Navbar({
     { key: 'skirt',   label: t('category_skirt') },
   ];
 
-  // Navbar jadi solid (non-transparent) jika bukan di homepage, atau sudah di-scroll
   const isSolid = !isHomepage || isScrolled;
 
   const headerClass = `fixed top-0 left-0 right-0 z-40 will-change-[background,padding] transition-all duration-500 ease-in-out ${
     isSolid
-      ? 'bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 shadow-sm'
-      : 'bg-transparent py-6'
+      ? 'bg-white/90 backdrop-blur-md border-b border-gray-100 py-3 md:py-4 shadow-sm'
+      : 'bg-transparent py-4 md:py-6'
   }`;
 
-  const logoClass = `font-serif text-2xl md:text-3xl font-medium tracking-wide transition-colors duration-500 ease-in-out ${
+  const logoClass = `font-serif text-xl md:text-3xl font-medium tracking-wide transition-colors duration-500 ease-in-out ${
     isSolid ? 'text-brand-dark' : 'text-brand-dark md:text-white'
   }`;
 
@@ -108,7 +107,7 @@ export function Navbar({
     isSolid ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-brand-neutral2'
   }`;
 
-  const iconsClass = `flex items-center gap-4 md:gap-6 transition-colors duration-500 ease-in-out ${
+  const iconsClass = `flex items-center gap-3 md:gap-6 transition-colors duration-500 ease-in-out ${
     isSolid || isSearchOpen ? 'text-brand-dark' : 'text-brand-dark md:text-white'
   }`;
 
@@ -127,12 +126,11 @@ export function Navbar({
         {/* Kiri: Hamburger + Logo */}
         <div className="flex items-center gap-2 md:gap-0">
           <button
-            className="md:hidden p-2 -ml-2 text-brand-dark"
+            className="md:hidden p-1.5 -ml-1.5 text-brand-dark"
             onClick={onOpenMobileMenu}
             aria-label="Open menu">
-            <Menu size={24} />
+            <Menu size={22} />
           </button>
-          {/* Pakai Link bukan <a href="#"> supaya tidak full reload */}
           <Link to="/" className={logoClass}>
             Ninetynine
           </Link>
@@ -174,7 +172,6 @@ export function Navbar({
             </div>
           </div>
 
-          {/* Offline Store — scroll ke #stores jika di homepage, navigate + scroll jika di halaman lain */}
           <button onClick={handleOfflineStoreClick} className={offlineStoreClass}>
             {t('nav_offline_store')}
           </button>
@@ -193,14 +190,21 @@ export function Navbar({
                 if (!isSearchOpen)
                   setTimeout(() => document.getElementById('searchInput')?.focus(), 100);
               }}>
-              {isSearchOpen ? <X size={20} strokeWidth={1.5} /> : <Search size={20} strokeWidth={1.5} />}
+              {isSearchOpen
+                ? <X size={18} strokeWidth={1.5} />
+                : <Search size={18} strokeWidth={1.5} />}
             </button>
 
             {isSearchOpen && (
-              <div className="absolute right-0 top-full mt-4 w-[300px] md:w-[400px] bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
+              <div className="
+                absolute right-0 top-full mt-3
+                w-[calc(100vw-2rem)] max-w-[320px]
+                sm:max-w-[360px] md:w-[400px] md:max-w-none
+                bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden
+              ">
                 <div className="p-3 border-b border-gray-100">
                   <div className="relative">
-                    <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                     <input
                       id="searchInput"
                       type="text"
@@ -212,7 +216,7 @@ export function Navbar({
                   </div>
                 </div>
                 {searchQuery && (
-                  <div className="max-h-[60vh] overflow-y-auto p-2">
+                  <div className="max-h-[50vh] overflow-y-auto p-2">
                     {searchResults.length > 0 ? (
                       <div className="flex flex-col gap-1">
                         {searchResults.map((product) => (
@@ -223,21 +227,21 @@ export function Navbar({
                               setSearchQuery('');
                               navigate(`/product/${product.id}`);
                             }}
-                            className="flex items-center gap-4 p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200 text-left w-full">
+                            className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200 text-left w-full">
                             <img
                               src={product.imageMain}
                               alt={product.name}
-                              className="w-12 h-16 object-cover rounded-md bg-gray-100"
+                              className="w-10 h-14 md:w-12 md:h-16 object-cover rounded-md bg-gray-100 flex-shrink-0"
                             />
-                            <div className="flex flex-col flex-1">
-                              <span className="text-[10px] text-gray-500 uppercase tracking-widest">
+                            <div className="flex flex-col flex-1 min-w-0">
+                              <span className="text-[10px] text-gray-500 uppercase tracking-widest truncate">
                                 {product.series}
                               </span>
-                              <span className="text-sm font-medium text-brand-dark line-clamp-1">
+                              <span className="text-xs md:text-sm font-medium text-brand-dark line-clamp-2">
                                 {product.name}
                               </span>
                               {product.price && (
-                                <span className="text-xs text-brand-dark mt-1">
+                                <span className="text-xs text-brand-dark mt-0.5">
                                   {product.price}
                                 </span>
                               )}
@@ -246,7 +250,7 @@ export function Navbar({
                         ))}
                       </div>
                     ) : (
-                      <div className="p-4 text-center text-sm text-gray-500">
+                      <div className="p-4 text-center text-xs md:text-sm text-gray-500">
                         {t('nav_search_empty')} "{searchQuery}"
                       </div>
                     )}
@@ -261,7 +265,7 @@ export function Navbar({
             aria-label="Wishlist"
             onClick={onOpenWishlist}
             className="relative hover:opacity-70 transition-opacity duration-300">
-            <Heart size={20} strokeWidth={1.5} />
+            <Heart size={18} strokeWidth={1.5} />
             {wishlistCount > 0 && (
               <span className="absolute -top-1.5 -right-1.5 bg-brand-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                 {wishlistCount}
@@ -274,7 +278,7 @@ export function Navbar({
             aria-label="Cart"
             onClick={() => navigate('/cart')}
             className="relative hover:opacity-70 transition-opacity duration-300">
-            <ShoppingBag size={20} strokeWidth={1.5} />
+            <ShoppingBag size={18} strokeWidth={1.5} />
             {cartCount > 0 && (
               <span className="absolute -top-1.5 -right-1.5 bg-brand-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                 {cartCount}
@@ -282,15 +286,15 @@ export function Navbar({
             )}
           </button>
 
-          {/* Account */}
+          {/* Account — sembunyikan di mobile supaya tidak terlalu penuh */}
           <button
             aria-label="Account"
             onClick={() => navigate('/profile')}
-            className="hover:opacity-70 transition-opacity duration-300">
-            <User size={20} strokeWidth={1.5} />
+            className="hidden sm:block hover:opacity-70 transition-opacity duration-300">
+            <User size={18} strokeWidth={1.5} />
           </button>
 
-          {/* Language Toggle */}
+          {/* Language Toggle — desktop only */}
           <div className={`hidden md:flex items-center rounded-full p-[3px] transition-all duration-500 ease-in-out ${
             isSolid
               ? 'bg-[#f5ede4] border border-[#d6c4b0]'
