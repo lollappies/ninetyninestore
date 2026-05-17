@@ -1,83 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/</loc>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/sale</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/</loc>
+</url>
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/category/dress</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/sale</loc>
+</url>
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/category/blouse</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/category/dress</loc>
+</url>
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/category/tunic</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/category/blouse</loc>
+</url>
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/category/outer</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/category/tunic</loc>
+</url>
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/category/sweater</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/category/outer</loc>
+</url>
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/category/pants</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/category/sweater</loc>
+</url>
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/category/skirt</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/category/pants</loc>
+</url>
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/blog</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/category/skirt</loc>
+</url>
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/blog/trend-fashion-wanita-2026</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/blog</loc>
+</url>
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/blog/outfit-casual-wanita</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/blog/trend-fashion-wanita-2026</loc>
+</url>
 
-  <url>
-    <loc>https://ninetyninestore-nine.vercel.app/blog/tips-mix-and-match-wanita</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/blog/outfit-casual-wanita</loc>
+</url>
+
+<url>
+<loc>https://ninetyninestore-nine.vercel.app/blog/tips-mix-and-match-wanita</loc>
+</url>
 
 </urlset>
